@@ -11,12 +11,15 @@ task :build do
     puts "Install it by running 'gem install closure-compiler'"
     exit
   end
-  source = File.read 'flight.js'
+  source = File.read 'js/flight.js'
   header = source.match HEADER
-  File.open 'flight-min.js', 'w+' do |file|
+  File.open 'js/flight-min.js', 'w+' do |file|
     file.write header[1].squeeze(' ') + Closure::Compiler.new.compress(source)
   end
 end
+
+desc 'compile the coffeescript and less stylesheet'
+task :compile => [:coffee, :less]
 
 desc 'compile the coffeescript source into javascript'
 task :coffee do
@@ -35,5 +38,5 @@ end
 
 desc 'run JavaScriptLint on the source'
 task :lint do
-  system 'jsl -nofilelisting -nologo -conf docs/jsl.conf -process flight.js'
+  system 'jsl -nofilelisting -nologo -conf docs/jsl.conf -process js/flight.js'
 end
