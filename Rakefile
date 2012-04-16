@@ -18,20 +18,22 @@ task :build do
   end
 end
 
+desc 'compile the coffeescript source into javascript'
+task :coffee do
+  system 'coffee -c js/flight.coffee'
+end
+
+desc 'compile the less stylesheets into css'
+task :less do
+  system 'lessc css/style.less css/style.css'
+end
+
 desc 'build the docco documentation'
 task :doc do
-  check 'docco', 'docco', 'https://github.com/jashkenas/docco'
   system 'docco flight.js'
 end
 
 desc 'run JavaScriptLint on the source'
 task :lint do
-  check 'jsl', 'JavaScriptLint', 'http://www.javascriptlint.com/download.htm'
   system 'jsl -nofilelisting -nologo -conf docs/jsl.conf -process flight.js'
-end
-
-def check(exec, name, url)
-  return unless `which #{exec}`.empty?
-  puts "#{name} not found.\nInstall it from #{url}"
-  exit
 end
