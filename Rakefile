@@ -28,7 +28,7 @@ end
 
 desc 'compile the less stylesheets into css'
 task :less do
-  system 'lessc css/style.less css/style.css'
+  system 'lessc --yui-compress css/style.less css/style.css'
 end
 
 desc 'build the docco documentation'
