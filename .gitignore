@@ -1,3 +1,5 @@
 *.js
 *.css
 *.DS_store
+*.idea
+*.iml
