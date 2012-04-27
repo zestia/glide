@@ -4,6 +4,7 @@ class Flight
   # defaults
   transitionAnimation: true
   fadeAnimation: true
+  currentPanel: ''
 
   constructor: (options) ->
     # set options
@@ -14,14 +15,16 @@ class Flight
       if options["fadeAnimation"]?
         @["fadeAnimation"] = options["fadeAnimation"]
 
-  goToPage: (startingDiv) ->
+    @currentPanel = document.getElementsByClassName('visible')
+
+  goToPage: () ->
     # get starting (current) div. Should this be passed in?
     # get transtion
     # check transition
     # use appropriate transition
     # store reference to go back in reverse
 
-    typeOfTransition = startingDiv.getAttribute("data-transition")
+    transtionType = @currentPanel.getAttribute("data-transition")
 
     switch typeOfTransition
       when "slide" then do @slideTransition()
