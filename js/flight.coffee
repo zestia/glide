@@ -5,6 +5,7 @@ class Flight
   transitionAnimation: true
   fadeAnimation: true
   currentPanel: ''
+  targetPanel: ''
 
   constructor: (options) ->
     # set options
@@ -15,14 +16,9 @@ class Flight
       if options["fadeAnimation"]?
         @["fadeAnimation"] = options["fadeAnimation"]
 
-    @currentPanel = document.getElementsByClassName('visible')
+    @currentPanel = document.getElementsByClassName('visible')[0]
 
-  goToPage: () ->
-    # get starting (current) div. Should this be passed in?
-    # get transtion
-    # check transition
-    # use appropriate transition
-    # store reference to go back in reverse
+  goToPage: (toPanel) ->
 
     transtionType = @currentPanel.getAttribute("data-transition")
 
@@ -45,12 +41,12 @@ class Flight
       else
         firstChild = firstChild.nextSibling
 
-  slideTransition: (currDiv, targetDiv, speed, back) ->
+  slideTransition: (targetDiv, speed, back) ->
 
     # TODO: look into transform origin
     # TODO: make use of data tags
 
-    unless currDiv and targetDiv
+    unless @ and targetDiv
       throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
       return
 
@@ -60,11 +56,10 @@ class Flight
 
     if @isTransitioning is true then return else @isTransitioning = true
 
-    currDiv = document.querySelector currDiv
     targetDiv = document.querySelector targetDiv
 
     targetDiv.style.display = "block"
-    currDiv.style.display = "block"
+    @currentPanel.style.display = "block"
 
     if back is true
 
@@ -73,9 +68,9 @@ class Flight
       targetDiv.style.webkitTransform = "translateX(0%)"
 
       # use window timeout to delay transition or will not work on android device
-      window.setTimeout ->
-        currDiv.style.webkitTransition = "#{speed}"
-        currDiv.style.webkitTransform = "translateX(100%)"
+      window.setTimeout =>
+        @currentPanel.style.webkitTransition = "#{speed}"
+        @currentPanel.style.webkitTransform = "translateX(100%)"
         targetDiv.className += " visible"
       , 10
 
@@ -85,8 +80,8 @@ class Flight
       targetDiv.style.webkitTransform = "translateX(200%)"
 
       window.setTimeout =>
-        currDiv.style.webkitTransition = "#{speed}"
-        currDiv.style.webkitTransform = "translateX(-100%)"
+        @currentPanel.style.webkitTransition = "#{speed}"
+        @currentPanel.style.webkitTransform = "translateX(-100%)"
       , 10
 
     # shortern the delay here to stop a gap appearing in android
@@ -95,13 +90,11 @@ class Flight
       targetDiv.style.webkitTransition = "#{speed}"
       targetDiv.style.webkitTransform = "translateX(100%)"
 
-      currDiv.addEventListener("webkitTransitionEnd", =>
-        currDiv.style.display = "none"
+      @currentPanel.addEventListener("webkitTransitionEnd", =>
+        @currentPanel.style.display = "none"
         @isTransitioning = false
       , false);
     , 5
-
-
 
 root           = this
 previousFlight = root.Flight
@@ -127,7 +120,7 @@ backBtn = document.querySelector('.back')
 #backBtn.addEventListener 'touchstart', ->
 #  flight.slideTransition('#panel-1','#panel-2','0.4s',true)
 backBtn.addEventListener 'click', ->
-    flight.slideTransition('#panel-1','#panel-2','0.4s',true)
+    flight.slideTransition('#panel-2','0.4s',true)
 
 $('.forward').click (e) =>
   flight.slideTransition('#panel-1','#panel-2','0.4s',false)
