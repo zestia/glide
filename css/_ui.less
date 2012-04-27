@@ -1,30 +1,126 @@
+select, button { -webkit-tap-highlight-color:rgba(0,0,0,0); border:none; -webkit-appearance: none; }
+
+// Mixin
+.box-sizing {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+///
 #flight {
-  bottom: 0px;
   position: absolute;
+  bottom: 0px;
+  height: 100%;
+  overflow: hidden;
   top: 0px;
   width: 100%;
 }
 
-#page-1 {
-  background: #ff3000;
-}
-
-#page-2 {
-  background: #ff4990;
-}
-
-.page {
-  display: block;
-  position: absolute;
-  width: 100%;
+.selected {
+  display: block!important;
 }
 
 #content {
-  height: 100%;
+  background: #FDEACA;
+  height:100%;
+  margin: auto;
+  overflow:hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective:1000px;
+  -webkit-transform-style: preserve-3d;
   width: 100%;
-  display: block;
+  & > * {
+  // stops flickr on ipad
+  -webkit-perspective:1000px;
+  -webkit-backface-visibility: hidden;
+  }
+}
+
+.panel {
+  &.visible {
+    .toolbar .inner {
+        opacity: 1;
+    }
+  }
+  .toolbar .inner {
+    -webkit-transition: 'opacity 0.5s';
+    opacity: 0;
+  }
+  background: #7C9FA5;
+  border:0px solid #55819A;
   position: absolute;
-  left: 0;
-  right: 0;
-  overflow: hidden;
+  height:100%;
+  width:100%;
+  -webkit-transform: rotateY(0deg) translateZ(0px) translateX(0%) scale(1);
+  .box-sizing;
+  overflow: scroll;
+  .content {
+    padding: 10px;
+  }
+  & > * {
+
+  }
+}
+
+#panel-2 {
+  display: none;
+  left:-100%;
+  background: #d34325;
+}
+
+img {
+  float: left;
+  padding: 10px;
+}
+
+.toolbar {
+  background-color: #ccc;
+  .gradient;
+  border-bottom: 1px solid #666;
+  height: 50px;
+  .inner {
+    .box-sizing;
+    padding: 10px;
+  }
+  button {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+    -webkit-border-radius: 6px;
+    border: 1px solid #45505D;
+    .gradient;
+    padding: 10px;
+    color: white;
+  }
+  .left, .right {
+    position: absolute;
+  }
+  .left {
+    left:6px;
+  }
+  .right {
+    right:6px;
+  }
+  h1 {
+    font-size: 18px;
+    color: white;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    line-height: 35px;
+    margin: auto;
+    text-shadow: 0px 1px 0px white;
+  }
+}
+
+.gradient {
+  background: #4d4e5b; /* Old browsers */
+  background: -moz-linear-gradient(top,  #4d4e5b 0%, #292a31 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d4e5b), color-stop(100%,#292a31)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* IE10+ */
+  background: linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4e5b', endColorstr='#292a31',GradientType=0 ); /* IE6-9 */
+
 }
