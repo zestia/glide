@@ -6,15 +6,19 @@ class Flight
   fadeAnimation: true
   currentPanel: ''
   targetPanel: ''
+  speed: '0.4s'
 
   constructor: (options) ->
     # set options
     if options?
       if options["transitionAnimation"]?
-        @["transitionAnimation"] = options["transitionAnimation"]
+        @transitionAnimation = options["transitionAnimation"]
 
       if options["fadeAnimation"]?
-        @["fadeAnimation"] = options["fadeAnimation"]
+        @fadeAnimation = options["fadeAnimation"]
+
+      if options["speed"]?
+        @speed = options["speed"]
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
