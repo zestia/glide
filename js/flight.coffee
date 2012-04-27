@@ -9,7 +9,7 @@ class Flight
   speed: '0.4s'
 
   constructor: (options) ->
-    # set options
+
     if options?
       if options["transitionAnimation"]?
         @transitionAnimation = options["transitionAnimation"]
@@ -22,7 +22,7 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
-    if @currentPanel is ''
+    if @currentPanel is undefined
       throw new Error "Current panel not set"
 
   goToPage: (targetPanel) ->
