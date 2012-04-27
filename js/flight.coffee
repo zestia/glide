@@ -1,11 +1,13 @@
 class Flight
   version: '0.0.1'
   isTransitioning: false
-  # defaults
-  transitionAnimation: true
-  fadeAnimation: true
   currentPanel: ''
   targetPanel: ''
+
+  # options
+  transitionAnimation: true
+  fadeAnimation: true
+
   speed: '0.4s'
 
   constructor: (options) ->
