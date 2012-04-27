@@ -32,10 +32,12 @@ class Flight
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
 
-    switch transtionType
-      when "slide" then @slideTransition('0.4s',true)
-      when "slideUp" then
-      when "slideDown" then
+    if @transitionAnimation
+
+      switch transtionType
+        when "slide" then @slideTransition('0.4s',true)
+        when "slideUp" then
+        when "slideDown" then
 
   fadeInnerElements: (element, opacity, speed) ->
     firstChild = element.firstChild
@@ -53,14 +55,14 @@ class Flight
 
   slideTransition: (speed, back) ->
 
-    # TODO: look into transform origin
-    # TODO: make use of data tags
-
     unless @targetPanel
       throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
       return
 
-    unless @speed then @speed = "0.4s"
+    if speed
+      @speed = speed
+    else
+      @speed = "0.4s"
 
     unless back then back = false
 
