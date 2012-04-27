@@ -29,7 +29,7 @@ class Flight
 
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
-    console.log transtionType
+
     switch transtionType
       when "slide" then @slideTransition('0.4s',true)
       when "slideUp" then
