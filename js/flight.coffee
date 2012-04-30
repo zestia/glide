@@ -35,7 +35,7 @@ class Flight
     if @transitionAnimation is true
 
       switch transtionType
-        when "slide" then @slideTransition('0.4s')
+        when "slide" then @slideTransition()
         when "slideUp" then
         when "slideDown" then
 
