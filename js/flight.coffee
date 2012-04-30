@@ -98,6 +98,7 @@ class Flight
 
   removeClass: (ele, cls) ->
     if hasClass(ele, cls)
+    if @hasClass(ele, cls)
       reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
       ele.className = ele.className.replace(reg, " ")
 
