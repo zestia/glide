@@ -32,8 +32,9 @@ class Flight
 
   goToPage: (targetPanel,options) ->
 
-    if options.back
-      @back = options.back
+    if options?
+      if options.back
+        @back = options.back
 
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
@@ -89,7 +90,6 @@ class Flight
 
       @targetPanel.style.webkitTransition = "#{@speed} ease"
       @targetPanel.style.webkitTransform = "translateX(100%)"
-
       @currentPanel.addEventListener("webkitTransitionEnd", =>
         @finishTransition()
       , false);
@@ -99,7 +99,6 @@ class Flight
     @currentPanel.style.display = "none"
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
-
     @isTransitioning = false
 
   hasClass: (ele, cls) ->
@@ -134,11 +133,11 @@ window.flight = new Flight();
 
 #backBtn.addEventListener 'touchstart', ->
 #  flight.slideTransition('#panel-1','#panel-2','0.4s',true)
-$('.back').click (e) =>
-    flight.goToPage('#panel-1')
+$('.back').on 'click', =>
+    flight.goToPage('#panel-2',{back:true})
 
-$('.forward').click (e) =>
-  flight.goToPage('#panel-2',{back:true})
+$('.forward').on 'click', =>
+  flight.goToPage('#panel-2')
 
 
 #if 'ontouchstart' in window
