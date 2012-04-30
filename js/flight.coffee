@@ -33,6 +33,7 @@ class Flight
     transtionType = @currentPanel.getAttribute("data-transition")
 
     if @transitionAnimation
+    if @transitionAnimation is true
 
       switch transtionType
         when "slide" then @slideTransition('0.4s')
