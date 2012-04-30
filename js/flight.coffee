@@ -39,20 +39,6 @@ class Flight
         when "slideUp" then
         when "slideDown" then
 
-  fadeInnerElements: (element, opacity, speed) ->
-    firstChild = element.firstChild
-    # only work on top level element
-
-    while firstChild.nextSibling
-      # ignore text nodes by testing for nodeValue
-      if not firstChild.nodeValue
-        firstChild.style.opacity = '0';
-        firstChild.style.webkitTransition = "#{speed} ease-in"
-        firstChild.style.opacity = opacity;
-        firstChild = firstChild.nextSibling
-      else
-        firstChild = firstChild.nextSibling
-
   slideTransition: (speed, back) ->
 
     unless @targetPanel
