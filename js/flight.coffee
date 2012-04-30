@@ -26,6 +26,8 @@ class Flight
 
     if @currentPanel is undefined
       throw new Error "Current panel not set"
+    else
+      @currentPanel.style.left = "0%"
 
   goToPage: (targetPanel) ->
 
@@ -92,6 +94,8 @@ class Flight
   finishTransition: ->
     @currentPanel.style.display = "none"
     @removeClass(@currentPanel, 'visible')
+    @addClass(@targetPanel, 'visible')
+
     @isTransitioning = false
 
   hasClass: (ele, cls) ->
