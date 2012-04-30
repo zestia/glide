@@ -36,7 +36,8 @@ select, button { -webkit-tap-highlight-color:rgba(0,0,0,0); border:none; -webkit
 }
 
 .panel {
-  background: #7C9FA5;
+  display: none;
+  background: #f1ebe2;
   border:0px solid #55819A;
   position: absolute;
   height:100%;
@@ -44,15 +45,16 @@ select, button { -webkit-tap-highlight-color:rgba(0,0,0,0); border:none; -webkit
   -webkit-transform: rotateY(0deg) translateZ(0px) translateX(0%) scale(1);
   .box-sizing;
   overflow: scroll;
-  .content {
-    padding: 10px;
-  }
-}
-
-#panel-2 {
-  display: none;
   left:-100%;
-  background: #d34325;
+
+    .content {
+
+    }
+
+    &.visible {
+      display: block;
+      left:0%;
+    }
 }
 
 img {
