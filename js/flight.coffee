@@ -8,6 +8,7 @@ class Flight
   transitionAnimation: true
   fadeAnimation: true
   speed: '0.4s'
+  back: false
 
   constructor: (options) ->
 
@@ -29,7 +30,10 @@ class Flight
     else
       @currentPanel.style.left = "0%"
 
-  goToPage: (targetPanel) ->
+  goToPage: (targetPanel,options) ->
+
+    if options.back
+      @back = options.back
 
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
@@ -43,7 +47,7 @@ class Flight
         when "slideUp" then @slideUp()
         when "slideDown" then @slideDown()
 
-  slideTransition: (speed, back) ->
+  slideTransition: (speed) ->
 
     unless @targetPanel
       throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
@@ -52,14 +56,12 @@ class Flight
     if speed
       @speed = speed
 
-    unless back then back = false
-
     if @isTransitioning is true then return else @isTransitioning = true
 
     @targetPanel.style.display = "block"
     @currentPanel.style.display = "block"
 
-    if back is true
+    if @back is true
 
       # must perform this initial tranform to get animation working in the next step
       @targetPanel.style.webkitTransition = "0ms"
@@ -136,7 +138,7 @@ $('.back').click (e) =>
     flight.goToPage('#panel-1')
 
 $('.forward').click (e) =>
-  flight.goToPage('#panel-2')
+  flight.goToPage('#panel-2',{back:true})
 
 
 #if 'ontouchstart' in window
