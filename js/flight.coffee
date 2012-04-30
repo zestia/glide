@@ -123,15 +123,13 @@ else
 
 window.flight = new Flight();
 
-backBtn = document.querySelector('.back')
-
 #backBtn.addEventListener 'touchstart', ->
 #  flight.slideTransition('#panel-1','#panel-2','0.4s',true)
-backBtn.addEventListener 'click', ->
+$('.back').click (e) =>
     flight.goToPage('#panel-2')
 
 $('.forward').click (e) =>
-  flight.slideTransition('#panel-1','#panel-2','0.4s',false)
+  flight.goToPage('#panel-1')
 
 
 #if 'ontouchstart' in window
