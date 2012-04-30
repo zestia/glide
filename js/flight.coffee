@@ -34,6 +34,8 @@ class Flight
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
 
+    @currentPanel = document.getElementsByClassName('visible')[0]
+
     if @transitionAnimation is true
 
       switch transtionType
