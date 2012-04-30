@@ -36,8 +36,8 @@ class Flight
 
       switch transtionType
         when "slide" then @slideTransition()
-        when "slideUp" then
-        when "slideDown" then
+        when "slideUp" then @slideUp()
+        when "slideDown" then @slideDown()
 
   slideTransition: (speed, back) ->
 
