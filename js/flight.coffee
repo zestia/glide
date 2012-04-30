@@ -32,7 +32,6 @@ class Flight
     @targetPanel = document.querySelector(targetPanel)
     transtionType = @currentPanel.getAttribute("data-transition")
 
-    if @transitionAnimation
     if @transitionAnimation is true
 
       switch transtionType
@@ -91,6 +90,17 @@ class Flight
       , false);
     , 5
 
+  hasClass: (ele, cls) ->
+    ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
+
+  addClass: (ele, cls) ->
+    ele.className += " " + cls  unless @hasClass(ele, cls)
+
+  removeClass: (ele, cls) ->
+    if hasClass(ele, cls)
+      reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+      ele.className = ele.className.replace(reg, " ")
+
 root           = this
 previousFlight = root.Flight
 
@@ -113,10 +123,10 @@ window.flight = new Flight();
 #backBtn.addEventListener 'touchstart', ->
 #  flight.slideTransition('#panel-1','#panel-2','0.4s',true)
 $('.back').click (e) =>
-    flight.goToPage('#panel-2')
+    flight.goToPage('#panel-1')
 
 $('.forward').click (e) =>
-  flight.goToPage('#panel-1')
+  flight.goToPage('#panel-2')
 
 
 #if 'ontouchstart' in window
