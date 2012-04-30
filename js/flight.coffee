@@ -77,7 +77,7 @@ class Flight
 
       # use window timeout to delay transition or will not work on android device
       window.setTimeout =>
-        @currentPanel.style.webkitTransition = "#{@speed}"
+        @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(100%)"
         @targetPanel.className += " visible"
       , 10
@@ -88,14 +88,14 @@ class Flight
       @targetPanel.style.webkitTransform = "translateX(200%)"
 
       window.setTimeout =>
-        @currentPanel.style.webkitTransition = "#{@speed}"
+        @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(-100%)"
       , 10
 
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
 
-      @targetPanel.style.webkitTransition = "#{@speed}"
+      @targetPanel.style.webkitTransition = "#{@speed} ease"
       @targetPanel.style.webkitTransform = "translateX(100%)"
 
       @currentPanel.addEventListener("webkitTransitionEnd", =>
