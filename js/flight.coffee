@@ -140,6 +140,9 @@ $('.back').on 'click', =>
 $('.forward').on 'click', =>
   flight.goToPage('#panel-2')
 
+$('li').on 'touchstart', =>
+  flight.goToPage('#panel-2')
+
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
