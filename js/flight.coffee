@@ -3,6 +3,7 @@ class Flight
   isTransitioning: false
   currentPanel: ''
   targetPanel: ''
+  pageHistory: [window.location.hash]
 
   # options
   transitionAnimation: true
