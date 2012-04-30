@@ -85,10 +85,14 @@ class Flight
       @targetPanel.style.webkitTransform = "translateX(100%)"
 
       @currentPanel.addEventListener("webkitTransitionEnd", =>
-        @currentPanel.style.display = "none"
-        @isTransitioning = false
+        @finishTransition()
       , false);
     , 5
+
+  finishTransition: ->
+    @currentPanel.style.display = "none"
+    @removeClass(@currentPanel, 'visible')
+    @isTransitioning = false
 
   hasClass: (ele, cls) ->
     ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
@@ -97,7 +101,6 @@ class Flight
     ele.className += " " + cls  unless @hasClass(ele, cls)
 
   removeClass: (ele, cls) ->
-    if hasClass(ele, cls)
     if @hasClass(ele, cls)
       reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
       ele.className = ele.className.replace(reg, " ")
