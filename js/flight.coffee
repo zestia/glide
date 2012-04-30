@@ -140,9 +140,14 @@ $('.back').on 'click', =>
 $('.forward').on 'click', =>
   flight.goToPage('#panel-2')
 
-$('li').on 'touchstart', =>
+$('li').on 'touchstart', ->
+  this.className = "touchstart"
   flight.goToPage('#panel-2')
 
+$('li').on 'touchend', ->
+  window.setTimeout =>
+    this.className = ""
+  , 10
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
