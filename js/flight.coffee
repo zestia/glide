@@ -61,8 +61,6 @@ class Flight
 
     if speed
       @speed = speed
-    else
-      @speed = "0.4s"
 
     unless back then back = false
 
