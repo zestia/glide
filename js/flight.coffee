@@ -31,6 +31,8 @@ class Flight
     else
       @currentPanel.style.left = "0%"
 
+    @fitHeightToContent()
+
   goToPage: (targetPanel,options) ->
 
     if options?
@@ -101,6 +103,16 @@ class Flight
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
     @isTransitioning = false
+
+  fitHeightToContent: ->
+
+    flightViewport = document.getElementById('flight')
+    content = document.getElementsByClassName('content')[0]
+
+    if flightViewport? and content?
+      flightViewport.style.height = content.offsetHeight + "px"
+    else
+      throw new Error "#flight or .content not found."
 
   hasClass: (ele, cls) ->
     ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
