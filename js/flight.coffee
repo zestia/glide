@@ -142,24 +142,27 @@ if exports?
 else
   root.Flight = Flight
 
-window.flight = new Flight();
+  $ ->
 
-#backBtn.addEventListener 'touchstart', ->
-#  flight.slideTransition('#panel-1','#panel-2','0.4s',true)
-$('.back').on 'click', =>
-    flight.goToPage('#panel-2',{back:true})
+    window.flight = new Flight();
 
-$('.forward').on 'click', =>
-  flight.goToPage('#panel-2')
+    $('.back').on 'click', =>
+        flight.goToPage('#panel-2',{back:true})
 
-$('li').on 'touchstart', ->
-  this.className = "touchstart"
-  flight.goToPage('#panel-2')
+    $('.forward').on 'click', =>
+      flight.goToPage('#panel-2');
 
-$('li').on 'touchend', ->
-  window.setTimeout =>
-    this.className = ""
-  , 10
+
+
+
+#$('li').on 'touchstart', ->
+#  this.className = "touchstart"
+#  flight.goToPage('#panel-2')
+#
+#$('li').on 'touchend', ->
+#  window.setTimeout =>
+#    this.className = ""
+#  , 10
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
