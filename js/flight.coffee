@@ -36,6 +36,9 @@ class Flight
 
     @detectUA()
 
+    if @os.android and @os.version <= "2.1"
+      @transitionAnimation = false
+
   goToPage: (targetPanel,options) ->
 
     if options?
