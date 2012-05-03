@@ -121,6 +121,9 @@ class Flight
     userAgent = window.navigator.userAgent
     @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
     @os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
+    if @os.android
+      result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
+      @os.version = result[1]
     @os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
     @os.iphone = (if not @os.ipad and userAgent.match(/(iPhone\sOS)\s([\d_]+)/) then true else false)
     @os.webos = (if userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) then true else false)
