@@ -119,7 +119,6 @@ class Flight
 
   detectUA: ->
     userAgent = window.navigator.userAgent
-    console.log userAgent
     @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
     @os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
     @os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
