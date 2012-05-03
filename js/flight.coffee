@@ -4,6 +4,7 @@ class Flight
   currentPanel: ''
   targetPanel: ''
   pageHistory: [window.location.hash]
+  os: {}
 
   # options
   transitionAnimation: true
@@ -32,6 +33,8 @@ class Flight
       @currentPanel.style.left = "0%"
 
     @fitHeightToContent()
+
+    @detectUA()
 
   goToPage: (targetPanel,options) ->
 
@@ -113,6 +116,21 @@ class Flight
       flightViewport.style.height = content.offsetHeight + "px"
     else
       throw new Error "#flight or .content not found."
+
+  detectUA: ->
+    userAgent = window.navigator.userAgent
+    console.log userAgent
+    @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
+    @os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
+    @os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
+    @os.iphone = (if not @os.ipad and userAgent.match(/(iPhone\sOS)\s([\d_]+)/) then true else false)
+    @os.webos = (if userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) then true else false)
+    @os.touchpad = (if @os.webos and userAgent.match(/TouchPad/) then true else false)
+    @os.ios = @os.ipad or @os.iphone
+    @os.blackberry = (if userAgent.match(/BlackBerry/) or userAgent.match(/PlayBook/) then true else false)
+    @os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
+    @os.fennec = (if userAgent.match(/fennec/i) then true else false)
+    @os.desktop = not (@os.ios or @os.android or @os.blackberry or @os.opera or @os.fennec)
 
   hasClass: (ele, cls) ->
     ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
