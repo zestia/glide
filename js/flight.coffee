@@ -50,12 +50,13 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
-    if @transitionAnimation is true
+    if @transitionAnimation isnt true
+      @speed = "0s"
 
-      switch transtionType
-        when "slide" then @slideTransition()
-        when "slideUp" then @slideUp()
-        when "slideDown" then @slideDown()
+    switch transtionType
+      when "slide" then @slideTransition()
+      when "slideUp" then @slideUp()
+      when "slideDown" then @slideDown()
 
   slideTransition: (speed) ->
 
