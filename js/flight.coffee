@@ -5,6 +5,7 @@ class Flight
   targetPanel: ''
   pageHistory: [window.location.hash]
   os: {}
+  hideUrlBar: false
 
   # options
   transitionAnimation: true
@@ -38,6 +39,9 @@ class Flight
 
     if @os.android and @os.version <= "2.1"
       @transitionAnimation = false
+
+    if @hideUrlBar is true
+      @hideUrlBar()
 
   goToPage: (targetPanel,options) ->
 
@@ -137,6 +141,11 @@ class Flight
     @os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
     @os.fennec = (if userAgent.match(/fennec/i) then true else false)
     @os.desktop = not (@os.ios or @os.android or @os.blackberry or @os.opera or @os.fennec)
+
+  hideUrlBar: ->
+    setTimeout (->
+        window.scrollTo 0, 1
+      ), 50
 
   hasClass: (ele, cls) ->
     ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
