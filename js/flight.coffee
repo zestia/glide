@@ -1,3 +1,6 @@
+#TODO: fix height around content to force scrolling
+#TODO: add history
+
 class Flight
   version: '0.0.1'
   isTransitioning: false
@@ -34,7 +37,6 @@ class Flight
       @currentPanel.style.left = "0%"
 
     @fitHeightToContent()
-
     @detectUA()
 
     if @os.android and @os.version <= "2.1"
@@ -184,9 +186,6 @@ else
 
     $('.forward').on 'click', =>
       flight.goToPage('#panel-2');
-
-
-
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
