@@ -115,6 +115,8 @@ class Flight
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(-100%)"
+        @currentPanel.style.left = "0%"
+
       , 10
 
       # shortern the delay here to stop a gap appearing in android
