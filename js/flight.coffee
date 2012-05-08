@@ -6,7 +6,7 @@ class Flight
   isTransitioning: false
   currentPanel: ''
   targetPanel: ''
-  pageHistory: [window.location.hash]
+  pageHistory: ['#panel-1']
   os: {}
   hideUrlBar: false
 
@@ -47,6 +47,14 @@ class Flight
 
   goToPage: (targetPanel,options) ->
 
+    @targetPanel = targetPanel
+
+    if @pageHistory.length > 1 and @pageHistory[@pageHistory.length - 2] == @targetPanel
+      @pageHistory.pop()
+      @back = true
+    else
+      @pageHistory.push(@targetPanel)
+
     if options?
       if options.back
         @back = options.back
@@ -79,7 +87,6 @@ class Flight
     @currentPanel.style.display = "block"
 
     if @back is true
-
       # must perform this initial tranform to get animation working in the next step
       @targetPanel.style.webkitTransition = "0ms"
       @targetPanel.style.webkitTransform = "translateX(0%)"
@@ -87,9 +94,18 @@ class Flight
       # use window timeout to delay transition or will not work on android device
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
-        @currentPanel.style.webkitTransform = "translateX(100%)"
+        @currentPanel.style.webkitTransform = "translateX(200%)"
         @targetPanel.className += " visible"
       , 10
+
+      # shortern the delay here to stop a gap appearing in android
+      window.setTimeout =>
+        @targetPanel.style.webkitTransition = "#{@speed} ease"
+        @targetPanel.style.webkitTransform = "translateX(100%)"
+        @currentPanel.addEventListener("webkitTransitionEnd", =>
+          @finishTransition()
+        , false);
+      , 5
 
     else
       #do forward transition
@@ -101,20 +117,23 @@ class Flight
         @currentPanel.style.webkitTransform = "translateX(-100%)"
       , 10
 
-    # shortern the delay here to stop a gap appearing in android
-    window.setTimeout =>
+      # shortern the delay here to stop a gap appearing in android
+      window.setTimeout =>
 
-      @targetPanel.style.webkitTransition = "#{@speed} ease"
-      @targetPanel.style.webkitTransform = "translateX(100%)"
-      @currentPanel.addEventListener("webkitTransitionEnd", =>
-        @finishTransition()
-      , false);
-    , 5
+        @targetPanel.style.webkitTransition = "#{@speed} ease"
+        @targetPanel.style.webkitTransform = "translateX(100%)"
+        @currentPanel.addEventListener("webkitTransitionEnd", =>
+          @finishTransition()
+        , false);
+      , 5
 
   finishTransition: ->
+    @currentPanel.style.webkitTransition = "0s ease"
+    @currentPanel.style.left = "-100%"
     @currentPanel.style.display = "none"
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
+    @back = false
     @isTransitioning = false
 
   fitHeightToContent: ->
@@ -182,7 +201,7 @@ else
     window.flight = new Flight();
 
     $('.back').on 'click', =>
-        flight.goToPage('#panel-2',{back:true})
+        flight.goToPage('#panel-1')
 
     $('.forward').on 'click', =>
       flight.goToPage('#panel-2');
