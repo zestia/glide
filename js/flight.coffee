@@ -105,7 +105,7 @@ class Flight
         @currentPanel.addEventListener("webkitTransitionEnd", =>
           @finishTransition()
         , false);
-      , 5
+      , 10
 
     else
       #do forward transition
@@ -115,7 +115,6 @@ class Flight
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(-100%)"
-        @currentPanel.style.left = "0%"
 
       , 10
 
