@@ -17,15 +17,11 @@ class Flight
   back: false
 
   constructor: (options) ->
-
     if options?
-
       if options.transitionAnimation?
         @transitionAnimation = options.transitionAnimation
-
       if options.fadeAnimation?
         @fadeAnimation = options.fadeAnimation
-
       if options.speed?
         @speed = options.speed
 
@@ -46,7 +42,6 @@ class Flight
       @hideUrlBar()
 
   goToPage: (targetPanel,options) ->
-
     @targetPanel = targetPanel
 
     if @pageHistory.length > 1 and @pageHistory[@pageHistory.length - 2] == @targetPanel
@@ -73,7 +68,6 @@ class Flight
       when "slideDown" then @slideDown()
 
   slideTransition: (speed) ->
-
     unless @targetPanel
       throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
       return
@@ -110,7 +104,6 @@ class Flight
 
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
-
       @targetPanel.style.webkitTransition = "#{@speed} ease"
       @targetPanel.style.webkitTransform = "translateX(100%)"
       @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
@@ -127,10 +120,8 @@ class Flight
     @currentPanel.removeEventListener("webkitTransitionEnd", @finishTransition, false);
 
   fitHeightToContent: ->
-
     flightViewport = document.getElementById('flight')
     content = document.getElementsByClassName('content')[0]
-
     if flightViewport? and content?
       flightViewport.style.height = content.offsetHeight + "px"
     else
