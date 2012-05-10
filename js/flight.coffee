@@ -98,13 +98,6 @@ class Flight
         @targetPanel.className += " visible"
       , 10
 
-      # shortern the delay here to stop a gap appearing in android
-      window.setTimeout =>
-        @targetPanel.style.webkitTransition = "#{@speed} ease"
-        @targetPanel.style.webkitTransform = "translateX(100%)"
-        @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
-      , 5
-
     else
       #do forward transition
       @targetPanel.style.webkitTransition = "0ms"
@@ -116,13 +109,13 @@ class Flight
 
       , 10
 
-      # shortern the delay here to stop a gap appearing in android
-      window.setTimeout =>
+    # shortern the delay here to stop a gap appearing in android
+    window.setTimeout =>
 
-        @targetPanel.style.webkitTransition = "#{@speed} ease"
-        @targetPanel.style.webkitTransform = "translateX(100%)"
-        @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
-      , 5
+      @targetPanel.style.webkitTransition = "#{@speed} ease"
+      @targetPanel.style.webkitTransform = "translateX(100%)"
+      @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
+    , 5
 
   finishTransition: =>
     @currentPanel.style.webkitTransition = "0s ease"
