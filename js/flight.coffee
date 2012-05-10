@@ -95,7 +95,6 @@ class Flight
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(200%)"
-        @targetPanel.className += " visible"
       , 10
 
     else
