@@ -102,10 +102,8 @@ class Flight
       window.setTimeout =>
         @targetPanel.style.webkitTransition = "#{@speed} ease"
         @targetPanel.style.webkitTransform = "translateX(100%)"
-        @currentPanel.addEventListener("webkitTransitionEnd", =>
-          @finishTransition()
-        , false);
-      , 10
+        @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
+      , 5
 
     else
       #do forward transition
@@ -123,12 +121,10 @@ class Flight
 
         @targetPanel.style.webkitTransition = "#{@speed} ease"
         @targetPanel.style.webkitTransform = "translateX(100%)"
-        @currentPanel.addEventListener("webkitTransitionEnd", =>
-          @finishTransition()
-        , false);
+        @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
       , 5
 
-  finishTransition: ->
+  finishTransition: =>
     @currentPanel.style.webkitTransition = "0s ease"
     @currentPanel.style.left = "-100%"
     @currentPanel.style.display = "none"
@@ -136,6 +132,7 @@ class Flight
     @addClass(@targetPanel, 'visible')
     @back = false
     @isTransitioning = false
+    @currentPanel.removeEventListener("webkitTransitionEnd", @finishTransition, false);
 
   fitHeightToContent: ->
 
