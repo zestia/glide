@@ -29,8 +29,6 @@ class Flight
 
     if @currentPanel is undefined
       throw new Error "Current panel not set"
-    else
-      @currentPanel.style.left = "0%"
 
     @fitHeightToContent()
     @detectUA()
@@ -83,18 +81,18 @@ class Flight
     if @back is true
       # must perform this initial tranform to get animation working in the next step
       @targetPanel.style.webkitTransition = "0ms"
-      @targetPanel.style.webkitTransform = "translateX(0%)"
+      @targetPanel.style.webkitTransform = "translateX(-100%)"
 
       # use window timeout to delay transition or will not work on android device
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
-        @currentPanel.style.webkitTransform = "translateX(200%)"
+        @currentPanel.style.webkitTransform = "translateX(100%)"
       , 10
 
     else
       #do forward transition
       @targetPanel.style.webkitTransition = "0ms"
-      @targetPanel.style.webkitTransform = "translateX(200%)"
+      @targetPanel.style.webkitTransform = "translateX(100%)"
 
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
@@ -104,13 +102,12 @@ class Flight
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
       @targetPanel.style.webkitTransition = "#{@speed} ease"
-      @targetPanel.style.webkitTransform = "translateX(100%)"
+      @targetPanel.style.webkitTransform = "translateX(0%)"
       @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
     , 5
 
   finishTransition: =>
     @currentPanel.style.display = "none"
-    @currentPanel.style.left = "-100%"
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
     @back = false
