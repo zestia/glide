@@ -107,7 +107,6 @@ class Flight
     , 5
 
   finishTransition: =>
-    @currentPanel.style.display = "none"
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
     @back = false
