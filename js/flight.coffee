@@ -174,7 +174,7 @@ else
 
   $ ->
 
-    window.flight = new Flight();
+    window.flight = new Flight({speed:"0.4s"});
 
     $('.back').on 'click', =>
         flight.goToPage('#panel-1')
