@@ -99,7 +99,6 @@ class Flight
       window.setTimeout =>
         @currentPanel.style.webkitTransition = "#{@speed} ease"
         @currentPanel.style.webkitTransform = "translateX(-100%)"
-
       , 10
 
     # shortern the delay here to stop a gap appearing in android
@@ -110,7 +109,6 @@ class Flight
     , 5
 
   finishTransition: =>
-    @currentPanel.style.webkitTransition = "0s ease"
     @currentPanel.style.left = "-100%"
     @currentPanel.style.display = "none"
     @removeClass(@currentPanel, 'visible')
