@@ -57,13 +57,15 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
-    if @transitionAnimation isnt true
-      @speed = "0s"
+    if @transitionAnimation is true
+      switch transtionType
+        when "slide" then @slideTransition()
+        when "slideUp" then @slideUp()
+        when "slideDown" then @slideDown()
 
-    switch transtionType
-      when "slide" then @slideTransition()
-      when "slideUp" then @slideUp()
-      when "slideDown" then @slideDown()
+    if @transitionAnimation isnt true
+      @displayPage()
+
 
   slideTransition: (speed) ->
     unless @targetPanel
@@ -112,6 +114,16 @@ class Flight
     @back = false
     @isTransitioning = false
     @currentPanel.removeEventListener("webkitTransitionEnd", @finishTransition, false);
+
+   # displays pages when transiton is false
+   displayPage: =>
+    @targetPanel.style.display = "block"
+    @currentPanel.style.display = "block"
+    @targetPanel.style.left = "0%"
+    @currentPanel.style.left = "100%"
+
+    @removeClass(@currentPanel, 'visible')
+    @addClass(@targetPanel, 'visible')
 
   fitHeightToContent: ->
     flightViewport = document.getElementById('flight')
