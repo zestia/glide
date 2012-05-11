@@ -105,15 +105,15 @@ class Flight
     window.setTimeout =>
       @targetPanel.style.webkitTransition = "#{@speed} ease"
       @targetPanel.style.webkitTransform = "translateX(0%)"
-      @currentPanel.addEventListener("webkitTransitionEnd", @finishTransition, false);
+      @currentPanel.addEventListener "webkitTransitionEnd", @finishTransition, false
     , 5
 
   finishTransition: =>
-    @removeClass(@currentPanel, 'visible')
-    @addClass(@targetPanel, 'visible')
+    @removeClass @currentPanel, 'visible'
+    @addClass @targetPanel, 'visible'
     @back = false
     @isTransitioning = false
-    @currentPanel.removeEventListener("webkitTransitionEnd", @finishTransition, false);
+    @currentPanel.removeEventListener "webkitTransitionEnd", @finishTransition, false
 
    # displays pages when transiton is false
    displayPage: =>
@@ -126,7 +126,7 @@ class Flight
     @addClass(@targetPanel, 'visible')
 
   fitHeightToContent: ->
-    flightViewport = document.getElementById('flight')
+    flightViewport = document.getElementById 'flight'
     content = document.getElementsByClassName('content')[0]
     if flightViewport? and content?
       flightViewport.style.height = content.offsetHeight + "px"
