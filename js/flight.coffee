@@ -196,8 +196,12 @@ else
     $('.forward').on 'click', =>
       flight.goToPage({targetPanel:'#panel-2'});
 
-    $('#go-page-3').on 'click', =>
+
+    $('#to-page-3').on 'click', =>
       flight.goToPage({targetPanel:'#panel-3'});
+
+    $('#to-panel-4').on 'click', =>
+      flight.goToPage({targetPanel:'#panel-4'});
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
