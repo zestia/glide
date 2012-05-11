@@ -54,9 +54,10 @@ class Flight
           if @back is true
             if @pageHistory.length > 1
               @targetPanel = @pageHistory[@pageHistory.length - 2]
-              @targetPanel = document.querySelector(@targetPanel)
-              transitionType = @targetPanel.getAttribute("data-transition")
-              @pageHistory.pop()
+              if @targetPanel == @pageHistory[@pageHistory.length - 2]
+                @targetPanel = document.querySelector(@targetPanel)
+                transitionType = @targetPanel.getAttribute("data-transition")
+                @pageHistory.pop()
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
