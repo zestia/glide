@@ -120,6 +120,7 @@ class Flight
 
    # displays pages when transiton is false
    displayPage: =>
+    if @isTransitioning is true then return else @isTransitioning = true
     @targetPanel.style.display = "block"
     @currentPanel.style.display = "block"
     @targetPanel.style.left = "0%"
@@ -127,6 +128,7 @@ class Flight
 
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
+    @isTransitioning = false
 
   fitHeightToContent: ->
     flightViewport = document.getElementById 'flight'
