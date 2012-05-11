@@ -39,26 +39,29 @@ class Flight
     if @hideUrlBar is true
       @hideUrlBar()
 
-  goToPage: (targetPanel,options) ->
-    @targetPanel = targetPanel
-
-    if @pageHistory.length > 1 and @pageHistory[@pageHistory.length - 2] == @targetPanel
-      @pageHistory.pop()
-      @back = true
-    else
-      @pageHistory.push(@targetPanel)
+  # Goes to page with or without transtion
+  goToPage: (options) =>
 
     if options?
-      if options.back
-        @back = options.back
-
-    @targetPanel = document.querySelector(targetPanel)
-    transtionType = @currentPanel.getAttribute("data-transition")
+      if options.targetPanel?
+        @targetPanel = options.targetPanel
+        @pageHistory.push(@targetPanel)
+        @targetPanel = document.querySelector(options.targetPanel)
+        transitionType = @targetPanel.getAttribute("data-transition")
+      else
+        if options.back
+          @back = options.back
+          if @back is true
+            if @pageHistory.length > 1
+              @targetPanel = @pageHistory[@pageHistory.length - 2]
+              @targetPanel = document.querySelector(@targetPanel)
+              transitionType = @targetPanel.getAttribute("data-transition")
+              @pageHistory.pop()
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
     if @transitionAnimation is true
-      switch transtionType
+      switch transitionType
         when "slide" then @slideTransition()
         when "slideUp" then @slideUp()
         when "slideDown" then @slideDown()
@@ -188,10 +191,13 @@ else
     window.flight = new Flight();
 
     $('.back').on 'click', =>
-        flight.goToPage('#panel-1')
+        flight.goToPage({back:true})
 
     $('.forward').on 'click', =>
-      flight.goToPage('#panel-2');
+      flight.goToPage({targetPanel:'#panel-2'});
+
+    $('#go-page-3').on 'click', =>
+      flight.goToPage({targetPanel:'#panel-3'});
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'
