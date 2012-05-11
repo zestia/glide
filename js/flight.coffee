@@ -42,6 +42,8 @@ class Flight
   # Goes to page with or without transtion
   goToPage: (options) =>
 
+    if @isTransitioning is true then return else @isTransitioning = true
+
     if options?
       if options.targetPanel?
         @targetPanel = options.targetPanel
@@ -78,8 +80,6 @@ class Flight
 
     if speed
       @speed = speed
-
-    if @isTransitioning is true then return else @isTransitioning = true
 
     @targetPanel.style.display = "block"
     @currentPanel.style.display = "block"
