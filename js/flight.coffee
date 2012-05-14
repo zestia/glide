@@ -197,6 +197,9 @@ else
     $('.forward').on 'click', =>
       flight.goToPage({targetPanel:'#panel-2'});
 
+    $('#panel-1').find('li').on 'click', =>
+      flight.goToPage({targetPanel:'#panel-2'});
+
     $('#to-page-3').on 'click', =>
       flight.goToPage({targetPanel:'#panel-3'});
 
