@@ -130,9 +130,10 @@ class Flight
     @addClass(@targetPanel, 'visible')
     @isTransitioning = false
 
+  # fits viewport to content height
   fitHeightToContent: ->
     flightViewport = document.getElementById 'flight'
-    content = document.getElementsByClassName('content')[0]
+    content = document.getElementsByClassName('visible')[0].getElementsByClassName('content')[0]
     if flightViewport? and content?
       flightViewport.style.height = content.offsetHeight + "px"
     else
