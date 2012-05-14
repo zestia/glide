@@ -1,6 +1,3 @@
-#TODO: fix height around content to force scrolling
-#TODO: add history
-
 class Flight
   version: '0.0.1'
   isTransitioning: false
