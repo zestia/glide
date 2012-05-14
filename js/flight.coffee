@@ -26,17 +26,14 @@ class Flight
         @speed = options.speed
 
     @currentPanel = document.getElementsByClassName('visible')[0]
-
     if @currentPanel is undefined then throw new Error "Current panel not set"
 
     @fitHeightToContent()
     @detectUA()
 
-    if @os.android and @os.version <= "2.1"
-      @transitionAnimation = false
+    if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
-    if @hideUrlBar is true
-      @hideUrlBar()
+    if @hideUrlBar is true then @hideUrlBar()
 
   # Goes to page with or without transtion
   goToPage: (options) =>
