@@ -44,6 +44,7 @@ class Flight
       if options.targetPanel?
         @targetPanel = options.targetPanel
         @pageHistory.push(@targetPanel)
+        # target panel passed from options
         @targetPanel = document.querySelector(options.targetPanel)
         transitionType = @targetPanel.getAttribute("data-transition")
       else
@@ -51,6 +52,7 @@ class Flight
           @back = options.back
           if @back is true
             if @pageHistory.length > 1
+              # get target panel from history
               @targetPanel = @pageHistory[@pageHistory.length - 2]
               @targetPanel = document.querySelector(@targetPanel)
               transitionType = @targetPanel.getAttribute("data-transition")
@@ -69,7 +71,7 @@ class Flight
     if @transitionAnimation isnt true
       @displayPage()
 
-
+  # performs slide animation transition
   slideTransition: (speed) ->
     unless @targetPanel
       throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
@@ -109,6 +111,7 @@ class Flight
       @currentPanel.addEventListener "webkitTransitionEnd", @finishTransition, false
     , 5
 
+  # call on transition end
   finishTransition: =>
     @removeClass @currentPanel, 'visible'
     @addClass @targetPanel, 'visible'
@@ -135,6 +138,7 @@ class Flight
     else
       throw new Error "#flight or .content not found."
 
+  # detects user agent being used
   detectUA: ->
     userAgent = window.navigator.userAgent
     @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
