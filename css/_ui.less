@@ -16,11 +16,11 @@ body {
   margin: auto;
   overflow:hidden;
   width: 100%;
-  -webkit-transform: translate3d(0%, 0px, 0px) scale(1) rotate(0deg) rotateY(0deg) skew(0deg, 0deg);
   background: blue;
 }
 
 div {
+  // applying this to divs prevents transtion flicker in ios
   -webkit-transform-style:preserve-3d;
   -webkit-perspective:1000px;
   -webkit-backface-visibility: hidden;
@@ -32,6 +32,7 @@ div {
   border:0px solid #55819A;
   position: absolute;
   height:100%;
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-transform-style:preserve-3d;
   -webkit-perspective:1000px;
   -webkit-backface-visibility: hidden;
