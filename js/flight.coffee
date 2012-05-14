@@ -27,8 +27,7 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
-    if @currentPanel is undefined
-      throw new Error "Current panel not set"
+    if @currentPanel is undefined then throw new Error "Current panel not set"
 
     @fitHeightToContent()
     @detectUA()
