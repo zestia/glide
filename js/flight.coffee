@@ -6,7 +6,7 @@ class Flight
   isTransitioning: false
   currentPanel: ''
   targetPanel: ''
-  pageHistory: ['#panel-1']
+  pageHistory: [window.location.hash]
   os: {}
   hideUrlBar: false
 
