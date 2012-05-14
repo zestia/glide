@@ -62,6 +62,8 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
+    window.scrollTo 0, 1
+
     if @transitionAnimation is true
       switch transitionType
         when "slide" then @slideTransition()
