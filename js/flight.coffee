@@ -25,7 +25,7 @@ class Flight
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
 
-    @fitHeightToContent()
+#    @fitHeightToContent()
     @detectUA()
 
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
@@ -186,25 +186,6 @@ if exports?
   module?.exports = exports = Flight
 else
   root.Flight = Flight
-
-  $ ->
-
-    window.flight = new Flight();
-
-    $('.back').on 'click', =>
-        flight.goToPage({back:true})
-
-    $('.forward').on 'click', =>
-      flight.goToPage({targetPanel:'#panel-2'});
-
-    $('#panel-1').find('li').on 'click', =>
-      flight.goToPage({targetPanel:'#panel-2'});
-
-    $('#to-page-3').on 'click', =>
-      flight.goToPage({targetPanel:'#panel-3'});
-
-    $('#to-panel-4').on 'click', =>
-      flight.goToPage({targetPanel:'#panel-4'});
 
 #if 'ontouchstart' in window
 #  alert 'ontouchstart'

@@ -44,12 +44,13 @@
 <body>
 <div id="flight">
     <div class="panel visible" id="panel-1" data-transition="slide">
-      <div class="toolbar">
+      <div class="toolbar fixed-top">
           <a class="btn forward right">To page 2</a>
       </div>
-      <div class="content">
+      <div class="wrapper" id="panel-1-wrapper">
+        <div class="scroller">
         <ul>
-          <li>It is a long established fact that a reader will be distracted...</li>
+          <li>TOP</li>
           <li>It is a long established fact that a reader will be distracted...</li>
           <li>It is a long established fact that a reader will be distracted...</li>
           <li>It is a long established fact that a reader will be distracted...</li>
@@ -83,34 +84,38 @@
           <li>It is a long established fact that a reader will be distracted...</li>
           <li>It is a long established fact that a reader will be distracted...</li>
         </ul>
+        </div>
       </div>
     </div>
+
+
     <div class="panel" id="panel-2" data-transition="slide">
       <div class="toolbar">
          <a class="btn back left">Go back</a>
          <a id="to-page-3" class="btn right">Go to page 3</a>
          <h1>Page 2</h1>
       </div>
-      <div class="content">
-        <ul>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" alt="" /><span><h3>Dominique Briggs</h3></span>
-          <p>Apt. 10 Vantage Quay.</p>
-          </li>
-
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        </ul>
+      <div class="wrapper" id="panel-2-wrapper">
+        <div class="scroller">
+          <ul>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" alt="" /><span><h3>Dominique Briggs</h3></span>
+            <p>Apt. 10 Vantage Quay.</p>
+            </li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          </ul>
+      </div>
       </div>
     </div>
   <div class="panel" id="panel-3" data-transition="slide">
@@ -119,15 +124,17 @@
        <a id="to-panel-4" class="btn right">Page 4</a>
        <h1>Page 3</h1>
      </div>
-    <div class="content">
-      <ul>
-        <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-      </ul>
+    <div class="wrapper" id="panel-3-wrapper">
+      <div class="scroller">
+        <ul>
+          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -137,8 +144,10 @@
        <a class="btn back left">Go back</a>
        <h1>Page 4</h1>
      </div>
-    <div class="content">
-      <p>I am the fourth page.</p>
+    <div class="wrapper" id="panel-4-wrapper">
+      <div class="scroller">
+        <p>I am the fourth page.</p>
+      </div>
     </div>
   </div>
 
@@ -152,5 +161,29 @@
   <script>window.jQuery || document.write('<script src="vendor/jquery-1.7.1.min.js"><\/script>')</script>
   <script type="text/javascript" src="js/iscroll.js"></script>
   <script type="text/javascript" src="js/flight.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      window.flight = new Flight();
+
+      $('.back').on('click', function() {
+        flight.goToPage({back:true});
+      });
+
+      $('.forward').on('click', function() {
+        flight.goToPage({targetPanel:'#panel-2'});
+      });
+
+      $('#to-page-3').on('click', function() {
+        flight.goToPage({targetPanel:'#panel-3'});
+      });
+
+      $('#to-panel-4').on('click', function() {
+        flight.goToPage({targetPanel:'#panel-4'});
+      });
+
+      document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+      myScroll = new iScroll('panel-1-wrapper',{useTransition:true});
+    });
+  </script>
 </body>
 </html>
