@@ -9,7 +9,6 @@ class Flight
 
   # options
   transitionAnimation: true
-  fadeAnimation: true
   speed: '0.4s'
   back: false
 
@@ -17,8 +16,6 @@ class Flight
     if options?
       if options.transitionAnimation?
         @transitionAnimation = options.transitionAnimation
-      if options.fadeAnimation?
-        @fadeAnimation = options.fadeAnimation
       if options.speed?
         @speed = options.speed
 
