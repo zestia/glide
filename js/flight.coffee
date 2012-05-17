@@ -25,8 +25,7 @@ class Flight
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
 
-#    @fitHeightToContent()
-    @detectUA()
+    @detectUserAgent()
 
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
@@ -137,7 +136,7 @@ class Flight
       throw new Error "#flight or .content not found."
 
   # detects user agent being used
-  detectUA: ->
+  detectUserAgent: ->
     userAgent = window.navigator.userAgent
     @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
     @os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
