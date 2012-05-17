@@ -182,23 +182,3 @@ if exports?
   module?.exports = exports = Flight
 else
   root.Flight = Flight
-
-#if 'ontouchstart' in window
-#  alert 'ontouchstart'
-#
-#if "ontouchend" in document
-#  alert 'ontouch end in doc'
-#
-#try document.createEvent("TouchEvent") catch e
-#  alert 'not here'
-#
-#if typeof TouchEvent != "undefined"
-#
-#  alert 'type of not undefined'
-#
-#if 'createTouch' in document
-#  alert 'create touch in document'
-#
-#if typeof Touch == "object"
-#
-#  alert 'type of touch object'
