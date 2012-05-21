@@ -7,6 +7,8 @@ class Flight
   os: {}
   hideUrlBar: false
 
+  useScroller: true
+  iScrollInstance: null
   # options
   transitionAnimation: true
   speed: '0.4s'
