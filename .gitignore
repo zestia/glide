@@ -1,4 +1,6 @@
 js/*.js
+js/routers/*.js
+js/views/*.js
 *.css
 *.DS_store
 *.idea
