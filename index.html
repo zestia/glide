@@ -179,6 +179,9 @@
       $('#to-panel-4').on('click', function() {
         flight.goToPage({targetPanel:'#panel-4'});
       });
+	
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
 
       document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
       myScroll = new iScroll('panel-1-wrapper',{useTransition:true});
