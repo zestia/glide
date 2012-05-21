@@ -24,6 +24,10 @@ task :compile => [:coffee, :less]
 desc 'compile the coffeescript source into javascript'
 task :coffee do
   system 'coffee -c js/flight.coffee'
+  system 'coffee -c js/application.coffee'
+  system 'coffee -c js/routers/FrontRouter.coffee'
+  system 'coffee -c js/views/panel2View.coffee'
+  
 end
 
 desc 'compile the less stylesheets into css'
