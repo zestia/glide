@@ -42,9 +42,9 @@
 </head>
 
 <body>
-<div id="flight">
+  <div id="flight">
     <div class="panel visible" id="panel-1" data-transition="slide">
-      <div class="toolbar fixed-top">
+      <div class="toolbar">
           <a class="btn forward right">To page 2</a>
       </div>
       <div class="wrapper" id="panel-1-wrapper">
@@ -118,6 +118,7 @@
       </div>
       </div>
     </div>
+
   <div class="panel" id="panel-3" data-transition="slide">
     <div class="toolbar">
        <a class="btn back left">Go back</a>
@@ -138,7 +139,6 @@
     </div>
   </div>
 
-
   <div class="panel" id="panel-4" data-transition="slide">
     <div class="toolbar">
        <a class="btn back left">Go back</a>
@@ -150,9 +150,8 @@
       </div>
     </div>
   </div>
-
-
 </div>
+
   <!-- JavaScript at the bottom for fast page loading -->
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
@@ -182,10 +181,10 @@
 	
 	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
+	myScroll = new iScroll('panel-1-wrapper');
 
-      document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-      myScroll = new iScroll('panel-1-wrapper',{useTransition:true});
     });
+	
   </script>
 </body>
 </html>
