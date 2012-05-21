@@ -6,13 +6,12 @@ class panel2View extends Backbone.View
   initialize: (options) ->
 
   render: (id) ->
-    compiledTemplate = _.template( $('#panel-2-template').html() )    
+    compiledTemplate = _.template( $('#panel-2-template').html(), {header:"panel " + id}  )    
     @$el.html( compiledTemplate )
-    console.log id
     flight.goToPage({targetPanel:'#panel-' + id})
-
+    
     this
-
+  
 
 @app = window.app ? {}
 @app.Views.panel2View = panel2View
