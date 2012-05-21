@@ -6,7 +6,6 @@ class Flight
   pageHistory: [window.location.hash]
   os: {}
   hideUrlBar: false
-
   useScroller: true
   iScrollInstance: null
   # options
@@ -66,6 +65,7 @@ class Flight
     if @transitionAnimation isnt true
       @displayPage()
 
+
   # performs slide animation transition
   slideTransition: (speed) ->
     unless @targetPanel
@@ -109,6 +109,7 @@ class Flight
   # call on transition end
   finishTransition: =>
     @removeClass @currentPanel, 'visible'
+    @currentPanel.style.display = "none"
     @addClass @targetPanel, 'visible'
     @back = false
     @isTransitioning = false
@@ -117,9 +118,11 @@ class Flight
     if @useScroller is true
     
       if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
+    
       window.setTimeout =>
         @iScrollInstance = new iScroll(@targetPanel.getElementsByClassName('wrapper')[0].id)
         console.log @targetPanel.getElementsByClassName('wrapper')[0].id
+        
       , 0
 
    # displays pages when transiton is false
@@ -192,3 +195,4 @@ if exports?
   module?.exports = exports = Flight
 else
   root.Flight = Flight
+    
