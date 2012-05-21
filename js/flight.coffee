@@ -114,6 +114,14 @@ class Flight
     @isTransitioning = false
     @currentPanel.removeEventListener "webkitTransitionEnd", @finishTransition, false
 
+    if @useScroller is true
+    
+      if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
+      window.setTimeout =>
+        @iScrollInstance = new iScroll(@targetPanel.getElementsByClassName('wrapper')[0].id)
+        console.log @targetPanel.getElementsByClassName('wrapper')[0].id
+      , 0
+
    # displays pages when transiton is false
    displayPage: =>
     @targetPanel.style.display = "block"
