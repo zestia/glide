@@ -19,6 +19,8 @@ class Flight
         @transitionAnimation = options.transitionAnimation
       if options.speed?
         @speed = options.speed
+      if options.useScroller?
+        @useScroller = options.useScroller  
 
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
