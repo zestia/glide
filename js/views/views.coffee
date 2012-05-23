@@ -53,3 +53,22 @@ class Panel_3 extends Backbone.View
 @app = window.app ? {}
 @app.Views.Panel_3 = Panel_3
 
+# third panel
+class Panel_4 extends Backbone.View
+
+  el: $('#panel-4')
+
+  initialize: (options) ->
+
+  render: (id) ->
+    compiledTemplate = _.template( $('#panel-4-template').html(), {header:"panel " + id}  )    
+    @$el.html( compiledTemplate )
+    
+    # use flight for page load.
+    flight.goToPage({targetPanel:'#panel-' + id})
+    
+    this
+  
+@app = window.app ? {}
+@app.Views.Panel_4 = Panel_4
+

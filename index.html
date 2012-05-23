@@ -127,7 +127,7 @@
    <script type="text/html" charset="utf-8" id="panel-3-template">
 	<div class="toolbar">
        <a class="btn back left">Go back</a>
-       <a id="to-panel-4" class="btn right">Page 4</a>
+       <a href="#panel/4" id="to-panel-4" class="btn right">Page 4</a>
        <h1><%= header %></h1>
      </div>
     <div class="wrapper" id="panel-3-wrapper">
@@ -146,9 +146,10 @@
   </div>
 
   <div class="panel" id="panel-4" data-transition="slide">
+	<script type="text/html" charset="utf-8" id="panel-4-template">
     <div class="toolbar">
        <a class="btn back left">Go back</a>
-       <h1>Page 4</h1>
+       <h1><%= header %></h1>
      </div>
     <div class="wrapper" id="panel-4-wrapper">
       <div class="scroller">
@@ -156,7 +157,8 @@
       </div>
     </div>
   </div>
-</div>
+ </script> 
+ </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
 
@@ -176,9 +178,10 @@
   <script type="text/javascript">
     $(function() {
 
-      $('.back').on('click', function() {
-        flight.goToPage({back:true});
-      });
+     	function locationHashChanged() {
+		                  console.log(window.location.toString()) 
+		};
+		window.onhashchange = locationHashChanged;
 
      
 
