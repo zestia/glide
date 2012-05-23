@@ -11,8 +11,9 @@ class App
     console.log message
 
   init: ->
-    new @Routers.FrontRouter
-
+    new @Routers.AppRouter
+    
+    window.flight = new Flight();
     Backbone.history.start()
 
 window.app = new App
