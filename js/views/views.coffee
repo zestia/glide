@@ -1,5 +1,5 @@
 
-class panel2View extends Backbone.View
+class Panel_2 extends Backbone.View
 
   el: $('#panel-2')
 
@@ -14,4 +14,4 @@ class panel2View extends Backbone.View
   
 
 @app = window.app ? {}
-@app.Views.panel2View = panel2View
+@app.Views.Panel_2 = Panel_2
