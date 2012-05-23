@@ -33,8 +33,8 @@ class Panel_2 extends Backbone.View
     flight.goToPage({targetPanel:'#panel-' + id})
     
     $('.back').on 'click', ->
-      flight.goToPage({back:true});
-    
+      window.history.back()
+      
     this
   
 @app = window.app ? {}
