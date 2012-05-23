@@ -25,7 +25,7 @@ desc 'compile the coffeescript source into javascript'
 task :coffee do
   system 'coffee -c js/flight.coffee'
   system 'coffee -c js/application.coffee'
-  system 'coffee -c js/routers/FrontRouter.coffee'
+  system 'coffee -c js/routers/AppRouter.coffee'
   system 'coffee -c js/views/panel2View.coffee'
   
 end
