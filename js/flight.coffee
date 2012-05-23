@@ -122,9 +122,7 @@ class Flight
       if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
     
       window.setTimeout =>
-        @iScrollInstance = new iScroll(@targetPanel.getElementsByClassName('wrapper')[0].id)
-        console.log @targetPanel.getElementsByClassName('wrapper')[0].id
-        
+        @iScrollInstance = new iScroll(@targetPanel.getElementsByClassName('wrapper')[0].id)        
       , 0
 
    # displays pages when transiton is false
