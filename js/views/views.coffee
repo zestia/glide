@@ -20,14 +20,17 @@ class Panel_2 extends Backbone.View
 
   el: $('#panel-2')
 
-  initialize: (options) ->
-
+  initialize: (options) ->    
+        
   render: (id) ->
     compiledTemplate = _.template( $('#panel-2-template').html(), {header:"panel " + id}  )    
     @$el.html( compiledTemplate )
     
     # use flight for page load.
     flight.goToPage({targetPanel:'#panel-' + id})
+    
+    $('.back').on 'click', ->
+      flight.goToPage({back:true});
     
     this
   
