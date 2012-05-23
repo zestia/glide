@@ -47,6 +47,7 @@
     <script type="text/html" charset="utf-8" id="panel-1-template">
     	  <div class="toolbar">
 	          <a href="#panel/2" class="btn forward right">To page 2</a>
+			  <h1><%= header %></h1>
 	      </div>
 	      <div class="wrapper" id="panel-1-wrapper">
 	        <div class="scroller">
@@ -93,7 +94,7 @@
 	<script id="panel-2-template" type="text/html" charset="utf-8">
 	      <div class="toolbar">
 	         <a class="btn back left">Go back</a>
-	         <a id="to-page-3" class="btn right">Go to page 3</a>
+	         <a href="#panel/3" id="to-page-3" class="btn right">Go to page 3</a>
 	         <h1><%= header %></h1>
 	      </div>
 	      <div class="wrapper" id="panel-2-wrapper">
@@ -123,10 +124,11 @@
    
 
   <div class="panel" id="panel-3" data-transition="slide">
-    <div class="toolbar">
+   <script type="text/html" charset="utf-8" id="panel-3-template">
+	<div class="toolbar">
        <a class="btn back left">Go back</a>
        <a id="to-panel-4" class="btn right">Page 4</a>
-       <h1>Page 3</h1>
+       <h1><%= header %></h1>
      </div>
     <div class="wrapper" id="panel-3-wrapper">
       <div class="scroller">
@@ -140,6 +142,7 @@
         </ul>
       </div>
     </div>
+   </script>
   </div>
 
   <div class="panel" id="panel-4" data-transition="slide">
