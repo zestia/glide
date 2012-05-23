@@ -19,13 +19,16 @@ class Home extends Backbone.View
 class Panel_2 extends Backbone.View
 
   el: $('#panel-2')
-
-  initialize: (options) ->    
-        
-  render: (id) ->
-    compiledTemplate = _.template( $('#panel-2-template').html(), {header:"panel " + id}  )    
-    @$el.html( compiledTemplate )
+  
+  initialize: (options) ->
     
+    template = $('#panel-2-template')
+    # check to see if template has already been rendered
+    if not template.length <1      
+      compiledTemplate = _.template( $('#panel-2-template').html(), {header:"panel 1"}  )
+      @$el.html( compiledTemplate ) 
+               
+  render: (id) =>  
     # use flight for page load.
     flight.goToPage({targetPanel:'#panel-' + id})
     
