@@ -5,7 +5,8 @@ class AppRouter extends Backbone.Router
     'panel/:id': 'goToPanel'
     
   startApp: ->
-     
+    @view = new app.Views.Home   
+    @view.render()
     
   goToPanel: (id) ->
     @view = new app.Views.Panel_2     

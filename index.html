@@ -44,48 +44,49 @@
 <body>
   <div id="flight">
     <div class="panel visible" id="panel-1" data-transition="slide">
-      <div class="toolbar">
-          <a href="#panel/2" class="btn forward right">To page 2</a>
-      </div>
-      <div class="wrapper" id="panel-1-wrapper">
-        <div class="scroller">
-        <ul>
-          <li>TOP</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-          <li>It is a long established fact that a reader will be distracted...</li>
-        </ul>
-        </div>
-      </div>
+    <script type="text/html" charset="utf-8" id="panel-1-template">
+    	  <div class="toolbar">
+	          <a href="#panel/2" class="btn forward right">To page 2</a>
+	      </div>
+	      <div class="wrapper" id="panel-1-wrapper">
+	        <div class="scroller">
+	        <ul>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	          <li>It is a long established fact that a reader will be distracted...</li>
+	        </ul>
+	        </div>
+	      </div>
+    </script>
     </div>
 	
 	<div class="panel" id="panel-2" data-transition="slide">	
@@ -188,7 +189,7 @@
 	
 	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
-	myScroll = new iScroll('panel-1-wrapper');
+	// myScroll = new iScroll('panel-1-wrapper');
 	
 	app.init();
     });
