@@ -21,7 +21,6 @@ class Flight
         @speed = options.speed
       if options.useScroller?
         @useScroller = options.useScroller  
-
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
     
@@ -43,7 +42,7 @@ class Flight
       
       if options.targetPanel?
          
-         if typeof @targetPanel is "string"
+         if typeof options.targetPanel is "string"
             @targetPanel = document.querySelector options.targetPanel
          else 
            @targetPanel = options.targetPanel
