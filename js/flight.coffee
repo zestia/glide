@@ -45,6 +45,9 @@ class Flight
         @pageHistory.push(@targetPanel)
         # target panel passed from options
         @targetPanel = document.querySelector(options.targetPanel)
+        if typeOf @targetPanel is string
+          @targetPanel = document.querySelector(options.targetPanel)
+          
         transitionType = @targetPanel.getAttribute("data-transition")
       else
         if options.back
