@@ -40,15 +40,18 @@ class Flight
     if @isTransitioning is true then return else @isTransitioning = true
 
     if options?
+      
       if options.targetPanel?
-        @targetPanel = options.targetPanel
-        @pageHistory.push(@targetPanel)
-        # target panel passed from options
-        @targetPanel = document.querySelector(options.targetPanel)
-        if typeOf @targetPanel is string
-          @targetPanel = document.querySelector(options.targetPanel)
-          
+         
+         if typeof @targetPanel is "string"
+            @targetPanel = document.querySelector options.targetPanel
+         else 
+           @targetPanel = options.targetPanel
+           
+        @pageHistory.push(window.location.hash)                 
+        
         transitionType = @targetPanel.getAttribute("data-transition")
+      
       else
         if options.back
           @back = options.back
