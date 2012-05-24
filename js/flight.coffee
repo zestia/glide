@@ -47,10 +47,10 @@ class Flight
             @targetPanel = document.querySelector options.targetPanel
          else 
            @targetPanel = options.targetPanel
-           
-        @pageHistory.push(window.location.hash)                 
+      
+         @pageHistory.push(window.location.hash)                 
         
-        transitionType = @targetPanel.getAttribute("data-transition")
+         transitionType = @targetPanel.getAttribute("data-transition")
       
       else
         if options.back
