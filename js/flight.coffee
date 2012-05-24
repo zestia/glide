@@ -24,6 +24,9 @@ class Flight
 
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
+    
+    # make first page visible
+    @currentPanel.style.display = "block"
 
     @detectUserAgent()
 
