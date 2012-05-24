@@ -5,15 +5,10 @@ class Home extends Backbone.View
   el: $('#panel-1')
 
   initialize: (options) ->
-    template = $('#panel-1-template')
-    # check to see if template has already been rendered
-    if not template.length <1      
-      compiledTemplate = _.template( $('#panel-1-template').html(), {header:"Home"}  )
-      @$el.html( compiledTemplate )
+    
     
   render: () ->
-    # $('#panel-1').show();
-    # flight.displayPage({targetPanel:'#panel-1'})
+    
     this
 
 @app = window.app ? {}
@@ -26,15 +21,12 @@ class Panel_2 extends Backbone.View
   
   initialize: (options) ->
     
-    template = $('#panel-2-template')
+    template = $('#panel-2')
     # check to see if template has already been rendered
-    if not template.length <1      
-      compiledTemplate = _.template( $('#panel-2-template').html(), {header:"panel 2"}  )
-      @$el.html( compiledTemplate ) 
+    compiledTemplate = _.template( $('#panel-2').html() )
+    @$el.html( compiledTemplate ) 
                
   render: (id) =>  
-    # use flight for page load.
-    flight.goToPage({targetPanel:'#panel-' + id})
     
     $('.back').on 'click', ->
       window.history.back()
@@ -51,15 +43,12 @@ class Panel_3 extends Backbone.View
 
   initialize: (options) ->
     
-    template = $('#panel-3-template')
+    template = $('#panel-3')
     # check to see if template has already been rendered
-    if not template.length <1      
-      compiledTemplate = _.template( $('#panel-3-template').html(), {header:"panel 3"}  )
-      @$el.html( compiledTemplate )
+    compiledTemplate = _.template( $('#panel-3').html() )
+    @$el.html( compiledTemplate )
 
   render: (id) ->     
-    # use flight for page load.
-    flight.goToPage({targetPanel:'#panel-' + id})
     
     $('.back').on 'click', ->
       window.history.back()
@@ -77,12 +66,9 @@ class Panel_4 extends Backbone.View
   initialize: (options) ->
 
   render: (id) ->
-    compiledTemplate = _.template( $('#panel-4-template').html(), {header:"panel " + id}  )    
+    compiledTemplate = _.template( $('#panel-4').html() )    
     @$el.html( compiledTemplate )
-    
-    # use flight for page load.
-    flight.goToPage({targetPanel:'#panel-' + id})
-    
+        
     $('.back').on 'click', ->
       window.history.back()
     
