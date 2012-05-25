@@ -36,7 +36,10 @@ class Flight
       @startPanel = document.querySelector startPanel
       if @startPanel is undefined then throw new Error "Cannot find start panel"
     else
-      @startPanel = startPanel    
+      @startPanel = startPanel
+      
+    if @useScroller is true
+      @setScroller(@startPanel)                  
     
   # Goes to page, transitionAnimation defines if transition happens or not
   goToPage: (targetPanel, options) =>
@@ -126,15 +129,10 @@ class Flight
     @back = false
     @isTransitioning = false
     @currentPanel.removeEventListener "webkitTransitionEnd", @finishTransition, false
-
+    
     if @useScroller is true
-    
-      if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
-    
-      window.setTimeout =>
-        @iScrollInstance = new iScroll(@targetPanel.getElementsByClassName('wrapper')[0].id)        
-      , 0
-
+      @setScroller(@targetPanel)
+   
    # displays pages when transiton is false
    displayPage: =>
     @targetPanel.style.display = "block"
@@ -154,7 +152,14 @@ class Flight
       flightViewport.style.height = content.offsetHeight + "px"
     else
       throw new Error "#flight or .content not found."
-
+  
+  setScroller: (wrapper) =>
+    
+      if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
+    
+      window.setTimeout =>
+        @iScrollInstance = new iScroll(wrapper.getElementsByClassName('wrapper')[0].id)        
+      , 0
   # detects user agent being used
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
