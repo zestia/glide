@@ -4,6 +4,9 @@ class AppRouter extends Backbone.Router
     '': 'homePage'
     'panel/:id': 'goToPanel'
     
+  initialize: ->
+    flight.launch("#panel-1")
+    
   homePage: ->
     @view = new app.Views.Home   
     @view.render()
