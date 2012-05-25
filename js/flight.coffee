@@ -22,9 +22,11 @@ class Flight
         @speed = options.speed
       if options.useScroller?
         @useScroller = options.useScroller             
-    
+        
+    # see what device we're using
     @detectUserAgent()
-
+    
+    # don't bother using transition animation on older android devices as they look terrible
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
     if @hideUrlBar is true then @hideUrlBar()
