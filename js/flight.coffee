@@ -102,9 +102,6 @@ class Flight
 
   # performs slide animation transition
   slideTransition: (speed) ->
-    unless @targetPanel
-      throw new Error "Need to set current div and target div in Slide in flight.slideTranstion"
-      return
 
     if speed
       @speed = speed
