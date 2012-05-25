@@ -29,16 +29,20 @@ class Flight
 
     if @hideUrlBar is true then @hideUrlBar()
   
+  # Setup app starting panel 
   launch: (startPanel) =>
+          
     if typeof startPanel is "string"
       @startPanel = document.querySelector startPanel
       if @startPanel is undefined then throw new Error "Cannot find start panel"
     else
       @startPanel = startPanel    
+    
   # Goes to page, transitionAnimation defines if transition happens or not
   goToPage: (options) =>
     
     if not @currentPanel
+      # No current panel set, app just started, make start panel visible
       @startPanel.style.display = "block"
       @pageHistory = [window.location.hash];
       @currentPanel = @startPanel;  
@@ -75,8 +79,10 @@ class Flight
               @targetPanel = document.querySelector(@targetPanel)
               transitionType = @targetPanel.getAttribute("data-transition")
               @pageHistory.pop()
+      
       # if target panel is the same as the starting panel then always go back
       if @targetPanel is @startPanel 
+        @back = true 
       else  
               
 
