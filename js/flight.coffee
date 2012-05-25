@@ -54,37 +54,22 @@ class Flight
     # set curent panel
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
-
-         
-         else 
-    console.log targetPanel.id
+    
     if typeof targetPanel is "string"
       @targetPanel = document.querySelector targetPanel
     else 
       @targetPanel = targetPanel
+    
+    if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
+      @back = true
       
+    if @back is true
+      transitionType = @currentPanel.getAttribute("data-transition")
+      @pageHistory.pop() 
+    else
       transitionType = @targetPanel.getAttribute("data-transition")
-      @pageHistory.push(window.location.hash)                      
-      
-      else
-        if options.back
-          @back = options.back
-          if @back is true
-            if @pageHistory.length > 1
-              # get target panel from history
-              @targetPanel = @pageHistory[@pageHistory.length - 2]
-              @targetPanel = document.querySelector(@targetPanel)
-              transitionType = @targetPanel.getAttribute("data-transition")
-              @pageHistory.pop()
-      
-      # if target panel is the same as the starting panel then always go back
-      if @targetPanel is @startPanel 
-        @back = true 
-      else  
-              
-
-    @currentPanel = document.getElementsByClassName('visible')[0]
-
+      @pageHistory.push(window.location.hash)   
+                     
     window.scrollTo 0, 1
 
     if @transitionAnimation is true
@@ -95,7 +80,6 @@ class Flight
 
     if @transitionAnimation isnt true
       @displayPage()
-
 
   # performs slide animation transition
   slideTransition: (speed) ->
@@ -161,7 +145,7 @@ class Flight
     @removeClass(@currentPanel, 'visible')
     @addClass(@targetPanel, 'visible')
     @isTransitioning = false
-
+      
   # fits viewport to content height
   fitHeightToContent: ->
     flightViewport = document.getElementById 'flight'
