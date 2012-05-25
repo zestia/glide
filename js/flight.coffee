@@ -1,6 +1,7 @@
 class Flight
   version: '0.0.1'
   isTransitioning: false
+  startPanel: ''
   currentPanel: ''
   targetPanel: ''
   pageHistory: [window.location.hash]
@@ -20,24 +21,37 @@ class Flight
       if options.speed?
         @speed = options.speed
       if options.useScroller?
-        @useScroller = options.useScroller  
-    @currentPanel = document.getElementsByClassName('visible')[0]
-    if @currentPanel is undefined then throw new Error "Current panel not set"
+        @useScroller = options.useScroller             
     
-    # make first page visible
-    @currentPanel.style.display = "block"
-
     @detectUserAgent()
 
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
     if @hideUrlBar is true then @hideUrlBar()
-
-  # Goes to page with or without transtion
+  
+  launch: (startPanel) =>
+    if typeof startPanel is "string"
+      @startPanel = document.querySelector startPanel
+      if @startPanel is undefined then throw new Error "Cannot find start panel"
+    else
+      @startPanel = startPanel    
+  # Goes to page, transitionAnimation defines if transition happens or not
   goToPage: (options) =>
-
+    
+    if not @currentPanel
+      @startPanel.style.display = "block"
+      @pageHistory = [window.location.hash];
+      @currentPanel = @startPanel;  
+      return 
+    
+    # if already transitioning then return    
     if @isTransitioning is true then return else @isTransitioning = true
+    
+    # set curent panel
+    @currentPanel = document.getElementsByClassName('visible')[0]
+    if @currentPanel is undefined then throw new Error "Current panel not set"
 
+    # check options
     if options?
       
       if options.targetPanel?
@@ -61,6 +75,10 @@ class Flight
               @targetPanel = document.querySelector(@targetPanel)
               transitionType = @targetPanel.getAttribute("data-transition")
               @pageHistory.pop()
+      # if target panel is the same as the starting panel then always go back
+      if @targetPanel is @startPanel 
+      else  
+              
 
     @currentPanel = document.getElementsByClassName('visible')[0]
 
