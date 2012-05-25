@@ -1,10 +1,10 @@
 class AppRouter extends Backbone.Router
 
   routes:
-    '': 'startApp'
+    '': 'homePage'
     'panel/:id': 'goToPanel'
     
-  startApp: ->
+  homePage: ->
     @view = new app.Views.Home   
     @view.render()
     

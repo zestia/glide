@@ -5,7 +5,10 @@ class Home extends Backbone.View
   el: $('#panel-1')
 
   initialize: (options) ->
-    
+    template = $('#panel-1')
+    # check to see if template has already been rendered
+    compiledTemplate = _.template( $('#panel-1').html() )
+    @$el.html( compiledTemplate )
     
   render: () ->
     
