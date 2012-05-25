@@ -10,12 +10,12 @@ class AppRouter extends Backbone.Router
   homePage: ->
     @view = new app.Views.Home   
     targetPanel = @view.render().el
-    flight.goToPage {targetPanel:targetPanel}
+    flight.goToPage targetPanel
     
   goToPanel: (id) ->
     @view = new app.Views["Panel_" + id]
     targetPanel = @view.render(id).el
-    flight.goToPage {targetPanel:targetPanel}
+    flight.goToPage targetPanel
     
     
             

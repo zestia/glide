@@ -39,7 +39,7 @@ class Flight
       @startPanel = startPanel    
     
   # Goes to page, transitionAnimation defines if transition happens or not
-  goToPage: (options) =>
+  goToPage: (targetPanel, options) =>
     
     if not @currentPanel
       # No current panel set, app just started, make start panel visible
@@ -55,19 +55,16 @@ class Flight
     @currentPanel = document.getElementsByClassName('visible')[0]
     if @currentPanel is undefined then throw new Error "Current panel not set"
 
-    # check options
-    if options?
-      
-      if options.targetPanel?
          
-         if typeof options.targetPanel is "string"
-            @targetPanel = document.querySelector options.targetPanel
          else 
-           @targetPanel = options.targetPanel
+    console.log targetPanel.id
+    if typeof targetPanel is "string"
+      @targetPanel = document.querySelector targetPanel
+    else 
+      @targetPanel = targetPanel
       
-         @pageHistory.push(window.location.hash)                 
-        
-         transitionType = @targetPanel.getAttribute("data-transition")
+      transitionType = @targetPanel.getAttribute("data-transition")
+      @pageHistory.push(window.location.hash)                      
       
       else
         if options.back
