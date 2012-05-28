@@ -87,10 +87,7 @@ class Flight
       @displayPage()
 
   # performs slide animation transition
-  slideTransition: (speed) ->
-
-    if speed
-      @speed = speed
+  slideTransition: () ->
 
     @targetPanel.style.display = "block"
     @currentPanel.style.display = "block"
