@@ -12,6 +12,7 @@ class App
 
   init: ->
     window.flight = new Flight();
+    flight.launch "#panel-1"
     
     new @Routers.AppRouter
     
