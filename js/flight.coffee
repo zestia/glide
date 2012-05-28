@@ -30,29 +30,23 @@ class Flight
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
     if @hideUrlBar is true then @hideUrlBar()
-  
-  # Setup app starting panel 
-  launch: (startPanel) =>
-          
-    if typeof startPanel is "string"
-      @startPanel = document.querySelector startPanel
-      if @startPanel is undefined then throw new Error "Cannot find start panel"
-    else
-      @startPanel = startPanel
-      
-    if @useScroller is true
-      @setScroller(@startPanel)                  
-    
+         
   # Goes to page, transitionAnimation defines if transition happens or not
   goToPage: (targetPanel, options) =>
     
     if not @currentPanel
+      
       # No current panel set, app just started, make start panel visible
-      @startPanel.style.display = "block"
+      targetPanel.style.display = "block"
       @pageHistory = [window.location.hash];
-      @currentPanel = @startPanel;  
-      return 
-    
+      @currentPanel = targetPanel
+      @addClass @currentPanel, 'visible' 
+
+      if @useScroller is true
+        @setScroller @currentPanel
+             
+      return
+        
     # if already transitioning then return    
     if @isTransitioning is true then return else @isTransitioning = true
     
