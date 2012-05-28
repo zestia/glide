@@ -4,7 +4,14 @@ ul {
   list-style: none;
   width: 100%;
   li {
-    background:#fcfcfc; .border-radius (5px); border:solid 1px white; .box-shadow (0px 1px 2px rgba(000,000,000,0.3)); margin-bottom:8px; padding:9px 10px 9px; .clearfix
+    background:#fcfcfc; 
+    border:solid 1px white; 
+    .box-shadow (0px 1px 2px rgba(000,000,000,0.3));
+    border-bottom:1px solid #eee; .clearfix;
+    a {
+      display:block;
+      padding: 12px 22px 12px 10px;
+    }
     &.touchstart {
       background: blue;
       color:#ffffff;
@@ -21,17 +28,16 @@ ul {
   .gradient;
   padding: 7px 10px;
 
-  a.btn {
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: bold;
-    text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
-    -webkit-border-radius: 6px;
-    border: 1px solid #45505D;
-    .gradient;
-    padding: 10px;
-    color: white;
-  }
+  a.btn { 
+    border-radius:5px; 
+    font-size:14px; 
+    position:absolute; 
+    padding: 10px; 
+    color:white; 
+    text-shadow:0px -1px 0px #000; 
+    .vertical-gradient (rgba(77,78,91,1) 0%, rgba(41,42,49,1) 100%); 
+    box-shadow:0px 0px 0px 1px #1f1f23,0px 1px 0px 1px #3b3b40; }
+  
   .left, .right {
     position: absolute;
   }
