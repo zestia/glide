@@ -65,6 +65,8 @@ class Flight
     else 
       @targetPanel = targetPanel
     
+    if @targetPanel is @startPanel
+      @back = true
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
