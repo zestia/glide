@@ -72,16 +72,17 @@ class Flight
       @pageHistory.push(window.location.hash)   
                      
     window.scrollTo 0, 1
+    
+    window.setTimeout =>
+      if @transitionAnimation is true
+        switch transitionType
+          when "slide" then @slideTransition()
+          when "slideUp" then @slideUp()
+          when "slideDown" then @slideDown()
 
-    if @transitionAnimation is true
-      switch transitionType
-        when "slide" then @slideTransition()
-        when "slideUp" then @slideUp()
-        when "slideDown" then @slideDown()
-
-    if @transitionAnimation isnt true
-      @displayPage()
-
+      if @transitionAnimation isnt true
+        @displayPage()
+    ,10  
   # performs slide animation transition
   slideTransition: () ->
 
