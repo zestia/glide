@@ -15,7 +15,7 @@ body {
 div {
   // applying this to divs prevents transtion flicker in ios
   -webkit-transform-style:preserve-3d;
-  -webkit-perspective:1000px;
+  -webkit-perspective:0px;
   -webkit-backface-visibility: hidden;
 }
 
@@ -23,6 +23,7 @@ div {
 #flight {
   -webkit-transform-style:flat!important;
   -webkit-perspective:0px!important;
+  -webkit-backface-visibility: hidden;
 }
 
 .toolbar {
