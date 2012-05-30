@@ -32,7 +32,7 @@ class Flight
     if @hideUrlBar is true then @hideUrlBar()
          
   # Goes to page, transitionAnimation defines if transition happens or not
-  goToPage: (targetPanel, options) =>
+  goTo: (targetPanel, options) =>
     
     if not @currentPanel
       
@@ -73,6 +73,7 @@ class Flight
                      
     window.scrollTo 0, 1
     
+    # Delay transition to prevent flickering
     window.setTimeout =>
       if @transitionAnimation is true
         switch transitionType
