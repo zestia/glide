@@ -78,7 +78,7 @@ class Flight
       if @transitionAnimation is true
         switch transitionType
           when "slide" then @slideTransition()
-          when "slideUp" then @slideUp()
+          when "slideFromBottom" then @slideFromBottom()
           when "slideDown" then @slideDown()
 
       if @transitionAnimation isnt true
