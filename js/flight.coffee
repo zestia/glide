@@ -39,6 +39,7 @@ class Flight
       # No current panel set, app just started, make start panel visible
       targetPanel.style.display = "block"
       @pageHistory = [window.location.hash];
+      @startPanel = [window.location.hash];
       @currentPanel = targetPanel
       @addClass @currentPanel, 'visible' 
 
@@ -146,6 +147,7 @@ class Flight
      , 15
     
      @isTransitioning = false
+     
   # call on transition end
   finishTransition: =>
     @removeClass @currentPanel, 'visible'
