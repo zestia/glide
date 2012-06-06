@@ -1,4 +1,5 @@
 class Flight
+  # Private
   version: '0.0.1'
   isTransitioning: false
   startPage: ''
@@ -7,8 +8,6 @@ class Flight
   pageHistory: [""]
   os: {}
   hideUrlBar: false
-  useScroller: false
-  iScrollInstance: null
   # options
   transitionAnimation: true
   speed: '0.4s'
@@ -19,9 +18,7 @@ class Flight
       if options.transitionAnimation?
         @transitionAnimation = options.transitionAnimation
       if options.speed?
-        @speed = options.speed
-      if options.useScroller?
-        @useScroller = options.useScroller             
+        @speed = options.speed           
         
     # see what device we're using
     @detectUserAgent()
@@ -33,7 +30,7 @@ class Flight
          
   # Goes to page, transitionAnimation defines if transition happens or not
   goTo: (targetPage, options) =>
-    
+        
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
     else if targetPage
@@ -46,13 +43,9 @@ class Flight
       @startPage = [window.location.hash];
       @currentPage = targetPage
       @addClass @currentPage, 'visible'
-
-      if @useScroller is true
-        @setScroller @currentPage
-             
-      return
-        
-    # if already transitioning then return    
+      return    
+    
+    # if already transitioning then return   
     if @isTransitioning is true then return else @isTransitioning = true
     
     # set curent panel
@@ -150,10 +143,7 @@ class Flight
     @currentPage.style.display = "none"
     @addClass @targetPage, 'visible'
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
-    
-    if @useScroller is true
-      @setScroller(@targetPage)
-   
+       
    finishSlideFromBottom: =>
     @removeClass @currentPage, 'visible'
     @addClass @targetPage, 'visible'
@@ -183,13 +173,6 @@ class Flight
     else
       throw new Error "#flight or .content not found."
   
-  setScroller: (wrapper) =>
-    
-      if @iScrollInstance? then @iScrollInstance.destroy(); @iScrollInstance = null
-    
-      window.setTimeout =>
-        @iScrollInstance = new iScroll(wrapper.getElementsByClassName('wrapper')[0].id)        
-      , 0
   # detects user agent being used
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
