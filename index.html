@@ -109,14 +109,29 @@
     </div>
   </div>
 
-  <div class="panel" id="panel-4" data-transition="slide">
+  <div class="panel" id="panel-4" data-transition="slideFromBottom">
     <div class="toolbar">
-       <a class="btn back left">Back</a>
+	   <a class="btn back left">Cancel</a>
+       <a href="#panel/3" class="btn right">Save</a>
        <h1>Panel 4</h1>
      </div>
     <div class="wrapper" id="panel-4-wrapper">
       <div class="scroller">
-        <p>I am the fourth page.</p>
+		      
+		    <div id="party-edit-errors"></div>
+			<form class="name"> 					
+				<ul>
+					<li><input id="party-first-name" type="text" placeholder="First Name" name="firstName" value="" size="250"></li> 		                	
+					<li><input id="party-last-name" type="text" placeholder="Last Name" name="lastName" value="" size="250"></li> 		                	
+					<li><input type="text" placeholder="Job Title" name="jobTitle" value="" size="250"></li> 		                	
+					<li><input type="text" placeholder="Organisation" name="organisationName" value="" size="250"></li> 						
+				</ul> 				
+			</form>
+
+		        <ul class="edit" id="party-edit-phone"><li class="add-action" onclick="$(this).before(ContactUI.addPhone());">Add phone</li></ul>
+		        <ul class="edit" id="party-edit-email"><li class="add-action" onclick="$(this).before(ContactUI.addEmail());">Add email</li></ul>
+		        <ul class="edit" id="party-edit-address"><li class="add-action" onclick="$(this).before(ContactUI.addAddress());">Add address</li></ul>
+		  
       </div>
     </div>
   </div>
@@ -140,16 +155,7 @@
   <script type="text/javascript">
     $(function() {
 
-
-      $('#to-page-3').on('click', function() {
-        flight.goToPage({targetPanel:'#panel-3'});
-      });
-
-      $('#to-panel-4').on('click', function() {
-        flight.goToPage({targetPanel:'#panel-4'});
-      });
-	
-	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	// document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 	
 	// myScroll = new iScroll('panel-1-wrapper');
 	
