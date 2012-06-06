@@ -64,7 +64,7 @@ class Flight
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
-    if @back is true
+    if @back is true and @pageHistory.length != 1
       transitionType = @currentPanel.getAttribute("data-transition")
       @pageHistory.pop() 
     else
