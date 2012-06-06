@@ -1,13 +1,13 @@
 class Flight
   version: '0.0.1'
   isTransitioning: false
-  startPanel: ''
-  currentPanel: ''
-  targetPanel: ''
+  startPage: ''
+  currentPage: ''
+  targetPage: ''
   pageHistory: [""]
   os: {}
   hideUrlBar: false
-  useScroller: true
+  useScroller: false
   iScrollInstance: null
   # options
   transitionAnimation: true
@@ -32,19 +32,23 @@ class Flight
     if @hideUrlBar is true then @hideUrlBar()
          
   # Goes to page, transitionAnimation defines if transition happens or not
-  goTo: (targetPanel, options) =>
+  goTo: (targetPage, options) =>
     
-    if not @currentPanel
-      
+    if typeof targetPage is "string"
+      @targetPage = document.querySelector targetPage
+    else if targetPage
+      @targetPage = targetPage
+    
+    if not @currentPage
       # No current panel set, app just started, make start panel visible
-      targetPanel.style.display = "block"
+      targetPage.style.display = "block"
       @pageHistory = [window.location.hash];
-      @startPanel = [window.location.hash];
-      @currentPanel = targetPanel
-      @addClass @currentPanel, 'visible' 
+      @startPage = [window.location.hash];
+      @currentPage = targetPage
+      @addClass @currentPage, 'visible'
 
       if @useScroller is true
-        @setScroller @currentPanel
+        @setScroller @currentPage
              
       return
         
@@ -52,24 +56,19 @@ class Flight
     if @isTransitioning is true then return else @isTransitioning = true
     
     # set curent panel
-    @currentPanel = document.getElementsByClassName('visible')[0]
-    if @currentPanel is undefined then throw new Error "Current panel not set"
+    @currentPage = document.getElementsByClassName('visible')[0]
+    if @currentPage is undefined then throw new Error "Current panel not set"    
     
-    if typeof targetPanel is "string"
-      @targetPanel = document.querySelector targetPanel
-    else 
-      @targetPanel = targetPanel
-    
-    if @targetPanel is @startPanel
+    if @targetPage is @startPage
       @back = true
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
     if @back is true and @pageHistory.length != 1
-      transitionType = @currentPanel.getAttribute("data-transition")
+      transitionType = @currentPage.getAttribute("data-transition")
       @pageHistory.pop() 
     else
-      transitionType = @targetPanel.getAttribute("data-transition")
+      transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)   
                      
     window.scrollTo 0, 1
@@ -85,38 +84,39 @@ class Flight
       if @transitionAnimation isnt true
         @displayPage()
     ,10
-              
+                  
   # performs slide animation transition
   slideTransition: () ->
-    @targetPanel.style.display = "block"
-    @currentPanel.style.display = "block"
+    @targetPage.style.display = "block"
+    @currentPage.style.display = "block"
 
     if @back is true
       # must perform this initial tranform to get animation working in the next step
-      @targetPanel.style.webkitTransition = "0ms"
-      @targetPanel.style.webkitTransform = "translateX(-100%)"
+      @targetPage.style.webkitTransition = "0ms"
+      @targetPage.style.webkitTransform = "translateX(-100%)"
 
       # use window timeout to delay transition or will not work on android device
       window.setTimeout =>
-        @currentPanel.style.webkitTransition = "#{@speed} ease"
-        @currentPanel.style.webkitTransform = "translateX(100%)"
+        @currentPage.style.webkitTransition = "#{@speed} ease"
+        @currentPage.style.webkitTransform = "translateX(100%)"
       , 10
 
     else
       #do forward transition
-      @targetPanel.style.webkitTransition = "0ms"
-      @targetPanel.style.webkitTransform = "translateX(100%)"
+      @targetPage.style.webkitTransition = "0ms"
+      @targetPage.style.webkitTransform = "translateX(100%)"
 
       window.setTimeout =>
-        @currentPanel.style.webkitTransition = "#{@speed} ease"
-        @currentPanel.style.webkitTransform = "translateX(-100%)"
+        @currentPage.style.webkitTransition = "#{@speed} ease"
+        @currentPage.style.webkitTransform = "translateX(-100%)"
       , 10
 
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
-      @targetPanel.style.webkitTransition = "#{@speed} ease"
-      @targetPanel.style.webkitTransform = "translateX(0%)"
-      @currentPanel.addEventListener "webkitTransitionEnd", @finishTransition, false
+      @targetPage.style.webkitTransition = "#{@speed} ease"
+      @targetPage.style.webkitTransform = "translateX(0%)"
+      @currentPage.addEventListener "webkitTransitionEnd", @finishSlide, false
+      @resetState()
     , 5
       
   # slides panel from bottom to top and top to bottom 
@@ -124,51 +124,54 @@ class Flight
      if @back is true
        # do reverse
        window.setTimeout =>
-          @currentPanel.style.webkitTransition = "#{@speed} ease"
-          @currentPanel.style.webkitTransform = "translateY(100%)"
+          @currentPage.style.webkitTransition = "#{@speed} ease"
+          @currentPage.style.webkitTransform = "translateY(100%)"
        , 10
        
      else
        #do forward transition
-       @targetPanel.style.display = "block"       
-       @targetPanel.style.webkitTransition = "0ms"
-       @targetPanel.style.webkitTransform = "translateY(100%)"
+       @targetPage.style.display = "block"
+       @targetPage.style.webkitTransition = "0ms"
+       @targetPage.style.webkitTransform = "translateY(100%)"
                       
        window.setTimeout =>
-          @targetPanel.style.webkitTransition = "#{@speed} ease"
-          @targetPanel.style.webkitTransform = "translateY(0%)"
+          @targetPage.style.webkitTransition = "#{@speed} ease"
+          @targetPage.style.webkitTransform = "translateY(0%)"
        , 10
        
      window.setTimeout =>
-       @targetPanel.addEventListener "webkitTransitionEnd", =>
-         @removeClass @currentPanel, 'visible'
-         @addClass @targetPanel, 'visible'
-         , false
+       @targetPage.addEventListener "webkitTransitionEnd", @finishSlideFromBottom, false
+       @resetState()
      , 15
-    
-     @isTransitioning = false
      
   # call on transition end
-  finishTransition: =>
-    @removeClass @currentPanel, 'visible'
-    @currentPanel.style.display = "none"
-    @addClass @targetPanel, 'visible'
-    @back = false
-    @isTransitioning = false
-    @currentPanel.removeEventListener "webkitTransitionEnd", @finishTransition, false
+  finishSlide: =>
+    @removeClass @currentPage, 'visible'
+    @currentPage.style.display = "none"
+    @addClass @targetPage, 'visible'
+    @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
     
     if @useScroller is true
-      @setScroller(@targetPanel)
+      @setScroller(@targetPage)
    
-   # displays pages when transiton is false
+   finishSlideFromBottom: =>
+    @removeClass @currentPage, 'visible'
+    @addClass @targetPage, 'visible'
+    @targetPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
+    
+   resetState: =>
+    @back = false
+    @isTransitioning = false   
+    
+   # displays pages when transiton is false, back animations do not matter here.
    displayPage: =>
-    @targetPanel.style.display = "block"
-    @currentPanel.style.display = "block"
-    @targetPanel.style.left = "0%"
-    @currentPanel.style.left = "100%"
+    @targetPage.style.display = "block"
+    @currentPage.style.display = "block"
+    @targetPage.style.left = "0%"
+    @currentPage.style.left = "100%"
 
-    @removeClass(@currentPanel, 'visible')
-    @addClass(@targetPanel, 'visible')
+    @removeClass(@currentPage, 'visible')
+    @addClass(@targetPage, 'visible')
     @isTransitioning = false
       
   # fits viewport to content height
