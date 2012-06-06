@@ -4,7 +4,7 @@ class Flight
   startPanel: ''
   currentPanel: ''
   targetPanel: ''
-  pageHistory: [window.location.hash]
+  pageHistory: [""]
   os: {}
   hideUrlBar: false
   useScroller: true
