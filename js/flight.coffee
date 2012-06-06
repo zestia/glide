@@ -83,10 +83,10 @@ class Flight
 
       if @transitionAnimation isnt true
         @displayPage()
-    ,10  
+    ,10
+              
   # performs slide animation transition
   slideTransition: () ->
-
     @targetPanel.style.display = "block"
     @currentPanel.style.display = "block"
 
@@ -117,7 +117,35 @@ class Flight
       @targetPanel.style.webkitTransform = "translateX(0%)"
       @currentPanel.addEventListener "webkitTransitionEnd", @finishTransition, false
     , 5
-
+      
+  # slides panel from bottom to top and top to bottom 
+  slideFromBottom: () ->
+     if @back is true
+       # do reverse
+       window.setTimeout =>
+          @currentPanel.style.webkitTransition = "#{@speed} ease"
+          @currentPanel.style.webkitTransform = "translateY(100%)"
+       , 10
+       
+     else
+       #do forward transition
+       @targetPanel.style.display = "block"       
+       @targetPanel.style.webkitTransition = "0ms"
+       @targetPanel.style.webkitTransform = "translateY(100%)"
+                      
+       window.setTimeout =>
+          @targetPanel.style.webkitTransition = "#{@speed} ease"
+          @targetPanel.style.webkitTransform = "translateY(0%)"
+       , 10
+       
+     window.setTimeout =>
+       @targetPanel.addEventListener "webkitTransitionEnd", =>
+         @removeClass @currentPanel, 'visible'
+         @addClass @targetPanel, 'visible'
+         , false
+     , 15
+    
+     @isTransitioning = false
   # call on transition end
   finishTransition: =>
     @removeClass @currentPanel, 'visible'
