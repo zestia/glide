@@ -102,7 +102,7 @@ class Flight
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
       @translate(@targetPage, "X", "0%")
-      @currentPage.addEventListener "webkitTransitionEnd", @finishSlide, false
+      @currentPage.addEventListener "webkitTransitionEnd", @finishTransition, false
       @resetState()
     , 5
     
@@ -129,24 +129,16 @@ class Flight
        , 10
        
      window.setTimeout =>
-       @targetPage.addEventListener "webkitTransitionEnd", @finishSlideFromBottom, false
+       @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
      , 15
      @resetState()
      
-     
   # call on transition end
-  finishSlide: =>
+  finishTransition: =>
     @removeClass @currentPage, 'visible'
     @currentPage.style.display = "none"
-    @addClass @targetPage, 'visible'
-    
+    @addClass @targetPage, 'visible'    
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
-       
-   finishSlideFromBottom: =>
-    @removeClass @currentPage, 'visible'
-    @currentPage.style.display = "none"
-    @addClass @targetPage, 'visible'
-    @targetPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
     
    resetState: =>
     @back = false
