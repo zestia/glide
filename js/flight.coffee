@@ -111,6 +111,8 @@ class Flight
 
   # slides panel from bottom to top and top to bottom 
   slideFromBottom: () ->
+     @targetPage.style.display = "block"
+    
      if @back is true
        # do reverse
        window.setTimeout =>
@@ -142,6 +144,7 @@ class Flight
        
    finishSlideFromBottom: =>
     @removeClass @currentPage, 'visible'
+    @currentPage.style.display = "none"
     @addClass @targetPage, 'visible'
     @targetPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
     
