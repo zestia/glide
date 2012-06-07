@@ -114,6 +114,7 @@ class Flight
     
   # translate page on secified axis. Duration defaults to speed property when not passed. 
   translate: (page, axis, distance, duration) =>
+    if typeof duration is 'undefined' then duration = @speed;
     page.style.webkitTransition = "#{duration} ease"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
     
