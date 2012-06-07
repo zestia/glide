@@ -105,9 +105,6 @@ class Flight
       @currentPage.addEventListener "webkitTransitionEnd", @finishTransition, false
       @resetState()
     , 5
-    
-    @
-    
 
   # slides panel from bottom to top and top to bottom 
   slideFromBottom: () ->
