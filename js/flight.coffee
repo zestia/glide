@@ -139,20 +139,17 @@ class Flight
   slideOutMenu: () =>
     if @menuOpen is false    
       @mainMenu.style.display = "block"
-      @translate(@currentPage,"X", "250px","0.2s")
-      @currentPage.addEventListener 'touchmove', (e) ->  
-        e.preventDefault()
+      @translate(@currentPage,"X", "250px","0.3s")        
+
       @menuOpen = true
     else
-      @translate(@currentPage,"X", "0%","0.2s")  
+      @translate(@currentPage,"X", "0%","0.3s")  
       @menuOpen = false 
       
   # call on transition end
   finishTransition: =>
     @currentPage.style.display = "none"
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
-    @mainMenu.removeEventListener "webkitTransitionEnd", @finishTransition, false
-    
     # swap pages
     @currentPage = @targetPage
     
