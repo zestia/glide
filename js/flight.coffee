@@ -38,19 +38,14 @@ class Flight
     
     if not @currentPage
       # No current panel set, app just started, make start panel visible
-      targetPage.style.display = "block"
+      @targetPage.style.display = "block"
       @pageHistory = [window.location.hash];
       @startPage = [window.location.hash];
-      @currentPage = targetPage
-      @addClass @currentPage, 'visible'
+      @currentPage = @targetPage
       return    
     
     # if already transitioning then return   
-    if @isTransitioning is true then return else @isTransitioning = true
-    
-    # set curent panel
-    @currentPage = document.getElementsByClassName('visible')[0]
-    if @currentPage is undefined then throw new Error "Current panel not set"    
+    if @isTransitioning is true then return else @isTransitioning = true    
     
     if @targetPage is @startPage
       @back = true
@@ -132,14 +127,15 @@ class Flight
      
   # call on transition end
   finishTransition: =>
-    @removeClass @currentPage, 'visible'
     @currentPage.style.display = "none"
-    @addClass @targetPage, 'visible'    
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
+    # swap pages
+    @currentPage = @targetPage
     
    resetState: =>
     @back = false
     @isTransitioning = false   
+    
     
    # translate page on secified axis. Duration defaults to speed property when not passed. Delay defaults to 0.
    translate: (page, axis, distance, duration) =>      
@@ -153,19 +149,7 @@ class Flight
     @currentPage.style.display = "block"
     @targetPage.style.left = "0%"
     @currentPage.style.left = "100%"
-
-    @removeClass(@currentPage, 'visible')
-    @addClass(@targetPage, 'visible')
     @isTransitioning = false
-      
-  # fits viewport to content height
-  fitHeightToContent: ->
-    flightViewport = document.getElementById 'flight'
-    content = document.getElementsByClassName('visible')[0].getElementsByClassName('content')[0]
-    if flightViewport? and content?
-      flightViewport.style.height = content.offsetHeight + "px"
-    else
-      throw new Error "#flight or .content not found."
   
   # detects user agent being used
   detectUserAgent: ->
@@ -189,17 +173,6 @@ class Flight
     setTimeout (->
         window.scrollTo 0, 1
       ), 50
-
-  hasClass: (ele, cls) ->
-    ele.className.match new RegExp("(\\s|^)" + cls + "(\\s|$)")
-
-  addClass: (ele, cls) ->
-    ele.className += " " + cls  unless @hasClass(ele, cls)
-
-  removeClass: (ele, cls) ->
-    if @hasClass(ele, cls)
-      reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
-      ele.className = ele.className.replace(reg, " ")
 
 root           = this
 previousFlight = root.Flight
