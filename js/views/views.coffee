@@ -10,6 +10,9 @@ class Home extends Backbone.View
     compiledTemplate = _.template( $('#panel-1').html() )
     @$el.html( compiledTemplate )
     
+    $('#main-menu-btn').click ->
+      flight.slideOutMenu()
+    
   render: () ->
     
     this

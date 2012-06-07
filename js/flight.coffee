@@ -8,6 +8,8 @@ class Flight
   os: {}
   hideUrlBar: false
   # options
+  mainMenu: '#main-menu'
+  menuOpen: false
   transitionAnimation: true
   speed: '0.4s'
   back: false
@@ -17,8 +19,21 @@ class Flight
       if options.transitionAnimation?
         @transitionAnimation = options.transitionAnimation
       if options.speed?
-        @speed = options.speed           
-        
+        @speed = options.speed 
+      # check if main menu id has been passed as an option, if not set using default.   
+      if options.mainMenu?
+         console.log 'here'
+         if typeof options.mainMenu is "string"
+            @mainMenu = document.querySelector options.mainMenu
+          else 
+            @mainMenu = options.mainMenu
+      else
+        @mainMenu = document.querySelector @mainMenu
+    
+    # get main menu dom element if not yet been set    
+    if typeof @mainMenu is "string"
+      @mainMenu = document.querySelector @mainMenu
+    
     # see what device we're using
     @detectUserAgent()
     
@@ -120,11 +135,24 @@ class Flight
        @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
      , 15
      @resetState()
-     
+  
+  slideOutMenu: () =>
+    if @menuOpen is false    
+      @mainMenu.style.display = "block"
+      @translate(@currentPage,"X", "250px","0.2s")
+      @currentPage.addEventListener 'touchmove', (e) ->  
+        e.preventDefault()
+      @menuOpen = true
+    else
+      @translate(@currentPage,"X", "0%","0.2s")  
+      @menuOpen = false 
+      
   # call on transition end
   finishTransition: =>
     @currentPage.style.display = "none"
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
+    @mainMenu.removeEventListener "webkitTransitionEnd", @finishTransition, false
+    
     # swap pages
     @currentPage = @targetPage
     
