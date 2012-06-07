@@ -76,79 +76,68 @@ class Flight
 
       if @transitionAnimation isnt true
         @displayPage()
+        
     ,10
+    
                   
   # performs slide animation transition
   slideTransition: () ->
-    @targetPage.style.display = "block"
-    @currentPage.style.display = "block"
+    @targetPage.style.display = "block"      
 
     if @back is true
       # must perform this initial tranform to get animation working in the next step
-      @targetPage.style.webkitTransition = "0ms"
-      @targetPage.style.webkitTransform = "translateX(-100%)"
-
-      # use window timeout to delay transition or will not work on android device
+      @translate(@targetPage, "X", "-100%", "0ms")
       window.setTimeout =>
-        @currentPage.style.webkitTransition = "#{@speed} ease"
-        @currentPage.style.webkitTransform = "translateX(100%)"
+        @translate(@currentPage, "X", "100%")
       , 10
 
     else
-      #do forward transition
-      @targetPage.style.webkitTransition = "0ms"
-      @targetPage.style.webkitTransform = "translateX(100%)"
-
+      #do forward transition      
+      @translate(@targetPage,"X","100%", "0ms")
+      
       window.setTimeout =>
-        @currentPage.style.webkitTransition = "#{@speed} ease"
-        @currentPage.style.webkitTransform = "translateX(-100%)"
+        @translate(@currentPage, "X", "-100%")
       , 10
-
+    
     # shortern the delay here to stop a gap appearing in android
     window.setTimeout =>
-      @targetPage.style.webkitTransition = "#{@speed} ease"
-      @targetPage.style.webkitTransform = "translateX(0%)"
+      @translate(@targetPage, "X", "0%")
       @currentPage.addEventListener "webkitTransitionEnd", @finishSlide, false
       @resetState()
     , 5
     
-  # translate page on secified axis. Duration defaults to speed property when not passed. 
-  translate: (page, axis, distance, duration) =>
-    if typeof duration is 'undefined' then duration = @speed;
-    page.style.webkitTransition = "#{duration} ease"
-    page.style.webkitTransform = "translate#{axis}(#{distance})"
+    @
     
-      
+
   # slides panel from bottom to top and top to bottom 
   slideFromBottom: () ->
      if @back is true
        # do reverse
        window.setTimeout =>
-          @currentPage.style.webkitTransition = "#{@speed} ease"
-          @currentPage.style.webkitTransform = "translateY(100%)"
+          @translate(@currentPage, "Y", "100%")
        , 10
        
      else
        #do forward transition
        @targetPage.style.display = "block"
-       @targetPage.style.webkitTransition = "0ms"
-       @targetPage.style.webkitTransform = "translateY(100%)"
+       @translate(@targetPage, "Y", "100%","0ms")
                       
        window.setTimeout =>
-          @targetPage.style.webkitTransition = "#{@speed} ease"
-          @targetPage.style.webkitTransform = "translateY(0%)"
+         @translate(@targetPage, "Y", "0%")
        , 10
        
      window.setTimeout =>
        @targetPage.addEventListener "webkitTransitionEnd", @finishSlideFromBottom, false
-       @resetState()
      , 15
+     @resetState()
+     
      
   # call on transition end
   finishSlide: =>
     @removeClass @currentPage, 'visible'
     @currentPage.style.display = "none"
     @addClass @targetPage, 'visible'
+    
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
        
    finishSlideFromBottom: =>
@@ -159,6 +148,12 @@ class Flight
    resetState: =>
     @back = false
     @isTransitioning = false   
+    
+   # translate page on secified axis. Duration defaults to speed property when not passed. Delay defaults to 0.
+   translate: (page, axis, distance, duration) =>      
+    if not duration? then duration = @speed
+    page.style.webkitTransition = "#{duration} ease"
+    page.style.webkitTransform = "translate#{axis}(#{distance})"  
     
    # displays pages when transiton is false, back animations do not matter here.
    displayPage: =>
