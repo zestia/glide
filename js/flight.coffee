@@ -2,7 +2,6 @@ class Flight
   # Private
   version: '0.0.1'
   isTransitioning: false
-  startPage: ''
   currentPage: ''
   targetPage: ''
   pageHistory: [""]
@@ -39,16 +38,13 @@ class Flight
     if not @currentPage
       # No current panel set, app just started, make start panel visible
       @targetPage.style.display = "block"
-      @pageHistory = [window.location.hash];
-      @startPage = [window.location.hash];
+      @pageHistory = [window.location.hash]
       @currentPage = @targetPage
       return    
     
     # if already transitioning then return   
     if @isTransitioning is true then return else @isTransitioning = true    
     
-    if @targetPage is @startPage
-      @back = true
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
