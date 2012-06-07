@@ -111,6 +111,12 @@ class Flight
       @currentPage.addEventListener "webkitTransitionEnd", @finishSlide, false
       @resetState()
     , 5
+    
+  # translate page on secified axis. Duration defaults to speed property when not passed. 
+  translate: (page, axis, distance, duration) =>
+    page.style.webkitTransition = "#{duration} ease"
+    page.style.webkitTransform = "translate#{axis}(#{distance})"
+    
       
   # slides panel from bottom to top and top to bottom 
   slideFromBottom: () ->
