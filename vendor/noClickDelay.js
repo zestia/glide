@@ -1,6 +1,8 @@
 function NoClickDelay(el) {
 	this.element = typeof el == 'object' ? el : document.getElementById(el);
-	if( window.Touch ) this.element.addEventListener('touchstart', this, false);
+	if( this.isTouchDevice() ) {
+	  this.element.addEventListener('touchstart', this, false);	  
+  }
 }
 
 NoClickDelay.prototype = {
@@ -41,5 +43,8 @@ NoClickDelay.prototype = {
 		}
 
 		this.theTarget = undefined;
-	}
+	},
+	isTouchDevice: function () {
+	  return !!('ontouchstart' in window);
+  }
 };
