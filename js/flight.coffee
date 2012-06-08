@@ -69,9 +69,7 @@ class Flight
     else
       transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)   
-                     
-    window.scrollTo 0, 1
-    
+                         
     # Delay transition to prevent flickering
     window.setTimeout =>
       if @transitionAnimation is true
