@@ -41,6 +41,9 @@ class Flight
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
     if @hideUrlBar is true then @hideUrlBar()
+    
+    if NoClickDelay?
+      new NoClickDelay(document.getElementById('flight'));			
          
   # Goes to page, transitionAnimation defines if transition happens or not
   goTo: (targetPage, options) =>
