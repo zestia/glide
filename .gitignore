@@ -2,6 +2,7 @@ js/*.js
 js/routers/*.js
 js/views/*.js
 js/models/*.js
+js/collections/*.js
 *.css
 *.DS_store
 *.idea
