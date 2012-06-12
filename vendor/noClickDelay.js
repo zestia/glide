@@ -34,7 +34,7 @@ NoClickDelay.prototype = {
 	onTouchEnd: function(e) {
 		this.element.removeEventListener('touchmove', this, false);
 		this.element.removeEventListener('touchend', this, false);
-
+		
 		if( !this.moved && this.theTarget ) {
 			this.theTarget.className = this.theTarget.className.replace(/ ?pressed/gi, '');
 			var theEvent = document.createEvent('MouseEvents');
@@ -45,6 +45,6 @@ NoClickDelay.prototype = {
 		this.theTarget = undefined;
 	},
 	isTouchDevice: function () {
-	  return !!('ontouchstart' in window);
+    return !!('ontouchstart' in window);
   }
 };
