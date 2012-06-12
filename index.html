@@ -60,33 +60,34 @@
 		</div>
 	
     <div class="panel" id="panel-1" data-transition="slide">
-    	  <div class="toolbar">
+    	  <header class="toolbar">
 			  <div id="main-menu-btn" class="left btn menu">
 				<div class="bar"></div>
 				<div class="bar"></div>
 				<div class="bar"></div>
-			</div>
+			  </div>
 	          <a href="#panel/2" class="btn forward right">To page 2</a>
 			  <h1>Dashboard</h1>
-	      </div>
-	      <div class"inner">
+	      </header>
+	
+	      <section>
 	      	<ul>
 	  			<script type="text/html" id="panel-1-li" charset="utf-8">
 					<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
 				</script>
 	        </ul>
-	      </div>
+	      </section>
 
 	      
     </div>
 	
 	<div class="panel" id="panel-2" data-transition="slide">	
-	      <div class="toolbar">
+	      <header class="toolbar">
 	         <a class="btn back left">Back</a>
 	         <a href="#panel/3" id="to-page-3" class="btn right">Go to page 3</a>
 	         <h1>Panel 2</h1>
-	      </div>
-	   		<div class="inner">	   			
+	      </header>
+	   		<section>	   			
 	          <ul>
 	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
@@ -126,18 +127,18 @@
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>				
 	          </ul>
-	     	</div>
+	     	</section>
 	   	
    </div>
    
 
   <div class="panel" id="panel-3" data-transition="slide">
-	<div class="toolbar">
+	<header class="toolbar">
        <a class="btn back left">Back</a>
        <a href="#panel/4" id="to-panel-4" class="btn right">Page 4</a>
        <h1>Panel 3</h1>
-     </div>
-   
+     </header>
+   	 <section>
         <ul>
           <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
           <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
@@ -146,17 +147,17 @@
           <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
           <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
         </ul>
-  
+  	 </section>
   </div>
 
   <div class="panel" id="panel-4" data-transition="slideFromBottom">
-    <div class="toolbar">
+    <header class="toolbar">
 	   <a class="btn back left">Cancel</a>
        <a href="#panel/3" class="btn right">Save</a>
        <h1>Panel 4</h1>
-     </div>
+     </header>
    
-		      
+ 	 <section>
 		    <div id="party-edit-errors"></div>
 			<form class="name"> 					
 				<ul>
@@ -166,11 +167,7 @@
 					<li><input type="text" placeholder="Organisation" name="organisationName" value="" size="250"></li> 						
 				</ul> 				
 			</form>
-
-		        <ul class="edit" id="party-edit-phone"><li class="add-action" onclick="$(this).before(ContactUI.addPhone());">Add phone</li></ul>
-		        <ul class="edit" id="party-edit-email"><li class="add-action" onclick="$(this).before(ContactUI.addEmail());">Add email</li></ul>
-		        <ul class="edit" id="party-edit-address"><li class="add-action" onclick="$(this).before(ContactUI.addAddress());">Add address</li></ul>
-	
+      </section>			
   </div>
  </div>
 
