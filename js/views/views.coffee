@@ -2,18 +2,22 @@
 # First panel to be displayed
 class Home extends Backbone.View
 
-  el: $('#panel-1')
+  el: $('#panel-1 ul')
 
   initialize: (options) ->
     template = $('#panel-1')
-    # check to see if template has already been rendered
-    compiledTemplate = _.template( $('#panel-1').html() )
-    @$el.html( compiledTemplate )
+    @collection.on "reset", @render    
     
+    # check to see if template has already been rendered
+
     $('#main-menu-btn').click ->
       flight.slideOutMenu()
     
-  render: () ->
+  render: () =>
+    @collection.each (model) =>
+      console.log model.toJSON()
+      compiledTemplate = _.template( $('#panel-1-li').html(), model.toJSON())
+      @$el.append( compiledTemplate )
     
     this
 

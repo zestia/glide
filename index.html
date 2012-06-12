@@ -69,14 +69,14 @@
 	          <a href="#panel/2" class="btn forward right">To page 2</a>
 			  <h1>Dashboard</h1>
 	      </div>
-	      
-	        <ul>
-	     	  <li class="arrow"><a href="#dashboard">Recent Activity</a></li>
-			  <li class="arrow"><a href="#parties">Contacts</a></li>
-			  <li class="arrow"><a href="#tasks">Tasks</a></li>
-			  <li class="arrow"><a href="#opportunities">Pipeline</a></li>
-			  <li class="arrow"><a href="#settings">Settings</a></li>
+	      <div class"inner">
+	      	<ul>
+	  			<script type="text/html" id="panel-1-li" charset="utf-8">
+					<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
+				</script>
 	        </ul>
+	      </div>
+
 	      
     </div>
 	
@@ -86,7 +86,7 @@
 	         <a href="#panel/3" id="to-page-3" class="btn right">Go to page 3</a>
 	         <h1>Panel 2</h1>
 	      </div>
-	   
+	   		<div class="inner">	   			
 	          <ul>
 	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
@@ -126,7 +126,8 @@
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
 	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>				
 	          </ul>
-	     
+	     	</div>
+	   	
    </div>
    
 
@@ -181,12 +182,15 @@
   <script type="text/javascript" src="vendor/underscore.js"></script>
   <script type="text/javascript" src="vendor/backbone.js"></script>
   <script type="text/javascript" src="vendor/noClickDelay.js"></script>
+  <script type="text/javascript" src="js/util.js"></script>
+
   <!-- application -->
-  <script type="text/javascript" src="js/flight.js"></script>	
+  <script type="text/javascript" src="js/flight.js"></script>
   <script type="text/javascript" src="js/application.js"></script>
+  <script type="text/javascript" src="js/models/Models.js"></script>
   <script type="text/javascript" src="js/routers/AppRouter.js"></script>
   <script type="text/javascript" src="js/views/Views.js"></script>
-
+  <script type="text/javascript" src="js/collections/Collections.js"></script>
 
   <script type="text/javascript">
     $(function() {
