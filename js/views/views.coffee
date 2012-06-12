@@ -6,18 +6,18 @@ class Home extends Backbone.View
 
   initialize: (options) ->
     template = $('#panel-1')
-    @collection.on "reset", @render    
-    
-    # check to see if template has already been rendered
+    @collection.fetch
+      'success' : => @render()    
 
-    $('#main-menu-btn').click ->
-      flight.slideOutMenu()
-    
+      
   render: () =>
+    
     @collection.each (model) =>
-      console.log model.toJSON()
       compiledTemplate = _.template( $('#panel-1-li').html(), model.toJSON())
       @$el.append( compiledTemplate )
+          
+    $('#main-menu-btn').on 'click', ->
+      flight.slideOutMenu()
     
     this
 
