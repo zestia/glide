@@ -3,7 +3,6 @@ class ActivityCollection extends Backbone.Collection
   url: "js/data/activity.json"
   
   initialize: ->
-    console.log "made colleciton"
   
   parse: (response) ->
     return response;

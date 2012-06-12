@@ -23,7 +23,6 @@ class Flight
         @speed = options.speed 
       # check if main menu id has been passed as an option, if not set using default.   
       if options.mainMenu?
-         console.log 'here'
          if typeof options.mainMenu is "string"
             @mainMenu = document.querySelector options.mainMenu
           else 
