@@ -59,22 +59,20 @@
 			</ul>
 		</div>
 	
-	  <div class="toolbar">
+    <div class="panel" id="panel-1" data-transition="slide">
+    	  <div class="toolbar">
 			  <div id="main-menu-btn" class="left btn menu">
 				<div class="bar"></div>
 				<div class="bar"></div>
 				<div class="bar"></div>
 			</div>
-	          <a href="#panel/2" class="btn right">To page 2</a>
+	          <a href="#panel/2" class="btn forward right">To page 2</a>
 			  <h1>Dashboard</h1>
 	      </div>
-	
-    <div class="panel" id="panel-1" data-transition="slide">
-
-	      <div class="inner">
-	      	<ul class="inset">
+	      <div class"inner">
+	      	<ul>
 	  			<script type="text/html" id="panel-1-li" charset="utf-8">
-					<li class="entry"><%= note.truncate(70,true) %><strong><%= type %></strong></li>
+					<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
 				</script>
 	        </ul>
 	      </div>
@@ -83,7 +81,11 @@
     </div>
 	
 	<div class="panel" id="panel-2" data-transition="slide">	
-	     
+	      <div class="toolbar">
+	         <a class="btn back left">Back</a>
+	         <a href="#panel/3" id="to-page-3" class="btn right">Go to page 3</a>
+	         <h1>Panel 2</h1>
+	      </div>
 	   		<div class="inner">	   			
 	          <ul>
 	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
@@ -148,6 +150,11 @@
   </div>
 
   <div class="panel" id="panel-4" data-transition="slideFromBottom">
+    <div class="toolbar">
+	   <a class="btn back left">Cancel</a>
+       <a href="#panel/3" class="btn right">Save</a>
+       <h1>Panel 4</h1>
+     </div>
    
 		      
 		    <div id="party-edit-errors"></div>
