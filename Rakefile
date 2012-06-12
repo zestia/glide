@@ -27,6 +27,8 @@ task :coffee do
   system 'coffee -c js/application.coffee'
   system 'coffee -c js/routers/AppRouter.coffee'
   system 'coffee -c js/views/Views.coffee'
+  system 'coffee -c js/models/Models.coffee'
+  system 'coffee -c js/collections/Collections.coffee'
   
 end
 
