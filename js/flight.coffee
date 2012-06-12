@@ -44,7 +44,7 @@ class Flight
     if @hideUrlBar is true then @hideUrlBar()
     
     if @noClickDelay is true
-      console.log new NoClickDelay(document.getElementById('flight'));			
+      new NoClickDelay(document.getElementById('flight'));			
          
   # Goes to page, transitionAnimation defines if transition happens or not
   goTo: (targetPage, options) =>
