@@ -1,6 +1,6 @@
 
 # First panel to be displayed
-class Home extends Backbone.View
+class Activity extends Backbone.View
 
   el: $('#panel-1 ul')
 
@@ -22,7 +22,7 @@ class Home extends Backbone.View
     this
 
 @app = window.app ? {}
-@app.Views.Home = Home
+@app.Views.Activity = Activity
 
 # second panel
 class Panel_2 extends Backbone.View

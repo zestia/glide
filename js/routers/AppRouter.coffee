@@ -1,12 +1,12 @@
 class AppRouter extends Backbone.Router
 
   routes:
-    '': 'homePage'
+    '': 'Activity'
     'panel/:id': 'goToPanel'
       
-  homePage: ->
+  Activity: ->
     collection = new app.Collections.ActivityCollection  
-    @view = new app.Views.Home collection : collection
+    @view = new app.Views.Activity collection : collection
     flight.goTo "#panel-1"
     
   goToPanel: (id) ->
