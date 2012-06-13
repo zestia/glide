@@ -1,5 +1,9 @@
 select, button, a, a:visited, .btn { -webkit-tap-highlight-color:rgba(0,0,0,0); border:none; -webkit-appearance: none; text-decoration:none; color:inherit; }
 
+html{
+	height: 100%;
+}
+
 body {
     -webkit-text-size-adjust: none;
 }
@@ -36,17 +40,40 @@ header {
   z-index:2;
   -webkit-user-select: none;
 	-webkit-touch-callout: none;
+	
 }
 
 .panel {
-  display: none;
-  height:100%;
-  left:0;  
   position: absolute;
-  top:0;    
-  width:100%;  
+  width: 100%;
+  height: 100%;
+  display: none;
+
   .box-sizing;
     &.visible {
       display: block;
     }
+}
+
+section {
+  display:none;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  position: absolute;
+  top: 50px;
+	bottom: 0px;
+  left: 0px;
+  right: 0px;
+  -webkit-transform-style:preserve-3d;
+  -webkit-perspective:0px;
+  -webkit-backface-visibility: hidden;
 }
