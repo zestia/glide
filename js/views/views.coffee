@@ -2,10 +2,10 @@
 # First panel to be displayed
 class Activity extends Backbone.View
 
-  el: $('#panel-1 ul')
+  el: $('#activity ul')
 
   initialize: (options) ->
-    template = $('#panel-1')
+    template = $('#activity')
     @collection.fetch
       'success' : => @render()    
 
