@@ -15,14 +15,44 @@ class Activity extends Backbone.View
     @collection.each (model) =>
       compiledTemplate = _.template( $('#panel-1-li').html(), model.toJSON())
       @$el.append( compiledTemplate )
-          
-    $('#main-menu-btn').on 'click', ->
+    
+    menuButton = $('.main-menu-btn')
+    menuButton.unbind 'click'
+    menuButton.on 'click', ->
       flight.slideOutMenu()
     
     this
 
 @app = window.app ? {}
 @app.Views.Activity = Activity
+
+
+# second panel
+class Contacts extends Backbone.View
+
+  el: $('#contacts')
+  
+  initialize: (options) ->
+    
+    template = $('#contacts')
+    # check to see if template has already been rendered
+    compiledTemplate = _.template( template.html() )
+    @$el.html( compiledTemplate ) 
+               
+  render: (id) =>  
+    
+    menuButton = $('.main-menu-btn')
+    menuButton.unbind 'click'
+    menuButton.on 'click', ->
+      flight.slideOutMenu()
+      
+    $('.back').on 'click', ->
+      window.history.back()
+      
+    this
+  
+@app = window.app ? {}
+@app.Views.Contacts = Contacts
 
 # second panel
 class Panel_2 extends Backbone.View

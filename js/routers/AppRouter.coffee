@@ -2,7 +2,9 @@ class AppRouter extends Backbone.Router
 
   routes:
     '': 'Activity'
+    'contacts': 'Contacts'
     'panel/:id': 'goToPanel'
+    
       
   Activity: ->
     collection = new app.Collections.ActivityCollection  
@@ -11,8 +13,13 @@ class AppRouter extends Backbone.Router
     
   goToPanel: (id) ->
     @view = new app.Views["Panel_" + id]
-    @view.render().el
+    @view.render()
     flight.goTo "#panel-" + id
+  
+  Contacts: ->
+    @view = new app.Views.Contacts
+    @view.render()
+    flight.goTo '#contacts' 
     
             
 @app = window.app ? {}
