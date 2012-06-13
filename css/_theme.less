@@ -36,29 +36,65 @@ body { background: #F1EBE2; }
 
 // header toolbar 
 .toolbar {
-  background-color: #ccc;
   border-bottom: 1px solid #666;
-  .gradient;
-  padding: 7px 10px;
-
+  .vertical-gradient (rgba(77,78,91,1), rgba(41,42,49,1)); 
+    
+  h1.title {
+    color:white;
+    font-size: 20px;
+  	margin: 0;
+  	overflow: hidden;
+  	padding: 0;  	
+  	text-align: center;
+  	text-overflow: ellipsis;
+  	text-shadow: 0 -1px rgba(0,0,0,.4);
+  	white-space: nowrap;
+  	-webkit-box-flex: 1;
+  	-moz-box-flex: 1;
+  	box-flex: 1;
+  }
+  
   .btn { 
-    border-radius:5px; 
     font-size:14px; 
     position:absolute; 
-    padding:7px;
-    color:white; 
-    text-shadow:0px -1px 0px #000; 
-    .vertical-gradient (rgba(77,78,91,1) 0%, rgba(41,42,49,1) 100%); 
-    box-shadow:0px 0px 0px 1px #1f1f23,0px 1px 0px 1px #3b3b40; }
+    padding: 7px 5px;
+    line-height:1em;
+    
+    &.pressed button {
+      color:darken(white,50%);
+      .vertical-gradient (darken(rgba(77,78,91,1),50%), darken(rgba(41,42,49,1),50%)); 
+    }
+    
+    button {
+      background:none;
+      .border-radius(5px);
+      border-width: 2px 5px;
+      border:solid 1px #1f1f23;
+      box-shadow:0px 1px 0px 1px #3b3b40;
+      color:white; 
+      font-weight: bold;
+    	font-size: 12px;
+      height: 30px;
+      line-height: 25px;
+    	min-width: 50px;
+    	pointer-events: none;
+      text-shadow:0px -1px 0px #000; 
+      .vertical-gradient (rgba(77,78,91,1), rgba(41,42,49,1)); 
+    	-webkit-box-sizing: border-box;
+    	-moz-box-sizing: border-box;
+    	box-sizing: border-box;
+    }
+    
+  }
   
   .left, .right {
     position: absolute;
   }
   .left {
-    left:6px;
+    left:0px;
   }
   .right {
-    right:6px;
+    right:0px;
   }
   
   .menu { 
@@ -81,16 +117,7 @@ body { background: #F1EBE2; }
     }
   }
   
-  h1 {
-    font-size: 18px;
-    color: white;
-    display: block;
-    text-align: center;
-    overflow: hidden;
-    line-height: 35px;
-    margin: auto;
-    text-shadow: 0px 1px 0px white;
-  }
+
 }
 
 // Sliding out menu
