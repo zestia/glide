@@ -63,6 +63,9 @@ class Flight
     # if already transitioning then return   
     if @isTransitioning is true then return else @isTransitioning = true    
     
+    # any page transition should close the slide out menu (for now)
+    @menuOpen = false 
+    
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
