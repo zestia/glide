@@ -1,7 +1,31 @@
+/* Properties */
+@imgPath: '../img/';
+@bgSize: 600px 100px;
+
+
 body { background: #F1EBE2; }
 
-.entry { background:#fcfcfc; .border-radius (5px); border:solid 1px white; .box-shadow (0px 1px 2px rgba(000,000,000,0.3)); margin-bottom:8px; padding:9px 10px 9px; }
+.activity-content { display: table-cell; vertical-align: top; }
 
+.entry { background:#fcfcfc; .border-radius (5px); border:solid 1px white; .box-shadow (0px 1px 2px rgba(000,000,000,0.3)); margin-bottom:8px; padding:9px 10px 9px; }
+.entry-text { color:#323234; line-height:1.5em; margin:0px;
+
+  a { color:#323234; font-size:13px; }
+  strong, small { background:#31343b; color:white; .border-radius (5px); font-weight:normal; padding:2px 10px; margin-right:10px; }
+  small { background:#a9c9db; text-shadow: 0px 1px #87b6d1; margin-right:0px; }
+}
+
+.timestamp { color:#bcbcbc; display:block; font-size:12px; line-height:1.5em; margin-top:4px;  } 
+
+
+
+.app-icon { background:url("@{imgPath}capsule-sprite.png") no-repeat;  background-size:@bgSize; }
+.app-icon-before:before { background:url("@{imgPath}capsule-sprite.png") no-repeat; content:''; background-size:@bgSize; }
+
+.complete-task { 
+  &:before { background-position:-40px 0px; width:16px; height:21px;	display:inline-block; float:left; margin-top:-5px;  margin-left:5px; }
+  p, .timestamp {  padding-left: 20px;  }
+}
 
 .panel {
   background: #F1EBE2;
@@ -13,11 +37,12 @@ body { background: #F1EBE2; }
     list-style: none;
     width: 100%;
     li {
+      color:#323234;
       background:#fcfcfc; 
       border:solid 1px white; 
-      .box-shadow (0px 1px 2px rgba(000,000,000,0.3));
       border-bottom:1px solid #eee; .clearfix;
       padding:10px;
+      display: block;
       a {
         display:block;
         padding: 12px 22px 12px 10px;
@@ -27,18 +52,21 @@ body { background: #F1EBE2; }
         color:#ffffff;
       }
       img {
-        padding: 10px;
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin-right: 10px;
+        -webkit-border-radius: 5px;
       }
     }
   } 
 }
 
-
 // header toolbar 
 .toolbar {
   border-bottom: 1px solid #666;
   .vertical-gradient (rgba(77,78,91,1), rgba(41,42,49,1)); 
-    
+/*  background: rgba(77,78,91,1);*/
   h1 {
     color:white;
     font-size: 20px;
@@ -158,16 +186,3 @@ body { background: #F1EBE2; }
     }
   
    }
-
-
-.gradient {
-  background: #4d4e5b; /* Old browsers */
-  background: -moz-linear-gradient(top,  #4d4e5b 0%, #292a31 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4d4e5b), color-stop(100%,#292a31)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* IE10+ */
-  background: linear-gradient(top,  #4d4e5b 0%,#292a31 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d4e5b', endColorstr='#292a31',GradientType=0 ); /* IE6-9 */
-
-}
