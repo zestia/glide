@@ -42,7 +42,7 @@
 </head>
 
 <body>
-  <div id="flight">
+
 		<div id="main-menu" class="">
 			<ul>
 				<li><img src="http://www.gravatar.com/avatar/3c377258fc3095eaec4615a34d6e622e.png" width="65" height="65" alt="Profile Pic">Dominique Briggs</li>
@@ -59,42 +59,29 @@
 			</ul>
 		</div>
 	
-		<div class="panel" id="panel-1">
+		<div class="panel visible" id="panel-1"  data-transition="slide">
 			<header class="toolbar">
-				<a class="btn left"><button>Back</button></a>
-				<a class="btn right"><button>Forward</button></a>
-				<h1 class="title">Activity</h1>
+				<div class="main-menu-btn left btn menu">
+					<div class="bar"></div>
+					<div class="bar"></div>
+					<div class="bar"></div>
+				  </div>
+				<a href="#panel/2" class="btn right"><button>Forward</button></a>
+				<h1>Activity</h1>
 			</header>
 			<div class="scroll">
 				<section>
-					<ul class="tableview tableview-links" id="hnlist">
+					<ul>	
+						<script type="text/html" id="panel-1-li" charset="utf-8">
+							<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
+						</script>						
 					</ul>
 				</section>
-				<div class="loader">Loading&hellip;</div>
 			</div>
-		</div>
+		</div> 
+		<!-- END #panel-1 -->
 	
-    <!-- <div class="panel" id="panel-1" data-transition="slide">
-    	  <header class="toolbar">
-			  <div class="main-menu-btn left btn menu">
-				<div class="bar"></div>
-				<div class="bar"></div>
-				<div class="bar"></div>
-			  </div>
-	          <a href="#panel/2" class="btn forward right">To page 2</a>
-			  <h1>Dashboard</h1>
-	      </header>
-	
-	      <section>
-	      	<ul>
-	  			<script type="text/html" id="panel-1-li" charset="utf-8">
-					<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
-				</script>
-	        </ul>
-	      </section> -->
-
 	      
-    </div>
 	
 	<div class="panel" id="contacts" data-transition="slide">	
 	      <header class="toolbar">
@@ -152,8 +139,8 @@
 	
 	<div class="panel" id="panel-2" data-transition="slide">	
 	      <header class="toolbar">
-	         <a class="btn back left">Back</a>
-	         <a href="#panel/3" id="to-page-3" class="btn right">Go to page 3</a>
+	         <a class="btn back left"><button>Back</button></a>
+	         <a href="#panel/3" id="to-page-3" class="btn right"><button>Page 3</button></a>
 	         <h1>Panel 2</h1>
 	      </header>
 	   		<section>	   			
@@ -203,8 +190,8 @@
 
   <div class="panel" id="panel-3" data-transition="slide">
 	<header class="toolbar">
-       <a class="btn back left">Back</a>
-       <a href="#panel/4" id="to-panel-4" class="btn right">Page 4</a>
+       <a class="btn back left"><button>Back</button></a>
+       <a href="#panel/4" id="to-panel-4" class="btn right"><button>Page 4</button></a>
        <h1>Panel 3</h1>
      </header>
    	 <section>
@@ -221,8 +208,8 @@
 
   <div class="panel" id="panel-4" data-transition="slideFromBottom">
     <header class="toolbar">
-	   <a class="btn back left">Cancel</a>
-       <a href="#panel/3" class="btn right">Save</a>
+	   <a class="btn back left"><button>Cancel</button></a>
+       <a href="#panel/3" class="btn right"><button>Save</button></a>
        <h1>Panel 4</h1>
      </header>
    
@@ -238,7 +225,6 @@
 			</form>
       </section>			
   </div>
- </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
 
