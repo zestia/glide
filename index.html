@@ -42,8 +42,9 @@
 </head>
 
 <body>
-
 <div id="flight">
+	
+		<!-- SLIDE OUT MENU -->
 		<div id="main-menu" class="">
 			<ul>
 				<li><img src="http://www.gravatar.com/avatar/3c377258fc3095eaec4615a34d6e622e.png" width="65" height="65" alt="Profile Pic">Dominique Briggs</li>
@@ -74,9 +75,22 @@
 				<section>
 					<ul>	
 						<script type="text/html" id="panel-1-li" charset="utf-8">
-							<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
+							<% if(type !== 'Task') { %> 
+								<li>
+							<% } else { %>
+								<li class="app-icon-before complete-task">
+							<% } %>
+							<% if(type !== 'Task') { %> 
+							<img src="http://placehold.it/50x50" /> 
+							<% } %>
+							 <div class="activity-content">
+								<p class="entry-text"><%= note.truncate(70,true) %></p>
+							     <small class="timestamp"><time>2 days ago </time>via Duncan Stockdill</small>
+							 </div>
+							</li>
 						</script>						
 					</ul>
+					
 				</section>
 			</div>
 		</div> 
