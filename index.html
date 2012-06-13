@@ -59,7 +59,22 @@
 			</ul>
 		</div>
 	
-    <div class="panel" id="panel-1" data-transition="slide">
+		<div class="panel" id="panel-1">
+			<header class="toolbar">
+				<a class="btn left"><button>Back</button></a>
+				<a class="btn right"><button>Forward</button></a>
+				<h1 class="title">Activity</h1>
+			</header>
+			<div class="scroll">
+				<section>
+					<ul class="tableview tableview-links" id="hnlist">
+					</ul>
+				</section>
+				<div class="loader">Loading&hellip;</div>
+			</div>
+		</div>
+	
+    <!-- <div class="panel" id="panel-1" data-transition="slide">
     	  <header class="toolbar">
 			  <div class="main-menu-btn left btn menu">
 				<div class="bar"></div>
@@ -76,7 +91,7 @@
 					<li><%= note.truncate(70,true) %><strong><%= type %></strong></li>
 				</script>
 	        </ul>
-	      </section>
+	      </section> -->
 
 	      
     </div>
