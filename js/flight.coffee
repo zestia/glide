@@ -42,24 +42,28 @@ class Flight
 
     if @hideUrlBar is true then @hideUrlBar()
     
-    if @noClickDelay is true
-      new NoClickDelay(document.querySelector('#flight'));			
+			
          
   # Goes to page, transitionAnimation defines if transition happens or not
   goTo: (targetPage, options) =>
-        
+    
+
+
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
     else if targetPage
       @targetPage = targetPage
     
+    if @noClickDelay is true
+      new NoClickDelay(@targetPage.querySelector('header')); 
+
     if not @currentPage
       # No current panel set, app just started, make start panel visible
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
-      return    
-    
+      return        
+
     # if already transitioning then return   
     if @isTransitioning is true then return else @isTransitioning = true    
     
@@ -137,7 +141,7 @@ class Flight
        
      window.setTimeout =>
        @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
-     , 15
+     , 20
      @resetState()
   
   slideOutMenu: () =>
