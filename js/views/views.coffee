@@ -10,10 +10,13 @@ class Activity extends Backbone.View
       'success' : => @render()    
 
       
-  render: () =>
+  render: () =>   
     
+    template = $('#panel-1-li').html()
+    $('#panel-1-li').html('')
+
     @collection.each (model) =>
-      compiledTemplate = _.template( $('#panel-1-li').html(), model.toJSON())
+      compiledTemplate = _.template( template, model.toJSON())
       @$el.append( compiledTemplate )
     
     menuButton = $('.main-menu-btn')
@@ -67,7 +70,7 @@ class Test extends Backbone.View
     @$el.html( compiledTemplate ) 
                
   render: (id) =>      
-   
+
     $('.back').on 'click', ->
       window.history.back()
       
