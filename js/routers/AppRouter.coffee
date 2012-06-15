@@ -3,6 +3,7 @@ class AppRouter extends Backbone.Router
   routes:
     '': 'Activity'
     'contacts': 'Contacts'
+    'test': 'Test'
     'panel/:id': 'goToPanel'
     
       
@@ -14,7 +15,12 @@ class AppRouter extends Backbone.Router
   Contacts: ->
     @view = new app.Views.Contacts
     @view.render()
-    flight.goTo '#contacts' 
+    flight.goTo '#contacts'
+
+  Test: ->
+    @view = new app.Views.Test
+    @view.render()
+    flight.goTo '#test'  
     
             
 @app = window.app ? {}

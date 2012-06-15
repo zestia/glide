@@ -54,6 +54,28 @@ class Contacts extends Backbone.View
 @app = window.app ? {}
 @app.Views.Contacts = Contacts
 
+# Test page
+class Test extends Backbone.View
+
+  el: $('#test')
+  
+  initialize: (options) ->
+    
+    template = $('#test')
+    # check to see if template has already been rendered
+    compiledTemplate = _.template( template.html() )
+    @$el.html( compiledTemplate ) 
+               
+  render: (id) =>      
+   
+    $('.back').on 'click', ->
+      window.history.back()
+      
+    this
+  
+@app = window.app ? {}
+@app.Views.Test = Test
+
 # second panel
 class Panel_2 extends Backbone.View
 
