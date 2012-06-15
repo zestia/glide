@@ -1,57 +1,33 @@
-<!doctype html>
-<!-- Conditional comment for mobile ie7 blogs.msdn.com/b/iemobile/ -->
-<!--[if IEMobile 7 ]>    <html class="no-js iem7" lang="en"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
 
-<head>
-  <meta charset="utf-8">
+		<title>Capsule CRM Mobile Web App</title>
 
-  <title></title>
-  <meta name="description" content="">
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png" />
+		<!-- For iPhone 4 with high-resolution Retina display: -->
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png" />
+		<!-- For first-generation iPad: -->
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png" />
+		<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+		<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png" />
+		<!-- For nokia devices: -->
+		<link rel="shortcut icon" href="img/touch/apple-touch-icon.png" />
 
-  <!-- Mobile viewport optimization h5bp.com/ad -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0">
-  <meta name="viewport" content="width=device-width, height=device-height" />
-  <!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons --> 
-  <!-- For third generation iPad Retina Display -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png" />
-  <!-- For iPhone 4 with high-resolution Retina display: -->
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png" />
-  <!-- For first-generation iPad: -->
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png" />
-  <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-  <link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png" />
-  <!-- For nokia devices: -->
-  <link rel="shortcut icon" href="img/touch/apple-touch-icon.png" />
-
-  <!-- iOS web app -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  <!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
-  <!-- <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script> -->
-  
-  <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
-  <meta http-equiv="cleartype" content="on">
-
-  <!-- more tags for your 'head' to consider h5bp.com/d/head-Tips -->
-
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-<div id="flight">
-	
-		<!-- SLIDE OUT MENU -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>	
+		<!-- slide out menu -->	
 		<div id="main-menu" class="">
 			<ul>
 				<li><img src="http://www.gravatar.com/avatar/3c377258fc3095eaec4615a34d6e622e.png" width="65" height="65" alt="Profile Pic">Dominique Briggs</li>
 			</ul>
-			<div class="separator">
-				Main menu
-			</div>
+			<div class="separator">Main menu</div>
 			<ul>
 				<li class="activity"><a href="">Activity</a></li>
 				<li class="contacts"><a href="#contacts">Contacts</a></li>
@@ -60,211 +36,57 @@
 				<li class="settings"><a href="#settings">Settings</a></li>
 			</ul>
 		</div>
-	
-		<div class="panel visible" id="activity"  data-transition="slide">
-			<header class="toolbar">
-				<div class="main-menu-btn left btn menu">
-					<div class="bar"></div>
-					<div class="bar"></div>
-					<div class="bar"></div>
-				  </div>
-				<a href="#panel/2" class="btn right"><button>Forward</button></a>
+		
+		<!-- Activity page -->		
+		<div class="page" id="activity">
+			<header>
+				<a href="#panel/2" class="btn right"><button>Forward</button></a> 
 				<h1>Activity</h1>
 			</header>
-			<div class="scroll">
-				<section>
-					<ul>	
-						<script type="text/html" id="panel-1-li" charset="utf-8">
-							<% if(type !== 'Task') { %> 
-								<li>
-							<% } else { %>
-								<li class="app-icon-before complete-task">
-							<% } %>
-							<% if(type !== 'Task') { %> 
-							<img src="http://placehold.it/50x50" /> 
-							<% } %>
-							 <div class="activity-content">
-								<p class="entry-text"><%= note.truncate(70,true) %></p>
-							     <small class="timestamp"><time>2 days ago </time>via Duncan Stockdill</small>
-							 </div>
-							</li>
-						</script>						
-					</ul>
-					
-				</section>
-			</div>
-		</div> 
-		<!-- END #panel-1 -->
-	
-	      
-	
-	<div class="panel" id="contacts" data-transition="slide">	
-	      <header class="toolbar">
-			  <div class="main-menu-btn left btn menu">
-				<div class="bar"></div>
-				<div class="bar"></div>
-				<div class="bar"></div>
-			  </div>
-	         <h1>Contacts</h1>
-	      </header>
-	   		<section>	   			
-	          <ul>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>				
-	          </ul>
-	     	</section>
-	   	
-   </div>
-	
-	
-	<div class="panel" id="panel-2" data-transition="slide">	
-	      <header class="toolbar">
-	         <a class="btn back left"><button>Back</button></a>
-	         <a href="#panel/3" id="to-page-3" class="btn right"><button>Page 3</button></a>
-	         <h1>Panel 2</h1>
-	      </header>
-	   		<section>	   			
-	          <ul>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-	            <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>				
-	          </ul>
-	     	</section>
-	   	
-   </div>
-   
+			<section>
+				<div class="page-content">
+					<div class="scroll-area">
+						<ul>
+							<script type="text/html" id="panel-1-li" charset="utf-8">
+								<% if(type !== 'Task') { %> 
+									<li>
+								<% } else { %>
+									<li class="app-icon-before complete-task">
+								<% } %>
+								<% if(type !== 'Task') { %>
+									<img src="http://placekitten.com/30/30" /> 
+								<% } %>
+								 <div class="activity-content">
+									<p class="entry-text"><%= note.truncate(70,true) %></p>
+								     <small class="timestamp"><time>2 days ago </time>via Duncan Stockdill</small>
+								 </div>
+								</li>
+							</script>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>		
+ 
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="vendor/jquery-1.7.1.min.js"><\/script>')</script>
+		<script type="text/javascript" src="vendor/underscore.js"></script>
+		<script type="text/javascript" src="vendor/backbone.js"></script>
+		<script type="text/javascript" src="vendor/noClickDelay.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
 
-  <div class="panel" id="panel-3" data-transition="slide">
-	<header class="toolbar">
-       <a class="btn back left"><button>Back</button></a>
-       <a href="#panel/4" id="to-panel-4" class="btn right"><button>Page 4</button></a>
-       <h1>Panel 3</h1>
-     </header>
-   	 <section>
-        <ul>
-          <li><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-          <li><img src="https://facehub.appspot.com/linkedin?size=70&amp;url=http%3A%2F%2Fwww.linkedin.com%2Fin%2Fphilconrad" width="30px" height="30px" alt="" /><strong>Pablo</strong></li>
-        </ul>
-  	 </section>
-  </div>
+		<!-- application -->
+		<script type="text/javascript" src="js/flight.js"></script>
+		<script type="text/javascript" src="js/application.js"></script>
+		<script type="text/javascript" src="js/models/Models.js"></script>
+		<script type="text/javascript" src="js/routers/AppRouter.js"></script>
+		<script type="text/javascript" src="js/views/Views.js"></script>
+		<script type="text/javascript" src="js/collections/Collections.js"></script> 
 
-  <div class="panel" id="panel-4" data-transition="slideFromBottom">
-    <header class="toolbar">
-	   <a class="btn back left"><button>Cancel</button></a>
-       <a href="#panel/3" class="btn right"><button>Save</button></a>
-       <h1>Panel 4</h1>
-     </header>
-   
- 	 <section>
-		    <div id="party-edit-errors"></div>
-			<form class="name"> 					
-				<ul>
-					<li><input id="party-first-name" type="text" placeholder="First Name" name="firstName" value="" size="250"></li> 		                	
-					<li><input id="party-last-name" type="text" placeholder="Last Name" name="lastName" value="" size="250"></li> 		                	
-					<li><input type="text" placeholder="Job Title" name="jobTitle" value="" size="250"></li> 		                	
-					<li><input type="text" placeholder="Organisation" name="organisationName" value="" size="250"></li> 						
-				</ul> 				
-			</form>
-      </section>			
-  </div>
-
-</div>
-  <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="vendor/jquery-1.7.1.min.js"><\/script>')</script>
-  <script type="text/javascript" src="vendor/underscore.js"></script>
-  <script type="text/javascript" src="vendor/backbone.js"></script>
-  <script type="text/javascript" src="vendor/noClickDelay.js"></script>
-  <script type="text/javascript" src="js/util.js"></script>
-
-  <!-- application -->
-  <script type="text/javascript" src="js/flight.js"></script>
-  <script type="text/javascript" src="js/application.js"></script>
-  <script type="text/javascript" src="js/models/Models.js"></script>
-  <script type="text/javascript" src="js/routers/AppRouter.js"></script>
-  <script type="text/javascript" src="js/views/Views.js"></script>
-  <script type="text/javascript" src="js/collections/Collections.js"></script>
-
-  <script type="text/javascript">
-    $(function() {
-	app.init();
-    });
-	
-  </script>
-</body>
+		<script type="text/javascript">
+		  $(function() {
+			app.init();
+		  });
+		</script>
+	</body>
 </html>
