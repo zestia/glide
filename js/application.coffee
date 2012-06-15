@@ -11,7 +11,7 @@ class App
     console.log message
 
   init: ->
-    # window.flight = new Flight();
+    window.flight = new Flight();
     
     new @Routers.AppRouter
     
