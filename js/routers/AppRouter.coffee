@@ -10,8 +10,6 @@ class AppRouter extends Backbone.Router
     collection = new app.Collections.ActivityCollection  
     @view = new app.Views.Activity collection : collection
     flight.goTo "#activity"
-    $('#main-menu').click ->
-      alert('clicked')
     
   goToPanel: (id) ->
     @view = new app.Views["Panel_" + id]
