@@ -55,7 +55,7 @@ class Flight
     
     if not @currentPage
       # No current panel set, app just started, make start panel visible
-      @targetPage.style.display = "block"
+      @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
       return    
@@ -92,7 +92,7 @@ class Flight
                   
   # performs slide animation transition
   slideTransition: () ->
-    @targetPage.style.display = "block"      
+    @targetPage.style.display = "-webkit-box"      
 
     if @back is true
       # must perform this initial tranform to get animation working in the next step
@@ -118,7 +118,7 @@ class Flight
 
   # slides panel from bottom to top and top to bottom 
   slideFromBottom: () ->
-     @targetPage.style.display = "block"
+     @targetPage.style.display = "-webkit-box"
     
      if @back is true
        # do reverse
@@ -128,7 +128,7 @@ class Flight
        
      else
        #do forward transition
-       @targetPage.style.display = "block"
+       @targetPage.style.display = "-webkit-box"
        @translate(@targetPage, "Y", "100%","0ms")
                       
        window.setTimeout =>
@@ -170,8 +170,8 @@ class Flight
     
    # displays pages when transiton is false, back animations do not matter here.
    displayPage: =>
-    @targetPage.style.display = "block"
-    @currentPage.style.display = "block"
+    @targetPage.style.display = "-webkit-box"
+    @currentPage.style.display = "-webkit-box"
     @targetPage.style.left = "0%"
     @currentPage.style.left = "100%"
     @isTransitioning = false
