@@ -119,7 +119,7 @@ header {
   }
   
   .menu { 
-    right:auto;
+    right:auto;    
       
     .bar { 
       background:white;
@@ -140,20 +140,48 @@ header {
 }
 
 // Sliding out menu
-#main-menu {  background: #35363f; color:white; height:100%; position:fixed; z-index:-5; display:block; width:100%; overflow-y: scroll;
-  display:none;
-  img { width:33px; height:33px; vertical-align: middle; display: block; float: left; margin: 4px 5px 0 0; .border-radius (5px); }
+#slide-out-menu {  
+  background: #35363f; 
+  color:white; 
+  display:none;  
+  height:100%; 
+  overflow-y: scroll;
+  position:fixed;
+  width:100%; 
+  z-index:-5;
+  
+  a {
+    text-decoration: none;
+  }
+  
+  img { 
+    .border-radius (5px); 
+    display: block;
+    float: left;
+    height:33px;
+    margin: 4px 5px 0 0;
+    width:33px; 
+    vertical-align: middle;    
+    }
+  
   .separator { 
     background: lighten(#35363f, 2%);
     background: -webkit-gradient( linear, left top, left bottom, from(#35363f), to(ligten(#35363f,10%)) );
-     border-bottom: 1px solid #242A37;
-     border-top: none;
-     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-     color: #7A8292;
-     padding: 4px 0 4px 8px;
-     text-shadow: 0 1px 0 rgba(0, 0, 0, .6); font-size: 10px; line-height: 12px; text-transform: uppercase;
-    &.dark {  background: darken(#35363f,0%); }
+    border-bottom: 1px solid #242A37;
+    border-top: none;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    color: #7A8292;
+    padding: 4px 0 4px 8px;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .6); 
+    font-size: 10px; 
+    line-height: 12px; 
+    text-transform: uppercase;
+  
+    &.dark {  
+      background: darken(#35363f,0%); 
+      }
     }
+    
   li {
     position: relative;
     display: block;
@@ -175,5 +203,4 @@ header {
     a { padding:14px 9px 14px 0px; color:white; font-size:13px;}
     
     }
-  
-   }
+}
