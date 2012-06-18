@@ -54,15 +54,15 @@ class Flight
     else if targetPage
       @targetPage = targetPage
     
-    if @noClickDelay is true
-      new NoClickDelay(@targetPage.querySelector('header')); 
+    # if @noClickDelay is true
+    #   new NoClickDelay(@targetPage.querySelector('header')); 
 
     if not @currentPage
       # No current panel set, app just started, make start panel visible
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
-      return        
+      return         
 
     # if already transitioning then return   
     if @isTransitioning is true then return else @isTransitioning = true    
@@ -79,7 +79,7 @@ class Flight
     else
       transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)   
-                         
+    
     # Delay transition to prevent flickering
     window.setTimeout =>
       if @transitionAnimation is true
