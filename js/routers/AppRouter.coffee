@@ -10,17 +10,17 @@ class AppRouter extends Backbone.Router
   Activity: ->
     collection = new app.Collections.ActivityCollection  
     @view = new app.Views.Activity collection : collection
-    flight.goTo "#activity"
+    flight.goto "#activity"
     
   Contacts: ->
     @view = new app.Views.Contacts
     @view.render()
-    flight.goTo '#contacts'
+    flight.goto '#contacts'
 
   Test: ->
     @view = new app.Views.Test
     @view.render()
-    flight.goTo '#test'  
+    flight.goto '#test'  
     
             
 @app = window.app ? {}

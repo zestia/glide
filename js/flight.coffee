@@ -45,7 +45,7 @@ class Flight
 			
          
   # Goes to page, transitionAnimation defines if transition happens or not
-  goTo: (targetPage, options) =>
+  goto: (targetPage, options) =>
     
 
 
