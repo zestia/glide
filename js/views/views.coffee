@@ -19,7 +19,7 @@ class Activity extends Backbone.View
       compiledTemplate = _.template( template, model.toJSON())
       @$el.append( compiledTemplate )
     
-    menuButton = $('.main-menu-btn')
+    menuButton = $('#menu-btn')
     menuButton.unbind 'click'
     menuButton.on 'click', ->
       flight.slideOutMenu()

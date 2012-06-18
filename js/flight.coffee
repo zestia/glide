@@ -9,7 +9,7 @@ class Flight
   hideUrlBar: false
   noClickDelay: true
   # options
-  mainMenu: '#main-menu'
+  mainMenu: '#slide-out-menu'
   menuOpen: false
   transitionAnimation: true
   speed: '0.4s'
