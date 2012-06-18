@@ -31,6 +31,8 @@ Setup a scrollable section:
 
 ## Technical stuff
 
+Flight is written in coffeescript and less for css. 
+
 Flight makes use of hardware acceleration works best on IOS devices but runs well on Android 2.3 and above depending on the device. 
 
 ### Dependencies
