@@ -58,7 +58,7 @@ class Flight
     #   new NoClickDelay(@targetPage.querySelector('header')); 
 
     if not @currentPage
-      # No current panel set, app just started, make start panel visible
+      # No current panel set, app just started
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
