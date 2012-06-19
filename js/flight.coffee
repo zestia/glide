@@ -164,8 +164,7 @@ class Flight
    resetState: =>
     @back = false
     @isTransitioning = false   
-    
-    
+       
    # translate page on secified axis. Duration defaults to speed property when not passed. Delay defaults to 0.
    translate: (page, axis, distance, duration) =>      
     if not duration? then duration = @speed
@@ -179,7 +178,7 @@ class Flight
     @targetPage.style.left = "0%"
     @currentPage.style.left = "100%"
     @isTransitioning = false
-  
+
   # detects user agent being used
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
