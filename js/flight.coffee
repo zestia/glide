@@ -41,13 +41,9 @@ class Flight
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
     if @hideUrlBar is true then @hideUrlBar()
-    
 			
-         
   # Goes to page, transitionAnimation defines if transition happens or not
-  goto: (targetPage, options) =>
-    
-
+  goto: (targetPage, options) =>    
 
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
