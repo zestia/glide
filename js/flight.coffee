@@ -1,12 +1,10 @@
 class Flight
 
-  isTransitioning: false
+  pageHistory: []
   currentPage: ''
   targetPage: ''
-  pageHistory: []
-  os: {}
-  hideUrlBar: false
-  noClickDelay: true
+
+  isTransitioning: false
   menuOpen: false
   back: false
 
@@ -31,7 +29,7 @@ class Flight
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
-    @hideUrlBar() if @hideUrlBar
+    @hideUrlBar() if options.hideUrlbar
 
   # Public: Go to a specific page.
   #
