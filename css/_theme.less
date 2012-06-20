@@ -1,4 +1,8 @@
-/* Properties */
+
+/*====================
+  Variables
+ ====================*/
+
 @imgPath: '../img/';
 @bgSize: 600px 100px;
 
@@ -27,36 +31,37 @@ body { background: #F1EBE2; }
   p, .timestamp {  padding-left: 20px;  }
 }
 
+/*====================
+  Pages
+ ====================*/
+
 .page {
   background: #F1EBE2;
-      li {
-        color:#323234;
-        background:#fcfcfc; 
-        border-top: 1px solid #fff;
-      	border-bottom:1px solid #eee; 
-      	font-size: 12px;
-      }
-      a {
-        display:block;
-        padding: 12px 22px 12px 10px;
-      }
-      &.touchstart {
-        background: blue;
-        color:#ffffff;
-      }
-      img {
-        width: 30px;
-        height: 30px;
-        float: left;
-        margin-right: 10px;
-        -webkit-border-radius: 5px;
-      }
-      
+  li {
+    color:#323234;
+    background:#fcfcfc; 
+    border-top: 1px solid #fff;
+  	border-bottom:1px solid #eee; 
+  	font-size: 12px;
+  }
+  a {
+    display:block;
+    padding: 12px 22px 12px 10px;
+  }
+  img {
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    -webkit-border-radius: 5px;
+  }      
 }
 
-// header toolbar 
+/*====================
+  Header toolber
+ ====================*/
+
 header {
-/*  border-bottom: 1px solid #666;*/
   .vertical-gradient (rgba(77,78,91,1), rgba(41,42,49,1)); 
 
   h1 {
@@ -74,18 +79,20 @@ header {
   	box-flex: 1;
   }
   
+  /*====================
+    Header button
+  ====================*/
+
   .btn { 
     .box-sizing;
     font-size:14px; 
     position:absolute; 
     padding: 7px 5px;
     line-height:30px;
-    
     &.pressed button {
       color:darken(white,50%);
       .vertical-gradient (darken(rgba(77,78,91,1),50%), darken(rgba(41,42,49,1),50%)); 
     }
-    
     button {
       background:none;
       .border-radius(5px);
@@ -105,9 +112,7 @@ header {
     	-moz-box-sizing: border-box;
     	box-sizing: border-box;
     }
-    
   }
-  
   .left, .right {
     position: absolute;
   }
@@ -117,29 +122,33 @@ header {
   .right {
     right:0px;
   }
-  
-  .menu { 
-    right:auto;    
-      
-    .bar { 
-      background:white;
-      display:block; 
-      height:3px; 
-      width:20px;  
-      .border-radius (3px); 
-      margin:auto; 
-      margin-bottom:3px; 
-      .box-shadow (0px 1px 1px rgba(000,000,000,1))  
-    }
-    .bar:last-child {
-      margin-bottom:0px;
-    }
-  }
-  
-
 }
 
-// Sliding out menu
+/*====================
+  Slide out menu button
+====================*/
+  
+.menu { 
+  right:auto;    
+  .bar { 
+    background:white;
+    display:block; 
+    height:3px; 
+    width:20px;  
+    .border-radius (3px); 
+    margin:auto; 
+    margin-bottom:3px; 
+    .box-shadow (0px 1px 1px rgba(000,000,000,1));  
+  }
+  .bar:last-child {
+    margin-bottom:0px;
+  }
+}
+
+/*====================
+  Slide out menu
+ ====================*/
+
 #slide-out-menu {  
   background: #35363f; 
   color:white; 
