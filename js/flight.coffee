@@ -1,29 +1,29 @@
 class Flight
-  # Private
-  version: '0.0.1'
+
   isTransitioning: false
   currentPage: ''
   targetPage: ''
-  pageHistory: [""]
+  pageHistory: []
   os: {}
   hideUrlBar: false
   noClickDelay: true
-  # options
-  mainMenu: '#slide-out-menu'
   menuOpen: false
-  transitionAnimation: true
-  speed: '0.4s'
   back: false
 
-  # Public:
+  transitionAnimation: true
+  speed: '0.4s'
+  mainMenu: '#slide-out-menu'
+
+  # Public: Instantiate Flight and set any options.
+  #
+  # options - A Hash of options for flight.
   #
   # Returns nothing.
   constructor: (options = {}) ->
     if options.transitionAnimation?
       @transitionAnimation = options.transitionAnimation
 
-    if options.speed?
-      @speed = options.speed
+    @speed = options.speed if options.speed?
 
     @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
@@ -31,7 +31,7 @@ class Flight
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
-    if @hideUrlBar is true then @hideUrlBar()
+    @hideUrlBar() if @hideUrlBar
 
   # Public: Go to a specific page.
   #
@@ -76,7 +76,7 @@ class Flight
         
     , 10
 
-  # Public: Perform a slide transition.
+  # Private: Perform a slide transition.
   #
   # Returns nothing.
   slideTransition: ->
@@ -96,10 +96,11 @@ class Flight
     window.setTimeout =>
       @translate(@targetPage, "X", "0%")
       @currentPage.addEventListener "webkitTransitionEnd", @finishTransition, false
-      @resetState()
+      @back = false
+      @isTransitioning = false
     , 5
 
-  # Public: Perform a slide from bottom transition.
+  # Private: Perform a slide from bottom transition.
   #
   # Returns nothing.
   slideFromBottom: ->
@@ -119,9 +120,10 @@ class Flight
     window.setTimeout =>
       @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
     , 20
-    @resetState()
+    @back = false
+    @isTransitioning = false
 
-  # Public: Perform a slide out transition for the menu.
+  # Private: Perform a slide out transition for the menu.
   #
   # Returns nothing.
   slideOutMenu: =>
@@ -133,32 +135,38 @@ class Flight
       @translate(@currentPage, "X", "250px", "0.3s")
       @menuOpen = true
       
-  # call on transition end
+  # Private: Finish any transitions.
+  #
+  # Returns nothing.
   finishTransition: =>
     @currentPage.style.display = "none"
     @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
-    # swap pages
     @currentPage = @targetPage
-    
-   resetState: =>
-    @back = false
-    @isTransitioning = false
 
-   # translate page on secified axis. Duration defaults to speed property when not passed. Delay defaults to 0.
-   translate: (page, axis, distance, duration) =>
-    if not duration? then duration = @speed
+  # Private: Translate page on a specified axis.
+  #
+  # page     - An Element of the page.
+  # axis     - A String of the axis.
+  # distance - A String of the distance.
+  # duration - A String of the duration, defaults to speed.
+  #
+  # Returns nothing.
+  translate: (page, axis, distance, duration) =>
+    duration = @speed unless duration?
     page.style.webkitTransition = "#{duration} ease"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
-    
-   # displays pages when transiton is false, back animations do not matter here.
-   displayPage: =>
+
+  # Private: Display the current page.
+  #
+  # Returns nothing.
+  displayPage: =>
     @targetPage.style.display = "-webkit-box"
     @currentPage.style.display = "-webkit-box"
     @targetPage.style.left = "0%"
     @currentPage.style.left = "100%"
     @isTransitioning = false
 
-  # Public: Get a Hash of browser user agent information.
+  # Private: Get a Hash of browser user agent information.
   #
   # Returns a Hash of user agent information.
   detectUserAgent: ->
@@ -180,6 +188,9 @@ class Flight
     os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
     os
 
+  # Private: Hide the URL bar in mobile browsers.
+  # 
+  # Returns nothing.
   hideUrlBar: ->
     setTimeout ->
         window.scrollTo 0, 1
