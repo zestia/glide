@@ -33,49 +33,45 @@ class Flight
 
     if @hideUrlBar is true then @hideUrlBar()
 
-  # Goes to page, transitionAnimation defines if transition happens or not
-  goto: (targetPage, options) =>
-
+  # Public: Go to a specific page.
+  #
+  # targetPage - A String of the element ID or existing element.
+  #
+  # Returns nothing.
+  goto: (targetPage) =>
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
     else if targetPage
       @targetPage = targetPage
     
-    # if @noClickDelay is true
-    #   new NoClickDelay(@targetPage.querySelector('header')); 
-
-    if not @currentPage
-      # No current panel set, app just started
+    unless @currentPage
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
       return
 
-    # if already transitioning then return   
-    if @isTransitioning is true then return else @isTransitioning = true
-    
-    # any page transition should close the slide out menu (for now)
+    return if @isTransitioning
+
+    @isTransitioning = true
     @menuOpen = false
     
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
-    if @back is true and @pageHistory.length != 1
+    if @back and @pageHistory.length != 1
       transitionType = @currentPage.getAttribute("data-transition")
       @pageHistory.pop()
     else
       transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)
     
-    # Delay transition to prevent flickering
     window.setTimeout =>
-      if @transitionAnimation is true
+      if @transitionAnimation
         switch transitionType
           when "slide" then @slideTransition()
           when "slideFromBottom" then @slideFromBottom()
           when "slideDown" then @slideDown()
-
-      if @transitionAnimation isnt true
+      else
         @displayPage()
         
     , 10
