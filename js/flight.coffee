@@ -15,6 +15,9 @@ class Flight
   speed: '0.4s'
   back: false
 
+  # Public:
+  #
+  # Returns nothing.
   constructor: (options = {}) ->
     if options.transitionAnimation?
       @transitionAnimation = options.transitionAnimation
@@ -22,18 +25,14 @@ class Flight
     if options.speed?
       @speed = options.speed
 
-    if options.mainMenu?
-       if typeof options.mainMenu is "string"
-          @mainMenu = document.querySelector options.mainMenu or @mainMenu
-        else
-          @mainMenu = options.mainMenu
-    
-    @detectUserAgent()
-    
-    if @os.android and @os.version <= "2.1" then @transitionAnimation = false
+    @mainMenu = options.mainMenu if options.mainMenu?
+    @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
-    @hideUrlBar() if @hideUrlBar
-			
+    os = @detectUserAgent()
+    @transitionAnimation = false if os.android and os.version <= '2.1'
+
+    if @hideUrlBar is true then @hideUrlBar()
+
   # Goes to page, transitionAnimation defines if transition happens or not
   goto: (targetPage, options) =>
 
@@ -166,23 +165,27 @@ class Flight
     @currentPage.style.left = "100%"
     @isTransitioning = false
 
-  # detects user agent being used
+  # Public: Get a Hash of browser user agent information.
+  #
+  # Returns a Hash of user agent information.
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
-    @os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
-    @os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
-    if @os.android
+    os = {}
+    os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
+    os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
+    if os.android
       result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
-      @os.version = result[1]
-    @os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
-    @os.iphone = (if not @os.ipad and userAgent.match(/(iPhone\sOS)\s([\d_]+)/) then true else false)
-    @os.webos = (if userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) then true else false)
-    @os.touchpad = (if @os.webos and userAgent.match(/TouchPad/) then true else false)
-    @os.ios = @os.ipad or @os.iphone
-    @os.blackberry = (if userAgent.match(/BlackBerry/) or userAgent.match(/PlayBook/) then true else false)
-    @os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
-    @os.fennec = (if userAgent.match(/fennec/i) then true else false)
-    @os.desktop = not (@os.ios or @os.android or @os.blackberry or @os.opera or @os.fennec)
+      os.version = result[1]
+    os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
+    os.iphone = (if not os.ipad and userAgent.match(/(iPhone\sOS)\s([\d_]+)/) then true else false)
+    os.webos = (if userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) then true else false)
+    os.touchpad = (if os.webos and userAgent.match(/TouchPad/) then true else false)
+    os.ios = os.ipad or os.iphone
+    os.blackberry = (if userAgent.match(/BlackBerry/) or userAgent.match(/PlayBook/) then true else false)
+    os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
+    os.fennec = (if userAgent.match(/fennec/i) then true else false)
+    os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
+    os
 
   hideUrlBar: ->
     setTimeout ->
