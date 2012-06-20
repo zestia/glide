@@ -76,65 +76,62 @@ class Flight
         
     , 10
 
-  # performs slide animation transition
-  slideTransition: () ->
+  # Public: Perform a slide transition.
+  #
+  # Returns nothing.
+  slideTransition: ->
     @targetPage.style.display = "-webkit-box"
 
-    if @back is true
-      # must perform this initial tranform to get animation working in the next step
+    if @back
       @translate(@targetPage, "X", "-100%", "0ms")
       window.setTimeout =>
         @translate(@currentPage, "X", "100%")
       , 10
-
     else
-      #do forward transition      
       @translate(@targetPage,"X","100%", "0ms")
-      
       window.setTimeout =>
         @translate(@currentPage, "X", "-100%")
       , 10
-    
-    # shortern the delay here to stop a gap appearing in android
+
     window.setTimeout =>
       @translate(@targetPage, "X", "0%")
       @currentPage.addEventListener "webkitTransitionEnd", @finishTransition, false
       @resetState()
     , 5
 
-  # slides panel from bottom to top and top to bottom 
-  slideFromBottom: () ->
-     @targetPage.style.display = "-webkit-box"
-    
-     if @back is true
-       # do reverse
-       window.setTimeout =>
-          @translate(@currentPage, "Y", "100%")
-       , 10
-       
-     else
-       #do forward transition
-       @targetPage.style.display = "-webkit-box"
-       @translate(@targetPage, "Y", "100%","0ms")
-                      
-       window.setTimeout =>
-         @translate(@targetPage, "Y", "0%")
-       , 10
-       
-     window.setTimeout =>
-       @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
-     , 20
-     @resetState()
-  
-  slideOutMenu: () =>
-    if @menuOpen is false
-      @mainMenu.style.display = "block"
-      @translate(@currentPage,"X", "250px","0.3s")
+  # Public: Perform a slide from bottom transition.
+  #
+  # Returns nothing.
+  slideFromBottom: ->
+    @targetPage.style.display = "-webkit-box"
 
-      @menuOpen = true
+    if @back
+      window.setTimeout =>
+        @translate(@currentPage, "Y", "100%")
+      , 10
     else
-      @translate(@currentPage,"X", "0%","0.3s")
+      @targetPage.style.display = "-webkit-box"
+      @translate(@targetPage, "Y", "100%","0ms")
+      window.setTimeout =>
+        @translate(@targetPage, "Y", "0%")
+      , 10
+
+    window.setTimeout =>
+      @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
+    , 20
+    @resetState()
+
+  # Public: Perform a slide out transition for the menu.
+  #
+  # Returns nothing.
+  slideOutMenu: =>
+    if @menuOpen
+      @translate(@currentPage, "X", "0%", "0.3s")
       @menuOpen = false
+    else
+      @mainMenu.style.display = "block"
+      @translate(@currentPage, "X", "250px", "0.3s")
+      @menuOpen = true
       
   # call on transition end
   finishTransition: =>
