@@ -15,35 +15,27 @@ class Flight
   speed: '0.4s'
   back: false
 
-  constructor: (options) ->
-    if options?
-      if options.transitionAnimation?
-        @transitionAnimation = options.transitionAnimation
-      if options.speed?
-        @speed = options.speed 
-      # check if main menu id has been passed as an option, if not set using default.   
-      if options.mainMenu?
-         if typeof options.mainMenu is "string"
-            @mainMenu = document.querySelector options.mainMenu
-          else 
-            @mainMenu = options.mainMenu
-      else
-        @mainMenu = document.querySelector @mainMenu
+  constructor: (options = {}) ->
+    if options.transitionAnimation?
+      @transitionAnimation = options.transitionAnimation
+
+    if options.speed?
+      @speed = options.speed
+
+    if options.mainMenu?
+       if typeof options.mainMenu is "string"
+          @mainMenu = document.querySelector options.mainMenu or @mainMenu
+        else
+          @mainMenu = options.mainMenu
     
-    # get main menu dom element if not yet been set    
-    if typeof @mainMenu is "string"
-      @mainMenu = document.querySelector @mainMenu
-    
-    # see what device we're using
     @detectUserAgent()
     
-    # don't bother using transition animation on older android devices as they look terrible
     if @os.android and @os.version <= "2.1" then @transitionAnimation = false
 
-    if @hideUrlBar is true then @hideUrlBar()
+    @hideUrlBar() if @hideUrlBar
 			
   # Goes to page, transitionAnimation defines if transition happens or not
-  goto: (targetPage, options) =>    
+  goto: (targetPage, options) =>
 
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
@@ -58,23 +50,23 @@ class Flight
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
-      return         
+      return
 
     # if already transitioning then return   
-    if @isTransitioning is true then return else @isTransitioning = true    
+    if @isTransitioning is true then return else @isTransitioning = true
     
     # any page transition should close the slide out menu (for now)
-    @menuOpen = false 
+    @menuOpen = false
     
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
     if @back is true and @pageHistory.length != 1
       transitionType = @currentPage.getAttribute("data-transition")
-      @pageHistory.pop() 
+      @pageHistory.pop()
     else
       transitionType = @targetPage.getAttribute("data-transition")
-      @pageHistory.push(window.location.hash)   
+      @pageHistory.push(window.location.hash)
     
     # Delay transition to prevent flickering
     window.setTimeout =>
@@ -87,12 +79,11 @@ class Flight
       if @transitionAnimation isnt true
         @displayPage()
         
-    ,10
-    
-                  
+    , 10
+
   # performs slide animation transition
   slideTransition: () ->
-    @targetPage.style.display = "-webkit-box"      
+    @targetPage.style.display = "-webkit-box"
 
     if @back is true
       # must perform this initial tranform to get animation working in the next step
@@ -141,14 +132,14 @@ class Flight
      @resetState()
   
   slideOutMenu: () =>
-    if @menuOpen is false    
+    if @menuOpen is false
       @mainMenu.style.display = "block"
-      @translate(@currentPage,"X", "250px","0.3s")        
+      @translate(@currentPage,"X", "250px","0.3s")
 
       @menuOpen = true
     else
-      @translate(@currentPage,"X", "0%","0.3s")  
-      @menuOpen = false 
+      @translate(@currentPage,"X", "0%","0.3s")
+      @menuOpen = false
       
   # call on transition end
   finishTransition: =>
@@ -159,13 +150,13 @@ class Flight
     
    resetState: =>
     @back = false
-    @isTransitioning = false   
-       
+    @isTransitioning = false
+
    # translate page on secified axis. Duration defaults to speed property when not passed. Delay defaults to 0.
-   translate: (page, axis, distance, duration) =>      
+   translate: (page, axis, distance, duration) =>
     if not duration? then duration = @speed
     page.style.webkitTransition = "#{duration} ease"
-    page.style.webkitTransform = "translate#{axis}(#{distance})"  
+    page.style.webkitTransform = "translate#{axis}(#{distance})"
     
    # displays pages when transiton is false, back animations do not matter here.
    displayPage: =>
@@ -194,24 +185,8 @@ class Flight
     @os.desktop = not (@os.ios or @os.android or @os.blackberry or @os.opera or @os.fennec)
 
   hideUrlBar: ->
-    setTimeout (->
+    setTimeout ->
         window.scrollTo 0, 1
-      ), 50
+    , 50
 
-root           = this
-previousFlight = root.Flight
-
-$ = window?.jQuery or window?.Zepto or (el) -> el
-
-Flight.setDomLibrary = (library) ->
-  $ = library
-
-Flight.noConflict = ->
-  root.Flight = previousFlight
-  this
-
-if exports?
-  module?.exports = exports = Flight
-else
-  root.Flight = Flight
-    
+window.Flight = Flight
