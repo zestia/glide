@@ -18,31 +18,15 @@ task :build do
   end
 end
 
-desc 'compile the coffeescript and less stylesheet'
+desc 'compile coffeescript and less'
 task :compile => [:coffee, :less]
 
-desc 'compile the coffeescript source into javascript'
+desc 'compile coffeescript into javascript'
 task :coffee do
-  system 'coffee -c js/flight.coffee'
-  system 'coffee -c js/application.coffee'
-  system 'coffee -c js/routers/AppRouter.coffee'
-  system 'coffee -c js/views/Views.coffee'
-  system 'coffee -c js/models/Models.coffee'
-  system 'coffee -c js/collections/Collections.coffee'
-  
+  system 'coffee -c -o build/ js/*.coffee '
 end
 
-desc 'compile the less stylesheets into css'
+desc 'compile less into css'
 task :less do
-  system 'lessc --yui-compress css/style.less css/style.css'
-end
-
-desc 'build the docco documentation'
-task :doc do
-  system 'docco flight.js'
-end
-
-desc 'run JavaScriptLint on the source'
-task :lint do
-  system 'jsl -nofilelisting -nologo -conf docs/jsl.conf -process js/flight.js'
+  system 'lessc --yui-compress less/flight.less build/flight.css'
 end

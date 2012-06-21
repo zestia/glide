@@ -1,9 +1,3 @@
-js/*.js
-js/routers/*.js
-js/views/*.js
-js/models/*.js
-js/collections/*.js
-*.css
+build/*.css
+build/*.js
 *.DS_store
-*.idea
-*.iml

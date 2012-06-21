@@ -7,19 +7,9 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta name="format-detection" content="telephone=no">
 
-		<title>Capsule CRM Mobile Web App</title>
+		<title>Capsule</title>
 
-		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/touch/apple-touch-icon-144x144-precomposed.png" />
-		<!-- For iPhone 4 with high-resolution Retina display: -->
-		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/touch/apple-touch-icon-114x114-precomposed.png" />
-		<!-- For first-generation iPad: -->
-		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/touch/apple-touch-icon-72x72-precomposed.png" />
-		<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-		<link rel="apple-touch-icon-precomposed" href="img/touch/apple-touch-icon-57x57-precomposed.png" />
-		<!-- For nokia devices: -->
-		<link rel="shortcut icon" href="img/touch/apple-touch-icon.png" />
-
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="build/flight.css">
 	</head>
 	<body>	
 		<!-- slide out menu -->	
@@ -65,7 +55,7 @@
 								<% } %>
 								 <div class="activity-content">
 									<p class="entry-text"><%= note.truncate(70,true) %></p>
-								     <small class="timestamp"><time>2 days ago </time>via Duncan Stockdill</small>
+								     <small class="timestamp"><time>2 days ago</time> via Duncan Stockdill</small>
 								 </div>
 								</li>
 							</script>
@@ -84,7 +74,7 @@
 			<section>
 				<div class="page-content">
 					<div class="scroll-area">
-							<ul>
+                          <ul>
 								<li><p>First line</p></li>
 								<li><p>Second line</p></li>
 								<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
@@ -136,26 +126,23 @@
 								<li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
 								<li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
 								<li><p>Last line</p></li>
-							</ul>
+                          </ul>
 					</div>
 				</div>
 			</section>
 		</div>		
- 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="vendor/jquery-1.7.1.min.js"><\/script>')</script>
-		<script type="text/javascript" src="vendor/underscore.js"></script>
-		<script type="text/javascript" src="vendor/backbone.js"></script>
-		<script type="text/javascript" src="vendor/noClickDelay.js"></script>
-		<script type="text/javascript" src="vendor/util.js"></script>
 
-		<!-- application -->
-		<script type="text/javascript" src="js/flight.js"></script>
-		<script type="text/javascript" src="js/application.js"></script>
-		<script type="text/javascript" src="js/models/Models.js"></script>
-		<script type="text/javascript" src="js/routers/AppRouter.js"></script>
-		<script type="text/javascript" src="js/views/Views.js"></script>
-		<script type="text/javascript" src="js/collections/Collections.js"></script> 
+        <script src="vendor/jquery.js"></script>
+        <script src="vendor/underscore.js"></script>
+        <script src="vendor/backbone.js"></script>
+
+		<script src="build/flight.js"></script>
+
+		<script src="build/application.js"></script>
+		<script src="build/routers.js"></script>
+		<script src="build/models.js"></script>
+		<script src="build/collections.js"></script> 
+		<script src="build/views.js"></script>
 
 		<script type="text/javascript">
 		  $(function() {
