@@ -1,11 +1,8 @@
-class ActivityCollection extends Backbone.Collection
+class Activities extends Backbone.Collection
+
   model: app.Models.Activity
-  url: "js/data/activity.json"
-  
-  initialize: ->
-  
-  parse: (response) ->
-    return response;
-  
+
+  url: "data/activity.json"
+
 @app = window.app ? {}
-@app.Collections.ActivityCollection = ActivityCollection
+@app.Collections.Activities = new Activities

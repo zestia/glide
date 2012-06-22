@@ -10,9 +10,7 @@ class App
 
   init: ->
     window.flight = new Flight()
-    
     new @Routers.AppRouter
-    
     Backbone.history.start()
 
 window.app = new App
