@@ -34,13 +34,13 @@
 
     <div id="activity" class="page" data-transition="slide">
       <header>
-        <div class="menu left btn">
+        <a class="menu left btn">
           <button>
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </button>
-        </div>
+        </a>
         <a href="#test" class="btn right"><button>Forward</button></a>
         <h1>Activity</h1>
       </header>
@@ -93,6 +93,10 @@
         header = document.querySelector('header')
         header.addEventListener('touchmove', function(e) {
           e.preventDefault();
+        });
+
+        $('.menu').on('click', function() {
+          flight.slideOutMenu();
         });
       });
     </script>
