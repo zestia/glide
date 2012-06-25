@@ -1,0 +1,116 @@
+
+/*====================
+  Overide some defaults
+ ====================*/
+
+a, button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  cursor: pointer;
+}
+
+/*====================
+  Flight UI Stying
+ ====================*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden
+}
+
+body, button {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  margin: 0;
+  padding: 10px;
+  line-height: 30px;
+}
+
+.toolbar {
+  border: 1px solid #999;
+  padding: 10px;
+  background: #999
+}
+
+header, footer {
+  height: 45px;
+  line-height: 45px;
+  background: #444;
+  color: #ccc;
+  padding: 0 10px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  .box-sizing;
+}
+
+body, .page {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  -webkit-box-flex: 1;
+}
+
+.page {
+  position:absolute;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  transform: translate3d(0, 0, 0);
+}
+
+section, .page-content {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  -webkit-box-flex: 1;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+
+.scroll-area {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  -webkit-box-flex: 1;
+  margin-bottom: -1px;	
+}
+
+.hidden {
+  display: none;
+}
+
+@-webkit-keyframes slideouttoright {
+	from {
+      -webkit-transform: translateX(0);
+    }
+
+	to {
+      -webkit-transform: translateX(100%);
+    }
+}
+
+.slideOut{
+  -webkit-animation-duration: 0.4s;
+  -webkit-animation-name: slideouttoright;
+  -moz-animation-name: slideouttoright;
+  animation-name: slideouttoright;
+}
+
+/*====================
+  Alternative styling when -webkit-overflow-scrolling is not available
+  Mostly this is for Android 2.3 devices.
+  Flight adds noScrolling to body tag.
+ ====================*/
