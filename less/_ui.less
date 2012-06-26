@@ -68,7 +68,8 @@ body, .page {
   position:absolute;
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000px;
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+
 }
 
 section, .page-content {
@@ -86,6 +87,9 @@ section, .page-content {
   -webkit-box-align: stretch;
   -webkit-box-flex: 1;
   margin-bottom: -1px;	
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000px;
 }
 
 .hidden {
