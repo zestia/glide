@@ -3,6 +3,7 @@ class Flight
   pageHistory: []
   currentPage: ''
   targetPage: ''
+  startPage: ''
 
   isTransitioning: false
   menuOpen: false
@@ -53,6 +54,10 @@ class Flight
     @isTransitioning = true
     @menuOpen = false
     
+    if @pageHistory.length is 1 and window.location.hash is @startPage
+      @back = true
+      @pageHistory.pop()
+
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
       
