@@ -62,69 +62,68 @@ class Flight
     else
       transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)
-    
+  
+    targetPage = @targetPage
+    currentPage = @currentPage
+    @currentPage = @targetPage
+    @isTransitioning = false
+
     window.setTimeout =>
       if @transitionAnimation
         switch transitionType
-          when "slide" then @slideTransition()
-          when "slideFromBottom" then @slideFromBottom()
-          when "slideDown" then @slideDown()
+          when "slide" then @slideTransition(targetPage, currentPage)
+          when "slideFromBottom" then @slideFromBottom(targetPage, currentPage)
       else
-        @displayPage()
+        @displayPage(targetPage, currentPage)
         
     , 10
 
   # Private: Perform a slide transition.
   #
   # Returns nothing.
-  slideTransition: ->
-    @targetPage.style.display = "-webkit-box"
+  slideTransition: (targetPage, currentPage) ->
+
+    targetPage.style.display = "-webkit-box"
 
     if @back
-      @translate(@targetPage, "X", "-100%", "0ms")
+      @translate(targetPage, "X", "-100%", "0ms")
       window.setTimeout =>
-        @translate(@currentPage, "X", "100%")
+        @translate(currentPage, "X", "100%")
       , 10
     else
-      @translate(@targetPage,"X","100%", "0ms")
+      @translate(targetPage,"X","100%", "0ms")
       window.setTimeout =>
-        @translate(@currentPage, "X", "-100%")
+        @translate(currentPage, "X", "-100%")
       , 10
 
     window.setTimeout =>
-      @translate(@targetPage, "X", "0%")
-      @currentPage.addEventListener "webkitTransitionEnd", @finishTransition, false
+      @translate(targetPage, "X", "0%" )
       @back = false
-      @isTransitioning = false
     , 5
 
   # Private: Perform a slide from bottom transition.
   #
   # Returns nothing.
-  slideFromBottom: ->
+  slideFromBottom: (targetPage, currentPage) ->
     @targetPage.style.display = "-webkit-box"
 
     if @back
       window.setTimeout =>
-        @translate(@currentPage, "Y", "100%")
+        @translate(currentPage, "Y", "100%")
       , 10
     else
-      @targetPage.style.display = "-webkit-box"
-      @translate(@targetPage, "Y", "100%","0ms")
+      targetPage.style.display = "-webkit-box"
+      @translate(targetPage, "Y", "100%","0ms")
       window.setTimeout =>
-        @translate(@targetPage, "Y", "0%")
+        @translate(targetPage, "Y", "0%")
       , 10
 
-    window.setTimeout =>
-      @targetPage.addEventListener "webkitTransitionEnd", @finishTransition, false
-    , 20
     @back = false
-    @isTransitioning = false
 
   # Private: Perform a slide out transition for the menu.
   #
   # Returns nothing.
-  slideOutMenu: =>
+  slideOutMenu: ->
     if @menuOpen
       @translate(@currentPage, "X", "0%", "0.3s")
       @menuOpen = false
@@ -132,14 +131,6 @@ class Flight
       @mainMenu.style.display = "block"
       @translate(@currentPage, "X", "250px", "0.3s")
       @menuOpen = true
-      
-  # Private: Finish any transitions.
-  #
-  # Returns nothing.
-  finishTransition: =>
-    @currentPage.style.display = "none"
-    @currentPage.removeEventListener "webkitTransitionEnd", @finishTransition, false
-    @currentPage = @targetPage
 
   # Private: Translate page on a specified axis.
   #
@@ -149,7 +140,7 @@ class Flight
   # duration - A String of the duration, defaults to speed.
   #
   # Returns nothing.
-  translate: (page, axis, distance, duration) =>
+  translate: (page, axis, distance, duration) ->
     duration = @speed unless duration?
     page.style.webkitTransition = "#{duration} ease"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
@@ -157,12 +148,11 @@ class Flight
   # Private: Display the current page.
   #
   # Returns nothing.
-  displayPage: =>
-    @targetPage.style.display = "-webkit-box"
-    @currentPage.style.display = "-webkit-box"
-    @targetPage.style.left = "0%"
-    @currentPage.style.left = "100%"
-    @isTransitioning = false
+  displayPage: (targetPage, currentPage) ->
+    targetPage.style.display = "-webkit-box"
+    currentPage.style.display = "-webkit-box"
+    targetPage.style.left = "0%"
+    currentPage.style.left = "100%"
 
   # Private: Get a Hash of browser user agent information.
   #
