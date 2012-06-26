@@ -76,7 +76,7 @@ class Flight
     window.setTimeout =>
       if @transitionAnimation
         switch transitionType
-          when "slide" then @slideTransition(targetPage, currentPage)
+          when "slide" then @slide(targetPage, currentPage)
           when "slideFromBottom" then @slideFromBottom(targetPage, currentPage)
       else
         @displayPage(targetPage, currentPage)
@@ -86,7 +86,7 @@ class Flight
   # Private: Perform a slide transition.
   #
   # Returns nothing.
-  slideTransition: (targetPage, currentPage) ->
+  slide: (targetPage, currentPage) ->
 
     targetPage.style.display = "-webkit-box"
 
