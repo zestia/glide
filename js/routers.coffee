@@ -5,9 +5,7 @@ class AppRouter extends Backbone.Router
     'test': 'test'
 
   activities: ->
-    activities = app.Collections.Activities
-    activities.fetch()
-    view = new app.Views.Activities collection: activities
+    view = new app.Views.Activities collection: app.Collections.Activities
     view.render()
     flight.goto '#activity'
 

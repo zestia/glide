@@ -13,6 +13,8 @@ class App
     new @Routers.AppRouter
     Backbone.history.start()
 
+    @Collections.Activities.fetch()
+
 window.app = new App
 
 `
