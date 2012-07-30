@@ -77,7 +77,7 @@ class Flight
       if @transitionAnimation
         switch transitionType
           when "slide" then @slide(targetPage, currentPage)
-          when "slideFromBottom" then @slideFromBottom(targetPage, currentPage)
+          when "slideUp" then @slideUp(targetPage, currentPage)
       else
         @displayPage(targetPage, currentPage)
         
@@ -109,7 +109,7 @@ class Flight
   # Private: Perform a slide from bottom transition.
   #
   # Returns nothing.
-  slideFromBottom: (targetPage, currentPage) ->
+  slideUp: (targetPage, currentPage) ->
     @targetPage.style.display = "-webkit-box"
 
     if @back
