@@ -307,3 +307,43 @@ header {
     }
   }
 }
+
+.scroll-area {
+  form {
+    li {
+      border: 0;
+      padding: 10px 10px 0px 10px;
+
+      &:last-child {
+        padding: 10px 10px 10px 10px;
+      }
+    }
+  }
+}
+
+::-webkit-placeholder-input {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+form {
+  input[type='text'] {
+    -webkit-appearance: none;
+    .border-radius(1px);
+    .box-shadow(inset #eee 1px 1px 1px);
+    border: 1px solid #ddd;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    width: 100%;
+
+    &:focus {
+      .border-radius(1px);
+      border: 1px solid #aaa;
+      outline: none;
+    }
+  }
+}
