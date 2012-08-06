@@ -19,7 +19,7 @@ task :build do
 end
 
 desc 'compile coffeescript and less'
-task :compile => [:coffee, :less]
+task :default => [:coffee, :less]
 
 desc 'compile coffeescript into javascript'
 task :coffee do
