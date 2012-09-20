@@ -28,6 +28,15 @@ class Flight
     @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
+    @menuCloseButton = options.menuCloseButton if options.menuCloseButton?
+    @menuCloseButton = document.querySelector @menuCloseButton if typeof @menuCloseButton is "string"
+    
+    @mainMenu.addEventListener 'click', =>
+      @slideOutMenu()  
+
+    @menuCloseButton.addEventListener 'click', =>
+      @slideOutMenu()
+
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
@@ -133,15 +142,14 @@ class Flight
     if @menuOpen
       window.setTimeout =>
         @translate(@mainMenu, "X", "-110%", "0.3s")
-        @menuOpen = false
       ,10
+      @menuOpen = false
     else
       @translate(@mainMenu, "X", "-100%", "0ms")
       @mainMenu.style.display = "block"
       window.setTimeout =>
         @translate(@mainMenu, "X", "0%", "0.3s")
       ,10
-
       @menuOpen = true
 
   # Private: Translate page on a specified axis.

@@ -15,12 +15,6 @@ class App
 
     @Collections.Activities.fetch()
 
-    $('#menu-button').click ->
-      flight.slideOutMenu()
-      $('#close-menu').click ->
-        flight.slideOutMenu()
-
-
 window.app = new App
 
 `
