@@ -59,7 +59,6 @@ class Flight
     return if @isTransitioning
 
     @isTransitioning = true
-    @menuOpen = false
     
     if @pageHistory.length is 1 and window.location.hash is @startPage
       @back = true
