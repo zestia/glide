@@ -17,6 +17,9 @@ class App
 
     $('#menu-button').click ->
       flight.slideOutMenu()
+      $('#close-menu').click ->
+        flight.slideOutMenu()
+
 
 window.app = new App
 
