@@ -11,7 +11,7 @@ class Flight
 
   transitionAnimation: true
   speed: '0.4s'
-  mainMenu: '#slide-out-menu'
+  mainMenu: '#main-menu'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -133,8 +133,11 @@ class Flight
       @translate(@currentPage, "X", "0%", "0.3s")
       @menuOpen = false
     else
+      @translate(@mainMenu, "X", "-100%", "0ms")
       @mainMenu.style.display = "block"
-      @translate(@currentPage, "X", "250px", "0.3s")
+      window.setTimeout =>
+        @translate(@mainMenu, "X", "0%", "0.3s")
+      ,10
       @menuOpen = true
 
   # Private: Translate page on a specified axis.
