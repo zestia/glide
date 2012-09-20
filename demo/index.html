@@ -15,33 +15,32 @@
 
   <body>
 
-    <div id="slide-out-menu">
-      <ul>
+    <div id="main-menu">
+      <ul class="account-holder">
         <li>
-          <img src="http://www.gravatar.com/avatar/3c377258fc3095eaec4615a34d6e622e.png" width="65" height="65" alt="Profile Pic" />
-          Dominique Briggs
+          <a href=""><img src="http://www.gravatar.com/avatar/ec8db10afc84d59ddae81bac9c6c9697.png" width="65" height="65" alt="Profile Pic" />
+          Dominique Briggs</a>
         </li>
       </ul>
-      <div class="separator">Main menu</div>
       <ul>
-        <li class="activity"><a href="#activity">Activity</a></li>
-        <li class="contacts"><a href="#contacts">Contacts</a></li>
-        <li class="app-icon-before tasks"><a href="#tasks">Tasks</a></li>
-        <li class="pipeline"><a href="#pipeline">Pipeline</a></li>
-        <li class="settings"><a href="#settings">Settings</a></li>
+        <li class="activity"><a href="#!/activity">Activity</a></li>
+        <li class="contacts"><a href="#!/contacts">Contacts</a></li>
+        <li class="app-icon-before tasks"><a href="#!/tasks">Tasks</a></li>
+        <li class="pipeline"><a href="#!/pipeline">Pipeline</a></li>
+        <li class="settings"><a href="#!/settings">Settings</a></li>
       </ul>
     </div>
 
     <div id="activity" class="page" data-transition="slide">
       <header>
-        <a class="menu left btn">
-          <button>
+        <a id="menu-button" class="left btn">
+          <button class="menu secondary">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
           </button>
         </a>
-        <a href="#test" class="btn right"><button>Forward</button></a>
+        <a href="#test" class="btn right"><button class="primary">Forward</button></a>
         <h1>Activity</h1>
       </header>
       <section>
@@ -75,13 +74,15 @@
 
     <div id="test" class="page hidden" data-transition="slide">
       <header>
-        <a class="back btn left"><button>Back</button></a>
+        <a class="back left btn">
+            <button class="secondary">Back</button> 
+        </a>
         <h1>Test</h1>
       </header>
       <section>
         <div class="page-content">
           <div class="scroll-area">
-            <ul>
+            <ul class="list">
               <li><p>First line</p></li>
               <li><p>Second line</p></li>
               <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
