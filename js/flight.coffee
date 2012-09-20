@@ -12,7 +12,7 @@ class Flight
   transitionAnimation: true
   speed: '0.4s'
   mainMenu: '#main-menu'
-  menuCloseButton: '#close-menu'
+  menuCloseButton: '#close-menu-btn'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -30,11 +30,8 @@ class Flight
 
     @menuCloseButton = options.menuCloseButton if options.menuCloseButton?
     @menuCloseButton = document.querySelector @menuCloseButton if typeof @menuCloseButton is "string"
-    
-    @mainMenu.addEventListener 'click', =>
-      @slideOutMenu()  
 
-    @menuCloseButton.addEventListener 'click', =>
+    @menuCloseButton.addEventListener 'click', => 
       @slideOutMenu()
 
     os = @detectUserAgent()
