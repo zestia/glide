@@ -45,6 +45,10 @@ class Flight
   #
   # Returns nothing.
   goto: (targetPage) =>
+
+    if @menuOpen is true 
+      @closeMenu()
+
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
     else if targetPage
@@ -147,6 +151,13 @@ class Flight
         @translate(@mainMenu, "X", "0%", "0.3s")
       ,10
       @menuOpen = true
+
+  # Private: Close menu without transition
+  #
+  # Returns nothing.
+  closeMenu: ->
+    @mainMenu.style.display = "none"  
+    @menuOpen = false
 
   # Private: Translate page on a specified axis.
   #
