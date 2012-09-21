@@ -31,9 +31,6 @@ class Flight
     @menuCloseButton = options.menuCloseButton if options.menuCloseButton?
     @menuCloseButton = document.querySelector @menuCloseButton if typeof @menuCloseButton is "string"
 
-    @menuCloseButton.addEventListener 'click', => 
-      @slideOutMenu()
-
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
@@ -53,7 +50,7 @@ class Flight
       @targetPage = document.querySelector targetPage
     else if targetPage
       @targetPage = targetPage
-    
+
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
@@ -63,7 +60,7 @@ class Flight
     return if @isTransitioning
 
     @isTransitioning = true
-    
+
     if @pageHistory.length is 1 and window.location.hash is @startPage
       @back = true
       @pageHistory.pop()
@@ -77,7 +74,7 @@ class Flight
     else
       transitionType = @targetPage.getAttribute("data-transition")
       @pageHistory.push(window.location.hash)
-  
+    
     targetPage = @targetPage
     currentPage = @currentPage
     @currentPage = @targetPage
