@@ -143,13 +143,16 @@ class Flight
       window.setTimeout =>
         @translate(@mainMenu, "X", "-110%", "0.3s")
       ,10
+      window.setTimeout =>
+        @mainMenu.style.display = "none"  
+      ,300
       @menuOpen = false
     else
-      @translate(@mainMenu, "X", "-100%", "0ms")
-      @mainMenu.style.display = "block"
+      @translate(@mainMenu, "X", "-110%", "0ms")
       window.setTimeout =>
         @translate(@mainMenu, "X", "0%", "0.3s")
       ,10
+      @mainMenu.style.display = "block"
       @menuOpen = true
 
   # Private: Close menu without transition
