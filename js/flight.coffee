@@ -31,6 +31,9 @@ class Flight
     @menuCloseButton = options.menuCloseButton if options.menuCloseButton?
     @menuCloseButton = document.querySelector @menuCloseButton if typeof @menuCloseButton is "string"
 
+    @menuCloseButton.addEventListener 'click', => 
+      @slideOutMenu()
+
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
@@ -42,7 +45,6 @@ class Flight
   #
   # Returns nothing.
   goto: (targetPage) =>
-
     if @menuOpen is true 
       @closeMenu()
 
@@ -139,8 +141,6 @@ class Flight
     page.querySelector('.main-menu-btn').addEventListener 'click', => 
       @slideOutMenu()
 
-    @menuCloseButton.addEventListener 'click', => 
-      @slideOutMenu()
 
   # Private: Perform a slide out transition for the menu.
   #
