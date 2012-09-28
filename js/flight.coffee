@@ -134,14 +134,6 @@ class Flight
 
     @back = false
 
-  # Private: Binds click event to open menu on menu button
-  #
-  # Returns nothing.
-  setupMenu: (page) ->
-    page.querySelector('.main-menu-btn').addEventListener 'click', => 
-      @slideOutMenu()
-
-
   # Private: Perform a slide out transition for the menu.
   #
   # Returns nothing.
