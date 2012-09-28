@@ -28,12 +28,6 @@ class Flight
     @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
-    @menuCloseButton = options.menuCloseButton if options.menuCloseButton?
-    @menuCloseButton = document.querySelector @menuCloseButton if typeof @menuCloseButton is "string"
-
-    @menuCloseButton.addEventListener 'click', => 
-      @slideOutMenu()
-
     os = @detectUserAgent()
     @transitionAnimation = false if os.android and os.version <= '2.1'
 
