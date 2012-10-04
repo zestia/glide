@@ -98,28 +98,3 @@ section, .page-content {
 .hidden {
   display: none;
 }
-
-@-webkit-keyframes slideouttoright {
-	from {
-      -webkit-transform: translateX(0);
-    }
-
-	to {
-      -webkit-transform: translateX(100%);
-    }
-}
-
-.slideOut {
-  -webkit-animation-duration: 0.4s;
-  -webkit-animation-name: slideouttoright;
-  -moz-animation-name: slideouttoright;
-  animation-name: slideouttoright;
-}
-
-
-
-/*====================
-  Alternative styling when -webkit-overflow-scrolling is not available
-  Mostly this is for Android 2.3 devices.
-  Flight adds noScrolling to body tag.
- ====================*/
