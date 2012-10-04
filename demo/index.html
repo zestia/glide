@@ -42,6 +42,7 @@
           </button>
         </a>
         <a href="#test" class="btn right"><button class="primary">Forward</button></a>
+        <a id="prepend" class="btn right"><button class="primary">Prepend input</button></a>
         <h1>Activity</h1>
       </header>
       <section>
@@ -170,6 +171,12 @@
         $('.back').on('click', function() {
           window.history.back()
         });
+
+        // debugging test
+        $('#prepend').on('click',function(){
+          $('#activity-list').prepend('<li><input type="text" placeholder="Inout me" /></li>');
+        });
+
       });
     </script>
 
