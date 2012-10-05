@@ -16,54 +16,88 @@ a, button {
   Flight UI Stying
  ====================*/
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;  /* prevents rubber-banding on desktop Safari */
+html, body, ul, li {margin:0; padding:0; border:0;}
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:16px;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body { 
+    height:100%; 
+    overflow:hidden; /* prevents rubber-banding on desktop Safari */
 }
 
 body, .page {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  -webkit-box-flex: 1;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+    height:100%;
+    -webkit-box-align: stretch;
+    -webkit-box-flex: 1;
+
 }
 
 .page {
-  position:absolute;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  -webkit-transform: translate3d(0, 0, 0);
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+    
+    height:100%;
 
+    position: absolute;
+    -webkit-backface-visibility: hidden;
 }
 
-section, .page-content {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  -webkit-box-flex: 1;
-  -webkit-overflow-scrolling: touch;
-  overflow: auto;
+
+.scrollview {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.scroll-area {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  -webkit-box-flex: 1;
-  // margin-bottom: -1px;	
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000px;
+.scrollview-inner {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    display:block;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrollview-content {
+    display:block;
+    -webkit-box-flex:1;
 }
 
 .hidden {
   display: none;
 }
-
 // Non functional styling
 body, button {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
