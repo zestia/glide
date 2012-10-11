@@ -92,14 +92,16 @@ class Flight
   slide: (targetPage, currentPage) ->
 
     targetPage.style.display = "-webkit-box"
+    
+    screenWidth = window.innerWidth +  'px';
 
     if @back
-      @translate(targetPage, "X", "-100%", "0ms")
+      @translate(targetPage, "X", "-" + screenWidth, "0ms")
       window.setTimeout =>
         @translate(currentPage, "X", "100%")
       , 10
     else
-      @translate(targetPage,"X","100%", "0ms")
+      @translate(targetPage,"X", screenWidth, "0ms")
       window.setTimeout =>
         @translate(currentPage, "X", "-100%")
       , 10
@@ -107,7 +109,7 @@ class Flight
     window.setTimeout =>
       @translate(targetPage, "X", "0%" )
       @back = false
-    , 5
+    , 10
 
   # Private: Perform a slide from bottom transition.
   #
