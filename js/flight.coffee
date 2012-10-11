@@ -90,10 +90,8 @@ class Flight
   #
   # Returns nothing.
   slide: (targetPage, currentPage) ->
-
     targetPage.style.display = "-webkit-box"
-    
-    screenWidth = window.innerWidth +  'px';
+    screenWidth = window.innerWidth + 'px'
 
     if @back
       @translate(targetPage, "X", "-" + screenWidth, "0ms")
