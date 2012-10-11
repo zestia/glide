@@ -165,7 +165,7 @@ class Flight
   # Returns nothing.
   translate: (page, axis, distance, duration) ->
     duration = @speed unless duration?
-    page.style.webkitTransition = "#{duration} ease-in-out"
+    page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
   # Private: Display the current page.
