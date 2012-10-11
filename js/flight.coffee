@@ -99,17 +99,17 @@ class Flight
       @translate(targetPage, "X", "-" + screenWidth, "0ms")
       window.setTimeout =>
         @translate(currentPage, "X", "100%")
-      , 10
+      , 0
     else
       @translate(targetPage,"X", screenWidth, "0ms")
       window.setTimeout =>
         @translate(currentPage, "X", "-100%")
-      , 10
+      , 0
 
     window.setTimeout =>
       @translate(targetPage, "X", "0%" )
       @back = false
-    , 10
+    , 0
 
   # Private: Perform a slide from bottom transition.
   #
@@ -167,7 +167,7 @@ class Flight
   # Returns nothing.
   translate: (page, axis, distance, duration) ->
     duration = @speed unless duration?
-    page.style.webkitTransition = "#{duration} ease"
+    page.style.webkitTransition = "#{duration} ease-in-out"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
   # Private: Display the current page.
