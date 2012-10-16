@@ -34,6 +34,8 @@ class Flight
 
     @hideUrlBar() if options.hideUrlbar
 
+    @noClickDelay(document.body)
+
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
@@ -208,5 +210,10 @@ class Flight
     setTimeout ->
         window.scrollTo 0, 1
     , 50
+
+  noClickDelay: (el) ->
+    if typeof (el) is "string"
+      el = document.getElementById(el)
+    el.addEventListener('touchstart', @handleEvents, false)
 
 window.Flight = Flight
