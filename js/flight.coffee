@@ -4,6 +4,7 @@ class Flight
   currentPage: ''
   targetPage: ''
   startPage: ''
+  os: ''
 
   isTransitioning: false
   menuOpen: false
@@ -28,8 +29,8 @@ class Flight
     @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
-    os = @detectUserAgent()
-    @transitionAnimation = false if os.android and os.version <= '2.1'
+    @detectUserAgent()
+    @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
 
@@ -197,7 +198,7 @@ class Flight
     os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
     os.fennec = (if userAgent.match(/fennec/i) then true else false)
     os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
-    os
+    @os = os
 
   # Private: Hide the URL bar in mobile browsers.
   # 
