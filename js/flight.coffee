@@ -107,6 +107,7 @@ class Flight
 
     window.setTimeout =>
       @translate(targetPage, "X", "0%" )
+      targetPage.querySelector('header').style.opacity = "1"
       @back = false
     , 0
 
