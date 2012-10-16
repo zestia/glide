@@ -216,4 +216,35 @@ class Flight
       el = document.getElementById(el)
     el.addEventListener('touchstart', @handleEvents, false)
 
+  handleEvents: (e) =>
+    switch e.type
+      when 'touchstart' then @onTouchStart(e)
+      when 'touchmove' then @onTouchMove(e)
+      when 'touchend' then @onTouchEnd(e)  
+
+  onTouchStart: (e) ->
+    @fixInput(e)
+    console.log "touch start"
+    if flight.prevClick? and @os.android
+      flight.prevClick.blur(); #We need to blur any input fields on android
+      flight.prevClick = null;
+
+  onTouchEnd: (e) ->
+    console.log "on touch end", e.type
+
+  fixInput: (e) =>
+    if not @os.android
+      return
+
+    target = e.touches[0].target
+
+    if target and target.type != undefined
+      tagname = target.tagName.toLowerCase()
+
+      if tagname is "select" or tagname is "input" or tagname is "textarea"
+        flight.prevClick = target 
+    # think this is for if you move onto a form element
+    document.addEventListener('touchmove', this, true);
+    document.addEventListener('touchend', this, true) 
+
 window.Flight = Flight
