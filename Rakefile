@@ -7,6 +7,7 @@ end
 
 desc 'compile less into css'
 task :less do
-  system 'lessc --yui-compress less/flight.less build/flight.css'
-enddesc 'compile coffeescript and less and deploy'
+  system 'lessc --yui-compress src/less/flight.less lib/flight.css'
+end
+
 task :default => [:coffee, :less, :deploy]
