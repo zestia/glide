@@ -1,34 +1,23 @@
 require 'rubygems'
 
-HEADER = /((^\s*\/\/.*\n)+)/
-
-desc 'rebuild the flight-min.js files for distribution'
-task :build do
-  begin
-    require 'closure-compiler'
-  rescue LoadError
-    puts "closure-compiler not found."
-    puts "Install it by running 'gem install closure-compiler'"
-    exit
-  end
-  source = File.read 'build/flight.js'
-  header = source.match HEADER
-  File.open 'build/flight-min.js', 'w+' do |file|
-    file.write header[1].squeeze(' ') + Closure::Compiler.new.compress(source)
-  end
-end
-
-desc 'compile coffeescript and less'
-task :default => [:coffee, :less]
-
 desc 'compile coffeescript into javascript'
 task :coffee do
-  system 'mkdir -p build/'
-  system 'coffee -c -o build/ js/*.coffee '
+  system 'coffee -co lib/ src/coffee/*.coffee'
+  system 'coffee -c demo/app/*.coffee'
 end
 
 desc 'compile less into css'
 task :less do
-  system 'mkdir -p build/'
-  system 'lessc --yui-compress less/flight.less build/flight.css'
+  system 'lessc --yui-compress src/less/flight.less lib/flight.css'
 end
+
+desc 'Deploy to local development server'
+task :deploy do
+  system 'mkdir -p /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/{flight,flight/lib,flight/demo}'
+  system 'cp -r lib/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/flight/lib'
+  system 'cp -r demo/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/flight/demo'
+  puts "Flight demo deployed to .war"
+end
+
+desc 'compile coffeescript and less and deploy'
+task :default => [:coffee, :less, :deploy]
