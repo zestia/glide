@@ -7,7 +7,7 @@ task :default => [:coffee, :less]
 desc 'compile coffeescript into javascript'
 task :coffee do
   system 'mkdir -p build/'
-  system 'coffee -c -o build/ js/*.coffee '
+  system 'coffee -co lib/ src/coffee/*.coffee'
 end
 
 desc 'compile less into css'
