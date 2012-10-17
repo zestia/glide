@@ -3,6 +3,7 @@ require 'rubygems'
 desc 'compile coffeescript into javascript'
 task :coffee do
   system 'coffee -co lib/ src/coffee/*.coffee'
+  system 'coffee -c demo/app/*.coffee'
 end
 
 desc 'compile less into css'
