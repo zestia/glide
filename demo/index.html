@@ -41,8 +41,7 @@
             <div class="bar"></div>
           </button>
         </a>
-        <a href="#test" class="btn right"><button class="primary">Forward</button></a>
-        <a id="prepend" class="btn right"><button class="primary">Prepend input</button></a>
+        <a href="#test" class="btn right"><button class="primary">Add</button></a>
         <h1>Activity</h1>
       </header>
       <div class="scrollview">
@@ -94,62 +93,18 @@
               </li>
               <li>
                 <input type="text" placeholder="Last name" />
+              </li>            
+              <li>
+                <textarea type="textarea" placeholder="Address"></textarea>
+              </li>
+              <li>
+                <label>Address</label>
+                <select>
+                  <option>Home</option>
+                  <option>Work</option>
+                </select>
               </li>
             </form>
-            <ul class="list">
-              <li><p>First line</p></li>
-              <li><p>Second line</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Duis aute irure dolor in reprehenderit in voluptate velit esse</p></li>
-              <li><p>cillum dolore eu fugiat nulla pariatur.</p></li>
-              <li><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p></li>
-              <li><p>deserunt mollit anim id est laborum.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Duis aute irure dolor in reprehenderit in voluptate velit esse</p></li>
-              <li><p>cillum dolore eu fugiat nulla pariatur.</p></li>
-              <li><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p></li>
-              <li><p>deserunt mollit anim id est laborum.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Duis aute irure dolor in reprehenderit in voluptate velit esse</p></li>
-              <li><p>cillum dolore eu fugiat nulla pariatur.</p></li>
-              <li><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p></li>
-              <li><p>deserunt mollit anim id est laborum.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Duis aute irure dolor in reprehenderit in voluptate velit esse</p></li>
-              <li><p>cillum dolore eu fugiat nulla pariatur.</p></li>
-              <li><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p></li>
-              <li><p>deserunt mollit anim id est laborum.</p></li>
-              <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></li>
-              <li><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></li>
-              <li><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco</p></li>
-              <li><p>laboris nisi ut aliquip ex ea commodo consequat.</p></li>
-              <li><p>Last line</p></li>
-            </ul>
-
           </div>
         </div>
       </div>
@@ -184,11 +139,6 @@
           window.history.back()
         });
 
-        // debugging test
-        $('#prepend').on('click',function(){
-          $('#activity-list').prepend('<li><input type="text" placeholder="Inout me" /></li>');
-        });
-        
       });
     </script>
 
