@@ -5,6 +5,7 @@ class Flight
   targetPage: ''
   startPage: ''
   os: ''
+  iScroll: {}
 
   isTransitioning: false
   menuOpen: false
@@ -51,6 +52,8 @@ class Flight
     else if targetPage
       @targetPage = targetPage
 
+    @iScroll = new iScroll(@targetPage.querySelector('.scrollview-inner')) if @os.android and @os.version < '4' 
+    
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
@@ -239,6 +242,9 @@ class Flight
       when 'touchend' then @onTouchEnd(e)  
 
   onTouchStart: (e) ->
+    if @os.android
+      @iScroll.refresh()
+
     @fixInput(e)
 
     if flight.prevClick? and @os.android
