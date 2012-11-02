@@ -37,8 +37,8 @@ class Flight
 
     @hideUrlBar() if options.hideUrlbar
     
-    # if window.Touch // need to add this back in when finished
-    document.body.addEventListener('touchstart', @handleEvents, false)
+    if window.Touch
+      document.body.addEventListener('touchstart', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
