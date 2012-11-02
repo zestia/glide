@@ -6,6 +6,7 @@ class Flight
   startPage: ''
   os: ''
   iScroll: {}
+  moved: false
 
   isTransitioning: false
   menuOpen: false
@@ -32,11 +33,12 @@ class Flight
 
     @detectUserAgent()
     
-    @noClickDelay(document.body)
-
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
+    
+    # if window.Touch // need to add this back in when finished
+    document.body.addEventListener('touchstart', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
@@ -230,11 +232,6 @@ class Flight
     str = str += content
     debug.innerHTML = str
     
-  noClickDelay: (el) ->
-    if typeof (el) is "string"
-      el = document.getElementById(el)
-    el.addEventListener('touchstart', @handleEvents, false)
-
   handleEvents: (e) =>
     switch e.type
       when 'touchstart' then @onTouchStart(e)
@@ -242,17 +239,24 @@ class Flight
       when 'touchend' then @onTouchEnd(e)  
 
   onTouchStart: (e) ->
-    if @os.android
-      @iScroll.refresh()
+    e.stopPropagation();
+    @moved = false
+    e.target.addEventListener('touchmove', @onTouchMove, false);
+    e.target.addEventListener('touchend', @onTouchEnd, false)
+    document.getElementById('result').innerHTML += ' ' + e.type
 
-    @fixInput(e)
-
-    if flight.prevClick? and @os.android
-      flight.prevClick.blur(); #We need to blur any input fields on android
-      flight.prevClick = null;
+  onTouchMove: (e) ->
+    @moved = true
 
   onTouchEnd: (e) ->
-    console.log "End"
+    e.target.removeEventListener('touchmove', @onTouchMove, false);
+    e.target.removeEventListener('touchend', @onTouchEnd, false);
+
+    if not @moved
+      e.preventDefault()  
+      theEvent = document.createEvent('MouseEvents')
+      theEvent.initEvent('click', true, true)
+      e.target.dispatchEvent(theEvent)
 
   fixInput: (e) =>
     if not @os.android
