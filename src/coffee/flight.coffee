@@ -239,9 +239,9 @@ class Flight
       when 'touchend' then @onTouchEnd(e)  
 
   onTouchStart: (e) ->
-    e.stopPropagation();
+    e.stopPropagation()
     @moved = false
-    e.target.addEventListener('touchmove', @onTouchMove, false);
+    e.target.addEventListener('touchmove', @onTouchMove, false)
     e.target.addEventListener('touchend', @onTouchEnd, false)
     document.getElementById('result').innerHTML += ' ' + e.type
 
@@ -249,8 +249,8 @@ class Flight
     @moved = true
 
   onTouchEnd: (e) ->
-    e.target.removeEventListener('touchmove', @onTouchMove, false);
-    e.target.removeEventListener('touchend', @onTouchEnd, false);
+    e.target.removeEventListener('touchmove', @onTouchMove, false)
+    e.target.removeEventListener('touchend', @onTouchEnd, false)
 
     if not @moved
       e.preventDefault()  
@@ -270,7 +270,7 @@ class Flight
         flight.prevClick = target
 
     # think this is for if you move onto a form element
-    document.addEventListener('touchmove', this, true);
+    document.addEventListener('touchmove', this, true)
     document.addEventListener('touchend', this, true) 
 
 window.Flight = Flight
