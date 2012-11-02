@@ -36,9 +36,10 @@ class Flight
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
-    
+
     if window.Touch
       document.body.addEventListener('touchstart', @handleEvents, false)
+      document.body.addEventListener('click', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
@@ -237,13 +238,15 @@ class Flight
       when 'touchstart' then @onTouchStart(e)
       when 'touchmove' then @onTouchMove(e)
       when 'touchend' then @onTouchEnd(e)  
+      when 'click' then @onTouchEnd(e)  
 
   onTouchStart: (e) ->
-    e.stopPropagation()
     @moved = false
-    e.target.addEventListener('touchmove', @onTouchMove, false)
     e.target.addEventListener('touchend', @onTouchEnd, false)
-    document.getElementById('result').innerHTML += ' ' + e.type
+    e.target.addEventListener('touchmove', @onTouchMove, false)
+
+    @touches.startX = e.touches[0].clientX
+    @touches.startY = e.touches[0].clientY
 
   onTouchMove: (e) ->
     @moved = true
@@ -253,10 +256,13 @@ class Flight
     e.target.removeEventListener('touchend', @onTouchEnd, false)
 
     if not @moved
-      e.preventDefault()  
+      e.preventDefault()
+      e.stopPropagation()
+      e.target.focus()
+
       theEvent = document.createEvent('MouseEvents')
       theEvent.initEvent('click', true, true)
-      e.target.dispatchEvent(theEvent)
+      e.target.dispatchEvent(theEvent) 
 
   fixInput: (e) =>
     if not @os.android
