@@ -254,12 +254,11 @@ class Flight
   onTouchEnd: (e) ->
     e.target.removeEventListener('touchmove', @onTouchMove, false)
     e.target.removeEventListener('touchend', @onTouchEnd, false)
-
-    if not @moved
-      e.preventDefault()
-      e.stopPropagation()
+    e.preventDefault()
+    e.stopPropagation()
+    
+    if not @moved 
       e.target.focus()
-
       theEvent = document.createEvent('MouseEvents')
       theEvent.initEvent('click', true, true)
       e.target.dispatchEvent(theEvent) 
