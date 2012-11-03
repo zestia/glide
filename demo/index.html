@@ -143,14 +143,11 @@
     <script type="text/javascript">
       $(function() {
         app.init();
+
         // disable touch move on header to prevent user stretching from top
         header = document.querySelector('header')
         header.addEventListener('touchmove', function(e) {
           e.preventDefault();
-        });
-
-        $('.menu').on('click', function() {
-          flight.slideOutMenu();
         });
 
         $('.back').on('click', function() {
