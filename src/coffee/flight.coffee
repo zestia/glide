@@ -217,22 +217,6 @@ class Flight
         window.scrollTo 0, 1
     , 50
 
-  debug: (str) -> 
-    debug = document.getElementById('debug')
-
-    if str is 'hide'
-      debug.style.display = "none"
-      return
-
-    if str is 'show'
-      debug.style.display = "block"
-      return
-
-    str = str += '<br />'
-    content = debug.innerHTML
-    str = str += content
-    debug.innerHTML = str
-    
   handleEvents: (e) =>
     switch e.type
       when 'touchstart' then @onTouchStart(e)
