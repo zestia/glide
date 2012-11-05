@@ -245,9 +245,6 @@ class Flight
     e.target.addEventListener('touchend', @onTouchEnd, false)
     e.target.addEventListener('touchmove', @onTouchMove, false)
 
-    @touches.startX = e.touches[0].clientX
-    @touches.startY = e.touches[0].clientY
-
   onTouchMove: (e) ->
     @moved = true
 
