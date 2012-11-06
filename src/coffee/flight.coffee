@@ -38,7 +38,6 @@ class Flight
 
     @hideUrlBar() if options.hideUrlbar
 
-    # if window.Touch
     document.body.addEventListener('touchstart', @handleEvents, false)
     document.body.addEventListener('click', @handleEvents, false)
 
@@ -221,6 +220,7 @@ class Flight
   handleEvents: (e) =>
     switch e.type
       when 'touchstart' then @onTouchStart(e)
+      when 'click' then @onTouchStart(e)
       when 'touchmove' then @onTouchMove(e)
       when 'touchend' then @onTouchEnd(e)
 
@@ -234,6 +234,7 @@ class Flight
     @theTarget.className+= ' pressed'
     @theTarget.addEventListener('touchmove', @onTouchMove, false)
     @theTarget.addEventListener('touchend', @onTouchEnd, false)
+    @theTarget.addEventListener('mouseup', @onTouchEnd, false)
     @theTarget.addEventListener('touchcancel', @onTouchcancel, false)
 
   onTouchMove: (e) =>
