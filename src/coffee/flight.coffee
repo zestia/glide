@@ -226,16 +226,15 @@ class Flight
 
   onTouchStart: (e) =>
     @moved = false
-    @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
-    
-    loop
-      break if @theTarget.nodeName.toLowerCase() is 'a'
+    @theTarget = e.target
+
+    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() is not 'a'
       @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
-    e.target.addEventListener('touchmove', @onTouchMove, false)
-    e.target.addEventListener('touchend', @onTouchEnd, false)
-    e.target.addEventListener('touchcancel', @onTouchcancel, false)
+    @theTarget.addEventListener('touchmove', @onTouchMove, false)
+    @theTarget.addEventListener('touchend', @onTouchEnd, false)
+    @theTarget.addEventListener('touchcancel', @onTouchcancel, false)
 
   onTouchMove: (e) =>
     @moved = true
