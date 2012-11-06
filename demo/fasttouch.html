@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Click delay on webkit for iPhone/iPod touch</title>
 <script type="text/javascript" src="../lib/flight.js"></script>
+<script type="text/javascript" src="vendor/fastClick.js"></script>
 <script type="text/javascript">
 
 
@@ -13,7 +14,7 @@ function loaded() {
 	var theTap = document.getElementById('theTap');
 	var result = document.getElementById('result');
 
-	window.flight = new Flight();
+	// window.flight = new Flight();
 
 	counter = 0;
 
@@ -24,6 +25,13 @@ function loaded() {
 	
 	theClick.addEventListener('click', function(e){
 		result.innerHTML = 'Delay: ' + (e.timeStamp-this.timeStart) + 'ms';
+		if (counter % 2) {
+			result.style.background = 'red';
+		}
+		else {
+			result.style.background = 'blue';
+		}
+		counter++;
 	}, false);
 
 	theTap.addEventListener('touchstart', function(e){
@@ -36,6 +44,10 @@ function loaded() {
 }
 
 window.addEventListener('load', function(){ setTimeout(function(){ loaded(); }, 100) }, true);
+
+window.addEventListener('load', function() {
+    new FastClick(document.body);
+}, false);
 
 </script>
 

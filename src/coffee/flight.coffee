@@ -6,7 +6,6 @@ class Flight
   startPage: ''
   os: ''
   iScroll: {}
-  moved: false
 
   isTransitioning: false
   menuOpen: false
@@ -36,10 +35,6 @@ class Flight
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
-
-    if window.Touch
-      document.body.addEventListener('touchstart', @handleEvents, false)
-      document.body.addEventListener('click', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
@@ -216,67 +211,5 @@ class Flight
     setTimeout ->
         window.scrollTo 0, 1
     , 50
-
-  debug: (str) -> 
-    debug = document.getElementById('debug')
-
-    if str is 'hide'
-      debug.style.display = "none"
-      return
-
-    if str is 'show'
-      debug.style.display = "block"
-      return
-
-    str = str += '<br />'
-    content = debug.innerHTML
-    str = str += content
-    debug.innerHTML = str
-    
-  handleEvents: (e) =>
-    switch e.type
-      when 'touchstart' then @onTouchStart(e)
-      when 'touchmove' then @onTouchMove(e)
-      when 'touchend' then @onTouchEnd(e)  
-      when 'click' then @onTouchEnd(e)  
-
-  onTouchStart: (e) ->
-    @moved = false
-    e.target.addEventListener('touchend', @onTouchEnd, false)
-    e.target.addEventListener('touchmove', @onTouchMove, false)
-
-    @touches.startX = e.touches[0].clientX
-    @touches.startY = e.touches[0].clientY
-
-  onTouchMove: (e) ->
-    @moved = true
-
-  onTouchEnd: (e) ->
-    e.target.removeEventListener('touchmove', @onTouchMove, false)
-    e.target.removeEventListener('touchend', @onTouchEnd, false)
-
-    if not @moved
-      e.preventDefault()
-      e.stopPropagation()
-      e.target.focus()
-
-      theEvent = document.createEvent('MouseEvents')
-      theEvent.initEvent('click', true, true)
-      e.target.dispatchEvent(theEvent) 
-
-  fixInput: (e) =>
-    if not @os.android
-      return
-    target = e.touches[0].target
-
-    if target and target.type != undefined
-      tagname = target.tagName.toLowerCase()
-
-      if tagname is "select" or tagname is "input" or tagname is "textarea"
-        flight.prevClick = target
-
-    # think this is for if you move onto a form element
-    document.addEventListener('touchmove', this, true)
-    document.addEventListener('touchend', this, true) 
 
 window.Flight = Flight
