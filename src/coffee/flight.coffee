@@ -228,7 +228,7 @@ class Flight
     @moved = false
     @theTarget = e.target
 
-    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() is not 'a'
+    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a'
       @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
