@@ -6,6 +6,8 @@ class Flight
   startPage: ''
   os: ''
   iScroll: {}
+  moved: false
+  theTarget: {}
 
   isTransitioning: false
   menuOpen: false
@@ -35,6 +37,10 @@ class Flight
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
+
+    # if window.Touch
+    document.body.addEventListener('touchstart', @handleEvents, false)
+    document.body.addEventListener('click', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
@@ -211,5 +217,29 @@ class Flight
     setTimeout ->
         window.scrollTo 0, 1
     , 50
+
+  handleEvents: (e) =>
+    switch e.type
+      when 'touchstart' then @onTouchStart(e)
+      when 'touchmove' then @onTouchMove(e)
+      when 'touchend' then @onTouchEnd(e)
+
+  onTouchStart: (e) =>
+    @moved = false
+    @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    @theTarget.className+= ' pressed'
+    e.target.addEventListener('touchmove', @onTouchMove, false)
+    e.target.addEventListener('touchend', @onTouchEnd, false)
+    e.target.addEventListener('touchcancel', @onTouchcancel, false)
+
+  onTouchMove: (e) =>
+    @moved = true
+    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
+
+  onTouchEnd: (e) =>
+    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
+
+  onTouchCancel: (e) =>
+    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
 window.Flight = Flight
