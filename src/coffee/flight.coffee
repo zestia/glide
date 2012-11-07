@@ -101,23 +101,33 @@ class Flight
   # Returns nothing.
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
+    targetPage.style.overflow = "visible"
     screenWidth = window.innerWidth + 'px'
+
+    currentPageClone = currentPage.cloneNode true
+    currentPage.parentNode.appendChild currentPageClone
+    currentPageClone.style.overflow = "visible"
+    currentPage.style.display = "none"
 
     if @back
       @translate(targetPage, "X", "-" + screenWidth, "0ms")
       window.setTimeout =>
-        @translate(currentPage, "X", "100%")
+        @translate(currentPageClone, "X", "100%")
       , 0
     else
       @translate(targetPage,"X", screenWidth, "0ms")
       window.setTimeout =>
-        @translate(currentPage, "X", "-100%")
+        @translate(currentPageClone, "X", "-100%")
       , 0
 
     window.setTimeout =>
-      @translate(targetPage, "X", "0%" )
+      @translate(targetPage, "X", "0%")
       @back = false
     , 0
+
+    window.setTimeout =>
+      currentPageClone.parentNode.removeChild currentPageClone
+    , 800
 
   # Private: Perform a slide from bottom transition.
   #
