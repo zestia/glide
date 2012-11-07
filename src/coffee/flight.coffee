@@ -226,7 +226,7 @@ class Flight
 
   onTouchStart: (e) =>
     @moved = false
-    @theTarget = e.target
+    @theTarget =  document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
 
     if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a'
       @theTarget = @theTarget.parentNode
