@@ -39,7 +39,7 @@ class Flight
     @hideUrlBar() if options.hideUrlbar
 
     document.body.addEventListener('touchstart', @handleEvents, false)
-    document.body.addEventListener('click', @handleEvents, false)
+    document.body.addEventListener('mousedown', @handleEvents, false)
 
   # Public: Go to a specific page.
   #
@@ -220,19 +220,24 @@ class Flight
   handleEvents: (e) =>
     switch e.type
       when 'touchstart' then @onTouchStart(e)
-      when 'click' then @onTouchStart(e)
+      when 'mousedown' then @onTouchStart(e)
       when 'touchmove' then @onTouchMove(e)
       when 'touchend' then @onTouchEnd(e)
 
   onTouchStart: (e) =>
     @moved = false
-    @theTarget =  document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    
+    if window.Touch
+      @theTarget =  document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+    else
+      @theTarget = document.elementFromPoint e.clientX, e.clientY
 
     if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a'
       @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
     @theTarget.addEventListener('touchmove', @onTouchMove, false)
+    @theTarget.addEventListener('mouseout', @onTouchEnd, false)
     @theTarget.addEventListener('touchend', @onTouchEnd, false)
     @theTarget.addEventListener('mouseup', @onTouchEnd, false)
     @theTarget.addEventListener('touchcancel', @onTouchcancel, false)
