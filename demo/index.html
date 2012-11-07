@@ -154,8 +154,10 @@
         $('.back').on('click', function() {
           window.history.back()
         });
-
-        new FastClick(document.body);
+        
+        if (window.Touch) {
+          new FastClick(document.body);
+        } 
 
       });
 
