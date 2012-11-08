@@ -14,7 +14,7 @@ class Flight
   back: false
 
   transitionAnimation: true
-  speed: '0.4s'
+  speed: 0.4
   mainMenu: '#main-menu'
   menuCloseButton: '#close-menu-btn'
 
@@ -125,9 +125,11 @@ class Flight
       @back = false
     , 0
 
+    # delay node removal time to speed
+    delay = @speed * 1000
     window.setTimeout =>
       currentPageClone.parentNode.removeChild currentPageClone
-    , 800
+    , delay
 
   # Private: Perform a slide from bottom transition.
   #
@@ -184,7 +186,7 @@ class Flight
   #
   # Returns nothing.
   translate: (page, axis, distance, duration) ->
-    duration = @speed unless duration?
+    duration = @speed + "s" unless duration?
     page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
