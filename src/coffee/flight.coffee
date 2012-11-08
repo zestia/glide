@@ -14,7 +14,7 @@ class Flight
   back: false
 
   transitionAnimation: true
-  speed: 0.4
+  speed: 0.3
   mainMenu: '#main-menu'
   menuCloseButton: '#close-menu-btn'
 
@@ -102,22 +102,18 @@ class Flight
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     targetPage.style.overflow = "visible"
+    currentPage.style.overflow = "visible"
     screenWidth = window.innerWidth + 'px'
-
-    currentPageClone = currentPage.cloneNode true
-    currentPage.parentNode.appendChild currentPageClone
-    currentPageClone.style.overflow = "visible"
-    currentPage.style.display = "none"
 
     if @back
       @translate(targetPage, "X", "-" + screenWidth, "0ms")
       window.setTimeout =>
-        @translate(currentPageClone, "X", "100%")
+        @translate(currentPage, "X", "100%")
       , 0
     else
       @translate(targetPage,"X", screenWidth, "0ms")
       window.setTimeout =>
-        @translate(currentPageClone, "X", "-100%")
+        @translate(currentPage, "X", "-100%")
       , 0
 
     window.setTimeout =>
@@ -126,9 +122,9 @@ class Flight
     , 0
 
     # delay node removal time to speed
-    delay = @speed * 1000
+    delay = (@speed * 1000) + 300
     window.setTimeout =>
-      currentPageClone.parentNode.removeChild currentPageClone
+      currentPage.style.display = "none"
     , delay
 
   # Private: Perform a slide from bottom transition.
