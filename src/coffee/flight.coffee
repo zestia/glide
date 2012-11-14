@@ -241,7 +241,7 @@ class Flight
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
-    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a'
+    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and @theTarget.nodeType == 3
       @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
