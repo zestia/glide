@@ -75,10 +75,10 @@ class Flight
       @back = true
       
     if @back and @pageHistory.length != 1
-      transitionType = @currentPage.getAttribute("data-transition")
+      transitionType = @currentPage.getAttribute("data-transition") or 'slide'
       @pageHistory.pop()
     else
-      transitionType = @targetPage.getAttribute("data-transition")
+      transitionType = @targetPage.getAttribute("data-transition") or 'slide'
       @pageHistory.push(window.location.hash)
     
     targetPage = @targetPage
