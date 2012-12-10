@@ -5,7 +5,7 @@ class Flight
   targetPage: ''
   startPage: ''
   os: ''
-  iScroll: {}
+  iScroll: null
   moved: false
   theTarget: {}
 
