@@ -237,11 +237,11 @@ class Flight
     @moved = false
     
     if window.Touch
-      @theTarget =  document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+      @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
-    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and @theTarget.nodeType == 3
+    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
       @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
