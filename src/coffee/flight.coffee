@@ -131,19 +131,27 @@ class Flight
   #
   # Returns nothing.
   slideUp: (targetPage, currentPage) ->
-    @targetPage.style.display = "-webkit-box"
+    targetPage.style.display = "-webkit-box"
+    targetPage.style.overflow = "visible"
+    currentPage.style.overflow = "visible"
+    screenHeight = window.innerHeight + 'px'
 
     if @back
       window.setTimeout =>
-        @translate(currentPage, "Y", "100%")
-      , 10
+        @translate(currentPage, "Y", screenHeight)
+      , 0
     else
-      targetPage.style.display = "-webkit-box"
-      @translate(targetPage, "Y", "100%","0ms")
+      @translate(targetPage, "Y", screenHeight,"0ms")
       window.setTimeout =>
         @translate(targetPage, "Y", "0%")
-      , 10
+      , 0
 
+    # delay node removal time to speed
+    delay = (@speed * 1000) + 300
+    window.setTimeout =>
+      currentPage.style.display = "none"
+    , delay
+    
     @back = false
 
   # Private: Perform a slide out transition for the menu.
