@@ -242,7 +242,8 @@ class Flight
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
     if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
-      @theTarget = @theTarget.parentNode
+      while @theTarget.nodeName.toLowerCase() isnt 'a'
+        @theTarget = @theTarget.parentNode
     
     @theTarget.className+= ' pressed'
     @theTarget.addEventListener('touchmove', @onTouchMove, false)
