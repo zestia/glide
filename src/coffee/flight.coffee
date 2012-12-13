@@ -7,7 +7,7 @@ class Flight
   os: ''
   iScroll: null
   moved: false
-  theTarget: {}
+  theTarget: null
 
   isTransitioning: false
   menuOpen: false
@@ -38,10 +38,19 @@ class Flight
 
     @hideUrlBar() if options.hideUrlbar
 
-    if window.Touch
+    if @isTouch()
       document.body.addEventListener 'touchstart', @handleEvents, false
     else
       document.body.addEventListener 'mousedown', @handleEvents, false
+
+  # Private: Is the device touch enabled.
+  #
+  # Returns True if the device is touch enabled, else False.
+  isTouch: =>
+    if @os.android
+      !!('ontouchstart' of window)
+    else
+      window.Touch?
 
   # Public: Go to a specific page.
   #
@@ -237,7 +246,7 @@ class Flight
     , 50
 
   handleEvents: (e) =>
-    if window.Touch
+    if @isTouch()
       switch e.type
         when 'touchstart'
           @onTouchStart e
@@ -253,7 +262,7 @@ class Flight
   onTouchStart: (e) =>
     @moved = false
 
-    if window.Touch
+    if @isTouch()
       @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
