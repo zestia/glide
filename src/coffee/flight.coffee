@@ -7,7 +7,7 @@ class Flight
   os: ''
   iScroll: null
   moved: false
-  theTarget: {}
+  theTarget: null
 
   isTransitioning: false
   menuOpen: false
@@ -33,13 +33,24 @@ class Flight
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
     @detectUserAgent()
-    
+
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
     @hideUrlBar() if options.hideUrlbar
 
-    document.body.addEventListener('touchstart', @handleEvents, false)
-    document.body.addEventListener('mousedown', @handleEvents, false)
+    if @isTouch()
+      document.body.addEventListener 'touchstart', @handleEvents, false
+    else
+      document.body.addEventListener 'mousedown', @handleEvents, false
+
+  # Private: Is the device touch enabled.
+  #
+  # Returns True if the device is touch enabled, else False.
+  isTouch: =>
+    if @os.android
+      !!('ontouchstart' of window)
+    else
+      window.Touch?
 
   # Public: Go to a specific page.
   #
@@ -47,7 +58,7 @@ class Flight
   #
   # Returns nothing.
   goto: (targetPage) =>
-    if @menuOpen is true 
+    if @menuOpen is true
       @closeMenu()
 
     if typeof targetPage is "string"
@@ -55,8 +66,9 @@ class Flight
     else if targetPage
       @targetPage = targetPage
 
-    @iScroll = new iScroll(@targetPage.querySelector('.scrollview-inner')) if @os.android and @os.version < '4' 
-    
+    if @os.android and @os.version < '4'
+      @iScroll = new iScroll @targetPage.querySelector('.scrollview-inner')
+
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
@@ -73,14 +85,14 @@ class Flight
 
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
-      
+
     if @back and @pageHistory.length != 1
       transitionType = @currentPage.getAttribute("data-transition") or 'slide'
       @pageHistory.pop()
     else
       transitionType = @targetPage.getAttribute("data-transition") or 'slide'
-      @pageHistory.push(window.location.hash)
-    
+      @pageHistory.push window.location.hash
+
     targetPage = @targetPage
     currentPage = @currentPage
     @currentPage = @targetPage
@@ -89,11 +101,12 @@ class Flight
     window.setTimeout =>
       if @transitionAnimation
         switch transitionType
-          when "slide" then @slide(targetPage, currentPage)
-          when "slideUp" then @slideUp(targetPage, currentPage)
+          when "slide"
+            @slide targetPage, currentPage
+          when "slideUp"
+            @slideUp targetPage, currentPage
       else
-        @displayPage(targetPage, currentPage)
-        
+        @displayPage targetPage, currentPage
     , 10
 
   # Private: Perform a slide transition.
@@ -106,18 +119,20 @@ class Flight
     screenWidth = window.innerWidth + 'px'
 
     if @back
-      @translate(targetPage, "X", "-" + screenWidth, "0ms")
+      @translate targetPage, "X", "-" + screenWidth, "0ms"
+
       window.setTimeout =>
-        @translate(currentPage, "X", "100%")
+        @translate currentPage, "X", "100%"
       , 0
     else
-      @translate(targetPage,"X", screenWidth, "0ms")
+      @translate targetPage,"X", screenWidth, "0ms"
+
       window.setTimeout =>
-        @translate(currentPage, "X", "-100%")
+        @translate currentPage, "X", "-100%"
       , 0
 
     window.setTimeout =>
-      @translate(targetPage, "X", "0%")
+      @translate targetPage, "X", "0%"
       @back = false
     , 0
 
@@ -160,17 +175,21 @@ class Flight
   slideOutMenu: ->
     if @menuOpen
       window.setTimeout =>
-        @translate(@mainMenu, "X", "-110%", "0.3s")
-      ,10
+        @translate @mainMenu, "X", "-110%", "0.3s"
+      , 10
+
       window.setTimeout =>
-        @mainMenu.style.display = "none"  
-      ,300
+        @mainMenu.style.display = "none"
+      , 300
+
       @menuOpen = false
     else
-      @translate(@mainMenu, "X", "-110%", "0ms")
+      @translate @mainMenu, "X", "-110%", "0ms"
+
       window.setTimeout =>
-        @translate(@mainMenu, "X", "0%", "0.3s")
-      ,10
+        @translate @mainMenu, "X", "0%", "0.3s"
+      , 10
+
       @mainMenu.style.display = "block"
       @menuOpen = true
 
@@ -178,7 +197,7 @@ class Flight
   #
   # Returns nothing.
   closeMenu: ->
-    @mainMenu.style.display = "none"  
+    @mainMenu.style.display = "none"
     @menuOpen = false
 
   # Private: Translate page on a specified axis.
@@ -227,7 +246,7 @@ class Flight
     @os = os
 
   # Private: Hide the URL bar in mobile browsers.
-  # 
+  #
   # Returns nothing.
   hideUrlBar: ->
     setTimeout ->
@@ -235,29 +254,38 @@ class Flight
     , 50
 
   handleEvents: (e) =>
-    switch e.type
-      when 'touchstart' then @onTouchStart(e)
-      when 'mousedown' then @onTouchStart(e)
-      when 'touchmove' then @onTouchMove(e)
-      when 'touchend' then @onTouchEnd(e)
+    if @isTouch()
+      switch e.type
+        when 'touchstart'
+          @onTouchStart e
+        when 'touchmove'
+          @onTouchMove e
+        when 'touchend'
+          @onTouchEnd e
+    else
+      switch e.type
+        when 'mousedown'
+          @onTouchStart e
 
   onTouchStart: (e) =>
     @moved = false
-    
-    if window.Touch
+
+    if @isTouch()
       @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
     if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
-      @theTarget = @theTarget.parentNode
-    
+      @oldTarget = @theTarget
+      @parents = $(@theTarget).parentsUntil('ul li')
+      @theTarget = @parents[@parents.length-1] or @oldTarget
+
     @theTarget.className+= ' pressed'
-    @theTarget.addEventListener('touchmove', @onTouchMove, false)
-    @theTarget.addEventListener('mouseout', @onTouchEnd, false)
-    @theTarget.addEventListener('touchend', @onTouchEnd, false)
-    @theTarget.addEventListener('mouseup', @onTouchEnd, false)
-    @theTarget.addEventListener('touchcancel', @onTouchcancel, false)
+    @theTarget.addEventListener 'touchmove', @onTouchMove, false
+    @theTarget.addEventListener 'mouseout', @onTouchEnd, false
+    @theTarget.addEventListener 'touchend', @onTouchEnd, false
+    @theTarget.addEventListener 'mouseup', @onTouchEnd, false
+    @theTarget.addEventListener 'touchcancel', @onTouchcancel, false
 
   onTouchMove: (e) =>
     @moved = true
