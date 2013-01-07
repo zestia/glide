@@ -155,6 +155,10 @@
           window.history.back()
         });
         
+        $('.scrollview-inner').on('touchstart',function(){
+          flight.iScroll.refresh()
+        });
+
         if (window.Touch) {
           new FastClick(document.body);
         } 
