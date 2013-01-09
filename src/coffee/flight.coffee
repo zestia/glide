@@ -12,6 +12,7 @@ class Flight
   isTransitioning: false
   menuOpen: false
   back: false
+  timeout: null
 
   transitionAnimation: true
   speed: 0.3
@@ -136,11 +137,7 @@ class Flight
       @back = false
     , 0
 
-    # delay node removal time to speed
-    delay = (@speed * 1000) + 300
-    window.setTimeout =>
-      currentPage.style.display = "none"
-    , delay
+    @hideTransitionedPage currentPage
 
   # Private: Perform a slide from bottom transition.
   #
@@ -161,11 +158,7 @@ class Flight
         @translate(targetPage, "Y", "0%")
       , 0
 
-    # delay node removal time to speed
-    delay = (@speed * 1000) + 300
-    window.setTimeout =>
-      currentPage.style.display = "none"
-    , delay
+    @hideTransitionedPage currentPage
     
     @back = false
 
@@ -222,6 +215,22 @@ class Flight
     currentPage.style.display = "-webkit-box"
     targetPage.style.left = "0%"
     currentPage.style.left = "100%"
+
+  # Private: Hide DOM that has just been transitioned
+  #
+  # page    - The page that has just been moved outside of view
+  #
+  # Returns nothing
+  hideTransitionedPage: (page) ->
+    if @timeout != null
+      clearTimeout @timeout
+    
+    # delay node removal time to speed
+    delay = (@speed * 1000) + 300
+    @timeout = window.setTimeout =>
+      currentPage.style.display = "none"
+    , delay
+
 
   # Private: Get a Hash of browser user agent information.
   #
