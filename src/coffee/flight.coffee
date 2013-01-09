@@ -226,9 +226,9 @@ class Flight
       clearTimeout @timeout
     
     # delay node removal time to speed
-    delay = (@speed * 1000) + 300
+    delay = (@speed * 1000)
     @timeout = window.setTimeout =>
-      currentPage.style.display = "none"
+      page.style.display = "none"
     , delay
 
 
