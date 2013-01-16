@@ -67,6 +67,8 @@ class Flight
     else if targetPage
       @targetPage = targetPage
 
+    return if @targetPage is @currentPage
+
     if @os.android and @os.version < '4'
       @iScroll = new iScroll @targetPage.querySelector('.scrollview-inner')
 
