@@ -53,6 +53,18 @@ class Flight
     else
       window.Touch?
 
+  # Public: Is the device running Android
+  #
+  # Returns True if the device is running Android, else False.
+  isAndroid: =>
+    @os.android
+
+  # Public: Is the device running iOS
+  #
+  # Returns True if the device is running iOS, else False.
+  isIOS: =>
+    @os.ios
+
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
