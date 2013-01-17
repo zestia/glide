@@ -44,6 +44,9 @@ class Flight
     else
       document.body.addEventListener 'mousedown', @handleEvents, false
 
+    document.addEventListener "webkitTransitionEnd", (e) =>
+      @hideTransitionedPage e.target
+
   # Private: Is the device touch enabled.
   #
   # Returns True if the device is touch enabled, else False.
@@ -157,8 +160,6 @@ class Flight
       @back = false
     , 0
 
-    @hideTransitionedPage currentPage
-
   # Private: Perform a slide from bottom transition.
   #
   # Returns nothing.
@@ -178,8 +179,6 @@ class Flight
         @translate(targetPage, "Y", "0%")
       , 0
 
-    @hideTransitionedPage currentPage
-    
     @back = false
 
   # Private: Perform a slide out transition for the menu.
@@ -241,16 +240,9 @@ class Flight
   # page    - The page that has just been moved outside of view
   #
   # Returns nothing
-  hideTransitionedPage: (page) ->
-    if @timeout != null
-      clearTimeout @timeout
-    
-    # delay node removal time to speed
-    delay = (@speed * 1000)
-    @timeout = window.setTimeout =>
-      page.style.display = "none"
-    , delay
-
+  hideTransitionedPage: (page) =>
+    if @hasClass(page,'page')
+      page.style.display = "none" unless page.id is @targetPage.id
 
   # Private: Get a Hash of browser user agent information.
   #
@@ -281,6 +273,18 @@ class Flight
     setTimeout ->
         window.scrollTo 0, 1
     , 50
+
+  # Private: Check if element has a class
+  #
+  # el        - DOM element to be checked
+  # cssClass  - A strong of the class name
+  #
+  # Returns true if element has the specified class and false if not
+  hasClass: (el, cssClass) ->
+    if el.className isnt ''
+      el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className)
+    else 
+      false
 
   handleEvents: (e) =>
     if @isTouch()
