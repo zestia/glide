@@ -65,6 +65,12 @@ class Flight
   isIOS: =>
     @os.ios
 
+  # Public: Get the version of the OS running on the device.
+  #
+  # Returns a String of the OS version.
+  osVersion: =>
+    @os.version.toString()
+
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
