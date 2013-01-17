@@ -122,7 +122,7 @@ class Flight
     @currentPage = @targetPage
     @isTransitioning = false
 
-    window.setTimeout =>
+    setTimeout =>
       if @transitionAnimation
         switch transitionType
           when "slide"
@@ -145,17 +145,17 @@ class Flight
     if @back
       @translate targetPage, "X", "-" + screenWidth, "0ms"
 
-      window.setTimeout =>
+      setTimeout =>
         @translate currentPage, "X", "100%"
       , 0
     else
       @translate targetPage,"X", screenWidth, "0ms"
 
-      window.setTimeout =>
+      setTimeout =>
         @translate currentPage, "X", "-100%"
       , 0
 
-    window.setTimeout =>
+    setTimeout =>
       @translate targetPage, "X", "0%"
       @back = false
     , 0
@@ -170,12 +170,12 @@ class Flight
     screenHeight = window.innerHeight + 'px'
 
     if @back
-      window.setTimeout =>
+      setTimeout =>
         @translate(currentPage, "Y", screenHeight)
       , 0
     else
       @translate(targetPage, "Y", screenHeight,"0ms")
-      window.setTimeout =>
+      setTimeout =>
         @translate(targetPage, "Y", "0%")
       , 0
 
@@ -186,11 +186,11 @@ class Flight
   # Returns nothing.
   slideOutMenu: ->
     if @menuOpen
-      window.setTimeout =>
+      setTimeout =>
         @translate @mainMenu, "X", "-110%", "0.3s"
       , 10
 
-      window.setTimeout =>
+      setTimeout =>
         @mainMenu.style.display = "none"
       , 300
 
@@ -198,7 +198,7 @@ class Flight
     else
       @translate @mainMenu, "X", "-110%", "0ms"
 
-      window.setTimeout =>
+      setTimeout =>
         @translate @mainMenu, "X", "0%", "0.3s"
       , 10
 
