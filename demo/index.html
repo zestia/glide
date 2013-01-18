@@ -158,6 +158,10 @@
           })
         }
 
+        $(document).on('click', 'header h1', function() {
+          $('.scrollview-inner').animate({ scrollTop: '0px' })
+        })
+
         if (window.Touch) {
           new FastClick(document.body);
         }
