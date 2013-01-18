@@ -99,9 +99,9 @@ header {
   ul.list {
     li {
       border-bottom:  1px solid #e1e1e1;
-      font-size: 12px;
+      font-size: 14px;
       letter-spacing: 0px;
-      line-height: 30px;
+      line-height: 20px;
     }
 
     .activity-content {
@@ -113,6 +113,14 @@ header {
       color: @mainFontColor;
       text-decoration: none;
       display: block;
+    }
+
+    .pressed, .pressed > * {
+      color: white;
+      background: #097CF0;
+    }
+    small {
+      color: #ccc;
     }
   }
 
@@ -133,19 +141,6 @@ header {
 
 #dueDate {
   width: 100px;
-}
-
-.tabs {
-  list-style: none;
-
-  li {
-    display: inline;
-    float: left;
-    padding: 5px;
-  }
-}
-
-.page-content {
 }
 
 h2, h3 {
@@ -346,8 +341,5 @@ button {
   position: relative;
 }
 
-.pressed, .pressed > * {
-  color: white;
-  background: #097CF0;
-}
+
 
