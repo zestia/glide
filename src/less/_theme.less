@@ -101,13 +101,7 @@ header {
       border-bottom:  1px solid #e1e1e1;
       font-size: 12px;
       letter-spacing: 0px;
-      padding: 10px;
       line-height: 30px;
-
-      &:active, p:active {
-        color: white;
-        background: #097CF0;
-      }
     }
 
     .activity-content {
@@ -115,13 +109,11 @@ header {
     }
 
     a {
+      padding: 10px;
       color: @mainFontColor;
       text-decoration: none;
+      display: block;
     }
-  }
-
-  a {
-    display: inline-block;
   }
 
   img {
@@ -149,7 +141,6 @@ header {
   li {
     display: inline;
     float: left;
-    //margin-right: 5px;
     padding: 5px;
   }
 }
@@ -353,5 +344,10 @@ button {
   display: inline-block;
   float: left;
   position: relative;
+}
+
+.pressed, .pressed > * {
+  color: white;
+  background: #097CF0;
 }
 
