@@ -135,9 +135,11 @@
           window.history.back()
         });
 
-        $('.scrollview-inner').on('touchstart',function(){
-          flight.iScroll.refresh()
-        });
+        if (flight.os.android && flight.os.version < '4') {
+          $(document).on('touchstart','.scrollview-inner', function(){
+            flight.iScroll.refresh()
+          })
+        }
 
         if (window.Touch) {
           new FastClick(document.body);
