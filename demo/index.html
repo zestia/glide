@@ -33,7 +33,7 @@
       </ul>
     </div>
 
-    <div id="activity" class="page" data-transition="slide">
+    <div id="activity" class="page">
       <header>
         <a class="main-menu-btn left btn">
           <button class="menu secondary">
@@ -60,28 +60,26 @@
 
     <script type="text/html" id="activity-list-item">
       <li class="<%= (type == 'Task') ? 'app-icon-before complete-task' : '' %>">
-
-        <% if (type != 'Task') { %>
-        <img src="http://placekitten.com/30/30" />
-        <% } %>
-
-        <div class="activity-content">
-          <a href="#test">
-          <p class="entry-text">
-            <%= note.truncate(70, true) %>
-          </p>
-          </a>
-          <small class="timestamp">
-            <time>2 days ago</time> via Duncan Stockdill
-          </small>
-        </div>
+        <a href="#test">
+          <% if (type != 'Task') { %>
+            <img src="http://placekitten.com/30/30" />
+          <% } %>
+          <div class="activity-content">
+            <p class="entry-text">
+              <%= note.truncate(70, true) %>
+            </p>
+            <small class="timestamp">
+              <time>2 days ago</time> via Duncan Stockdill
+            </small>
+          </div>
+        </a>
       </li>
     </script>
 
-    <div id="test" class="page hidden" data-transition="slideUp">
+    <div id="test" class="page hidden">
       <header>
         <a class="back left btn">
-            <button class="secondary">Back</button> 
+            <button class="secondary">Back</button>
         </a>
         <h1>Test</h1>
       </header>
@@ -94,29 +92,29 @@
               </li>
               <li>
                 <input type="text" placeholder="Last name" />
-              </li>               
+              </li>
               <li>
                 <input type="text" placeholder="Job title" />
-              </li>                  
+              </li>
               <li>
                 <input type="text" placeholder="Orgranisation" />
-              </li>                   
+              </li>
               <li>
                 <input type="text" placeholder="Email address" />
-              </li>                 
+              </li>
               <li>
                 <input type="number" placeholder="Phone number" />
-              </li>            
+              </li>
               <li>
                 <textarea type="textarea" placeholder="Address"></textarea>
-              </li>   
+              </li>
               <li>
                 <label>Address</label>
                 <select>
                   <option>Home</option>
                   <option>Work</option>
                 </select>
-              </li>           
+              </li>
               <li>
                 <textarea type="textarea" placeholder="About"></textarea>
               </li>
@@ -154,14 +152,14 @@
         $('.back').on('click', function() {
           window.history.back()
         });
-        
+
         $('.scrollview-inner').on('touchstart',function(){
           flight.iScroll.refresh()
         });
 
         if (window.Touch) {
           new FastClick(document.body);
-        } 
+        }
 
       });
 
