@@ -174,6 +174,7 @@ class Flight
         @translate(currentPage, "Y", screenHeight)
       , 0
     else
+      targetPage.style.zIndex = "999"
       @translate(targetPage, "Y", screenHeight,"0ms")
       setTimeout =>
         @translate(targetPage, "Y", "0%")
