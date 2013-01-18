@@ -200,7 +200,7 @@ class Flight
 
       setTimeout =>
         @translate @mainMenu, "X", "0%", "0.3s"
-      , 10
+      , 50
 
       @mainMenu.style.display = "block"
       @menuOpen = true
@@ -283,7 +283,7 @@ class Flight
   hasClass: (el, cssClass) ->
     if el.className isnt ''
       el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className)
-    else 
+    else
       false
 
   handleEvents: (e) =>
