@@ -91,7 +91,7 @@ class Flight
     return if @targetPage is @currentPage
 
     if @os.android and @os.version < '4'
-      @iScroll = new iScroll @targetPage.querySelector('.scrollview-inner')
+      @initIscroll @targetPage
 
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
@@ -244,6 +244,18 @@ class Flight
   hideTransitionedPage: (page) =>
     if @hasClass(page,'page')
       page.style.display = "none" unless page.id is @targetPage.id
+
+  # Initiates iScroll when needed for android devices 2.3
+  #
+  # targetPage  - String or DOM element of the page that you want to use iScroll
+  #
+  # Returns nothing
+  initIscroll: (targetPage) =>
+    targetPage = @targetPage unless targetPage?
+    targetPage = document.querySelector targetPage if typeof targetPage is "string"
+    @iScroll = new iScroll targetPage.querySelector('.scrollview-inner'),
+      onBeforeScrollMove: =>
+        @iScroll.refresh()
 
   # Private: Get a Hash of browser user agent information.
   #
