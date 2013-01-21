@@ -152,12 +152,6 @@
           window.history.back()
         });
 
-        if (flight.os.android && flight.os.version < '4') {
-          $(document).on('touchstart','.scrollview-inner', function(){
-            flight.iScroll.refresh()
-          })
-        }
-
         $(document).on('click', 'header h1', function() {
           $('.scrollview-inner').animate({ scrollTop: '0px' })
         })
