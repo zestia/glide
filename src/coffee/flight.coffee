@@ -90,7 +90,7 @@ class Flight
 
     return if @targetPage is @currentPage
 
-    if @os.android and @os.version < '4'
+    if @isAndroid() and @os.version < '4'
       @initIscroll @targetPage
 
     unless @currentPage
@@ -238,7 +238,7 @@ class Flight
 
   # Private: Hide DOM that has just been transitioned
   #
-  # page    - The page that has just been moved outside of view
+  # page    - The page element that has just been moved outside of view
   #
   # Returns nothing
   hideTransitionedPage: (page) =>
@@ -251,9 +251,10 @@ class Flight
   #
   # Returns nothing
   initIscroll: (targetPage) =>
-    targetPage = @targetPage unless targetPage?
+    targetPage = @currentPage unless targetPage?
     targetPage = document.querySelector targetPage if typeof targetPage is "string"
     @iScroll = new iScroll targetPage.querySelector('.scrollview-inner'),
+      snap: false
       onBeforeScrollMove: =>
         @iScroll.refresh()
 
