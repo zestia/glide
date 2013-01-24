@@ -18,7 +18,7 @@ class Flight
   speed: 0.3
   mainMenu: '#main-menu'
   menuCloseButton: '#close-menu-btn'
-  stylesheetPath: '../lib/'
+  stylesheetPath: '/'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -26,18 +26,11 @@ class Flight
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    #TODO: don't allow slide up transitions if old android
     @detectUserAgent()
 
-    if options.stylesheetPath?
-      @stylesheetPath = options.stylesheetPath
+    for key, value of options
+      @[key] = value
 
-    if options.transitionAnimation?
-      @transitionAnimation = options.transitionAnimation
-
-    @speed = options.speed if options.speed?
-
-    @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
