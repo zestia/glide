@@ -309,7 +309,7 @@ class Flight
   # Private: Check if element has a class
   #
   # el        - DOM element to be checked
-  # cssClass  - A strong of the class name
+  # cssClass  - A string of the class name
   #
   # Returns true if element has the specified class and false if not
   hasClass: (el, cssClass) ->
