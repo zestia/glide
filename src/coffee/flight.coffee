@@ -18,6 +18,7 @@ class Flight
   speed: 0.3
   mainMenu: '#main-menu'
   menuCloseButton: '#close-menu-btn'
+  stylesheetPath: '../lib/'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -25,6 +26,10 @@ class Flight
   #
   # Returns nothing.
   constructor: (options = {}) ->
+    #TODO: don't allow slide up transitions if old android
+    @detectUserAgent()
+    @setupStyleSheets()
+
     if options.transitionAnimation?
       @transitionAnimation = options.transitionAnimation
 
@@ -32,8 +37,6 @@ class Flight
 
     @mainMenu = options.mainMenu if options.mainMenu?
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
-
-    @detectUserAgent()
 
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
 
@@ -89,9 +92,6 @@ class Flight
       @targetPage = targetPage
 
     return if @targetPage is @currentPage
-
-    if @isAndroid() and @os.version < '4'
-      @initIscroll @targetPage
 
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
@@ -279,6 +279,18 @@ class Flight
     os.fennec = (if userAgent.match(/fennec/i) then true else false)
     os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
     @os = os
+
+  setupStyleSheets: =>
+    if @isAndroid() and @os.version < '4'
+      head = document.getElementsByTagName('head')[0]
+      androidCSS = document.createElement("link")
+      androidCSS.setAttribute("rel", "stylesheet")
+      androidCSS.setAttribute("type", "text/css")
+      androidCSS.setAttribute("href", "#{@stylesheetPath}flight.android.css")
+      head.appendChild(androidCSS)
+
+      styleSheets = document.styleSheets
+      styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href.indexOf("flight.css") isnt -1
 
   # Private: Hide the URL bar in mobile browsers.
   #
