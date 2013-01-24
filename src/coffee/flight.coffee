@@ -45,33 +45,6 @@ class Flight
     document.addEventListener "webkitTransitionEnd", (e) =>
       @hideTransitionedPage e.target
 
-  # Private: Is the device touch enabled.
-  #
-  # Returns True if the device is touch enabled, else False.
-  isTouch: =>
-    if @os.android
-      !!('ontouchstart' of window)
-    else
-      window.Touch?
-
-  # Public: Is the device running Android
-  #
-  # Returns True if the device is running Android, else False.
-  isAndroid: =>
-    @os.android
-
-  # Public: Is the device running iOS
-  #
-  # Returns True if the device is running iOS, else False.
-  isIOS: =>
-    @os.ios
-
-  # Public: Get the version of the OS running on the device.
-  #
-  # Returns a String of the OS version.
-  osVersion: =>
-    @os.version.toString()
-
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
@@ -308,6 +281,33 @@ class Flight
       el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className)
     else
       false
+
+  # Private: Is the device touch enabled.
+  #
+  # Returns True if the device is touch enabled, else False.
+  isTouch: =>
+    if @os.android
+      !!('ontouchstart' of window)
+    else
+      window.Touch?
+
+  # Public: Is the device running Android
+  #
+  # Returns True if the device is running Android, else False.
+  isAndroid: =>
+    @os.android
+
+  # Public: Is the device running iOS
+  #
+  # Returns True if the device is running iOS, else False.
+  isIOS: =>
+    @os.ios
+
+  # Public: Get the version of the OS running on the device.
+  #
+  # Returns a String of the OS version.
+  osVersion: =>
+    @os.version.toString()
 
   handleEvents: (e) =>
     if @isTouch()
