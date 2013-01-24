@@ -33,8 +33,6 @@ class Flight
 
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
-    @transitionAnimation = false if @os.android and @os.version <= '2.1'
-
     @setupStyleSheets()
 
     @hideUrlBar() if options.hideUrlbar
