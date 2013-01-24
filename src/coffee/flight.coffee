@@ -28,7 +28,9 @@ class Flight
   constructor: (options = {}) ->
     #TODO: don't allow slide up transitions if old android
     @detectUserAgent()
-    @setupStyleSheets()
+
+    if options.stylesheetPath?
+      @stylesheetPath = options.stylesheetPath
 
     if options.transitionAnimation?
       @transitionAnimation = options.transitionAnimation
@@ -39,6 +41,8 @@ class Flight
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
     @transitionAnimation = false if @os.android and @os.version <= '2.1'
+
+    @setupStyleSheets()
 
     @hideUrlBar() if options.hideUrlbar
 
@@ -291,6 +295,8 @@ class Flight
 
       styleSheets = document.styleSheets
       styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href.indexOf("flight.css") isnt -1
+
+      document.body.className = "old-android"
 
   # Private: Hide the URL bar in mobile browsers.
   #
