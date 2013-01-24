@@ -34,34 +34,71 @@ body {
 }
 
 body, .page {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+
+    -webkit-box-align: stretch;
+    -webkit-box-flex: 1;
+
     width: 100%;
     overflow: scroll;
 }
 
 .page {
-    position: absolute;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
     -webkit-box-orient: vertical;
     -moz-box-orient: vertical;
     box-orient: vertical;
+
+    position: absolute;
 }
 
 .scrollview {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+
     overflow: auto;
 }
 
 .scrollview-inner {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
     display:block;
     overflow: auto;
+    width: 100%;
 }
 
 .scrollview-content {
-    display:block;
+    width: 100%;
+    -webkit-box-flex:1;
+    display: block;
 }
 
 header, footer {
   height: 45px;
   line-height: 45px;
-  padding: 0 10px;
   display: block;
   width: 100%;
   text-align: center;
