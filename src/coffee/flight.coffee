@@ -258,7 +258,7 @@ class Flight
       head.appendChild(androidCSS)
 
       styleSheets = document.styleSheets
-      styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href.indexOf("flight.css") isnt -1
+      styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
 
       document.body.className = "old-android"
 
