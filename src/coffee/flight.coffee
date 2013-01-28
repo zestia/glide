@@ -210,6 +210,9 @@ class Flight
     if @hasClass(page,'page')
       page.style.display = "none" unless page.id is @targetPage.id
 
+    if @isAndroid() and @os.version < '4'
+      @currentPage.style.webkitTransform = "none"
+
   # Initiates iScroll when needed for android devices 2.3
   #
   # targetPage  - String or DOM element of the page that you want to use iScroll
