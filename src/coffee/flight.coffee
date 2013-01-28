@@ -201,6 +201,7 @@ class Flight
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
 
+
   # Private: Hide DOM that has just been transitioned
   #
   # page    - The page element that has just been moved outside of view
