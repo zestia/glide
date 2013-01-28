@@ -106,17 +106,18 @@ class Flight
   # Returns nothing.
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
-    targetPage.style.overflow = "visible"
-    currentPage.style.overflow = "visible"
+
     screenWidth = window.innerWidth + 'px'
 
     if @back
+      @translate currentPage, "X", "0%"
       @translate targetPage, "X", "-" + screenWidth, "0ms"
 
       setTimeout =>
         @translate currentPage, "X", "100%"
       , 0
     else
+      @translate currentPage, "X", "0%"
       @translate targetPage,"X", screenWidth, "0ms"
 
       setTimeout =>
@@ -133,8 +134,6 @@ class Flight
   # Returns nothing.
   slideUp: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
-    targetPage.style.overflow = "visible"
-    currentPage.style.overflow = "visible"
     screenHeight = window.innerHeight + 'px'
 
     if @back
@@ -142,7 +141,7 @@ class Flight
         @translate(currentPage, "Y", screenHeight)
       , 0
     else
-      targetPage.style.zIndex = "999"
+      targetPage.style.zIndex = "1000"
       @translate(targetPage, "Y", screenHeight,"0ms")
       setTimeout =>
         @translate(targetPage, "Y", "0%")
