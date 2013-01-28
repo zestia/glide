@@ -5,7 +5,6 @@ class Flight
   targetPage: ''
   startPage: ''
   os: ''
-  iScroll: null
   moved: false
   theTarget: null
 
@@ -201,7 +200,6 @@ class Flight
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
 
-
   # Private: Hide DOM that has just been transitioned
   #
   # page    - The page element that has just been moved outside of view
@@ -213,19 +211,6 @@ class Flight
 
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
-
-  # Initiates iScroll when needed for android devices 2.3
-  #
-  # targetPage  - String or DOM element of the page that you want to use iScroll
-  #
-  # Returns nothing
-  initIscroll: (targetPage) =>
-    targetPage = @currentPage unless targetPage?
-    targetPage = document.querySelector targetPage if typeof targetPage is "string"
-    @iScroll = new iScroll targetPage.querySelector('.scrollview-inner'),
-      snap: false
-      onBeforeScrollMove: =>
-        @iScroll.refresh()
 
   # Private: Get a Hash of browser user agent information.
   #
