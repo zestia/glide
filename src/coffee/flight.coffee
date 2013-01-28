@@ -198,11 +198,8 @@ class Flight
   #
   # Returns nothing.
   displayPage: (targetPage, currentPage) ->
-    #TODO: fix this as technique for moving the DOM has changed - see slide()
     targetPage.style.display = "-webkit-box"
-    currentPage.style.display = "-webkit-box"
-    targetPage.style.left = "0%"
-    currentPage.style.left = "100%"
+    currentPage.style.display = "none"
 
   # Private: Hide DOM that has just been transitioned
   #
