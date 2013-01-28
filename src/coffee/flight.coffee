@@ -33,7 +33,8 @@ class Flight
 
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
-    @setupStyleSheets()
+    if @isAndroid() and @os.version < '4'
+      @setupForAndroid()
 
     @hideUrlBar() if options.hideUrlbar
 
@@ -247,19 +248,19 @@ class Flight
     os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
     @os = os
 
-  setupStyleSheets: =>
-    if @isAndroid() and @os.version < '4'
-      head = document.getElementsByTagName('head')[0]
-      androidCSS = document.createElement("link")
-      androidCSS.setAttribute("rel", "stylesheet")
-      androidCSS.setAttribute("type", "text/css")
-      androidCSS.setAttribute("href", "#{@stylesheetPath}flight.android.css")
-      head.appendChild(androidCSS)
+  setupForAndroid: =>
+    head = document.getElementsByTagName('head')[0]
+    androidCSS = document.createElement("link")
+    androidCSS.setAttribute("rel", "stylesheet")
+    androidCSS.setAttribute("type", "text/css")
+    androidCSS.setAttribute("href", "#{@stylesheetPath}flight.android.css")
+    head.appendChild(androidCSS)
 
-      styleSheets = document.styleSheets
-      styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
+    styleSheets = document.styleSheets
+    styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
 
-      document.body.className = "old-android"
+    document.body.className = "old-android"
+    @transitionAnimation = false
 
   # Private: Hide the URL bar in mobile browsers.
   #
