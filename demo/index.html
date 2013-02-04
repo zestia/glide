@@ -189,6 +189,28 @@
           new FastClick(document.body);
         }
 
+         // need to move this into flight
+        if (navigator.standalone) {
+          window.preventScrolling = true
+          $(document)
+          .on('touchstart','.scrollview-content', function() {
+            this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+            window.preventScrolling=false
+          })
+          .on('touchmove', '.scrollview-content', function(e) {
+            if (window.preventScrolling) e.preventDefault()
+          })
+          .on('touchend', '.scrollview-content', function() {
+            window.preventScrolling = true
+          })
+        } else {
+          $(document)
+          .on('touchstart', '.scrollview-content', function() {
+          this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+          })
+        }
+
+
       });
     </script>
 
