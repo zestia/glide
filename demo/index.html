@@ -6,6 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
+    <!-- iPhone -->
+    <link href="images/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <!-- iPhone (Retina) -->
+    <link href="images/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone 5 -->
+    <link href="images/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <title>Flight</title>
     <link rel="stylesheet" href="../lib/flight.css">
     <link rel="stylesheet" href="../lib/flight.theme.css">
@@ -58,7 +64,7 @@
       </li>
     </script>
 
-    <div id="add-contact-form" class="page hidden" data-transition="slideUp">
+    <div id="add-contact-form" class="page hidden">
       <header>
         <a class="back left btn">
             <button class="secondary">Cancel</button>
@@ -161,7 +167,6 @@
         }
 
       });
-
     </script>
 
   </body>

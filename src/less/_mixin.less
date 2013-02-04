@@ -175,6 +175,12 @@
   -webkit-box-sizing: border-box;
 }
 
+.box-flex(@flex: 1) {
+	-webkit-box-flex: @flex;
+	-moz-box-flex: @flex;
+	box-flex: @flex;
+}
+
 // Animation mixins
 .animation-duration (@duration: 1s) {
 	-webkit-animation-duration: @duration;

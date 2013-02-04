@@ -9,7 +9,9 @@ class App
   Views: {}
 
   init: ->
-    window.flight = new Flight()
+    window.flight = new Flight
+      stylesheetPath: '../lib/'
+
     new @Routers.AppRouter
     Backbone.history.start()
 
