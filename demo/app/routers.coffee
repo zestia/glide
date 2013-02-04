@@ -3,6 +3,8 @@ class AppRouter extends Backbone.Router
   routes:
     '': 'index'
     'animations': 'animations'
+    'slide': 'slide'
+    'slideUp': 'slideUp'
     'contacts': 'contacts'
     'contact/add': 'addContact'
 
@@ -12,8 +14,11 @@ class AppRouter extends Backbone.Router
   animations: ->
     flight.goto '#animations'
 
-  entry: ->
-    flight.goto '#entry'
+  slide: ->
+    flight.goto '#slide'
+
+  slideUp: ->
+    flight.goto '#slideUp'
 
   addContact: ->
     flight.goto '#add-contact-form'

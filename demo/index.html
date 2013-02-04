@@ -39,20 +39,48 @@
 
     <div id="animations" class="page hidden">
       <header>
-        <h1>Glide</h1>
+        <a class="back left btn"><button class="secondary">Back</button></a>
+        <h1>Animations</h1>
       </header>
       <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content">
             <ul class="list">
-              <li><a href="#animations">Animations</a></li>
-              <li><a href="#contacts">Contacts demo app</a></li>
+              <li><a href="#slide">Slide</a></li>
+              <li><a href="#slideUp">Slide up</a></li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
+    <div id="slide" class="page hidden">
+      <header>
+        <a class="back left btn"><button class="secondary">Back</button></a>
+        <h1>Slide</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <p>Slide is the default transition between pages.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slideUp" class="page hidden" data-transition="slideUp">
+      <header>
+        <a class="back left btn"><button class="secondary">Back</button></a>
+        <h1>Slide</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <p>To apply slide up...</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="add-contact-form" class="page hidden">
       <header>
