@@ -59,15 +59,13 @@ class Flight
     else if targetPage
       @targetPage = targetPage
 
-    return if @targetPage is @currentPage
+    return if @targetPage is @currentPage or @isTransitioning
 
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
       return
-
-    return if @isTransitioning
 
     @isTransitioning = true
 
