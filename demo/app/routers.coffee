@@ -1,10 +1,13 @@
 class AppRouter extends Backbone.Router
 
   routes:
-    '': 'activities'
+    '': 'index'
     'entry': 'entry'
     'contacts': 'contacts'
     'contact/add': 'addContact'
+
+  index: ->
+    flight.goto '#index'
 
   activities: ->
     view = new app.Views.Activities collection: app.Collections.Activities
