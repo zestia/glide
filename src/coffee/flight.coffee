@@ -325,10 +325,12 @@ class Flight
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
-    if @theTarget.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
+    if @theTarget?.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
       @oldTarget = @theTarget
       @parents = $(@theTarget).parentsUntil('ul li')
       @theTarget = @parents[@parents.length-1] or @oldTarget
+
+    if @theTarget is null then return
 
     @theTarget.className+= ' pressed'
     @theTarget.addEventListener 'touchmove', @onTouchMove, false
