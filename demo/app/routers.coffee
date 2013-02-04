@@ -6,6 +6,7 @@ class AppRouter extends Backbone.Router
     'slide': 'slide'
     'slideUp': 'slideUp'
     'contacts': 'contacts'
+    'contacts/:id': 'showContact'
     'contact/add': 'addContact'
 
   index: ->
@@ -27,6 +28,10 @@ class AppRouter extends Backbone.Router
     view = new app.Views.Contacts collection: app.Collections.Contacts
     view.render()
     flight.goto '#contacts'
+
+  showContact: (id) ->
+    model = app.Collections.Contacts?.get(id)
+    console.log model
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
