@@ -23,46 +23,21 @@
 
     <div id="activity" class="page">
       <header>
-        <a class="main-menu-btn left btn">
-          <button class="menu secondary">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </button>
-        </a>
+         <a href="#contacts">Contacts</a>
+
         <a href="#contact/add" class="btn right"><button class="primary">Add</button></a>
         <h1>Activity</h1>
       </header>
       <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content">
-
-          <ul id="activity-list" class="list">
-            <!-- #activity-list-item -->
-          </ul>
-
+            <ul id="activity-list" class="list">
+              <!-- #activity-list-item -->
+            </ul>
           </div>
         </div>
       </div>
     </div>
-
-    <script type="text/html" id="activity-list-item">
-      <li class="<%= (type == 'Task') ? 'app-icon-before complete-task' : '' %>">
-        <a href="#entry">
-          <% if (type != 'Task') { %>
-            <img src="http://placekitten.com/30/30" />
-          <% } %>
-          <div class="activity-content">
-            <p class="entry-text">
-              <%= note.truncate(70, true) %>
-            </p>
-            <small class="timestamp">
-              <time>2 days ago</time> via Duncan Stockdill
-            </small>
-          </div>
-        </a>
-      </li>
-    </script>
 
     <div id="add-contact-form" class="page hidden">
       <header>
@@ -128,7 +103,47 @@
       </div>
     </div>
 
+    <div id="contacts" class="page hidden">
+      <header>
+        <a class="back left btn">
+            <button class="secondary">Back</button>
+        </a>
+        <h1>Contacts</h1>
+      </header>
+       <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <ul id="contacts-list" class="list">
+              <!-- #contact-list-item -->
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <script type="text/html" id="activity-list-item">
+      <li class="<%= (type == 'Task') ? 'app-icon-before complete-task' : '' %>">
+        <a href="#entry">
+          <% if (type != 'Task') { %>
+            <img src="http://placekitten.com/30/30" />
+          <% } %>
+          <div class="activity-content">
+            <p class="entry-text">
+              <%= note.truncate(70, true) %>
+            </p>
+            <small class="timestamp">
+              <time>2 days ago</time> via Duncan Stockdill
+            </small>
+          </div>
+        </a>
+      </li>
+    </script>
+
+
+    <script type="text/html" id="contact-list-item">
+       <li><%= name %></li>
+    </script>
+
     <script src="vendor/jquery.js"></script>
     <script src="vendor/underscore.js"></script>
     <script src="vendor/backbone.js"></script>

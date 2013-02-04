@@ -16,6 +16,7 @@ class App
     Backbone.history.start()
 
     @Collections.Activities.fetch()
+    @Collections.Contacts.fetch()
 
 window.app = new App
 
