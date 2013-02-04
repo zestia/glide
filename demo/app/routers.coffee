@@ -9,11 +9,6 @@ class AppRouter extends Backbone.Router
   index: ->
     flight.goto '#index'
 
-  activities: ->
-    view = new app.Views.Activities collection: app.Collections.Activities
-    view.render()
-    flight.goto '#activity'
-
   entry: ->
     flight.goto '#entry'
 
