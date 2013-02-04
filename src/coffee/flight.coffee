@@ -138,13 +138,13 @@ class Flight
 
     if @back
       setTimeout =>
-        @translate(currentPage, "Y", screenHeight)
+        @translate currentPage, "Y", screenHeight
       , 0
     else
       targetPage.style.zIndex = "1000"
-      @translate(targetPage, "Y", screenHeight,"0ms")
+      @translate targetPage, "Y", screenHeight,"0ms"
       setTimeout =>
-        @translate(targetPage, "Y", "0%")
+        @translate targetPage, "Y", "0%"
       , 0
 
     @back = false
