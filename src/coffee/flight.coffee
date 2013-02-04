@@ -25,10 +25,10 @@ class Flight
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    @detectUserAgent()
-
     for key, value of options
       @[key] = value
+
+    @detectUserAgent()
 
     @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
 
@@ -100,6 +100,9 @@ class Flight
       else
         @displayPage targetPage, currentPage
     , 10
+
+    if @isAndroid() and @os.version < '4'
+      window.scrollTo 0,0
 
   # Private: Perform a slide transition.
   #
