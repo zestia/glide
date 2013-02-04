@@ -241,11 +241,11 @@ class Flight
 
   setupForAndroid: =>
     head = document.getElementsByTagName('head')[0]
-    androidCSS = document.createElement("link")
-    androidCSS.setAttribute("rel", "stylesheet")
-    androidCSS.setAttribute("type", "text/css")
-    androidCSS.setAttribute("href", "#{@stylesheetPath}flight.android.css")
-    head.appendChild(androidCSS)
+    androidCSS = document.createElement "link"
+    androidCSS.setAttribute "rel", "stylesheet"
+    androidCSS.setAttribute "type", "text/css"
+    androidCSS.setAttribute "href", "#{@stylesheetPath}flight.android.css"
+    head.appendChild androidCSS
 
     styleSheets = document.styleSheets
     styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
