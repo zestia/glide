@@ -9,6 +9,7 @@ end
 desc 'compile less into css'
 task :less do
   system 'lessc --yui-compress src/less/flight.less lib/flight.css'
+  system 'lessc --yui-compress src/less/flight.android.less lib/flight.android.css'
   system 'lessc --yui-compress src/less/theme/flight.theme.less lib/flight.theme.css'
 end
 

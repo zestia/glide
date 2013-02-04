@@ -5,7 +5,6 @@ class Flight
   targetPage: ''
   startPage: ''
   os: ''
-  iScroll: null
   moved: false
   theTarget: null
 
@@ -18,6 +17,7 @@ class Flight
   speed: 0.3
   mainMenu: '#main-menu'
   menuCloseButton: '#close-menu-btn'
+  stylesheetPath: '/'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -25,17 +25,15 @@ class Flight
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    if options.transitionAnimation?
-      @transitionAnimation = options.transitionAnimation
-
-    @speed = options.speed if options.speed?
-
-    @mainMenu = options.mainMenu if options.mainMenu?
-    @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
+    for key, value of options
+      @[key] = value
 
     @detectUserAgent()
 
-    @transitionAnimation = false if @os.android and @os.version <= '2.1'
+    @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
+
+    if @isAndroid() and @os.version < '4'
+      @setupForAndroid()
 
     @hideUrlBar() if options.hideUrlbar
 
@@ -46,33 +44,6 @@ class Flight
 
     document.addEventListener "webkitTransitionEnd", (e) =>
       @hideTransitionedPage e.target
-
-  # Private: Is the device touch enabled.
-  #
-  # Returns True if the device is touch enabled, else False.
-  isTouch: =>
-    if @os.android
-      !!('ontouchstart' of window)
-    else
-      window.Touch?
-
-  # Public: Is the device running Android
-  #
-  # Returns True if the device is running Android, else False.
-  isAndroid: =>
-    @os.android
-
-  # Public: Is the device running iOS
-  #
-  # Returns True if the device is running iOS, else False.
-  isIOS: =>
-    @os.ios
-
-  # Public: Get the version of the OS running on the device.
-  #
-  # Returns a String of the OS version.
-  osVersion: =>
-    @os.version.toString()
 
   # Public: Go to a specific page.
   #
@@ -89,9 +60,6 @@ class Flight
       @targetPage = targetPage
 
     return if @targetPage is @currentPage
-
-    if @isAndroid() and @os.version < '4'
-      @initIscroll @targetPage
 
     unless @currentPage
       @targetPage.style.display = "-webkit-box"
@@ -138,17 +106,18 @@ class Flight
   # Returns nothing.
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
-    targetPage.style.overflow = "visible"
-    currentPage.style.overflow = "visible"
+
     screenWidth = window.innerWidth + 'px'
 
     if @back
+      @translate currentPage, "X", "0%"
       @translate targetPage, "X", "-" + screenWidth, "0ms"
 
       setTimeout =>
         @translate currentPage, "X", "100%"
       , 0
     else
+      @translate currentPage, "X", "0%"
       @translate targetPage,"X", screenWidth, "0ms"
 
       setTimeout =>
@@ -165,8 +134,6 @@ class Flight
   # Returns nothing.
   slideUp: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
-    targetPage.style.overflow = "visible"
-    currentPage.style.overflow = "visible"
     screenHeight = window.innerHeight + 'px'
 
     if @back
@@ -174,7 +141,7 @@ class Flight
         @translate(currentPage, "Y", screenHeight)
       , 0
     else
-      targetPage.style.zIndex = "999"
+      targetPage.style.zIndex = "1000"
       @translate(targetPage, "Y", screenHeight,"0ms")
       setTimeout =>
         @translate(targetPage, "Y", "0%")
@@ -230,11 +197,13 @@ class Flight
   #
   # Returns nothing.
   displayPage: (targetPage, currentPage) ->
-    #TODO: fix this as technique for moving the DOM has changed - see slide()
     targetPage.style.display = "-webkit-box"
-    currentPage.style.display = "-webkit-box"
-    targetPage.style.left = "0%"
-    currentPage.style.left = "100%"
+    currentPage.style.display = "none"
+
+    if @isAndroid() and @os.version < '4' and @back is false
+      window.scrollTo 0,0
+
+    if @back is true then @back = false
 
   # Private: Hide DOM that has just been transitioned
   #
@@ -245,18 +214,8 @@ class Flight
     if @hasClass(page,'page')
       page.style.display = "none" unless page.id is @targetPage.id
 
-  # Initiates iScroll when needed for android devices 2.3
-  #
-  # targetPage  - String or DOM element of the page that you want to use iScroll
-  #
-  # Returns nothing
-  initIscroll: (targetPage) =>
-    targetPage = @currentPage unless targetPage?
-    targetPage = document.querySelector targetPage if typeof targetPage is "string"
-    @iScroll = new iScroll targetPage.querySelector('.scrollview-inner'),
-      snap: false
-      onBeforeScrollMove: =>
-        @iScroll.refresh()
+    if @isAndroid() and @os.version < '4'
+      @currentPage.style.webkitTransform = "none"
 
   # Private: Get a Hash of browser user agent information.
   #
@@ -280,6 +239,20 @@ class Flight
     os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
     @os = os
 
+  setupForAndroid: =>
+    head = document.getElementsByTagName('head')[0]
+    androidCSS = document.createElement "link"
+    androidCSS.setAttribute "rel", "stylesheet"
+    androidCSS.setAttribute "type", "text/css"
+    androidCSS.setAttribute "href", "#{@stylesheetPath}flight.android.css"
+    head.appendChild androidCSS
+
+    styleSheets = document.styleSheets
+    styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
+
+    document.body.className = "old-android"
+    @transitionAnimation = false
+
   # Private: Hide the URL bar in mobile browsers.
   #
   # Returns nothing.
@@ -291,7 +264,7 @@ class Flight
   # Private: Check if element has a class
   #
   # el        - DOM element to be checked
-  # cssClass  - A strong of the class name
+  # cssClass  - A string of the class name
   #
   # Returns true if element has the specified class and false if not
   hasClass: (el, cssClass) ->
@@ -299,6 +272,33 @@ class Flight
       el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className)
     else
       false
+
+  # Private: Is the device touch enabled.
+  #
+  # Returns True if the device is touch enabled, else False.
+  isTouch: =>
+    if @os.android
+      !!('ontouchstart' of window)
+    else
+      window.Touch?
+
+  # Public: Is the device running Android
+  #
+  # Returns True if the device is running Android, else False.
+  isAndroid: =>
+    @os.android
+
+  # Public: Is the device running iOS
+  #
+  # Returns True if the device is running iOS, else False.
+  isIOS: =>
+    @os.ios
+
+  # Public: Get the version of the OS running on the device.
+  #
+  # Returns a String of the OS version.
+  osVersion: =>
+    @os.version.toString()
 
   handleEvents: (e) =>
     if @isTouch()
