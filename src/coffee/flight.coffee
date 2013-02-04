@@ -101,9 +101,6 @@ class Flight
         @displayPage targetPage, currentPage
     , 10
 
-    if @isAndroid() and @os.version < '4'
-      window.scrollTo 0,0
-
   # Private: Perform a slide transition.
   #
   # Returns nothing.
@@ -202,6 +199,11 @@ class Flight
   displayPage: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
+
+    if @isAndroid() and @os.version < '4' and @back is false
+      window.scrollTo 0,0
+
+    if @back is true then @back = false
 
   # Private: Hide DOM that has just been transitioned
   #
