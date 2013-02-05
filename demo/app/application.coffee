@@ -17,6 +17,9 @@ class App
 
     @Collections.Contacts.fetch()
 
+  goBack: ->
+    window.history.back()
+
 window.app = new App
 
 `

@@ -31,7 +31,9 @@ class AppRouter extends Backbone.Router
 
   showContact: (id) ->
     model = app.Collections.Contacts?.get(id)
-    console.log model
+    view = new app.Views.ContactsShow model: model
+    view.render()
+    flight.goto '#contact-page'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter

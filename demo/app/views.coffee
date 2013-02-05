@@ -17,3 +17,22 @@ class Contacts extends Backbone.View
 
 @app = window.app ? {}
 @app.Views.Contacts = Contacts
+
+class ContactsShow extends Backbone.View
+
+  el: '#contact-page'
+  template: _.template($('#contact-item').html())
+
+  events:
+    'click .back': 'goBack'
+
+  render: ->
+    @$el.html ''
+    @$el.append @template(@model.toJSON())
+    this
+
+  goBack: ->
+    app.goBack()
+
+@app = window.app ? {}
+@app.Views.ContactsShow = ContactsShow
