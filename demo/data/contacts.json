@@ -4,56 +4,64 @@
     "name": "Fletcher Cruz",
     "street": "Ap #756-4731 Ut St.",
     "country": "Saint Lucia",
-    "about": "mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc"
+    "about": "mi, ac mattis velit justo nec ante. Maecenas mi felis, adipiscing fringilla, porttitor vulputate, posuere vulputate, lacus. Cras interdum. Nunc",
+    "image":"dom.jpg"
   },
   {
     "id": "2",
     "name": "Cadman Terry",
     "street": "P.O. Box 296, 9747 Mauris. Avenue",
     "country": "American Samoa",
-    "about": " tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, "
+    "about": " tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante lectus convallis est, ",
+    "image": "duncan.jpg"
   },
   {
     "id": "3",
     "name": "Brennan Gould",
     "street": "Ap #445-4794 Enim. Rd.",
     "country": "Switzerland",
-    "about": " nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante "
+    "about": " nulla. Cras eu tellus eu augue porttitor interdum. Sed auctor odio a purus. Duis elementum, dui quis accumsan convallis, ante ",
+    "image": "ross.jpg"
   },
   {
     "id": "4",
     "name": "Jacob Hayden",
     "street": "7268 Gravida Av.",
     "country": "Belgium",
-    "about": " senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. "
+    "about": " senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus. Nullam scelerisque neque sed sem egestas blandit. ",
+    "image": "dom2.jpg"
   },
   {
     "id": "5",
     "name": "Dorian Sargent",
     "street": "4857 Natoque St.",
     "country": "United States Minor Outlying Islands",
-    "about": " sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, "
+    "about": " sit amet diam eu dolor egestas rhoncus. Proin nisl sem, consequat nec, mollis vitae, posuere at, velit. Cras lorem lorem, ",
+    "image": "phil.jpg"
   },
   {
     "id": "6",
     "name": "Fritz Wilkerson",
     "street": "9152 Purus. Road",
     "country": "Kuwait",
-    "about": " pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies "
+    "about": " pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies ",
+    "image": "josef.jpg"
   },
   {
     "id": "7",
     "name": "Ronan Bass",
     "street": "Ap #734-6659 Pellentesque St.",
     "country": "Andorra",
-    "about": " erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate "
+    "about": " erat. Sed nunc est, mollis non, cursus non, egestas a, dui. Cras pellentesque. Sed dictum. Proin eget odio. Aliquam vulputate ",
+    "image": "cary.jpg"
   },
   {
     "id": "8",
-    "name": "Carl Sheppard",
+    "name": "Amarian Sheppard",
     "street": "7257 Cursus Avenue",
     "country": "Colombia",
-    "about": " In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate "
+    "about": " In scelerisque scelerisque dui. Suspendisse ac metus vitae velit egestas lacinia. Sed congue, elit sed consequat auctor, nunc nulla vulputate ",
+    "image": "resham.jpg"
   },
   {
     "id": "9",
