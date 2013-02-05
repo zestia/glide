@@ -175,29 +175,37 @@
         <a class="back left btn">
             <button class="secondary">Back</button>
         </a>
-        <h1><% name %></h1>
+        <h1><%= name %></h1>
       </header>
        <div class="scrollview">
         <div class="scrollview-inner">
-          <div class="scrollview-content">
+          <div class="scrollview-content inset">
+           <div class="profile-image">
              <% if ( image != '' ){ %>
                <img src="images/200x200/<%= image %>"/>
              <% } else { %>
                 <img src="http://placehold.it/50/50" />
              <% } %>
-             <%= name %>
+             </div>
+             <div class="info">
+               <h2><%= name %></h2>
+               <p><%= about %></p>
+               <a href="">
+                <button class="large turquoise">Do something cool</button>
+               </a>
+             </div>
           </div>
         </div>
       </div>
 
     </script>
 
+
+
     <script src="vendor/jquery.js"></script>
     <script src="vendor/underscore.js"></script>
     <script src="vendor/backbone.js"></script>
     <script src="vendor/fastClick.js"></script>
-
-    <script src="vendor/iscroll-lite.js"></script>
 
     <script src="../lib/flight.js"></script>
 

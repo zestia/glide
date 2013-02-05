@@ -12,10 +12,11 @@ class App
     window.flight = new Flight
       stylesheetPath: '../lib/'
 
-    new @Routers.AppRouter
-    Backbone.history.start()
-
     @Collections.Contacts.fetch()
+
+    new @Routers.AppRouter
+
+    Backbone.history.start()
 
   goBack: ->
     window.history.back()
