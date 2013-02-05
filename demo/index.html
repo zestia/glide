@@ -161,7 +161,7 @@
        <li>
          <a href="#contacts/<%= id %>">
            <% if ( image != '' ){ %>
-             <img src="images/200x200/<%= image %>"/>
+             <img class="<% if ( image === 'tyrion.jpg' ){ %> bw <% } %>" src="images/200x200/<%= image %>"/>
            <% } else { %>
               <img src="http://placehold.it/50/50" />
            <% } %>
@@ -180,17 +180,13 @@
        <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
-           <div class="profile-image">
-             <% if ( image != '' ){ %>
+           <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
                <img src="images/200x200/<%= image %>"/>
-             <% } else { %>
-                <img src="http://placehold.it/50/50" />
-             <% } %>
              </div>
              <div class="info">
                <h2><%= name %></h2>
                <p><%= about %></p>
-               <a href="">
+               <a href="#">
                 <button class="large turquoise">Do something cool</button>
                </a>
              </div>
