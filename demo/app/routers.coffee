@@ -2,6 +2,7 @@ class AppRouter extends Backbone.Router
 
   routes:
     '': 'index'
+    'getting-started': 'gettingStarted'
     'animations': 'animations'
     'slide': 'slide'
     'slideUp': 'slideUp'
@@ -11,6 +12,9 @@ class AppRouter extends Backbone.Router
 
   index: ->
     flight.goto '#index'
+
+  gettingStarted: ->
+    flight.goto '#getting-started'
 
   animations: ->
     flight.goto '#animations'
