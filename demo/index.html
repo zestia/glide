@@ -237,8 +237,7 @@
         app.init();
 
         // disable touch move on header to prevent user stretching from top
-        header = document.querySelector('header')
-        header.addEventListener('touchmove', function(e) {
+        $('header').on('touchmove', function(e) {
           e.preventDefault();
         });
 
