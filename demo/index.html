@@ -66,29 +66,31 @@
       </div>
     </div>
 
-    <div id="slide" class="page hidden">
-      <header>
+    <div id="slide" class="page hidden demo-content">
+      <header class="shadow">
         <a class="back left btn"><i class="icon-left-dir-1"></i></a>
         <h1>Slide</h1>
       </header>
       <div class="scrollview">
         <div class="scrollview-inner">
-          <div class="scrollview-content">
-            <p>Slide is the default transition between pages.</p>
+          <div class="scrollview-content inset">
+            <h2>The slide transition</h2>
+            <p>Slide is the default transition between pages. If the markup is correct Glide will handle the forwards and back transitions for you.</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="slideUp" class="page hidden" data-transition="slideUp">
-      <header>
+    <div id="slideUp" class="page hidden demo-content" data-transition="slideUp">
+      <header class="shadow">
         <a class="back left btn"><i class="icon-down-dir-1"></i></a>
         <h1>Slide Up</h1>
       </header>
       <div class="scrollview">
         <div class="scrollview-inner">
-          <div class="scrollview-content">
-            <p>To apply slide up add <code>data-transition="slideUp"</code> to the parent element of your page</p>
+          <div class="scrollview-content inset">
+            <h2>The slide up transition</h2>
+            <p>To apply slide up add <code>data-transition="slideUp"</code> to the same element which has the class <code>.page</code>. Glide will figure out that this page has a slide up transition and will perform the reverse on the way back.</p>
           </div>
         </div>
       </div>
