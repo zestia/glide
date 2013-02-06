@@ -9,7 +9,6 @@ class Contacts extends Backbone.View
 
   render: ->
     @$el.html ''
-    console.log @collection
     for model in @collection.models
       if not model.attributes.image? then model.attributes.image = 'tyrion.jpg'
       @$el.append @template(model.toJSON())
