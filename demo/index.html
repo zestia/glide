@@ -113,7 +113,7 @@
             </pre>
             <p>That's all you need to get started.</p>
             <h3>Adding scrolling</h3>
-            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2#issuecomment-6173855">source</a>]. The solution  does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
+            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. The solution  does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
             <pre class="prettyprint language-html">
 &lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
   &lt;!-- fixed header --&gt;
@@ -236,7 +236,7 @@ class AppRouter extends Backbone.Router
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>The slide transition</h2>
-            <p>Slide is the default transition between pages. If the markup is correct Glide will handle the forwards and back transitions for you.</p>
+            <p>Slide is the default transition between pages. Glide will handle the forwards and back transitions for you.</p>
           </div>
         </div>
       </div>
@@ -251,7 +251,12 @@ class AppRouter extends Backbone.Router
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>The slide up transition</h2>
-            <p>To apply slide up add <code>data-transition="slideUp"</code> to the same element which has the class <code>.page</code>. Glide will figure out that this page has a slide up transition and will perform the reverse on the way back.</p>
+            <p>To apply slide up add <code>data-transition="slideUp"</code>. Glide will figure out that this page has a slide up transition and will perform the reverse on the way back. Code example:</p>
+             <pre class="prettyprint language-javascript">
+&lt;div class=&quot;page hidden&quot; data-transition=&quot;slideUp&quot;&gt;
+  &lt;!-- content here --&gt;
+&lt;/div&gt;
+</pre>
           </div>
         </div>
       </div>
