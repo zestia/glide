@@ -3,6 +3,7 @@ class AppRouter extends Backbone.Router
   routes:
     '': 'index'
     'getting-started': 'gettingStarted'
+    'fixed-header-footer': 'fixedHeaderFooter'
     'animations': 'animations'
     'slide': 'slide'
     'slideUp': 'slideUp'
@@ -14,6 +15,9 @@ class AppRouter extends Backbone.Router
 
   gettingStarted: ->
     glide.goto '#getting-started'
+
+  fixedHeaderFooter: ->
+    glide.goto '#fixed-header-footer'
 
   animations: ->
     glide.goto '#animations'

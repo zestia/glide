@@ -60,14 +60,14 @@
             <h2>Using Glide</h2>
             <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
              <h3>Features</h3>
-             <ul>
+             <ul class="text-list">
                 <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
                  <li><code>flight.js</code> handles forwards and backwards page transitions.</li>
                  <li>We use <code>fastclick.js</code> to speed up clicks.</li>
                  <li>Extend Glide wih your own plugins.</li>
               </ul>
               <h3>Device Support</h3>
-              <ul>
+              <ul class="text-list">
                 <li>iPhone 3, 4 and 5</li>
                 <li>Android 4+</li>
                 <li>Android 2.3 (working solution)</li>
@@ -127,7 +127,9 @@
   &lt;!-- fixed footer --&gt;
 &lt;/div&gt;
             </pre>
-
+            <ul class="list menu">
+              <li><a href="#fixed-header-footer">Example fixed header/footer<i class="icon-right-dir-1"></i></a></li>
+            </ul>
             <h2>Transitioning pages</h2>
             <p>Transitioning pages can be done in a router or on a simple click event. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
@@ -322,6 +324,59 @@ class AppRouter extends Backbone.Router
     </div>
 
     <div id="contact-page" class="page hidden contacts"></div>
+
+    <div id="fixed-header-footer" class="page hidden demo-content">
+      <header class="shadow">
+         <a class="back left btn">
+            <button class="secondary">Back</button>
+        </a>
+        <h1>Example</h1>
+      </header>
+      <div class="strap">
+        <p>This is fixed</p>
+      </div>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <ul class="list">
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+              <li><a href="#">List item</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-menu">
+        <p>I could be a menu</p>
+      </div>
+    </div>
 
     <script type="text/html" id="contact-list-item">
        <li>
