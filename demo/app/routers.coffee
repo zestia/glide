@@ -8,7 +8,6 @@ class AppRouter extends Backbone.Router
     'slideUp': 'slideUp'
     'contacts': 'contacts'
     'contacts/:id': 'showContact'
-    'contact/add': 'addContact'
 
   index: ->
     glide.goto '#index'

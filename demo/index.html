@@ -58,7 +58,7 @@
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>Using Glide</h2>
-            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started.</p>
+            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js.</p>
              <h3>Features</h3>
              <ul>
                 <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
@@ -104,9 +104,33 @@
   &lt;!-- page content --&gt;
 &lt;/div&gt;
             </pre>
-            <p>Glide will use the unique ID's to target the pages. That's all you need to get started.</p>
+            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked up make sure you tell Glide to open the first page:</p>
+            <pre class="prettyprint language-html">
+&lt;script&gt;
+  window.glide = new Glide
+  glide.goto('#page-1')
+&lt;/script&gt;
+            </pre>
+            <p>That's all you need to get started.</p>
+            <h3>Adding scrolling</h3>
+            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2#issuecomment-6173855">source</a>]. The solution  does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything out side div.scrollview becomes a fixed positioned element: </p>
+            <pre class="prettyprint language-html">
+&lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- fixed header --&gt;
+  &lt;div class=&quot;scrollview&quot;&gt;
+    &lt;div class=&quot;scrollview-inner&quot;&gt;
+      &lt;div class=&quot;scrollview-content&quot;&gt;
+        &lt;!-- scrollable content here --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- fixed footer --&gt;
+&lt;/div&gt;
+            </pre>
+
+
             <h2>Transitioning pages</h2>
-            <p>Transitioning pages can be done in a router or on a simple click event.</p>
+            <p>Transitioning pages can be done in a router or on a simple click event. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
 &lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot; id=&quot;page-2&quot;&gt;
   &lt;button&gt;Go to page 2&lt;/button&gt;
@@ -131,6 +155,55 @@ $('document').on('click','.back',function(e){
   window.history.back();
 })
             </pre>
+            <h2>Using Glide with Backbone.js</h2>
+            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. Example router in backbone (example in coffeescript): </p>
+            <pre class="prettyprint language-javascript">
+class AppRouter extends Backbone.Router
+
+  routes:
+    '': 'index'
+    'getting-started': 'gettingStarted'
+    'animations': 'animations'
+    'slide': 'slide'
+    'slideUp': 'slideUp'
+    'contacts': 'contacts'
+    'contacts/:id': 'showContact'
+
+  index: ->
+    glide.goto '#index'
+
+  gettingStarted: ->
+    glide.goto '#getting-started'
+
+  animations: ->
+    glide.goto '#animations'
+
+  slide: ->
+    glide.goto '#slide'
+
+  slideUp: ->
+    glide.goto '#slideUp'
+
+  contacts: ->
+    view = new app.Views.Contacts collection: app.Collections.Contacts
+    view.render()
+    glide.goto '#contacts'
+
+  showContact: (id) ->
+    model = app.Collections.Contacts?.get(id)
+    view = new app.Views.ContactsShow model: model
+    view.render()
+    glide.goto '#contact-page'
+
+@app = window.app ? {}
+@app.Routers.AppRouter = AppRouter
+            </pre>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, Glide has that all worked out for you.</p>
+            <h2>View exmaple app</h2>
+            <p>To see Glide in full use view our example contacts app and take time to look through the source.</p>
+            <a href="#contacts">
+              <button class="large orange">View contacts demo app</button>
+            </a>
           </div>
         </div>
       </div>
