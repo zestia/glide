@@ -10,9 +10,11 @@ class Glide
   transitionAnimation: true
   speed: 0.3
 
+  # Public: Instantiate Flight and set any options.
   #
+  # options - A Hash of options for flight.
   #
-  #
+  # Returns nothing.
   constructor: (options = {}) ->
     @[key] = value for key, value of options
 
@@ -32,9 +34,9 @@ class Glide
     document.addEventListener "webkitTransitionEnd", (e) =>
       @hideTransitionedPage e.target
 
+  # Private: Get a Hash of browser user agent information.
   #
-  #
-  #
+  # Returns a Hash of user agent information.
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
     @os = {}
@@ -44,9 +46,6 @@ class Glide
       result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
       @os.version = result[1]
 
-  #
-  #
-  #
   setupForAndroid: ->
     head = document.getElementsByTagName('head')[0]
     androidCSS = document.createElement 'link'
@@ -62,17 +61,16 @@ class Glide
     document.body.className = "old-android"
     @transitionAnimation = false
 
-  #
-  #
-  #
   hideUrlBar: ->
     setTimeout ->
       window.scrollTo 0, 1
     , 50
 
+  # Public: Go to a specific page.
   #
+  # targetPage - A String of the element ID or existing element.
   #
-  #
+  # Returns nothing.
   goto: (targetPage) =>
     hook() for hook in @hooks['before:goto']
 
@@ -123,9 +121,9 @@ class Glide
 
     hook() for hook in @hooks['after:goto']
 
+  # Private: Perform a slide transition.
   #
-  #
-  #
+  # Returns nothing.
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
 
@@ -151,9 +149,9 @@ class Glide
       @back = false
     , 0
 
+  # Private: Perform a slide from bottom transition.
   #
-  #
-  #
+  # Returns nothing.
   slideUp: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     screenHeight = window.innerHeight + 'px'
@@ -171,17 +169,22 @@ class Glide
 
     @back = false
 
+  # Private: Translate page on a specified axis.
   #
+  # page     - An Element of the page.
+  # axis     - A String of the axis.
+  # distance - A String of the distance.
+  # duration - A String of the duration, defaults to speed.
   #
-  #
+  # Returns nothing.
   translate: (page, axis, distance, duration) ->
     duration = @speed + "s" unless duration?
     page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
+  # Private: Show the current page without transition
   #
-  #
-  #
+  # Returns nothing.
   displayPage: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
@@ -191,9 +194,11 @@ class Glide
 
     if @back is true then @back = false
 
+  # Private: Hide DOM that has just been transitioned
   #
+  # page    - The page element that has just been moved outside of view
   #
-  #
+  # Returns nothing
   hideTransitionedPage: (page) =>
     if @hasClass(page,'page')
       page.style.display = "none" unless page.id is @targetPage.id
@@ -201,45 +206,48 @@ class Glide
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
 
+  # Private: Check if element has a class
   #
+  # el        - DOM element to be checked
+  # cssClass  - A string of the class name
   #
-  #
+  # Returns true if element has the specified class and false if not
   hasClass: (el, cssClass) ->
     if el.className isnt ''
       el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
     else
       false
 
+  # Private: Is the device touch enabled.
   #
-  #
-  #
+  # Returns True if the device is touch enabled, else False.
   isTouch: ->
     if @isAndroid()
       !!('ontouchstart' of window)
     else
       window.Touch?
 
+  # Public: Is the device running iOS
   #
-  #
-  #
+  # Returns True if the device is running iOS, else False.
   isIOS: ->
     @os.ios
 
+  # Public: Is the device running Android
   #
-  #
-  #
+  # Returns True if the device is running Android, else False.
   isAndroid: ->
     @os.android
 
+  # Public: Get the version of the OS running on the device.
   #
-  #
-  #
+  # Returns a String of the OS version.
   osVersion: ->
     @os.version.toString()
 
+  # Private: Handle touch events to apply pressed class to anchors
   #
-  #
-  #
+  # Returns nothing.
   handleEvents: (e) =>
     if @isTouch()
       switch e.type
@@ -254,9 +262,6 @@ class Glide
         when 'mousedown'
           @onTouchStart e
 
-  #
-  #
-  #
   onTouchStart: (e) =>
     if @isTouch()
       if @isAndroid()
@@ -280,21 +285,12 @@ class Glide
     @theTarget.addEventListener 'mouseup', @onTouchEnd, false
     @theTarget.addEventListener 'touchcancel', @onTouchcancel, false
 
-  #
-  #
-  #
   onTouchMove: (e) =>
     @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
-  #
-  #
-  #
   onTouchEnd: (e) =>
     @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
-  #
-  #
-  #
   onTouchCancel: (e) =>
     @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
