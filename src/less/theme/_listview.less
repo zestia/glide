@@ -1,0 +1,62 @@
+ul.list {
+    background: white;
+
+    li {
+      border-bottom:  1px solid #e1e1e1;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0px;
+      &:last-child {
+        border-bottom: 0px;
+      }
+    }
+
+    .activity-content {
+      padding-left: 50px;
+    }
+
+    a {
+      padding: 10px;
+      color: @mainFontColor;
+      text-decoration: none;
+      display: block;
+
+      i {
+        color: #999d9f;
+        right: 10px;
+        position: absolute;
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+
+    .pressed, .pressed > * {
+      color: white;
+      background: #097CF0;
+    }
+    small {
+      color: #ccc;
+    }
+
+    img {
+      float: left;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+  }
+
+#contacts-list li {
+    line-height: 40px;
+  }
+
+  .menu {
+    border: 1px solid #e1e1e1;
+    background: white;
+    .border-radius(5px);
+    margin-bottom: 10px;
+
+    li a {
+      font-weight: bold;
+    }
+  }

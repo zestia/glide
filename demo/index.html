@@ -7,12 +7,19 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <!-- iPhone -->
-    <link href="images/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <link href="images/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
     <!-- iPhone (Retina) -->
-    <link href="images/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="images/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <!-- iPhone 5 -->
-    <link href="images/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
-    <title>Flight</title>
+    <link href="images/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <link rel="apple-touch-icon" href="images/glide-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="images/glide-icon.png"/>
+
+    <title>Glide</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../lib/flight.css">
     <link rel="stylesheet" href="../lib/flight.theme.css">
   </head>
@@ -21,48 +28,99 @@
     <div id="debug"></div>
     <div class="header-bg"></div>
 
-    <div id="activity" class="page">
+    <div id="index" class="page hidden">
       <header>
-        <a class="main-menu-btn left btn">
-          <button class="menu secondary">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </button>
-        </a>
-        <a href="#contact/add" class="btn right"><button class="primary">Add</button></a>
-        <h1>Activity</h1>
+        <h1 class="logo">Glide</h1>
       </header>
       <div class="scrollview">
         <div class="scrollview-inner">
-          <div class="scrollview-content">
-
-          <ul id="activity-list" class="list">
-            <!-- #activity-list-item -->
-          </ul>
-
+          <div class="scrollview-content inset">
+            <p class="white">The <i>smoothest</i> mobile transition library</p>
+            <ul class="list menu">
+              <li><a href="#animations">Animations<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#getting-started">Getting started<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#credits">Credits<i class="icon-right-dir-1"></i></a></li>
+            </ul>
+            <a href="#contacts">
+              <button class="large green">View contacts demo</button>
+            </a>
           </div>
         </div>
       </div>
     </div>
 
-    <script type="text/html" id="activity-list-item">
-      <li class="<%= (type == 'Task') ? 'app-icon-before complete-task' : '' %>">
-        <a href="#entry">
-          <% if (type != 'Task') { %>
-            <img src="http://placekitten.com/30/30" />
-          <% } %>
-          <div class="activity-content">
-            <p class="entry-text">
-              <%= note.truncate(70, true) %>
-            </p>
-            <small class="timestamp">
-              <time>2 days ago</time> via Duncan Stockdill
-            </small>
+    <div id="getting-started" class="page hidden demo-content">
+      <header>
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Getting started</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>Using Glide</h2>
+            <p>Glide is as a simple lightweight mobile transition library.</p>
+             <h3>Features</h3>
+             <ul>
+                <li><code>flight.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements.</li>
+                 <li><code>flight.js</code> handles forwards and backwards page transitions.</li>
+                 <li>We use <code>fastclick.js</code> to speed up clicks.</li>
+                 <li>Extend flight wih your own plugins.</li>
+              </ul>
+              <h2>Markup</h2>
+              <h3>Pages</h3>
+              <p>Organise your app into pages:</p>
+            </ul>
           </div>
-        </a>
-      </li>
-    </script>
+        </div>
+      </div>
+    </div>
+
+    <div id="animations" class="page hidden">
+      <header>
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Animations</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <ul class="list menu">
+              <li><a href="#slide">Slide<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#slideUp">Slide up<i class="icon-up-dir-1"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Slide</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>The slide transition</h2>
+            <p>Slide is the default transition between pages. If the markup is correct Glide will handle the forwards and back transitions for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slideUp" class="page hidden demo-content" data-transition="slideUp">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-down-dir-1"></i></a>
+        <h1>Slide Up</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>The slide up transition</h2>
+            <p>To apply slide up add <code>data-transition="slideUp"</code> to the same element which has the class <code>.page</code>. Glide will figure out that this page has a slide up transition and will perform the reverse on the way back.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div id="add-contact-form" class="page hidden">
       <header>
@@ -112,32 +170,73 @@
       </div>
     </div>
 
-    <div id="entry" class="page hidden">
-      <header>
+    <div id="contacts" class="page hidden contacts">
+      <header class="shadow">
         <a class="back left btn">
-          <button class="secondary">Back</button>
+            <button class="secondary">Back</button>
         </a>
-        <h1>Entry</h1>
+        <h1>Contacts</h1>
       </header>
-      <div class="scrollview">
+       <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <ul id="contacts-list" class="list">
+              <!-- #contact-list-item -->
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
-    </div>
+    <div id="contact-page" class="page hidden contacts"></div>
+
+    <script type="text/html" id="contact-list-item">
+       <li>
+         <a href="#contacts/<%= id %>">
+           <% if ( image != '' ){ %>
+             <img class="<% if ( image === 'tyrion.jpg' ){ %> bw <% } %>" src="images/200x200/<%= image %>"/>
+           <% } else { %>
+              <img src="http://placehold.it/50/50" />
+           <% } %>
+           <%= name %>
+          </a>
+       </li>
+    </script>
+
+    <script type="text/html" id="contact-item">
+      <header class="shadow">
+        <a class="back left btn">
+            <button class="secondary">Back</button>
+        </a>
+        <h1><%= name %></h1>
+      </header>
+       <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+           <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
+               <img src="images/200x200/<%= image %>"/>
+             </div>
+             <div class="info">
+               <h2><%= name %></h2>
+               <p><%= about %></p>
+               <a class="do-something" href="#">
+                <button class="large turquoise">Do something cool</button>
+               </a>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </script>
+
+
+
     <script src="vendor/jquery.js"></script>
     <script src="vendor/underscore.js"></script>
     <script src="vendor/backbone.js"></script>
     <script src="vendor/fastClick.js"></script>
 
     <script src="../lib/flight.js"></script>
-    <script>
-      window.glide = new Glide({stylesheetPath: '../lib/'})
-    </script>
     <script src="../lib/flight.menu.js"></script>
 
     <script src="app/application.js"></script>
@@ -150,10 +249,10 @@
       $(function() {
         app.init()
 
-        document.querySelector('header')
-          .addEventListener('touchmove', function(e) {
-            e.preventDefault()
-          })
+        // disable touch move on header to prevent user stretching from top
+        $(document).on('touchmove','header', function(e) {
+          e.preventDefault();
+        });
 
         $('.back').on('click', function() {
           window.history.back()
@@ -166,7 +265,31 @@
         if (window.Touch) {
           new FastClick(document.body)
         }
-      })
+
+         // need to move this into flight
+        if (navigator.standalone) {
+          window.preventScrolling = true
+          $(document)
+          .on('touchstart','.scrollview-content', function() {
+            this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+            window.preventScrolling=false
+          })
+          .on('touchmove', '.scrollview-content', function(e) {
+            if (window.preventScrolling) e.preventDefault()
+          })
+          .on('touchend', '.scrollview-content', function() {
+            window.preventScrolling = true
+          })
+        } else {
+          $(document)
+          .on('touchstart', '.scrollview-content', function() {
+          this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+          })
+        }
+
+
+      });
+
     </script>
 
   </body>

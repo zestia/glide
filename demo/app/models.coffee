@@ -1,4 +1,4 @@
-class Activity extends Backbone.Model  
+class Contact extends Backbone.Model
 
 @app = window.app ? {}
-@app.Models.Activity = Activity
+@app.Models.Contact = Contact

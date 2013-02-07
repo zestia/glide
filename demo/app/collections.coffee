@@ -1,8 +1,8 @@
-class Activities extends Backbone.Collection
+class Contacts extends Backbone.Collection
 
-  model: app.Models.Activity
+  model: app.Models.Contact
 
-  url: "data/activity.json"
+  url: "data/contacts.json"
 
 @app = window.app ? {}
-@app.Collections.Activities = new Activities
+@app.Collections.Contacts = new Contacts
