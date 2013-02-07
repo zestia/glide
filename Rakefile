@@ -21,13 +21,13 @@ task :deploy do
   puts "Glide demo deployed to .war"
 end
 
-desc 'Copy compiled flight.js to capsule-mobile/vendor and deploy to calgary.war/m2/vendor'
+desc 'Copy compiled glide.js to capsule-mobile/vendor and deploy to calgary.war/m2/vendor'
 task :m2 => [:coffee, :less, :deploy] do
-  system 'cp lib/flight.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
-  system 'cp lib/flight.js ~/Projects/capsule-mobile/vendor'
+  system 'cp lib/glide.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
+  system 'cp lib/glide.js ~/Projects/capsule-mobile/vendor'
 
-  system 'cp lib/flight.menu.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
-  system 'cp lib/flight.menu.js ~/Projects/capsule-mobile/vendor'
+  system 'cp lib/glide.menu.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
+  system 'cp lib/glide.menu.js ~/Projects/capsule-mobile/vendor'
   puts "Glide copied to /m2"
 end
 
