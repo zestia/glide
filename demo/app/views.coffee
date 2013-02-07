@@ -24,11 +24,15 @@ class ContactsShow extends Backbone.View
 
   events:
     'click .back': 'goBack'
+    'click .do-something': 'doSomething'
 
   render: ->
     @$el.html ''
     @$el.append @template(@model.toJSON())
     this
+
+  doSomething: (e) ->
+    e.preventDefault()
 
   goBack: ->
     app.goBack()
