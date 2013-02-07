@@ -58,18 +58,73 @@
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>Using Glide</h2>
-            <p>Glide is as a simple lightweight mobile transition library.</p>
+            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started.</p>
              <h3>Features</h3>
              <ul>
-                <li><code>flight.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements.</li>
+                <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements.</li>
                  <li><code>flight.js</code> handles forwards and backwards page transitions.</li>
                  <li>We use <code>fastclick.js</code> to speed up clicks.</li>
-                 <li>Extend flight wih your own plugins.</li>
+                 <li>Extend Glide wih your own plugins.</li>
               </ul>
               <h2>Markup</h2>
-              <h3>Pages</h3>
+              <h3>Anatomy of a page</h3>
+              <p>Include glide.js and css files. Make sure to include a theme.</p>
+              <pre class="prettyprint languague-html">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.theme.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;!-- pages here --&gt;
+
+    &lt;script src=&quot;js/glide.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+      window.glide = new Glide
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+              </pre>
               <p>Organise your app into pages:</p>
-            </ul>
+              <pre class="prettyprint language-html">
+&lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- page content --&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;page-2&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- page content --&gt;
+&lt;/div&gt;
+            </pre>
+            <p>Glide will use the unique ID's to target the pages. That's all you need to get started.</p>
+            <h2>Transitioning pages</h2>
+            <p>Transitioning pages can be done in a router or on a simple click event.</p>
+            <pre class="prettyprint lanuage-html">
+&lt;a href=&quot;#page-2-link&quot; class=&quot;button&quot; id=&quot;page-2&quot;&gt;
+  &lt;button&gt;Go to page 2&lt;/button&gt;
+&lt;/a&gt;
+            </pre>
+            <p>In your javascript assign a click event to the anchor.</p>
+            <pre class="prettyprint lanuage-javascript">
+$('#page-2-link').on('click',function(){
+  glide.goto("#page-2");
+});
+            </pre>
+            <p>Glide will perform the default slide transition to #page-2. Hitting back on the browser will pefrom the perform a reverse back to the previous page. You can make a back button with: </p>
+            <pre class="prettyprint language-javascript">
+&lt;a class=&quot;back&quot;&gt;
+  &lt;button&gt;Back&lt;/button&gt;
+&lt;/a&gt;
+            </pre>
+            <p>Then have some javascript to go back:</p>
+            <pre class="prettyprint language-javascript">
+$('document').on('click','.back',function(e){
+  e.preventDefault();
+  window.history.back();
+})
+            </pre>
           </div>
         </div>
       </div>
@@ -232,6 +287,7 @@
 
 
     <script src="vendor/jquery.js"></script>
+    <script src="vendor/jquery.snippet.js"></script>
     <script src="vendor/underscore.js"></script>
     <script src="vendor/backbone.js"></script>
     <script src="vendor/fastClick.js"></script>
@@ -265,6 +321,8 @@
         if (window.Touch) {
           new FastClick(document.body)
         }
+
+        prettyPrint()
 
          // need to move this into flight
         if (navigator.standalone) {
