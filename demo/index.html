@@ -58,7 +58,7 @@
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>Using Glide</h2>
-            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js.</p>
+            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
              <h3>Features</h3>
              <ul>
                 <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
@@ -128,7 +128,6 @@
 &lt;/div&gt;
             </pre>
 
-
             <h2>Transitioning pages</h2>
             <p>Transitioning pages can be done in a router or on a simple click event. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
@@ -142,7 +141,7 @@ $('#page-2-link').on('click',function(){
   glide.goto("#page-2");
 });
             </pre>
-            <p>Glide will perform the default slide transition to #page-2. Hitting back on the browser will pefrom the perform a reverse back to the previous page. You can make a back button with: </p>
+            <p>Glide will perform the default slide transition to #page-2. Hitting back on the browser will pefrom the perform a reverse transition back to the previous page. You can make a back button with: </p>
             <pre class="prettyprint language-javascript">
 &lt;a class=&quot;back&quot;&gt;
   &lt;button&gt;Back&lt;/button&gt;
@@ -200,7 +199,7 @@ class AppRouter extends Backbone.Router
             </pre>
             <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, Glide has that all worked out for you.</p>
             <h2>View example app</h2>
-            <p>To see Glide in full use view our example contacts app and take time to look through the source.</p>
+            <p class="last">To see Glide in full use view our example contacts app and take time to look through the source.</p>
             <a class="btn" href="#contacts">
               <button class="large orange">View contacts demo app</button>
             </a>
