@@ -129,7 +129,7 @@ class Glide
 
     screenWidth = window.innerWidth + 'px'
 
-    if @back?
+    if @back
       @translate currentPage, "X", "0%"
       @translate targetPage, "X", "-" + screenWidth, "0ms"
 
@@ -156,7 +156,7 @@ class Glide
     targetPage.style.display = "-webkit-box"
     screenHeight = window.innerHeight + 'px'
 
-    if @back?
+    if @back
       setTimeout =>
         @translate currentPage, "Y", screenHeight
       , 0
