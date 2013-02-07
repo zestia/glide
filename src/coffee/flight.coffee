@@ -24,8 +24,6 @@ class Glide
     @detectUserAgent()
     @setupForAndroid() if @isAndroid() and @os.version < '4'
 
-    @hideUrlBar() if options.hideUrlbar
-
     if @isTouch()
       document.body.addEventListener 'touchstart', @handleEvents, false
     else
@@ -45,26 +43,6 @@ class Glide
     if @os.android
       result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
       @os.version = result[1]
-
-  setupForAndroid: ->
-    head = document.getElementsByTagName('head')[0]
-    androidCSS = document.createElement 'link'
-    androidCSS.setAttribute 'rel', 'stylesheet'
-    androidCSS.setAttribute 'type', 'text/css'
-    androidCSS.setAttribute 'href', "#{@stylesheetPath}flight.android.css"
-    head.appendChild androidCSS
-
-    styleSheets = document.styleSheets
-    for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
-      styleSheet.disabled = true
-
-    document.body.className = "old-android"
-    @transitionAnimation = false
-
-  hideUrlBar: ->
-    setTimeout ->
-      window.scrollTo 0, 1
-    , 50
 
   # Public: Go to a specific page.
   #
@@ -120,6 +98,24 @@ class Glide
     , 10
 
     hook() for hook in @hooks['after:goto']
+
+  # Private: Disables transitions and default stylesheet and replaces with android specific css
+  #
+  # Returns nothing.
+  setupForAndroid: ->
+    head = document.getElementsByTagName('head')[0]
+    androidCSS = document.createElement 'link'
+    androidCSS.setAttribute 'rel', 'stylesheet'
+    androidCSS.setAttribute 'type', 'text/css'
+    androidCSS.setAttribute 'href', "#{@stylesheetPath}flight.android.css"
+    head.appendChild androidCSS
+
+    styleSheets = document.styleSheets
+    for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
+      styleSheet.disabled = true
+
+    document.body.className = "old-android"
+    @transitionAnimation = false
 
   # Private: Perform a slide transition.
   #
