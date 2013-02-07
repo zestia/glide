@@ -50,7 +50,7 @@
     </div>
 
     <div id="getting-started" class="page hidden demo-content">
-      <header>
+      <header class="shadow">
         <a class="back left btn"><i class="icon-left-dir-1"></i></a>
         <h1>Getting started</h1>
       </header>
@@ -61,10 +61,16 @@
             <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started.</p>
              <h3>Features</h3>
              <ul>
-                <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements.</li>
+                <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
                  <li><code>flight.js</code> handles forwards and backwards page transitions.</li>
                  <li>We use <code>fastclick.js</code> to speed up clicks.</li>
                  <li>Extend Glide wih your own plugins.</li>
+              </ul>
+              <h3>Device Support</h3>
+              <ul>
+                <li>iPhone 3, 4 and 5</li>
+                <li>Android 4+</li>
+                <li>Android 2.3 (working solution)</li>
               </ul>
               <h2>Markup</h2>
               <h3>Anatomy of a page</h3>
@@ -88,7 +94,7 @@
   &lt;/body&gt;
 &lt;/html&gt;
               </pre>
-              <p>Organise your app into pages:</p>
+              <p>Organise your app into pages. Make sure each page has the class .page and .hidden:</p>
               <pre class="prettyprint language-html">
 &lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
   &lt;!-- page content --&gt;
@@ -102,7 +108,7 @@
             <h2>Transitioning pages</h2>
             <p>Transitioning pages can be done in a router or on a simple click event.</p>
             <pre class="prettyprint lanuage-html">
-&lt;a href=&quot;#page-2-link&quot; class=&quot;button&quot; id=&quot;page-2&quot;&gt;
+&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot; id=&quot;page-2&quot;&gt;
   &lt;button&gt;Go to page 2&lt;/button&gt;
 &lt;/a&gt;
             </pre>
