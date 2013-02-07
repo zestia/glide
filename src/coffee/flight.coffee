@@ -96,7 +96,7 @@ class Glide
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
 
-    if @back? and @pageHistory.length != 1
+    if @back and @pageHistory.length != 1
       transitionType = @currentPage.getAttribute("data-transition") or 'slide'
       @pageHistory.pop()
     else
