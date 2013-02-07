@@ -8,17 +8,17 @@ end
 
 desc 'compile less into css'
 task :less do
-  system 'lessc --yui-compress src/less/flight.less lib/flight.css'
-  system 'lessc --yui-compress src/less/flight.android.less lib/flight.android.css'
-  system 'lessc --yui-compress src/less/theme/flight.theme.less lib/flight.theme.css'
+  system 'lessc --yui-compress src/less/glide.less lib/glide.css'
+  system 'lessc --yui-compress src/less/glide.android.less lib/glide.android.css'
+  system 'lessc --yui-compress src/less/theme/glide.theme.less lib/glide.theme.css'
 end
 
 desc 'Deploy to local development server'
 task :deploy do
-  system 'mkdir -p /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/{flight,flight/lib,flight/demo}'
-  system 'cp -r lib/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/flight/lib'
-  system 'cp -r demo/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/flight/demo'
-  puts "Flight demo deployed to .war"
+  system 'mkdir -p /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/{glide,glide/lib,glide/demo}'
+  system 'cp -r lib/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/glide/lib'
+  system 'cp -r demo/* /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/glide/demo'
+  puts "Glide demo deployed to .war"
 end
 
 desc 'Copy compiled flight.js to capsule-mobile/vendor and deploy to calgary.war/m2/vendor'
@@ -28,7 +28,7 @@ task :m2 => [:coffee, :less, :deploy] do
 
   system 'cp lib/flight.menu.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
   system 'cp lib/flight.menu.js ~/Projects/capsule-mobile/vendor'
-  puts "Flight copied to /m2"
+  puts "Glide copied to /m2"
 end
 
 task :default => [:coffee, :less, :deploy]

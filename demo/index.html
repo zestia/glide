@@ -20,8 +20,8 @@
 
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../lib/flight.css">
-    <link rel="stylesheet" href="../lib/flight.theme.css">
+    <link rel="stylesheet" href="../lib/glide.css">
+    <link rel="stylesheet" href="../lib/glide.theme.css">
   </head>
 
   <body>
@@ -425,8 +425,7 @@ class AppRouter extends Backbone.Router
     <script src="vendor/backbone.js"></script>
     <script src="vendor/fastClick.js"></script>
 
-    <script src="../lib/flight.js"></script>
-    <script src="../lib/flight.menu.js"></script>
+    <script src="../lib/glide.js"></script>
 
     <script src="app/application.js"></script>
     <script src="app/routers.js"></script>
@@ -457,7 +456,7 @@ class AppRouter extends Backbone.Router
 
         prettyPrint()
 
-         // need to move this into flight
+         // need to move this into flight or find a better way
         if (navigator.standalone) {
           window.preventScrolling = true
           $(document)
