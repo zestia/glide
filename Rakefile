@@ -23,10 +23,12 @@ end
 
 desc 'Copy compiled flight.js to capsule-mobile/vendor and deploy to calgary.war/m2/vendor'
 task :m2 => [:coffee, :less, :deploy] do
-  system 'cp -r lib/flight.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
-  system 'cp -r lib/flight.js ~/Projects/capsule-mobile/vendor'
+  system 'cp lib/flight.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
+  system 'cp lib/flight.js ~/Projects/capsule-mobile/vendor'
+
+  system 'cp lib/flight.menu.js /usr/local/jboss/server/default/deploy/calgary.ear/calgary.war/m2/vendor'
+  system 'cp lib/flight.menu.js ~/Projects/capsule-mobile/vendor'
   puts "Flight copied to /m2"
 end
 
-desc 'compile coffeescript and less and deploy'
 task :default => [:coffee, :less, :deploy]

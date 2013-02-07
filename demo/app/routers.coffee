@@ -8,13 +8,13 @@ class AppRouter extends Backbone.Router
   activities: ->
     view = new app.Views.Activities collection: app.Collections.Activities
     view.render()
-    flight.goto '#activity'
+    glide.goto '#activity'
 
   entry: ->
-    flight.goto '#entry'
+    glide.goto '#entry'
 
   addContact: ->
-    flight.goto '#add-contact-form'
+    glide.goto '#add-contact-form'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter

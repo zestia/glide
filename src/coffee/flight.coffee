@@ -1,23 +1,14 @@
-class Flight
+class Glide
 
-  pageHistory: []
-  currentPage: ''
-  targetPage: ''
-  startPage: ''
-  os: ''
-  moved: false
-  theTarget: null
+  stylesheetPath: '/'
+
+  hooks:
+    'before:goto': []
+    'after:goto': []
 
   isTransitioning: false
-  menuOpen: false
-  back: false
-  timeout: null
-
   transitionAnimation: true
   speed: 0.3
-  mainMenu: '#main-menu'
-  menuCloseButton: '#close-menu-btn'
-  stylesheetPath: '/'
 
   # Public: Instantiate Flight and set any options.
   #
@@ -25,15 +16,13 @@ class Flight
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    for key, value of options
-      @[key] = value
+    @[key] = value for key, value of options
+
+    for key, value of @plugins
+      @plugins[key] = new value this
 
     @detectUserAgent()
-
-    @mainMenu = document.querySelector @mainMenu if typeof @mainMenu is "string"
-
-    if @isAndroid() and @os.version < '4'
-      @setupForAndroid()
+    @setupForAndroid() if @isAndroid() and @os.version < '4'
 
     @hideUrlBar() if options.hideUrlbar
 
@@ -45,14 +34,45 @@ class Flight
     document.addEventListener "webkitTransitionEnd", (e) =>
       @hideTransitionedPage e.target
 
+  # Private: Get a Hash of browser user agent information.
+  #
+  # Returns a Hash of user agent information.
+  detectUserAgent: ->
+    userAgent = window.navigator.userAgent
+    @os = {}
+    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) or !!userAgent.match(/Silk-Accelerated/)
+    @os.ios = !!userAgent.match(/(iPad).*OS\s([\d_]+)/) or !!userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
+    if @os.android
+      result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
+      @os.version = result[1]
+
+  setupForAndroid: ->
+    head = document.getElementsByTagName('head')[0]
+    androidCSS = document.createElement 'link'
+    androidCSS.setAttribute 'rel', 'stylesheet'
+    androidCSS.setAttribute 'type', 'text/css'
+    androidCSS.setAttribute 'href', "#{@stylesheetPath}flight.android.css"
+    head.appendChild androidCSS
+
+    styleSheets = document.styleSheets
+    for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
+      styleSheet.disabled = true
+
+    document.body.className = "old-android"
+    @transitionAnimation = false
+
+  hideUrlBar: ->
+    setTimeout ->
+      window.scrollTo 0, 1
+    , 50
+
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
   #
   # Returns nothing.
   goto: (targetPage) =>
-    if @menuOpen is true
-      @closeMenu()
+    hook() for hook in @hooks['before:goto']
 
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
@@ -61,7 +81,7 @@ class Flight
 
     return if @targetPage is @currentPage or @isTransitioning
 
-    unless @currentPage
+    unless @currentPage?
       @targetPage.style.display = "-webkit-box"
       @pageHistory = [window.location.hash]
       @currentPage = @targetPage
@@ -76,7 +96,7 @@ class Flight
     if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
       @back = true
 
-    if @back and @pageHistory.length != 1
+    if @back? and @pageHistory.length != 1
       transitionType = @currentPage.getAttribute("data-transition") or 'slide'
       @pageHistory.pop()
     else
@@ -98,6 +118,8 @@ class Flight
       else
         @displayPage targetPage, currentPage
     , 10
+
+    hook() for hook in @hooks['after:goto']
 
   # Private: Perform a slide transition.
   #
@@ -147,37 +169,6 @@ class Flight
 
     @back = false
 
-  # Private: Perform a slide out transition for the menu.
-  #
-  # Returns nothing.
-  slideOutMenu: ->
-    if @menuOpen
-      setTimeout =>
-        @translate @mainMenu, "X", "-110%", "0.3s"
-      , 10
-
-      setTimeout =>
-        @mainMenu.style.display = "none"
-      , 300
-
-      @menuOpen = false
-    else
-      @translate @mainMenu, "X", "-110%", "0ms"
-
-      setTimeout =>
-        @translate @mainMenu, "X", "0%", "0.3s"
-      , 50
-
-      @mainMenu.style.display = "block"
-      @menuOpen = true
-
-  # Private: Close menu without transition
-  #
-  # Returns nothing.
-  closeMenu: ->
-    @mainMenu.style.display = "none"
-    @menuOpen = false
-
   # Private: Translate page on a specified axis.
   #
   # page     - An Element of the page.
@@ -191,7 +182,7 @@ class Flight
     page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
-  # Private: Display the current page.
+  # Private: Show the current page without transition
   #
   # Returns nothing.
   displayPage: (targetPage, currentPage) ->
@@ -215,50 +206,6 @@ class Flight
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
 
-  # Private: Get a Hash of browser user agent information.
-  #
-  # Returns a Hash of user agent information.
-  detectUserAgent: ->
-    userAgent = window.navigator.userAgent
-    os = {}
-    os.webkit = (if userAgent.match(/WebKit\/([\d.]+)/) then true else false)
-    os.android = (if userAgent.match(/(Android)\s+([\d.]+)/) or userAgent.match(/Silk-Accelerated/) then true else false)
-    if os.android
-      result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
-      os.version = result[1]
-    os.ipad = (if userAgent.match(/(iPad).*OS\s([\d_]+)/) then true else false)
-    os.iphone = (if not os.ipad and userAgent.match(/(iPhone\sOS)\s([\d_]+)/) then true else false)
-    os.webos = (if userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) then true else false)
-    os.touchpad = (if os.webos and userAgent.match(/TouchPad/) then true else false)
-    os.ios = os.ipad or os.iphone
-    os.blackberry = (if userAgent.match(/BlackBerry/) or userAgent.match(/PlayBook/) then true else false)
-    os.opera = (if userAgent.match(/Opera Mobi/) then true else false)
-    os.fennec = (if userAgent.match(/fennec/i) then true else false)
-    os.desktop = not (os.ios or os.android or os.blackberry or os.opera or os.fennec)
-    @os = os
-
-  setupForAndroid: =>
-    head = document.getElementsByTagName('head')[0]
-    androidCSS = document.createElement "link"
-    androidCSS.setAttribute "rel", "stylesheet"
-    androidCSS.setAttribute "type", "text/css"
-    androidCSS.setAttribute "href", "#{@stylesheetPath}flight.android.css"
-    head.appendChild androidCSS
-
-    styleSheets = document.styleSheets
-    styleSheet.disabled = true for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
-
-    document.body.className = "old-android"
-    @transitionAnimation = false
-
-  # Private: Hide the URL bar in mobile browsers.
-  #
-  # Returns nothing.
-  hideUrlBar: ->
-    setTimeout ->
-        window.scrollTo 0, 1
-    , 50
-
   # Private: Check if element has a class
   #
   # el        - DOM element to be checked
@@ -267,37 +214,40 @@ class Flight
   # Returns true if element has the specified class and false if not
   hasClass: (el, cssClass) ->
     if el.className isnt ''
-      el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className)
+      el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
     else
       false
 
   # Private: Is the device touch enabled.
   #
   # Returns True if the device is touch enabled, else False.
-  isTouch: =>
-    if @os.android
+  isTouch: ->
+    if @isAndroid()
       !!('ontouchstart' of window)
     else
       window.Touch?
 
-  # Public: Is the device running Android
-  #
-  # Returns True if the device is running Android, else False.
-  isAndroid: =>
-    @os.android
-
   # Public: Is the device running iOS
   #
   # Returns True if the device is running iOS, else False.
-  isIOS: =>
+  isIOS: ->
     @os.ios
+
+  # Public: Is the device running Android
+  #
+  # Returns True if the device is running Android, else False.
+  isAndroid: ->
+    @os.android
 
   # Public: Get the version of the OS running on the device.
   #
   # Returns a String of the OS version.
-  osVersion: =>
+  osVersion: ->
     @os.version.toString()
 
+  # Private: Handle touch events to apply pressed class to anchors
+  #
+  # Returns nothing.
   handleEvents: (e) =>
     if @isTouch()
       switch e.type
@@ -313,10 +263,8 @@ class Flight
           @onTouchStart e
 
   onTouchStart: (e) =>
-    @moved = false
-
     if @isTouch()
-      if @os.android
+      if @isAndroid()
         @theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY)
       else
         @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
@@ -330,7 +278,7 @@ class Flight
 
     if @theTarget is null then return
 
-    @theTarget.className+= ' pressed'
+    @theTarget.className += ' pressed'
     @theTarget.addEventListener 'touchmove', @onTouchMove, false
     @theTarget.addEventListener 'mouseout', @onTouchEnd, false
     @theTarget.addEventListener 'touchend', @onTouchEnd, false
@@ -338,7 +286,6 @@ class Flight
     @theTarget.addEventListener 'touchcancel', @onTouchcancel, false
 
   onTouchMove: (e) =>
-    @moved = true
     @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
   onTouchEnd: (e) =>
@@ -347,4 +294,4 @@ class Flight
   onTouchCancel: (e) =>
     @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
 
-window.Flight = Flight
+window.Glide = Glide
