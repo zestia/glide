@@ -237,6 +237,10 @@
     <script src="vendor/fastClick.js"></script>
 
     <script src="../lib/flight.js"></script>
+    <script>
+      window.glide = new Glide({stylesheetPath: '../lib/'})
+    </script>
+    <script src="../lib/flight.menu.js"></script>
 
     <script src="app/application.js"></script>
     <script src="app/routers.js"></script>
@@ -246,7 +250,7 @@
 
     <script type="text/javascript">
       $(function() {
-        app.init();
+        app.init()
 
         // disable touch move on header to prevent user stretching from top
         $(document).on('touchmove','header', function(e) {
@@ -255,14 +259,14 @@
 
         $('.back').on('click', function() {
           window.history.back()
-        });
+        })
 
         $(document).on('click', 'header h1', function() {
           $('.scrollview-inner').animate({ scrollTop: '0px' })
         })
 
         if (window.Touch) {
-          new FastClick(document.body);
+          new FastClick(document.body)
         }
 
          // need to move this into flight
@@ -288,6 +292,7 @@
 
 
       });
+
     </script>
 
   </body>

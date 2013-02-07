@@ -11,33 +11,30 @@ class AppRouter extends Backbone.Router
     'contact/add': 'addContact'
 
   index: ->
-    flight.goto '#index'
+    glide.goto '#index'
 
   gettingStarted: ->
-    flight.goto '#getting-started'
+    glide.goto '#getting-started'
 
   animations: ->
-    flight.goto '#animations'
+    glide.goto '#animations'
 
   slide: ->
-    flight.goto '#slide'
+    glide.goto '#slide'
 
   slideUp: ->
-    flight.goto '#slideUp'
-
-  addContact: ->
-    flight.goto '#add-contact-form'
+    glide.goto '#slideUp'
 
   contacts: ->
     view = new app.Views.Contacts collection: app.Collections.Contacts
     view.render()
-    flight.goto '#contacts'
+    glide.goto '#contacts'
 
   showContact: (id) ->
     model = app.Collections.Contacts?.get(id)
     view = new app.Views.ContactsShow model: model
     view.render()
-    flight.goto '#contact-page'
+    glide.goto '#contact-page'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
