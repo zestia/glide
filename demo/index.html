@@ -295,9 +295,14 @@ class AppRouter extends Backbone.Router
 
     <div id="contacts" class="page hidden contacts">
       <header class="shadow">
-        <a class="back left btn">
-            <button class="secondary">Back</button>
+        <a class="main-menu-button left">
+            <button class="menu secondary">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </button>
         </a>
+
         <h1>Contacts</h1>
       </header>
        <div class="scrollview">
@@ -407,11 +412,12 @@ class AppRouter extends Backbone.Router
           </li>
         </ul>
         <ul id="menu-sections">
-          <li><a href="">Menu item 1</a></li>
-          <li><a href="">Menu item 2</a></li>
-          <li><a href="">Menu item 3</a></li>
-          <li><a href="">Menu item 4</a></li>
-          <li><a href="">Menu item 5</a></li>
+          <li><a class="disable" href="">Menu item 1</a></li>
+          <li><a class="disable" href="">Menu item 2</a></li>
+          <li><a class="disable" href="">Menu item 3</a></li>
+          <li><a class="disable" href="">Menu item 4</a></li>
+          <li><a class="disable" href="">Menu item 5</a></li>
+          <li><a href="#">Glide home page</a></li>
         </ul>
       </div>
 
@@ -496,7 +502,7 @@ class AppRouter extends Backbone.Router
           glide.plugins.menu.toggle();
         });
 
-        $(document).on('click','#main-menu',function(e){
+        $(document).on('click','#main-menu .disable',function(e){
           e.preventDefault();
         });
 
