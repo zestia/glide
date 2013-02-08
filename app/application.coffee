@@ -11,6 +11,8 @@ class App
   init: ->
     window.glide = new Glide
       stylesheetPath: '../lib/'
+      plugins:
+        menu: GlideMenu
 
     new @Routers.AppRouter
 

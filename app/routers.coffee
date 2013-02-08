@@ -9,6 +9,7 @@ class AppRouter extends Backbone.Router
     'slideUp': 'slideUp'
     'contacts': 'contacts'
     'contacts/:id': 'showContact'
+    'created-by': 'createdBy'
 
   index: ->
     glide.goto '#index'
@@ -38,6 +39,9 @@ class AppRouter extends Backbone.Router
     view = new app.Views.ContactsShow model: model
     view.render()
     glide.goto '#contact-page'
+
+  createdBy: ->
+    glide.goto '#created-by'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter

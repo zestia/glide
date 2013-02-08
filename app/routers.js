@@ -20,7 +20,8 @@
       'slide': 'slide',
       'slideUp': 'slideUp',
       'contacts': 'contacts',
-      'contacts/:id': 'showContact'
+      'contacts/:id': 'showContact',
+      'created-by': 'createdBy'
     };
 
     AppRouter.prototype.index = function() {
@@ -64,6 +65,10 @@
       });
       view.render();
       return glide.goto('#contact-page');
+    };
+
+    AppRouter.prototype.createdBy = function() {
+      return glide.goto('#created-by');
     };
 
     return AppRouter;

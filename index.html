@@ -39,7 +39,7 @@
             <ul class="list menu">
               <li><a href="#animations">Animations<i class="icon-right-dir-1"></i></a></li>
               <li><a href="#getting-started">Getting started<i class="icon-right-dir-1"></i></a></li>
-              <li><a href="#credits">Credits<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#created-by">Created by<i class="icon-right-dir-1"></i></a></li>
             </ul>
             <a href="#contacts">
               <button class="large green">View contacts demo</button>
@@ -58,7 +58,7 @@
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>Using Glide</h2>
-            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
+            <p>Glide is as a simple lightweight mobile framework. This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
              <h3>Features</h3>
              <ul class="text-list">
                 <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
@@ -80,8 +80,8 @@
   &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot; /&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.theme.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.theme.css&quot;&gt;
   &lt;/head&gt;
   &lt;body&gt;
 
@@ -104,7 +104,7 @@
   &lt;!-- page content --&gt;
 &lt;/div&gt;
             </pre>
-            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked up make sure you tell Glide to open the first page:</p>
+            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page:</p>
             <pre class="prettyprint language-html">
 &lt;script&gt;
   window.glide = new Glide
@@ -113,7 +113,7 @@
             </pre>
             <p>That's all you need to get started.</p>
             <h3>Adding scrolling</h3>
-            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. The solution  does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
+            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. This solution does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
             <pre class="prettyprint language-html">
 &lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
   &lt;!-- fixed header --&gt;
@@ -131,9 +131,9 @@
               <li><a href="#fixed-header-footer">Example fixed header/footer<i class="icon-right-dir-1"></i></a></li>
             </ul>
             <h2>Transitioning pages</h2>
-            <p>Transitioning pages can be done in a router or on a simple click event. Glide does not watch for hash change events.</p>
+            <p>Transitioning pages can be done in a router or using simple click events binding the glide.goto() function. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
-&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot; id=&quot;page-2&quot;&gt;
+&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;&gt;
   &lt;button&gt;Go to page 2&lt;/button&gt;
 &lt;/a&gt;
             </pre>
@@ -143,21 +143,52 @@ $('#page-2-link').on('click',function(){
   glide.goto("#page-2");
 });
             </pre>
-            <p>Glide will perform the default slide transition to #page-2. Hitting back on the browser will pefrom the perform a reverse transition back to the previous page. You can make a back button with: </p>
+            <p>Glide will perform the default slide transition to #page-2. You can make a back button with: </p>
             <pre class="prettyprint language-javascript">
-&lt;a class=&quot;back&quot;&gt;
-  &lt;button&gt;Back&lt;/button&gt;
-&lt;/a&gt;
+&lt;div id=&quot;page-2&quot;&gt;
+  &lt;a href=&quot;#page-1&quot; class=&quot;back&quot;&gt;
+    &lt;button&gt;Back&lt;/button&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
             </pre>
-            <p>Then have some javascript to go back:</p>
+            <p>We wrap a button within an anchor so we can pad the hit target to make it easier to tap. Then have some javascript to go back. When not using a router you must explicitly state back as true on Glide:</p>
             <pre class="prettyprint language-javascript">
-$('document').on('click','.back',function(e){
+$('#page-2 a.back').on('click',function(){
+  glide.back = true
+  glide.goto('#page-1')
+});
+            </pre>
+            <h2>Using the menu plugin</h2>
+            <p>To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide.</p>
+            <pre class="prettyprint language-html">
+&lt;script src=&quot;js/glide.menu.js&quot;&gt;&lt;/script&gt;
+            </pre>
+            <pre class="prettyprint language-javascript">
+window.glide = new Glide({
+  plugins: {
+    menu: GlideMenu
+  }
+});
+            </pre>
+            <p>GlideMenu will look for the id #main-menu, make sure that is the ID for your menu markup. Now bind glide.plugins.menu.toggle() to your menu button:</p>
+            <pre class="prettyprint language-javascript">
+$('#main-menu-button').on('click',function(e){
   e.preventDefault();
-  window.history.back();
-})
+  glide.plugins.menu.toggle()
+});
             </pre>
+            Hiding the menu can be calling toggle() again while the menu is open:
+            <pre class="prettyprint language-javascript">
+$('#close-menu-btn').on('click',function(e){
+  e.preventDefault();
+  glide.plugins.menu.toggle()
+});
+            </pre>
+            <a href="#" class="main-menu-button">
+              <button class="secondary" >Toggle Main menu</button>
+            </a>
             <h2>Using Glide with Backbone.js</h2>
-            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. Example router in backbone (example in coffeescript): </p>
+            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below (written in coffeescript): </p>
             <pre class="prettyprint language-javascript">
 class AppRouter extends Backbone.Router
 
@@ -199,9 +230,9 @@ class AppRouter extends Backbone.Router
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
             </pre>
-            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, Glide has that all worked out for you.</p>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.goto() on each route has that all worked out for you.</p>
             <h2>View example app</h2>
-            <p class="last">To see Glide in full use view our example contacts app and take time to look through the source.</p>
+            <p class="last">To see Glide in full use view our example contacts app and take time to download and look through the source.</p>
             <a class="btn" href="#contacts">
               <button class="large orange">View contacts demo app</button>
             </a>
@@ -257,54 +288,6 @@ class AppRouter extends Backbone.Router
   &lt;!-- content here --&gt;
 &lt;/div&gt;
 </pre>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="add-contact-form" class="page hidden">
-      <header>
-        <a class="back left btn">
-            <button class="secondary">Cancel</button>
-        </a>
-        <h1>Test</h1>
-      </header>
-      <div class="scrollview">
-        <div class="scrollview-inner">
-          <div class="scrollview-content">
-            <form>
-              <li>
-                <input type="text" placeholder="Firstname" />
-              </li>
-              <li>
-                <input type="text" placeholder="Last name" />
-              </li>
-              <li>
-                <input type="text" placeholder="Job title" />
-              </li>
-              <li>
-                <input type="text" placeholder="Orgranisation" />
-              </li>
-              <li>
-                <input type="text" placeholder="Email address" />
-              </li>
-              <li>
-                <input type="number" placeholder="Phone number" />
-              </li>
-              <li>
-                <textarea type="textarea" placeholder="Address"></textarea>
-              </li>
-              <li>
-                <label>Address</label>
-                <select>
-                  <option>Home</option>
-                  <option>Work</option>
-                </select>
-              </li>
-              <li>
-                <textarea type="textarea" placeholder="About"></textarea>
-              </li>
-            </form>
           </div>
         </div>
       </div>
@@ -383,6 +366,57 @@ class AppRouter extends Backbone.Router
       </div>
     </div>
 
+    <div id="created-by" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Created by</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <div class="contributor" id="dom">
+                <img src="images/contributors/dom-grav.jpeg" alt="">
+                <div class="content">
+                  <h2>Dom Briggs</h2>
+                  <p>UI Designer</p>
+                  <p><a href="http://www.hallodom.co.uk">www.hallodom.co.uk</a>
+                  <p><a href="http://dribbble.com/dominique.briggs">dribbble.com/dominique.briggs</a>
+                  <p><a href="https://twitter.com/hallodom">@hallodom</a>
+                </div>
+                <hr />
+                <p>Made in Manchester at <a href="capsulecrm.com">Capsule</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-menu">
+      <div class="menu-container">
+        <ul class="account-holder">
+          <li>
+            <a id="close-menu-btn">
+              <div class="close-menu">
+                <div class="arrow-left"></div>
+              </div>
+            </a>
+            <a class="trim" href="#!/parties/{{partyId}}">
+              <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
+              Dominique Briggs
+            </a>
+          </li>
+        </ul>
+        <ul id="menu-sections">
+          <li><a href="">Menu item 1</a></li>
+          <li><a href="">Menu item 2</a></li>
+          <li><a href="">Menu item 3</a></li>
+          <li><a href="">Menu item 4</a></li>
+          <li><a href="">Menu item 5</a></li>
+        </ul>
+      </div>
+
+    </div>
+
     <script type="text/html" id="contact-list-item">
        <li>
          <a href="#contacts/<%= id %>">
@@ -431,6 +465,7 @@ class AppRouter extends Backbone.Router
     <script src="vendor/fastClick.js"></script>
 
     <script src="lib/glide.js"></script>
+    <script src="lib/glide.menu.js"></script>
 
     <script src="app/application.js"></script>
     <script src="app/routers.js"></script>
@@ -443,13 +478,27 @@ class AppRouter extends Backbone.Router
         app.init()
 
         // disable touch move on header to prevent user stretching from top
-        $(document).on('touchmove','header', function(e) {
+        $(document).on('touchmove','header ,.strap, .footer-menu', function(e) {
           e.preventDefault();
         });
 
         $('.back').on('click', function() {
           window.history.back()
         })
+
+        $(document).on('click','.main-menu-button',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+         $(document).on('click','#close-menu-btn',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+        $(document).on('click','#main-menu',function(e){
+          e.preventDefault();
+        });
 
         $(document).on('click', 'header h1', function() {
           $('.scrollview-inner').animate({ scrollTop: '0px' })
