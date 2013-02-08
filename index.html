@@ -159,7 +159,7 @@ $('#page-2 a.back').on('click',function(){
 });
             </pre>
             <h2>Using the menu plugin</h2>
-            <p>To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide.</p>
+            <p>To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide. We wrote the menu as a plugin so it's easier to build your own custom implmentations.</p>
             <pre class="prettyprint language-html">
 &lt;script src=&quot;js/glide.menu.js&quot;&gt;&lt;/script&gt;
             </pre>
@@ -295,9 +295,14 @@ class AppRouter extends Backbone.Router
 
     <div id="contacts" class="page hidden contacts">
       <header class="shadow">
-        <a class="back left btn">
-            <button class="secondary">Back</button>
+        <a class="main-menu-button left">
+            <button class="menu secondary">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </button>
         </a>
+
         <h1>Contacts</h1>
       </header>
        <div class="scrollview">
@@ -400,18 +405,19 @@ class AppRouter extends Backbone.Router
                 <div class="arrow-left"></div>
               </div>
             </a>
-            <a class="trim" href="#!/parties/{{partyId}}">
+            <a class="disable">
               <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
               Dominique Briggs
             </a>
           </li>
         </ul>
         <ul id="menu-sections">
-          <li><a href="">Menu item 1</a></li>
-          <li><a href="">Menu item 2</a></li>
-          <li><a href="">Menu item 3</a></li>
-          <li><a href="">Menu item 4</a></li>
-          <li><a href="">Menu item 5</a></li>
+          <li><a class="disable" href="">Menu item 1</a></li>
+          <li><a class="disable" href="">Menu item 2</a></li>
+          <li><a class="disable" href="">Menu item 3</a></li>
+          <li><a class="disable" href="">Menu item 4</a></li>
+          <li><a class="disable" href="">Menu item 5</a></li>
+          <li><a href="#">Glide home page</a></li>
         </ul>
       </div>
 
@@ -496,7 +502,7 @@ class AppRouter extends Backbone.Router
           glide.plugins.menu.toggle();
         });
 
-        $(document).on('click','#main-menu',function(e){
+        $(document).on('click','#main-menu .disable',function(e){
           e.preventDefault();
         });
 
