@@ -158,6 +158,35 @@ $('#page-2 a.back').on('click',function(){
   glide.goto('#page-1')
 });
             </pre>
+            <h2>Using the menu plugin</h2>
+            <p>To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide.</p>
+            <pre class="prettyprint language-html">
+&lt;script src=&quot;js/glide.menu.js&quot;&gt;&lt;/script&gt;
+            </pre>
+            <pre class="prettyprint language-javascript">
+window.glide = new Glide({
+  plugins: {
+    menu: GlideMenu
+  }
+});
+            </pre>
+            <p>GlideMenu will look for the id #main-menu, make sure that is the ID for your menu markup. Now bind glide.plugins.menu.toggle() to your menu button:</p>
+            <pre class="prettyprint language-javascript">
+$('#main-menu-button').on('click',function(e){
+  e.preventDefault();
+  glide.plugins.menu.toggle()
+});
+            </pre>
+            Hiding the menu can be calling toggle() again while the menu is open:
+            <pre class="prettyprint language-javascript">
+$('#close-menu-btn').on('click',function(e){
+  e.preventDefault();
+  glide.plugins.menu.toggle()
+});
+            </pre>
+            <a href="#" class="main-menu-button">
+              <button class="secondary" >Toggle Main menu</button>
+            </a>
             <h2>Using Glide with Backbone.js</h2>
             <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below (written in coffeescript): </p>
             <pre class="prettyprint language-javascript">
@@ -362,6 +391,31 @@ class AppRouter extends Backbone.Router
       </div>
     </div>
 
+    <div id="main-menu">
+      <div class="menu-container">
+        <ul class="account-holder">
+          <li>
+            <a id="close-menu-btn">
+              <div class="close-menu">
+                <div class="arrow-left"></div>
+              </div>
+            </a>
+            <a class="trim" href="#!/parties/{{partyId}}">
+              <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
+              Dominique Briggs
+            </a>
+          </li>
+        </ul>
+        <ul id="menu-sections">
+          <li><a href="">Menu item 1</a></li>
+          <li><a href="">Menu item 2</a></li>
+          <li><a href="">Menu item 3</a></li>
+          <li><a href="">Menu item 4</a></li>
+          <li><a href="">Menu item 5</a></li>
+        </ul>
+      </div>
+
+    </div>
 
     <script type="text/html" id="contact-list-item">
        <li>
@@ -411,6 +465,7 @@ class AppRouter extends Backbone.Router
     <script src="vendor/fastClick.js"></script>
 
     <script src="lib/glide.js"></script>
+    <script src="lib/glide.menu.js"></script>
 
     <script src="app/application.js"></script>
     <script src="app/routers.js"></script>
@@ -430,6 +485,20 @@ class AppRouter extends Backbone.Router
         $('.back').on('click', function() {
           window.history.back()
         })
+
+        $(document).on('click','.main-menu-button',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+         $(document).on('click','#close-menu-btn',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+        $(document).on('click','#main-menu',function(e){
+          e.preventDefault();
+        });
 
         $(document).on('click', 'header h1', function() {
           $('.scrollview-inner').animate({ scrollTop: '0px' })

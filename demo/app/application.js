@@ -16,7 +16,10 @@
 
     App.prototype.init = function() {
       window.glide = new Glide({
-        stylesheetPath: '../lib/'
+        stylesheetPath: '../lib/',
+        plugins: {
+          menu: GlideMenu
+        }
       });
       new this.Routers.AppRouter;
       this.Collections.Contacts.fetch();
