@@ -423,7 +423,7 @@ class AppRouter extends Backbone.Router
         app.init()
 
         // disable touch move on header to prevent user stretching from top
-        $(document).on('touchmove','header', function(e) {
+        $(document).on('touchmove','header ,.strap, .footer-menu', function(e) {
           e.preventDefault();
         });
 
