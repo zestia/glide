@@ -133,7 +133,7 @@
             <h2>Transitioning pages</h2>
             <p>Transitioning pages can be done in a router or using simple click events binding the glide.goto() function. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
-&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;
+&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;&gt;
   &lt;button&gt;Go to page 2&lt;/button&gt;
 &lt;/a&gt;
             </pre>
@@ -143,21 +143,23 @@ $('#page-2-link').on('click',function(){
   glide.goto("#page-2");
 });
             </pre>
-            <p>Glide will perform the default slide transition to #page-2. Hitting back on the browser will pefrom the perform a reverse transition back to the previous page. You can make a back button with: </p>
+            <p>Glide will perform the default slide transition to #page-2. You can make a back button with: </p>
             <pre class="prettyprint language-javascript">
-&lt;a class=&quot;back&quot;&gt;
-  &lt;button&gt;Back&lt;/button&gt;
-&lt;/a&gt;
+&lt;div id=&quot;page-2&quot;&gt;
+  &lt;a href=&quot;#page-1&quot; class=&quot;back&quot;&gt;
+    &lt;button&gt;Back&lt;/button&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
             </pre>
-            <p>Then have some javascript to go back:</p>
+            <p>We wrap a button within an anchor so we can pad the hit target to make it easier to tap. Then have some javascript to go back. When not using a router you must explicitly state back as true on Glide:</p>
             <pre class="prettyprint language-javascript">
-$('document').on('click','.back',function(e){
-  e.preventDefault();
-  window.history.back();
-})
+$('#page-2 a.back').on('click',function(){
+  glide.back = true
+  glide.goto('#page-1')
+});
             </pre>
             <h2>Using Glide with Backbone.js</h2>
-            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. Example router in backbone (example in coffeescript): </p>
+            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below (written in coffeescript): </p>
             <pre class="prettyprint language-javascript">
 class AppRouter extends Backbone.Router
 
@@ -199,7 +201,7 @@ class AppRouter extends Backbone.Router
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
             </pre>
-            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.to() on each route has that all worked out for you.</p>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.goto() on each route has that all worked out for you.</p>
             <h2>View example app</h2>
             <p class="last">To see Glide in full use view our example contacts app and take time to download and look through the source.</p>
             <a class="btn" href="#contacts">
