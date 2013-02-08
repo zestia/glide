@@ -58,7 +58,7 @@
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <h2>Using Glide</h2>
-            <p>Glide is as a simple lightweight mobile transition library. This guide will take you through some simple steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
+            <p>Glide is as a simple lightweight mobile framework. This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
              <h3>Features</h3>
              <ul class="text-list">
                 <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
@@ -104,7 +104,7 @@
   &lt;!-- page content --&gt;
 &lt;/div&gt;
             </pre>
-            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked up make sure you tell Glide to open the first page:</p>
+            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page:</p>
             <pre class="prettyprint language-html">
 &lt;script&gt;
   window.glide = new Glide
@@ -113,7 +113,7 @@
             </pre>
             <p>That's all you need to get started.</p>
             <h3>Adding scrolling</h3>
-            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. The solution  does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
+            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. This solution does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
             <pre class="prettyprint language-html">
 &lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
   &lt;!-- fixed header --&gt;
@@ -131,9 +131,9 @@
               <li><a href="#fixed-header-footer">Example fixed header/footer<i class="icon-right-dir-1"></i></a></li>
             </ul>
             <h2>Transitioning pages</h2>
-            <p>Transitioning pages can be done in a router or on a simple click event. Glide does not watch for hash change events.</p>
+            <p>Transitioning pages can be done in a router or using simple click events binding the glide.goto() function. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
-&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot; id=&quot;page-2&quot;&gt;
+&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;
   &lt;button&gt;Go to page 2&lt;/button&gt;
 &lt;/a&gt;
             </pre>
@@ -199,9 +199,9 @@ class AppRouter extends Backbone.Router
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
             </pre>
-            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, Glide has that all worked out for you.</p>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.to() on each route has that all worked out for you.</p>
             <h2>View example app</h2>
-            <p class="last">To see Glide in full use view our example contacts app and take time to look through the source.</p>
+            <p class="last">To see Glide in full use view our example contacts app and take time to download and look through the source.</p>
             <a class="btn" href="#contacts">
               <button class="large orange">View contacts demo app</button>
             </a>
