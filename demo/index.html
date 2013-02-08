@@ -39,7 +39,7 @@
             <ul class="list menu">
               <li><a href="#animations">Animations<i class="icon-right-dir-1"></i></a></li>
               <li><a href="#getting-started">Getting started<i class="icon-right-dir-1"></i></a></li>
-              <li><a href="#credits">Credits<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#created-by">Created by<i class="icon-right-dir-1"></i></a></li>
             </ul>
             <a href="#contacts">
               <button class="large green">View contacts demo</button>
@@ -80,8 +80,8 @@
   &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot; /&gt;
     &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.css&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;../lib/glide.theme.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.theme.css&quot;&gt;
   &lt;/head&gt;
   &lt;body&gt;
 
@@ -262,54 +262,6 @@ class AppRouter extends Backbone.Router
       </div>
     </div>
 
-    <div id="add-contact-form" class="page hidden">
-      <header>
-        <a class="back left btn">
-            <button class="secondary">Cancel</button>
-        </a>
-        <h1>Test</h1>
-      </header>
-      <div class="scrollview">
-        <div class="scrollview-inner">
-          <div class="scrollview-content">
-            <form>
-              <li>
-                <input type="text" placeholder="Firstname" />
-              </li>
-              <li>
-                <input type="text" placeholder="Last name" />
-              </li>
-              <li>
-                <input type="text" placeholder="Job title" />
-              </li>
-              <li>
-                <input type="text" placeholder="Orgranisation" />
-              </li>
-              <li>
-                <input type="text" placeholder="Email address" />
-              </li>
-              <li>
-                <input type="number" placeholder="Phone number" />
-              </li>
-              <li>
-                <textarea type="textarea" placeholder="Address"></textarea>
-              </li>
-              <li>
-                <label>Address</label>
-                <select>
-                  <option>Home</option>
-                  <option>Work</option>
-                </select>
-              </li>
-              <li>
-                <textarea type="textarea" placeholder="About"></textarea>
-              </li>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div id="contacts" class="page hidden contacts">
       <header class="shadow">
         <a class="back left btn">
@@ -382,6 +334,32 @@ class AppRouter extends Backbone.Router
         <p>I could be a menu</p>
       </div>
     </div>
+
+    <div id="created-by" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Created by</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <div class="contributor" id="dom">
+                <img src="images/contributors/dom-grav.jpeg" alt="">
+                <div class="content">
+                  <h2>Dom Briggs</h2>
+                  <p>UI Designer</p>
+                  <p><a href="http://www.hallodom.co.uk">www.hallodom.co.uk</a>
+                  <p><a href="http://dribbble.com/dominique.briggs">dribbble.com/dominique.briggs</a>
+                  <p><a href="https://twitter.com/hallodom">@hallodom</a>
+                </div>
+                <hr />
+                <p>Made in Manchester at <a href="capsulecrm.com">Capsule</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <script type="text/html" id="contact-list-item">
        <li>
