@@ -32,7 +32,7 @@ ul.list {
 
     .pressed, .pressed > * {
       color: white;
-      background: #097CF0;
+      background: #efefef;
     }
     small {
       color: #ccc;
@@ -58,5 +58,11 @@ ul.list {
 
     li a {
       font-weight: bold;
+    }
+    & li:first-child > a.pressed {
+      .border-radiuses(5px, 0px, 0px, 5px);
+    }
+    & li:last-child > a.pressed {
+      .border-radiuses(0px, 5px, 5px, 0px);
     }
   }
