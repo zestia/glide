@@ -1,14 +1,8 @@
-# Flight
+# Glide
 
-Flight is a mobile user interface library built with Backbone in mind.
+Glide is a mobile user interface library built with Backbone in mind.
 
-## Description
-
-*TODO*
-
-## Usage
-
-*TODO*
+[Demo and Usage](http://glide.zestia.com)
 
 ## Contribute
 
