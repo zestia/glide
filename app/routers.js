@@ -16,12 +16,13 @@
       '': 'index',
       'getting-started': 'gettingStarted',
       'fixed-header-footer': 'fixedHeaderFooter',
-      'animations': 'animations',
+      'transitions': 'transitions',
       'slide': 'slide',
       'slideUp': 'slideUp',
       'contacts': 'contacts',
       'contacts/:id': 'showContact',
-      'created-by': 'createdBy'
+      'created-by': 'createdBy',
+      'contribute': 'contribute'
     };
 
     AppRouter.prototype.index = function() {
@@ -36,8 +37,8 @@
       return glide.goto('#fixed-header-footer');
     };
 
-    AppRouter.prototype.animations = function() {
-      return glide.goto('#animations');
+    AppRouter.prototype.transitions = function() {
+      return glide.goto('#transitions');
     };
 
     AppRouter.prototype.slide = function() {
@@ -69,6 +70,10 @@
 
     AppRouter.prototype.createdBy = function() {
       return glide.goto('#created-by');
+    };
+
+    AppRouter.prototype.contribute = function() {
+      return glide.goto('#contribute');
     };
 
     return AppRouter;

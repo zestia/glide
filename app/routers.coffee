@@ -4,12 +4,13 @@ class AppRouter extends Backbone.Router
     '': 'index'
     'getting-started': 'gettingStarted'
     'fixed-header-footer': 'fixedHeaderFooter'
-    'animations': 'animations'
+    'transitions': 'transitions'
     'slide': 'slide'
     'slideUp': 'slideUp'
     'contacts': 'contacts'
     'contacts/:id': 'showContact'
     'created-by': 'createdBy'
+    'contribute': 'contribute'
 
   index: ->
     glide.goto '#index'
@@ -20,8 +21,8 @@ class AppRouter extends Backbone.Router
   fixedHeaderFooter: ->
     glide.goto '#fixed-header-footer'
 
-  animations: ->
-    glide.goto '#animations'
+  transitions: ->
+    glide.goto '#transitions'
 
   slide: ->
     glide.goto '#slide'
@@ -42,6 +43,9 @@ class AppRouter extends Backbone.Router
 
   createdBy: ->
     glide.goto '#created-by'
+
+  contribute: ->
+    glide.goto '#contribute'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
