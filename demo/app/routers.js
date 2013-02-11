@@ -21,7 +21,8 @@
       'slideUp': 'slideUp',
       'contacts': 'contacts',
       'contacts/:id': 'showContact',
-      'created-by': 'createdBy'
+      'created-by': 'createdBy',
+      'contribute': 'contribute'
     };
 
     AppRouter.prototype.index = function() {
@@ -69,6 +70,10 @@
 
     AppRouter.prototype.createdBy = function() {
       return glide.goto('#created-by');
+    };
+
+    AppRouter.prototype.contribute = function() {
+      return glide.goto('#contribute');
     };
 
     return AppRouter;

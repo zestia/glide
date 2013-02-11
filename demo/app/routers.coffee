@@ -10,6 +10,7 @@ class AppRouter extends Backbone.Router
     'contacts': 'contacts'
     'contacts/:id': 'showContact'
     'created-by': 'createdBy'
+    'contribute': 'contribute'
 
   index: ->
     glide.goto '#index'
@@ -42,6 +43,9 @@ class AppRouter extends Backbone.Router
 
   createdBy: ->
     glide.goto '#created-by'
+
+  contribute: ->
+    glide.goto '#contribute'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
