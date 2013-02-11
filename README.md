@@ -60,7 +60,7 @@ Organise your app into pages. Make sure each page has the class .page and .hidde
 </div>
 ```
 
-Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page:
+Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page by passing the id as a string to the goto function:
 
 ```html
 <script>
