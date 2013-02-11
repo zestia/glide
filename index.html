@@ -107,11 +107,11 @@
   &lt;!-- page content --&gt;
 &lt;/div&gt;
             </pre>
-            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page:</p>
+            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page by passing the page id as a string to the to() function:</p>
             <pre class="prettyprint language-html">
 &lt;script&gt;
   window.glide = new Glide
-  glide.goto('#page-1')
+  glide.to('#page-1')
 &lt;/script&gt;
             </pre>
             <p>That's all you need to get started.</p>
@@ -134,7 +134,7 @@
               <li><a href="#fixed-header-footer">Example fixed header/footer<i class="icon-right-dir-1"></i></a></li>
             </ul>
             <h2>Transitioning pages</h2>
-            <p>Transitioning pages can be done in a router or using simple click events binding the glide.goto() function. Glide does not watch for hash change events.</p>
+            <p>Transitioning pages can be done in a router or using simple click events binding the glide.to() function. Glide does not watch for hash change events.</p>
             <pre class="prettyprint lanuage-html">
 &lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;&gt;
   &lt;button&gt;Go to page 2&lt;/button&gt;
@@ -143,7 +143,7 @@
             <p>In your javascript assign a click event to the anchor.</p>
             <pre class="prettyprint lanuage-javascript">
 $('#page-2-link').on('click',function(){
-  glide.goto("#page-2");
+  glide.to("#page-2");
 });
             </pre>
             <p>Glide will perform the default slide transition to #page-2. You can make a back button with: </p>
@@ -158,7 +158,7 @@ $('#page-2-link').on('click',function(){
             <pre class="prettyprint language-javascript">
 $('#page-2 a.back').on('click',function(){
   glide.back = true
-  glide.goto('#page-1')
+  glide.to('#page-1')
 });
             </pre>
             <h2>Using the menu plugin</h2>
@@ -205,35 +205,35 @@ class AppRouter extends Backbone.Router
     'contacts/:id': 'showContact'
 
   index: ->
-    glide.goto '#index'
+    glide.to '#index'
 
   gettingStarted: ->
-    glide.goto '#getting-started'
+    glide.to '#getting-started'
 
   animations: ->
-    glide.goto '#animations'
+    glide.to '#animations'
 
   slide: ->
-    glide.goto '#slide'
+    glide.to '#slide'
 
   slideUp: ->
-    glide.goto '#slideUp'
+    glide.to '#slideUp'
 
   contacts: ->
     view = new app.Views.Contacts collection: app.Collections.Contacts
     view.render()
-    glide.goto '#contacts'
+    glide.to '#contacts'
 
   showContact: (id) ->
     model = app.Collections.Contacts?.get(id)
     view = new app.Views.ContactsShow model: model
     view.render()
-    glide.goto '#contact-page'
+    glide.to '#contact-page'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
             </pre>
-            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.goto() on each route has that all worked out for you.</p>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.to() on each route has that all worked out for you.</p>
             <h2>View example app</h2>
             <p class="last">To see Glide in full use view our example contacts app and take time to download and look through the source.</p>
             <a class="btn" href="#contacts">

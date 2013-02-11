@@ -26,27 +26,27 @@
     };
 
     AppRouter.prototype.index = function() {
-      return glide.goto('#index');
+      return glide.to('#index');
     };
 
     AppRouter.prototype.gettingStarted = function() {
-      return glide.goto('#getting-started');
+      return glide.to('#getting-started');
     };
 
     AppRouter.prototype.fixedHeaderFooter = function() {
-      return glide.goto('#fixed-header-footer');
+      return glide.to('#fixed-header-footer');
     };
 
     AppRouter.prototype.transitions = function() {
-      return glide.goto('#transitions');
+      return glide.to('#transitions');
     };
 
     AppRouter.prototype.slide = function() {
-      return glide.goto('#slide');
+      return glide.to('#slide');
     };
 
     AppRouter.prototype.slideUp = function() {
-      return glide.goto('#slideUp');
+      return glide.to('#slideUp');
     };
 
     AppRouter.prototype.contacts = function() {
@@ -55,7 +55,7 @@
         collection: app.Collections.Contacts
       });
       view.render();
-      return glide.goto('#contacts');
+      return glide.to('#contacts');
     };
 
     AppRouter.prototype.showContact = function(id) {
@@ -65,15 +65,15 @@
         model: model
       });
       view.render();
-      return glide.goto('#contact-page');
+      return glide.to('#contact-page');
     };
 
     AppRouter.prototype.createdBy = function() {
-      return glide.goto('#created-by');
+      return glide.to('#created-by');
     };
 
     AppRouter.prototype.contribute = function() {
-      return glide.goto('#contribute');
+      return glide.to('#contribute');
     };
 
     return AppRouter;

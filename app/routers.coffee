@@ -13,39 +13,39 @@ class AppRouter extends Backbone.Router
     'contribute': 'contribute'
 
   index: ->
-    glide.goto '#index'
+    glide.to '#index'
 
   gettingStarted: ->
-    glide.goto '#getting-started'
+    glide.to '#getting-started'
 
   fixedHeaderFooter: ->
-    glide.goto '#fixed-header-footer'
+    glide.to '#fixed-header-footer'
 
   transitions: ->
-    glide.goto '#transitions'
+    glide.to '#transitions'
 
   slide: ->
-    glide.goto '#slide'
+    glide.to '#slide'
 
   slideUp: ->
-    glide.goto '#slideUp'
+    glide.to '#slideUp'
 
   contacts: ->
     view = new app.Views.Contacts collection: app.Collections.Contacts
     view.render()
-    glide.goto '#contacts'
+    glide.to '#contacts'
 
   showContact: (id) ->
     model = app.Collections.Contacts?.get(id)
     view = new app.Views.ContactsShow model: model
     view.render()
-    glide.goto '#contact-page'
+    glide.to '#contact-page'
 
   createdBy: ->
-    glide.goto '#created-by'
+    glide.to '#created-by'
 
   contribute: ->
-    glide.goto '#contribute'
+    glide.to '#contribute'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
