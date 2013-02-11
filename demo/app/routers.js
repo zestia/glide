@@ -16,7 +16,7 @@
       '': 'index',
       'getting-started': 'gettingStarted',
       'fixed-header-footer': 'fixedHeaderFooter',
-      'animations': 'animations',
+      'transitions': 'transitions',
       'slide': 'slide',
       'slideUp': 'slideUp',
       'contacts': 'contacts',
@@ -37,8 +37,8 @@
       return glide.goto('#fixed-header-footer');
     };
 
-    AppRouter.prototype.animations = function() {
-      return glide.goto('#animations');
+    AppRouter.prototype.transitions = function() {
+      return glide.goto('#transitions');
     };
 
     AppRouter.prototype.slide = function() {
