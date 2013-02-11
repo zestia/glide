@@ -14,8 +14,8 @@
       this.close = __bind(this.close, this);
 
       this.menu = document.querySelector('#main-menu');
-      (_base = this.glide.hooks)['before:goto'] || (_base['before:goto'] = []);
-      this.glide.hooks['before:goto'].push(function() {
+      (_base = this.glide.hooks)['before:to'] || (_base['before:to'] = []);
+      this.glide.hooks['before:to'].push(function() {
         return _this.close();
       });
     }

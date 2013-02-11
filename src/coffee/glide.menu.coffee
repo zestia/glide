@@ -2,8 +2,8 @@ class GlideMenu
 
   constructor: (@glide) ->
     @menu = document.querySelector '#main-menu'
-    @glide.hooks['before:goto'] or= []
-    @glide.hooks['before:goto'].push => @close()
+    @glide.hooks['before:to'] or= []
+    @glide.hooks['before:to'].push => @close()
 
   close: =>
     @menu.style.display = 'none'

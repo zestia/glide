@@ -3,8 +3,8 @@ class Glide
   stylesheetPath: '/'
 
   hooks:
-    'before:goto': []
-    'after:goto': []
+    'before:to': []
+    'after:to': []
 
   isTransitioning: false
   transitionAnimation: true
@@ -49,8 +49,8 @@ class Glide
   # targetPage - A String of the element ID or existing element.
   #
   # Returns nothing.
-  goto: (targetPage) =>
-    hook() for hook in @hooks['before:goto']
+  to: (targetPage) =>
+    hook() for hook in @hooks['before:to']
 
     if typeof targetPage is "string"
       @targetPage = document.querySelector targetPage
@@ -97,7 +97,7 @@ class Glide
         @displayPage targetPage, currentPage
     , 10
 
-    hook() for hook in @hooks['after:goto']
+    hook() for hook in @hooks['after:to']
 
   # Private: Disables transitions and default stylesheet and replaces with android specific css
   #

@@ -8,8 +8,8 @@
     Glide.prototype.stylesheetPath = '/';
 
     Glide.prototype.hooks = {
-      'before:goto': [],
-      'after:goto': []
+      'before:to': [],
+      'after:to': []
     };
 
     Glide.prototype.isTransitioning = false;
@@ -36,7 +36,7 @@
 
       this.hideTransitionedPage = __bind(this.hideTransitionedPage, this);
 
-      this.goto = __bind(this.goto, this);
+      this.to = __bind(this.to, this);
 
       for (key in options) {
         value = options[key];
@@ -73,10 +73,10 @@
       }
     };
 
-    Glide.prototype.goto = function(targetPage) {
+    Glide.prototype.to = function(targetPage) {
       var currentPage, hook, transitionType, _i, _j, _len, _len1, _ref, _ref1, _results,
         _this = this;
-      _ref = this.hooks['before:goto'];
+      _ref = this.hooks['before:to'];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         hook = _ref[_i];
         hook();
@@ -126,7 +126,7 @@
           return _this.displayPage(targetPage, currentPage);
         }
       }, 10);
-      _ref1 = this.hooks['after:goto'];
+      _ref1 = this.hooks['after:to'];
       _results = [];
       for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
         hook = _ref1[_j];
