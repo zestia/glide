@@ -1,6 +1,6 @@
 # Glide
 
-Glide is a mobile user interface library built with Backbone in mind. Take a look at the demo on your device:
+Glide is as a simple lightweight mobile framework built with Backbone in mind. Take a look at the demo on your device:
 
 [View Demo](http://glide.zestia.com)
 
@@ -8,7 +8,7 @@ Glide is a mobile user interface library built with Backbone in mind. Take a loo
 
 ### Using Glide
 
-Glide is as a simple lightweight mobile framework. This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome [@hallodom](https://twitter.com/hallodom)
+This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome [@hallodom](https://twitter.com/hallodom)
 
 ### Features
 
