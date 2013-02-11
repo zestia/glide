@@ -60,12 +60,12 @@ Organise your app into pages. Make sure each page has the class .page and .hidde
 </div>
 ```
 
-Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page by passing the page id as a string to the goto function:
+Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page by passing the page id as a string to the to() function:
 
 ```html
 <script>
   window.glide = new Glide
-  glide.goto('#page-1')
+  glide.to('#page-1')
 </script>
 ```
 That's all you need to get started.
@@ -89,7 +89,7 @@ Glide makes use of native scrolling [reference](https://github.com/joelambert/Sc
 ```
 ## Transitioning pages
 
-Transitioning pages can be done in a router or using simple click events binding the glide.goto() function. Glide does not watch for hash change events.
+Transitioning pages can be done in a router or using simple click events binding the glide.to() function. Glide does not watch for hash change events.
 
 ```html
 <a href="#page-2" id="#page-2-link" class="button">
@@ -100,7 +100,7 @@ In your javascript assign a click event to the anchor.
 
 ```javascript
 $('#page-2-link').on('click',function(){
-  glide.goto("#page-2");
+  glide.to("#page-2");
 });
 ```
 Glide will perform the default slide transition to #page-2. You can make a back button with:
@@ -117,7 +117,7 @@ We wrap a button within an anchor so we can pad the hit target to make it easier
 ```js
 $('#page-2 a.back').on('click',function(){
   glide.back = true
-  glide.goto('#page-1')
+  glide.to('#page-1')
 });
 ```
 ## Using the menu plugin
@@ -166,30 +166,30 @@ var AppRouter = Backbone.Router.extend({
       'contacts/:id': 'showContact'
     },
     index: function() {
-      glide.goto('#index')
+      glide.to('#index')
     },
     gettingStarted: function() {
-      glide.goto '#getting-started'
+      glide.to '#getting-started'
     },
     animations: function() {
-      glide.goto('#animations')
+      glide.to('#animations')
     },
     slide: function() {
-      glide.goto('#slide')
+      glide.to('#slide')
     },
     slideUp: function() {
-      glide.goto('#slideUp')
+      glide.to('#slideUp')
     },
     contacts: function() {
       view = new app.Views.Contacts collection: app.Collections.Contacts
       view.render()
-      glide.goto('#contacts')
+      glide.to('#contacts')
     },
     showContact: function(id) {
       model = app.Collections.Contacts?.get(id)
       view = new app.Views.ContactsShow model: model
       view.render()
-      glide.goto('#contact-page')
+      glide.to('#contact-page')
     }
 });
 ```
@@ -208,36 +208,36 @@ class AppRouter extends Backbone.Router
     'contacts/:id': 'showContact'
 
   index: ->
-    glide.goto '#index'
+    glide.to '#index'
 
   gettingStarted: ->
-    glide.goto '#getting-started'
+    glide.to '#getting-started'
 
   animations: ->
-    glide.goto '#animations'
+    glide.to '#animations'
 
   slide: ->
-    glide.goto '#slide'
+    glide.to '#slide'
 
   slideUp: ->
-    glide.goto '#slideUp'
+    glide.to '#slideUp'
 
   contacts: ->
     view = new app.Views.Contacts collection: app.Collections.Contacts
     view.render()
-    glide.goto '#contacts'
+    glide.to '#contacts'
 
   showContact: (id) ->
     model = app.Collections.Contacts?.get(id)
     view = new app.Views.ContactsShow model: model
     view.render()
-    glide.goto '#contact-page'
+    glide.to '#contact-page'
 
 @app = window.app ? {}
 @app.Routers.AppRouter = AppRouter
 ```
 
-Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.goto() on each route has that all worked out for you.
+Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.to() on each route has that all worked out for you.
 
 ## View example app
 
