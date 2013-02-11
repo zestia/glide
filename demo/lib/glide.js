@@ -19,8 +19,7 @@
     Glide.prototype.speed = 0.3;
 
     function Glide(options) {
-      var key, value, _ref,
-        _this = this;
+      var key, value, _ref;
       if (options == null) {
         options = {};
       }
@@ -56,9 +55,6 @@
       } else {
         document.body.addEventListener('mousedown', this.handleEvents, false);
       }
-      document.addEventListener("webkitTransitionEnd", function(e) {
-        return _this.hideTransitionedPage(e.target);
-      });
     }
 
     Glide.prototype.detectUserAgent = function() {
@@ -114,6 +110,7 @@
       currentPage = this.currentPage;
       this.currentPage = this.targetPage;
       this.isTransitioning = false;
+      currentPage.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
       setTimeout(function() {
         if (_this.transitionAnimation) {
           switch (transitionType) {
@@ -216,15 +213,19 @@
       }
     };
 
-    Glide.prototype.hideTransitionedPage = function(page) {
+    Glide.prototype.hideTransitionedPage = function(e) {
+      var page;
+      console.log("hide page");
+      page = e.target;
       if (this.hasClass(page, 'page')) {
         if (page.id !== this.targetPage.id) {
           page.style.display = "none";
         }
       }
       if (this.isAndroid() && this.os.version < '4') {
-        return this.currentPage.style.webkitTransform = "none";
+        this.currentPage.style.webkitTransform = "none";
       }
+      return page.removeEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
     };
 
     Glide.prototype.hasClass = function(el, cssClass) {

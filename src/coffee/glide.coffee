@@ -29,9 +29,6 @@ class Glide
     else
       document.body.addEventListener 'mousedown', @handleEvents, false
 
-    document.addEventListener "webkitTransitionEnd", (e) =>
-      @hideTransitionedPage e.target
-
   # Private: Get a Hash of browser user agent information.
   #
   # Returns a Hash of user agent information.
@@ -85,6 +82,8 @@ class Glide
     currentPage = @currentPage
     @currentPage = @targetPage
     @isTransitioning = false
+
+    currentPage.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
     setTimeout =>
       if @transitionAnimation
@@ -195,12 +194,15 @@ class Glide
   # page    - The page element that has just been moved outside of view
   #
   # Returns nothing
-  hideTransitionedPage: (page) =>
+  hideTransitionedPage: (e) =>
+    page = e.target
     if @hasClass(page,'page')
       page.style.display = "none" unless page.id is @targetPage.id
 
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
+
+    page.removeEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
   # Private: Check if element has a class
   #
