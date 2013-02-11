@@ -152,7 +152,48 @@ $('#close-menu-btn').on('click',function(e){
 ```
 ## Using Glide with Backbone.js
 
-We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below (written in coffeescript):
+We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below:
+
+```js
+var AppRouter = Backbone.Router.extend({
+    routes: {
+      '': 'index',
+      'getting-started': 'gettingStarted'
+      'animations': 'animations'
+      'slide': 'slide'
+      'slideUp': 'slideUp'
+      'contacts': 'contacts'
+      'contacts/:id': 'showContact'
+    },
+    index: function() {
+      glide.goto('#index')
+    },
+    gettingStarted: function() {
+      glide.goto '#getting-started'
+    },
+    animations: function() {
+      glide.goto('#animations')
+    },
+    slide: function() {
+      glide.goto('#slide')
+    },
+    slideUp: function() {
+      glide.goto('#slideUp')
+    },
+    contacts: function() {
+      view = new app.Views.Contacts collection: app.Collections.Contacts
+      view.render()
+      glide.goto('#contacts')
+    },
+    showContact: function(id) {
+      model = app.Collections.Contacts?.get(id)
+      view = new app.Views.ContactsShow model: model
+      view.render()
+      glide.goto('#contact-page')
+    }
+});
+```
+Example below in coffescript:
 
 ```coffee
 class AppRouter extends Backbone.Router
