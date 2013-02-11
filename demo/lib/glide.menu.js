@@ -21,8 +21,10 @@
     }
 
     GlideMenu.prototype.close = function() {
-      this.menu.style.display = 'none';
-      return this.menuOpen = false;
+      if (this.menuOpen === true) {
+        this.menu.style.display = 'none';
+        return this.menuOpen = false;
+      }
     };
 
     GlideMenu.prototype.toggle = function() {

@@ -6,8 +6,9 @@ class GlideMenu
     @glide.hooks['before:to'].push => @close()
 
   close: =>
-    @menu.style.display = 'none'
-    @menuOpen = false
+    if @menuOpen is true
+      @menu.style.display = 'none'
+      @menuOpen = false
 
   toggle: =>
     if @menuOpen
