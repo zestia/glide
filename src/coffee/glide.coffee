@@ -121,7 +121,6 @@ class Glide
   # Returns nothing.
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
-
     screenWidth = window.innerWidth + 'px'
 
     if @back

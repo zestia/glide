@@ -215,7 +215,6 @@
 
     Glide.prototype.hideTransitionedPage = function(e) {
       var page;
-      console.log("hide page");
       page = e.target;
       if (this.hasClass(page, 'page')) {
         if (page.id !== this.targetPage.id) {
