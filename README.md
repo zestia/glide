@@ -169,7 +169,7 @@ var AppRouter = Backbone.Router.extend({
       glide.to('#index')
     },
     gettingStarted: function() {
-      glide.to '#getting-started'
+      glide.to('#getting-started')
     },
     animations: function() {
       glide.to('#animations')
