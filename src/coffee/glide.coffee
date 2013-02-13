@@ -10,9 +10,9 @@ class Glide
   transitionAnimation: true
   speed: 0.3
 
-  # Public: Instantiate Flight and set any options.
+  # Public: Instantiate Glide and set any options.
   #
-  # options - A Hash of options for flight.
+  # options - A Hash of options for glide.
   #
   # Returns nothing.
   constructor: (options = {}) ->
@@ -106,11 +106,11 @@ class Glide
     androidCSS = document.createElement 'link'
     androidCSS.setAttribute 'rel', 'stylesheet'
     androidCSS.setAttribute 'type', 'text/css'
-    androidCSS.setAttribute 'href', "#{@stylesheetPath}flight.android.css"
+    androidCSS.setAttribute 'href', "#{@stylesheetPath}glide.android.css"
     head.appendChild androidCSS
 
     styleSheets = document.styleSheets
-    for styleSheet in styleSheets when styleSheet.href?.indexOf("flight.css") isnt -1
+    for styleSheet in styleSheets when styleSheet.href?.indexOf("glide.css") isnt -1
       styleSheet.disabled = true
 
     document.body.className = "old-android"
