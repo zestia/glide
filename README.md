@@ -13,7 +13,7 @@ This guide will take you through some steps to get started. Further down we cove
 ### Features
 
 - <code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native
-- <code>flight.js</code> handles forwards and backwards page transitions.
+- <code>glide.js</code> handles forwards and backwards page transitions.
 - We use <code>fastclick.js</code> to speed up clicks.
 - Extend Glide wih your own plugins.
 
