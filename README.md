@@ -1,14 +1,14 @@
-# Glide
+# Glide.js
 
-Glide is as a simple lightweight mobile framework built with Backbone in mind. Take a look at the demo on your device:
+Glide.js is as a simple lightweight mobile framework built with Backbone in mind. Take a look at the demo on your device:
 
 [View Demo](http://glide.zestia.com)
 
 ## Getting Started
 
-### Using Glide
+### Using Glide.js
 
-This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome [@hallodom](https://twitter.com/hallodom)
+This guide will take you through some steps to get started. Further down we cover how to use Glide.js with backbone.js. Feedback welcome [@hallodom](https://twitter.com/hallodom)
 
 ### Features
 
