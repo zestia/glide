@@ -76,7 +76,7 @@ Glide makes use of native scrolling [reference](https://github.com/joelambert/Sc
 
 ```html
 <div id="page-1" class="page hidden">
-  <!-- fixed header -->
+  <!-- fixed header here -->
   <div class="scrollview">
     <div class="scrollview-inner">
       <div class="scrollview-content">
@@ -84,7 +84,7 @@ Glide makes use of native scrolling [reference](https://github.com/joelambert/Sc
       </div>
     </div>
   </div>
-  <!-- fixed footer -->
+  <!-- fixed footer here -->
 </div>
 ```
 ## Transitioning pages
