@@ -22,6 +22,7 @@ This guide will take you through some steps to get started. Further down we cove
 - iPhone 3, 4 and 5
 - Android 4+
 - Android 2.3 (working solution)
+* Glide only works in weblkit based browsers at this time
 
 ## Markup
 
