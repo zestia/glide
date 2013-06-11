@@ -1,9 +1,14 @@
 require 'rubygems'
+require 'fileutils'
+
+@source = "./dist"
+@target = "./demo/lib"
+@includePattern = "/*"
 
 desc 'compile coffeescript into javascript'
 task :coffee do
   system 'coffee -co dist/ src/coffee/*.coffee'
-  system 'coffee -c demo/app/*.coffee'
+  system 'coffee -co dist/ src/coffee/*.coffee'
 end
 
 desc 'compile less into css'
@@ -11,6 +16,21 @@ task :less do
   system 'lessc --yui-compress src/less/glide.less dist/glide.css'
   system 'lessc --yui-compress src/less/glide.android.less dist/glide.android.css'
   system 'lessc --yui-compress src/less/theme/glide.theme.less dist/glide.theme.css'
+end
+
+desc 'copy dest into demo'
+task :copyDirectory do
+    FileUtils.rm_rf(@target)  #remove target directory (if exists)
+    FileUtils.mkdir_p(@target) #create the target directory
+    files = FileList.new().include("#{@source}#{@includePattern}");
+    files.each do |file|
+        #create target location file string (replace source with target in path)
+        targetLocation = file.sub(@source, @target)
+        #ensure directory exists
+        FileUtils.mkdir_p(File.dirname(targetLocation));
+        #copy the file
+        FileUtils.cp_r(file, targetLocation)
+    end
 end
 
 task :publish do
@@ -36,4 +56,4 @@ task :publish do
   end
 end
 
-task :default => [:coffee, :less]
+task :default => [:coffee, :less, :copyDirectory]
