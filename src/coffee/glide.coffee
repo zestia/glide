@@ -122,24 +122,25 @@ class Glide
   slide: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     screenWidth = window.innerWidth + 'px'
+    axis = "X"
 
     if @back
-      @translate currentPage, "X", "0%"
-      @translate targetPage, "X", "-" + screenWidth, "0ms"
+      @translate currentPage, axis, "0%"
+      @translate targetPage, axis, "-" + screenWidth, "0ms"
 
       setTimeout =>
-        @translate currentPage, "X", "100%"
+        @translate currentPage, axis, "100%"
       , 0
     else
-      @translate currentPage, "X", "0%"
-      @translate targetPage,"X", screenWidth, "0ms"
+      @translate currentPage, axis, "0%"
+      @translate targetPage, axis, screenWidth, "0ms"
 
       setTimeout =>
-        @translate currentPage, "X", "-100%"
+        @translate currentPage, axis, "-100%"
       , 0
 
     setTimeout =>
-      @translate targetPage, "X", "0%"
+      @translate targetPage, axis, "0%"
       @back = false
     , 0
 
@@ -149,16 +150,17 @@ class Glide
   slideUp: (targetPage, currentPage) ->
     targetPage.style.display = "-webkit-box"
     screenHeight = window.innerHeight + 'px'
+    axis = "Y"
 
     if @back
       setTimeout =>
-        @translate currentPage, "Y", screenHeight
+        @translate currentPage, axis, screenHeight
       , 0
     else
       targetPage.style.zIndex = "1000"
-      @translate targetPage, "Y", screenHeight,"0ms"
+      @translate targetPage, axis, screenHeight,"0ms"
       setTimeout =>
-        @translate targetPage, "Y", "0%"
+        @translate targetPage, axis, "0%"
       , 0
 
     @back = false
