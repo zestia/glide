@@ -220,11 +220,16 @@ class Glide
   # Private: Is the device touch enabled.
   #
   # Returns True if the device is touch enabled, else False.
-  isTouch: ->
-    if @isAndroid()
-      !!('ontouchstart' of window)
+  isTouch: =>
+    if typeof @touch is 'undefined'
+      if @isAndroid()
+        if !!('ontouchstart' of window)
+          @touch = true
+      else
+        if window.Touch?
+          @touch = true
     else
-      window.Touch?
+      @touch
 
   # Public: Is the device running iOS
   #

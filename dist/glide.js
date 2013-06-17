@@ -27,6 +27,7 @@
       this.onTouchMove = __bind(this.onTouchMove, this);
       this.onTouchStart = __bind(this.onTouchStart, this);
       this.handleEvents = __bind(this.handleEvents, this);
+      this.isTouch = __bind(this.isTouch, this);
       this.hideTransitionedPage = __bind(this.hideTransitionedPage, this);
       this.to = __bind(this.to, this);
       for (key in options) {
@@ -230,10 +231,18 @@
     };
 
     Glide.prototype.isTouch = function() {
-      if (this.isAndroid()) {
-        return !!('ontouchstart' in window);
+      if (typeof this.touch === 'undefined') {
+        if (this.isAndroid()) {
+          if (!!('ontouchstart' in window)) {
+            return this.touch = true;
+          }
+        } else {
+          if (window.Touch != null) {
+            return this.touch = true;
+          }
+        }
       } else {
-        return window.Touch != null;
+        return this.touch;
       }
     };
 
