@@ -105,6 +105,10 @@
       this.isTransitioning = false;
       this.addClass(currentPage, 'previousPage');
       document.body.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
+      if (this.forceForward) {
+        this.back = false;
+        this.forceForward = false;
+      }
       setTimeout(function() {
         if (_this.transitionAnimation) {
           switch (transitionType) {
