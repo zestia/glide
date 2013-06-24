@@ -104,7 +104,7 @@
       this.currentPage = this.targetPage;
       this.isTransitioning = false;
       this.addClass(currentPage, 'previousPage');
-      targetPage.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
+      document.body.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
       setTimeout(function() {
         if (_this.transitionAnimation) {
           switch (transitionType) {
@@ -210,8 +210,7 @@
     };
 
     Glide.prototype.hideTransitionedPage = function(e) {
-      var page, previousPage;
-      page = e.target;
+      var previousPage;
       previousPage = document.querySelector('.previousPage');
       if (previousPage) {
         previousPage.style.display = "none";
@@ -220,7 +219,7 @@
       if (this.isAndroid() && this.os.version < '4') {
         this.currentPage.style.webkitTransform = "none";
       }
-      return page.removeEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
+      return document.body.removeEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
     };
 
     Glide.prototype.hasClass = function(el, cssClass) {

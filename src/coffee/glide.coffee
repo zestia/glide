@@ -84,7 +84,7 @@ class Glide
     @isTransitioning = false
 
     @addClass currentPage, 'previousPage'
-    targetPage.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
+    document.body.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
     setTimeout =>
       if @transitionAnimation
@@ -197,8 +197,6 @@ class Glide
   #
   # Returns nothing
   hideTransitionedPage: (e) =>
-    page = e.target
-
     previousPage = document.querySelector('.previousPage')
     if previousPage
       previousPage.style.display = "none"
@@ -207,7 +205,7 @@ class Glide
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
 
-    page.removeEventListener "webkitTransitionEnd", @hideTransitionedPage, false
+    document.body.removeEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
   # Private: Check if element has a class
   #
