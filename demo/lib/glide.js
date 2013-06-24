@@ -103,7 +103,8 @@
       currentPage = this.currentPage;
       this.currentPage = this.targetPage;
       this.isTransitioning = false;
-      currentPage.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
+      this.addClass(currentPage, 'previousPage');
+      targetPage.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
       setTimeout(function() {
         if (_this.transitionAnimation) {
           switch (transitionType) {
@@ -209,12 +210,12 @@
     };
 
     Glide.prototype.hideTransitionedPage = function(e) {
-      var page;
+      var page, previousPage;
       page = e.target;
-      if (this.hasClass(page, 'page')) {
-        if (page.id !== this.targetPage.id) {
-          page.style.display = "none";
-        }
+      previousPage = document.querySelector('.previousPage');
+      if (previousPage) {
+        previousPage.style.display = "none";
+        this.removeClass(previousPage, 'previousPage');
       }
       if (this.isAndroid() && this.os.version < '4') {
         this.currentPage.style.webkitTransform = "none";
@@ -227,6 +228,20 @@
         return el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className);
       } else {
         return false;
+      }
+    };
+
+    Glide.prototype.addClass = function(ele, cls) {
+      if (!this.hasClass(ele, cls)) {
+        return ele.className += " " + cls;
+      }
+    };
+
+    Glide.prototype.removeClass = function(ele, cls) {
+      var reg;
+      if (this.hasClass(ele, cls)) {
+        reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+        return ele.className = ele.className.replace(reg, " ");
       }
     };
 

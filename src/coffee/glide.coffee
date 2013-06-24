@@ -83,7 +83,8 @@ class Glide
     @currentPage = @targetPage
     @isTransitioning = false
 
-    currentPage.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
+    @addClass currentPage, 'previousPage'
+    targetPage.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
     setTimeout =>
       if @transitionAnimation
@@ -197,8 +198,11 @@ class Glide
   # Returns nothing
   hideTransitionedPage: (e) =>
     page = e.target
-    if @hasClass(page,'page')
-      page.style.display = "none" unless page.id is @targetPage.id
+
+    previousPage = document.querySelector('.previousPage')
+    if previousPage
+      previousPage.style.display = "none"
+      @removeClass previousPage, 'previousPage'
 
     if @isAndroid() and @os.version < '4'
       @currentPage.style.webkitTransform = "none"
@@ -216,6 +220,16 @@ class Glide
       el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
     else
       false
+
+  # Using our own addClass and removeClass:
+  # Can use ClassList API if we decide not to support Android 2.3
+  addClass: (ele, cls) ->
+    ele.className += " " + cls  unless @hasClass(ele, cls)
+
+  removeClass: (ele, cls) ->
+    if @hasClass(ele, cls)
+      reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
+      ele.className = ele.className.replace(reg, " ")
 
   # Private: Is the device touch enabled.
   #
