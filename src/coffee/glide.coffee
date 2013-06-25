@@ -221,13 +221,11 @@ class Glide
   #
   # Returns True if the device is touch enabled, else False.
   isTouch: =>
-    if typeof @touch is 'undefined'
-      if @isAndroid()
-        if !!('ontouchstart' of window)
-          @touch = true
+    if typeof @touch is "undefined"
+      if !!('ontouchstart' of window)
+        @touch = true
       else
-        if window.Touch?
-          @touch = true
+        @touch = false
     else
       @touch
 
