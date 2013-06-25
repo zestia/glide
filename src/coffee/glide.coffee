@@ -258,9 +258,9 @@ class Glide
         when 'touchstart'
           @onTouchStart e
         when 'touchmove'
-          @onTouchMove e
+          @removePressed
         when 'touchend'
-          @onTouchEnd e
+          @removePressed
     else
       switch e.type
         when 'mousedown'
@@ -277,25 +277,18 @@ class Glide
 
     if @theTarget?.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
       @oldTarget = @theTarget
-      @parents = $(@theTarget).parentsUntil('ul li')
-      @theTarget = @parents[@parents.length-1] or @oldTarget
+      @theTarget = $(@theTarget).closest('a')[0]
 
     if @theTarget is null then return
 
-    @theTarget.className += ' pressed'
-    @theTarget.addEventListener 'touchmove', @onTouchMove, false
-    @theTarget.addEventListener 'mouseout', @onTouchEnd, false
-    @theTarget.addEventListener 'touchend', @onTouchEnd, false
-    @theTarget.addEventListener 'mouseup', @onTouchEnd, false
-    @theTarget.addEventListener 'touchcancel', @onTouchcancel, false
+    @addClass @theTarget, 'pressed'
+    @theTarget.addEventListener 'touchmove', @removePressed, false
+    @theTarget.addEventListener 'mouseout', @removePressed, false
+    @theTarget.addEventListener 'touchend', @removePressed, false
+    @theTarget.addEventListener 'mouseup', @removePressed, false
+    @theTarget.addEventListener 'touchcancel', @removePressed, false
 
-  onTouchMove: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
-
-  onTouchEnd: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
-
-  onTouchCancel: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
+  removePressed: (e) =>
+    @removeClass @theTarget, 'pressed'
 
 window.Glide = Glide
