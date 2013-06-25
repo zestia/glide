@@ -177,7 +177,7 @@ class Glide
     if @isAndroid() and @os.version < '4' and @back is false
       window.scrollTo 0,0
 
-    if @back is true then @back = false
+    @back = false
 
   # Private: Hide DOM that has just been transitioned
   #
