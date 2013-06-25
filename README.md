@@ -113,7 +113,7 @@ Glide will perform the default slide transition to #page-2. You can make a back 
   </a>
 </div>
 ```
-We wrap a button within an anchor so we can pad the hit target to make it easier to tap. Then have some javascript to go back. You must explicitly state back as true for a back:
+We wrap a button within an anchor so we can pad the hit target to make it easier to tap. Then have some javascript to go back. You must explicitly state back as true for a reverse transition:
 
 ```js
 $('#page-2 a.back').on('click',function(){
