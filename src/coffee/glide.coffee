@@ -80,11 +80,7 @@ class Glide
 
     setTimeout =>
       if @transitionAnimation
-        switch transitionType
-          when "slide"
-            @slide targetPage, currentPage
-          when "slideUp"
-            @slideUp targetPage, currentPage
+         @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
     , 10
