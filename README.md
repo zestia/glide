@@ -120,6 +120,13 @@ $('#page-2 a.back').on('click',function(){
   glide.back = true
   glide.to('#page-1')
 });
+
+or 
+
+$('#page-2 a.back').on('click',function(){
+  glide.back = true
+  window.history.back()
+});
 ```
 ## Using the menu plugin
 
