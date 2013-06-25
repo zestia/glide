@@ -517,6 +517,7 @@ class AppRouter extends Backbone.Router
         });
 
         $('.back').on('click', function() {
+          glide.back = true
           window.history.back()
         })
 
