@@ -96,18 +96,9 @@
       this.isTransitioning = false;
       this.addClass(currentPage, 'previousPage');
       document.body.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
-      if (this.forceForward) {
-        this.back = false;
-        this.forceForward = false;
-      }
       setTimeout(function() {
         if (_this.transitionAnimation) {
-          switch (transitionType) {
-            case "slide":
-              return _this.slide(targetPage, currentPage);
-            case "slideUp":
-              return _this.slideUp(targetPage, currentPage);
-          }
+          return _this[transitionType](targetPage, currentPage);
         } else {
           return _this.displayPage(targetPage, currentPage);
         }
@@ -199,9 +190,7 @@
       if (this.isAndroid() && this.os.version < '4' && this.back === false) {
         window.scrollTo(0, 0);
       }
-      if (this.back === true) {
-        return this.back = false;
-      }
+      return this.back = false;
     };
 
     Glide.prototype.hideTransitionedPage = function(e) {
