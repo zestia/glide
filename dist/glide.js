@@ -85,19 +85,10 @@
         return;
       }
       this.isTransitioning = true;
-      if (this.pageHistory.length === 1 && window.location.hash === this.startPage) {
-        this.back = true;
-        this.pageHistory.pop();
-      }
-      if (this.pageHistory.length > 1 && window.location.hash === this.pageHistory[this.pageHistory.length - 2]) {
-        this.back = true;
-      }
-      if (this.back && this.pageHistory.length !== 1) {
+      if (this.back) {
         transitionType = this.currentPage.getAttribute("data-transition") || 'slide';
-        this.pageHistory.pop();
       } else {
         transitionType = this.targetPage.getAttribute("data-transition") || 'slide';
-        this.pageHistory.push(window.location.hash);
       }
       targetPage = this.targetPage;
       currentPage = this.currentPage;

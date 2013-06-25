@@ -54,7 +54,8 @@ class Glide
     else if targetPage
       @targetPage = targetPage
 
-    return if @targetPage is @currentPage or @isTransitioning
+    if @targetPage is @currentPage or @isTransitioning
+      return
 
     unless @currentPage?
       @targetPage.style.display = "-webkit-box"
@@ -64,19 +65,10 @@ class Glide
 
     @isTransitioning = true
 
-    if @pageHistory.length is 1 and window.location.hash is @startPage
-      @back = true
-      @pageHistory.pop()
-
-    if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
-      @back = true
-
-    if @back and @pageHistory.length != 1
+    if @back
       transitionType = @currentPage.getAttribute("data-transition") or 'slide'
-      @pageHistory.pop()
     else
       transitionType = @targetPage.getAttribute("data-transition") or 'slide'
-      @pageHistory.push window.location.hash
 
     targetPage = @targetPage
     currentPage = @currentPage
