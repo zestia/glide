@@ -517,6 +517,7 @@ class AppRouter extends Backbone.Router
         });
 
         $('.back').on('click', function() {
+          glide.back = true
           window.history.back()
         })
 
@@ -544,7 +545,7 @@ class AppRouter extends Backbone.Router
 
         prettyPrint()
 
-         // need to move this into flight or find a better way
+         // need to move this into glide or find a better way
         if (navigator.standalone) {
           window.preventScrolling = true
           $(document)

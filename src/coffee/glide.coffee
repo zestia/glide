@@ -54,7 +54,8 @@ class Glide
     else if targetPage
       @targetPage = targetPage
 
-    return if @targetPage is @currentPage or @isTransitioning
+    if @targetPage is @currentPage or @isTransitioning
+      return
 
     unless @currentPage?
       @targetPage.style.display = "-webkit-box"
@@ -64,19 +65,10 @@ class Glide
 
     @isTransitioning = true
 
-    if @pageHistory.length is 1 and window.location.hash is @startPage
-      @back = true
-      @pageHistory.pop()
-
-    if @pageHistory.length > 1 and window.location.hash is @pageHistory[@pageHistory.length - 2]
-      @back = true
-
-    if @back and @pageHistory.length != 1
+    if @back
       transitionType = @currentPage.getAttribute("data-transition") or 'slide'
-      @pageHistory.pop()
     else
       transitionType = @targetPage.getAttribute("data-transition") or 'slide'
-      @pageHistory.push window.location.hash
 
     targetPage = @targetPage
     currentPage = @currentPage
@@ -86,17 +78,9 @@ class Glide
     @addClass currentPage, 'previousPage'
     document.body.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
-    if @forceForward
-      @back = false
-      @forceForward = false
-
     setTimeout =>
       if @transitionAnimation
-        switch transitionType
-          when "slide"
-            @slide targetPage, currentPage
-          when "slideUp"
-            @slideUp targetPage, currentPage
+         @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
     , 10
@@ -193,7 +177,7 @@ class Glide
     if @isAndroid() and @os.version < '4' and @back is false
       window.scrollTo 0,0
 
-    if @back is true then @back = false
+    @back = false
 
   # Private: Hide DOM that has just been transitioned
   #
@@ -237,13 +221,11 @@ class Glide
   #
   # Returns True if the device is touch enabled, else False.
   isTouch: =>
-    if typeof @touch is 'undefined'
-      if @isAndroid()
-        if !!('ontouchstart' of window)
-          @touch = true
+    if typeof @touch is "undefined"
+      if !!('ontouchstart' of window)
+        @touch = true
       else
-        if window.Touch?
-          @touch = true
+        @touch = false
     else
       @touch
 
@@ -274,9 +256,9 @@ class Glide
         when 'touchstart'
           @onTouchStart e
         when 'touchmove'
-          @onTouchMove e
+          @removePressed
         when 'touchend'
-          @onTouchEnd e
+          @removePressed
     else
       switch e.type
         when 'mousedown'
@@ -293,25 +275,18 @@ class Glide
 
     if @theTarget?.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
       @oldTarget = @theTarget
-      @parents = $(@theTarget).parentsUntil('ul li')
-      @theTarget = @parents[@parents.length-1] or @oldTarget
+      @theTarget = $(@theTarget).closest('a')[0]
 
     if @theTarget is null then return
 
-    @theTarget.className += ' pressed'
-    @theTarget.addEventListener 'touchmove', @onTouchMove, false
-    @theTarget.addEventListener 'mouseout', @onTouchEnd, false
-    @theTarget.addEventListener 'touchend', @onTouchEnd, false
-    @theTarget.addEventListener 'mouseup', @onTouchEnd, false
-    @theTarget.addEventListener 'touchcancel', @onTouchcancel, false
+    @addClass @theTarget, 'pressed'
+    @theTarget.addEventListener 'touchmove', @removePressed, false
+    @theTarget.addEventListener 'mouseout', @removePressed, false
+    @theTarget.addEventListener 'touchend', @removePressed, false
+    @theTarget.addEventListener 'mouseup', @removePressed, false
+    @theTarget.addEventListener 'touchcancel', @removePressed, false
 
-  onTouchMove: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
-
-  onTouchEnd: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
-
-  onTouchCancel: (e) =>
-    @theTarget.className = @theTarget.className.replace(/( )? pressed/gi, '')
+  removePressed: (e) =>
+    @removeClass @theTarget, 'pressed'
 
 window.Glide = Glide
