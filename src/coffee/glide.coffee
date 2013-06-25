@@ -78,10 +78,6 @@ class Glide
     @addClass currentPage, 'previousPage'
     document.body.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
 
-    if @forceForward
-      @back = false
-      @forceForward = false
-
     setTimeout =>
       if @transitionAnimation
         switch transitionType
