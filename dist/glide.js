@@ -22,9 +22,7 @@
       if (options == null) {
         options = {};
       }
-      this.onTouchCancel = __bind(this.onTouchCancel, this);
-      this.onTouchEnd = __bind(this.onTouchEnd, this);
-      this.onTouchMove = __bind(this.onTouchMove, this);
+      this.removePressed = __bind(this.removePressed, this);
       this.onTouchStart = __bind(this.onTouchStart, this);
       this.handleEvents = __bind(this.handleEvents, this);
       this.isTouch = __bind(this.isTouch, this);
@@ -85,19 +83,10 @@
         return;
       }
       this.isTransitioning = true;
-      if (this.pageHistory.length === 1 && window.location.hash === this.startPage) {
-        this.back = true;
-        this.pageHistory.pop();
-      }
-      if (this.pageHistory.length > 1 && window.location.hash === this.pageHistory[this.pageHistory.length - 2]) {
-        this.back = true;
-      }
-      if (this.back && this.pageHistory.length !== 1) {
+      if (this.back) {
         transitionType = this.currentPage.getAttribute("data-transition") || 'slide';
-        this.pageHistory.pop();
       } else {
         transitionType = this.targetPage.getAttribute("data-transition") || 'slide';
-        this.pageHistory.push(window.location.hash);
       }
       targetPage = this.targetPage;
       currentPage = this.currentPage;
@@ -105,18 +94,9 @@
       this.isTransitioning = false;
       this.addClass(currentPage, 'previousPage');
       document.body.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
-      if (this.forceForward) {
-        this.back = false;
-        this.forceForward = false;
-      }
       setTimeout(function() {
         if (_this.transitionAnimation) {
-          switch (transitionType) {
-            case "slide":
-              return _this.slide(targetPage, currentPage);
-            case "slideUp":
-              return _this.slideUp(targetPage, currentPage);
-          }
+          return _this[transitionType](targetPage, currentPage);
         } else {
           return _this.displayPage(targetPage, currentPage);
         }
@@ -208,9 +188,7 @@
       if (this.isAndroid() && this.os.version < '4' && this.back === false) {
         window.scrollTo(0, 0);
       }
-      if (this.back === true) {
-        return this.back = false;
-      }
+      return this.back = false;
     };
 
     Glide.prototype.hideTransitionedPage = function(e) {
@@ -249,15 +227,11 @@
     };
 
     Glide.prototype.isTouch = function() {
-      if (typeof this.touch === 'undefined') {
-        if (this.isAndroid()) {
-          if (!!('ontouchstart' in window)) {
-            return this.touch = true;
-          }
+      if (typeof this.touch === "undefined") {
+        if (!!('ontouchstart' in window)) {
+          return this.touch = true;
         } else {
-          if (window.Touch != null) {
-            return this.touch = true;
-          }
+          return this.touch = false;
         }
       } else {
         return this.touch;
@@ -282,9 +256,9 @@
           case 'touchstart':
             return this.onTouchStart(e);
           case 'touchmove':
-            return this.onTouchMove(e);
+            return this.removePressed;
           case 'touchend':
-            return this.onTouchEnd(e);
+            return this.removePressed;
         }
       } else {
         switch (e.type) {
@@ -307,30 +281,21 @@
       }
       if (((_ref = this.theTarget) != null ? _ref.nodeName : void 0) && this.theTarget.nodeName.toLowerCase() !== 'a' && (this.theTarget.nodeType === 3 || this.theTarget.nodeType === 1)) {
         this.oldTarget = this.theTarget;
-        this.parents = $(this.theTarget).parentsUntil('ul li');
-        this.theTarget = this.parents[this.parents.length - 1] || this.oldTarget;
+        this.theTarget = $(this.theTarget).closest('a')[0];
       }
       if (this.theTarget === null) {
         return;
       }
-      this.theTarget.className += ' pressed';
-      this.theTarget.addEventListener('touchmove', this.onTouchMove, false);
-      this.theTarget.addEventListener('mouseout', this.onTouchEnd, false);
-      this.theTarget.addEventListener('touchend', this.onTouchEnd, false);
-      this.theTarget.addEventListener('mouseup', this.onTouchEnd, false);
-      return this.theTarget.addEventListener('touchcancel', this.onTouchcancel, false);
+      this.addClass(this.theTarget, 'pressed');
+      this.theTarget.addEventListener('touchmove', this.removePressed, false);
+      this.theTarget.addEventListener('mouseout', this.removePressed, false);
+      this.theTarget.addEventListener('touchend', this.removePressed, false);
+      this.theTarget.addEventListener('mouseup', this.removePressed, false);
+      return this.theTarget.addEventListener('touchcancel', this.removePressed, false);
     };
 
-    Glide.prototype.onTouchMove = function(e) {
-      return this.theTarget.className = this.theTarget.className.replace(/( )? pressed/gi, '');
-    };
-
-    Glide.prototype.onTouchEnd = function(e) {
-      return this.theTarget.className = this.theTarget.className.replace(/( )? pressed/gi, '');
-    };
-
-    Glide.prototype.onTouchCancel = function(e) {
-      return this.theTarget.className = this.theTarget.className.replace(/( )? pressed/gi, '');
+    Glide.prototype.removePressed = function(e) {
+      return this.removeClass(this.theTarget, 'pressed');
     };
 
     return Glide;
