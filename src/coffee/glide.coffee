@@ -277,7 +277,7 @@ class Glide
       @oldTarget = @theTarget
       @theTarget = $(@theTarget).closest('a')[0]
 
-    if @theTarget is null then return
+    if @theTarget is null or typeof @theTarget is 'undefined' then return
 
     @addClass @theTarget, 'pressed'
     @theTarget.addEventListener 'touchmove', @removePressed, false

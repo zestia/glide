@@ -283,7 +283,7 @@
         this.oldTarget = this.theTarget;
         this.theTarget = $(this.theTarget).closest('a')[0];
       }
-      if (this.theTarget === null) {
+      if (this.theTarget === null || typeof this.theTarget === 'undefined') {
         return;
       }
       this.addClass(this.theTarget, 'pressed');
