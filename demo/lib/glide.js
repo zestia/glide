@@ -49,11 +49,14 @@
     }
 
     Glide.prototype.detectUserAgent = function() {
-      var result, userAgent;
+      var match, result, userAgent;
       userAgent = window.navigator.userAgent;
       this.os = {};
       this.os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) || !!userAgent.match(/Silk-Accelerated/);
-      this.os.ios = !!userAgent.match(/(iPad).*OS\s([\d_]+)/) || !!userAgent.match(/(iPhone\sOS)\s([\d_]+)/);
+      if (match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)) {
+        this.os.ios = true;
+        this.os.version = match[4].replace('_', '.');
+      }
       if (this.os.android) {
         result = userAgent.match(/Android (\d+(?:\.\d+)+)/);
         return this.os.version = result[1];
