@@ -207,7 +207,7 @@ class Glide
   #
   # Returns true if element has the specified class and false if not
   hasClass: (el, cssClass) ->
-    if el.className isnt ''
+    if el? and el.className isnt ''
       el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
     else
       false

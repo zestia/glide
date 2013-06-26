@@ -209,7 +209,7 @@
     };
 
     Glide.prototype.hasClass = function(el, cssClass) {
-      if (el.className !== '') {
+      if ((el != null) && el.className !== '') {
         return el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className);
       } else {
         return false;
