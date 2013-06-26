@@ -55,11 +55,13 @@
       this.os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) || !!userAgent.match(/Silk-Accelerated/);
       if (match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)) {
         this.os.ios = true;
-        this.os.version = match[4].replace('_', '.');
+        this.os.version = match[4].replace(/_/g, '.');
+        this.os.full = "iOS " + this.os.version;
       }
       if (this.os.android) {
         result = userAgent.match(/Android (\d+(?:\.\d+)+)/);
-        return this.os.version = result[1];
+        this.os.version = result[1];
+        return this.os.full = "Android " + this.os.version;
       }
     };
 

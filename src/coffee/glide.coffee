@@ -39,11 +39,13 @@ class Glide
 
     if match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)
       @os.ios = true
-      @os.version = match[4].replace '_', '.'
+      @os.version = match[4].replace /_/g, '.'
+      @os.full = "iOS #{@os.version}"
 
     if @os.android
       result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
       @os.version = result[1]
+      @os.full = "Android #{@os.version}"
 
   # Public: Go to a specific page.
   #
