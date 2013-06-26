@@ -36,7 +36,11 @@ class Glide
     userAgent = window.navigator.userAgent
     @os = {}
     @os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) or !!userAgent.match(/Silk-Accelerated/)
-    @os.ios = !!userAgent.match(/(iPad).*OS\s([\d_]+)/) or !!userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
+
+    if match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)
+      @os.ios = true
+      @os.version = match[4].replace '_', '.'
+
     if @os.android
       result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
       @os.version = result[1]
