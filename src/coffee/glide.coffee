@@ -59,7 +59,6 @@ class Glide
 
     unless @currentPage?
       @targetPage.style.display = "-webkit-box"
-      @pageHistory = [window.location.hash]
       @currentPage = @targetPage
       return
 
