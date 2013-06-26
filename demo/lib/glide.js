@@ -78,7 +78,6 @@
       }
       if (this.currentPage == null) {
         this.targetPage.style.display = "-webkit-box";
-        this.pageHistory = [window.location.hash];
         this.currentPage = this.targetPage;
         return;
       }
