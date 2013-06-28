@@ -78,7 +78,6 @@ class Glide
     targetPage = @targetPage
     currentPage = @currentPage
     @currentPage = @targetPage
-    @isTransitioning = false
 
     @addClass currentPage, 'previousPage'
     document.body.addEventListener "webkitTransitionEnd", @hideTransitionedPage, false
@@ -190,6 +189,7 @@ class Glide
   #
   # Returns nothing
   hideTransitionedPage: (e) =>
+    @isTransitioning = false
     previousPage = document.querySelector('.previousPage')
     if previousPage
       previousPage.style.display = "none"

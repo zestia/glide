@@ -95,7 +95,6 @@
       targetPage = this.targetPage;
       currentPage = this.currentPage;
       this.currentPage = this.targetPage;
-      this.isTransitioning = false;
       this.addClass(currentPage, 'previousPage');
       document.body.addEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);
       setTimeout(function() {
@@ -197,6 +196,7 @@
 
     Glide.prototype.hideTransitionedPage = function(e) {
       var previousPage;
+      this.isTransitioning = false;
       previousPage = document.querySelector('.previousPage');
       if (previousPage) {
         previousPage.style.display = "none";
