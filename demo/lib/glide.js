@@ -186,6 +186,7 @@
     };
 
     Glide.prototype.displayPage = function(targetPage, currentPage) {
+      this.isTransitioning = false;
       targetPage.style.display = "-webkit-box";
       currentPage.style.display = "none";
       if (this.isAndroid() && this.os.version < '4' && this.back === false) {
