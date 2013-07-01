@@ -175,6 +175,7 @@ class Glide
   #
   # Returns nothing.
   displayPage: (targetPage, currentPage) ->
+    @isTransitioning = false
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
 
