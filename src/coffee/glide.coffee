@@ -18,11 +18,11 @@ class Glide
   constructor: (options = {}) ->
     @[key] = value for key, value of options
 
-    for key, value of @plugins
-      @plugins[key] = new value this
-
     @detectUserAgent()
     @setupForAndroid() if @isAndroid() and @os.version < '4'
+
+    for key, value of @plugins
+      @plugins[key] = new value this
 
     if @isTouch()
       document.body.addEventListener 'touchstart', @handleEvents, false
@@ -252,6 +252,12 @@ class Glide
   # Returns a String of the OS version.
   osVersion: ->
     @os.version.toString()
+
+  # Public: Test whether the OS version matches the specified version.
+  #
+  # Returns: True if the version matches, else False.
+  versionMatches: (regex) ->
+    !!@os.version.toString().match regex
 
   # Private: Handle touch events to apply pressed class to anchors
   #

@@ -15,6 +15,11 @@
       this.glide.hooks['before:to'].push(function() {
         return _this.close();
       });
+      if (this.glide.isAndroid() && this.glide.versionMatches(/2\.3/g)) {
+        this.animate = false;
+      } else {
+        this.animate = true;
+      }
     }
 
     GlideMenu.prototype.close = function() {

@@ -32,14 +32,14 @@
         value = options[key];
         this[key] = value;
       }
+      this.detectUserAgent();
+      if (this.isAndroid() && this.os.version < '4') {
+        this.setupForAndroid();
+      }
       _ref = this.plugins;
       for (key in _ref) {
         value = _ref[key];
         this.plugins[key] = new value(this);
-      }
-      this.detectUserAgent();
-      if (this.isAndroid() && this.os.version < '4') {
-        this.setupForAndroid();
       }
       if (this.isTouch()) {
         document.body.addEventListener('touchstart', this.handleEvents, false);
@@ -253,6 +253,10 @@
 
     Glide.prototype.osVersion = function() {
       return this.os.version.toString();
+    };
+
+    Glide.prototype.versionMatches = function(regex) {
+      return !!this.os.version.toString().match(regex);
     };
 
     Glide.prototype.handleEvents = function(e) {
