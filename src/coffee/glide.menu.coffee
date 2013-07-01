@@ -19,23 +19,30 @@ class GlideMenu
     # if @animate is false just show/hide no animation
 
     if @menuOpen
-      setTimeout =>
-        @glide.translate @menu, 'X', '-110%', '0.3s'
-      , 10
+      if @animate
+        setTimeout =>
+          @glide.translate @menu, 'X', '-110%', '0.3s'
+        , 10
 
-      setTimeout =>
+        setTimeout =>
+          @menu.style.display = 'none'
+        , 300
+      else
         @menu.style.display = 'none'
-      , 300
 
       @menuOpen = false
     else
-      @glide.translate @menu, 'X', '-110%', '0ms'
+      if @animate
+        @glide.translate @menu, 'X', '-110%', '0ms'
 
-      setTimeout =>
-        @glide.translate @menu, 'X', '0%', '0.3s'
-      , 50
+        setTimeout =>
+          @glide.translate @menu, 'X', '0%', '0.3s'
+        , 50
 
-      @menu.style.display = "block"
+        @menu.style.display = "block"
+      else
+        @menu.style.display = "block"
+
       @menuOpen = true
 
 window.GlideMenu = GlideMenu

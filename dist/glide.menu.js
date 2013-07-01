@@ -32,19 +32,27 @@
     GlideMenu.prototype.toggle = function() {
       var _this = this;
       if (this.menuOpen) {
-        setTimeout(function() {
-          return _this.glide.translate(_this.menu, 'X', '-110%', '0.3s');
-        }, 10);
-        setTimeout(function() {
-          return _this.menu.style.display = 'none';
-        }, 300);
+        if (this.animate) {
+          setTimeout(function() {
+            return _this.glide.translate(_this.menu, 'X', '-110%', '0.3s');
+          }, 10);
+          setTimeout(function() {
+            return _this.menu.style.display = 'none';
+          }, 300);
+        } else {
+          this.menu.style.display = 'none';
+        }
         return this.menuOpen = false;
       } else {
-        this.glide.translate(this.menu, 'X', '-110%', '0ms');
-        setTimeout(function() {
-          return _this.glide.translate(_this.menu, 'X', '0%', '0.3s');
-        }, 50);
-        this.menu.style.display = "block";
+        if (this.animate) {
+          this.glide.translate(this.menu, 'X', '-110%', '0ms');
+          setTimeout(function() {
+            return _this.glide.translate(_this.menu, 'X', '0%', '0.3s');
+          }, 50);
+          this.menu.style.display = "block";
+        } else {
+          this.menu.style.display = "block";
+        }
         return this.menuOpen = true;
       }
     };
