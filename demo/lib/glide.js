@@ -33,7 +33,7 @@
         this[key] = value;
       }
       this.detectUserAgent();
-      if (this.isAndroid() && this.os.version < '4') {
+      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
         this.setupForAndroid();
       }
       _ref = this.plugins;
@@ -189,7 +189,7 @@
       this.isTransitioning = false;
       targetPage.style.display = "-webkit-box";
       currentPage.style.display = "none";
-      if (this.isAndroid() && this.os.version < '4' && this.back === false) {
+      if (this.isAndroid() && this.versionMatches(/2\.3/) && this.back === false) {
         window.scrollTo(0, 0);
       }
       return this.back = false;
@@ -203,7 +203,7 @@
         previousPage.style.display = "none";
         this.removeClass(previousPage, 'previousPage');
       }
-      if (this.isAndroid() && this.os.version < '4') {
+      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
         this.currentPage.style.webkitTransform = "none";
       }
       return document.body.removeEventListener("webkitTransitionEnd", this.hideTransitionedPage, false);

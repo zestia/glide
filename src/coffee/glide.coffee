@@ -19,7 +19,7 @@ class Glide
     @[key] = value for key, value of options
 
     @detectUserAgent()
-    @setupForAndroid() if @isAndroid() and @os.version < '4'
+    @setupForAndroid() if @isAndroid() and @versionMatches(/2\.3/)
 
     for key, value of @plugins
       @plugins[key] = new value this
@@ -179,14 +179,14 @@ class Glide
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
 
-    if @isAndroid() and @os.version < '4' and @back is false
+    if @isAndroid() and @versionMatches(/2\.3/) and @back is false
       window.scrollTo 0,0
 
     @back = false
 
   # Private: Hide DOM that has just been transitioned
   #
-  # page    - The page element that has just been moved outside of view
+  # page - The page element that has just been moved outside of view
   #
   # Returns nothing
   hideTransitionedPage: (e) =>
@@ -196,7 +196,7 @@ class Glide
       previousPage.style.display = "none"
       @removeClass previousPage, 'previousPage'
 
-    if @isAndroid() and @os.version < '4'
+    if @isAndroid() and @versionMatches(/2\.3/)
       @currentPage.style.webkitTransform = "none"
 
     document.body.removeEventListener "webkitTransitionEnd", @hideTransitionedPage, false
