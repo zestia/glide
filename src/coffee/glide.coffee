@@ -221,7 +221,8 @@ class Glide
   removeClass: (ele, cls) ->
     if @hasClass(ele, cls)
       reg = new RegExp("(\\s|^)" + cls + "(\\s|$)")
-      ele.className = ele.className.replace(reg, " ")
+      if ele.className?
+        ele.className = ele.className.replace(reg, " ")
 
   # Private: Is the device touch enabled.
   #

@@ -227,7 +227,9 @@
       var reg;
       if (this.hasClass(ele, cls)) {
         reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
-        return ele.className = ele.className.replace(reg, " ");
+        if (ele.className != null) {
+          return ele.className = ele.className.replace(reg, " ");
+        }
       }
     };
 
