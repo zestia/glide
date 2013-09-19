@@ -196,12 +196,13 @@
     };
 
     Glide.prototype.hideTransitionedPage = function(e) {
-      var previousPage;
+      var previousPage,
+        _this = this;
       this.isTransitioning = false;
       previousPage = document.querySelector('.previousPage');
       if (previousPage) {
         setTimeout(function() {
-          this.removeClass(previousPage, 'previousPage');
+          _this.removeClass(previousPage, 'previousPage');
           return previousPage.style.display = "none";
         }, 0);
       }

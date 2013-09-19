@@ -193,7 +193,7 @@ class Glide
     @isTransitioning = false
     previousPage = document.querySelector('.previousPage')
     if previousPage
-      setTimeout ->
+      setTimeout =>
         @removeClass previousPage, 'previousPage'
         previousPage.style.display = "none"
       , 0
