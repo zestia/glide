@@ -193,8 +193,10 @@ class Glide
     @isTransitioning = false
     previousPage = document.querySelector('.previousPage')
     if previousPage
-      previousPage.style.display = "none"
-      @removeClass previousPage, 'previousPage'
+      setTimeout ->
+        @removeClass previousPage, 'previousPage'
+        previousPage.style.display = "none"
+      , 0
 
     if @isAndroid() and @versionMatches(/2\.3/)
       @currentPage.style.webkitTransform = "none"

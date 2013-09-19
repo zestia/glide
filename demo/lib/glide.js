@@ -200,8 +200,10 @@
       this.isTransitioning = false;
       previousPage = document.querySelector('.previousPage');
       if (previousPage) {
-        previousPage.style.display = "none";
-        this.removeClass(previousPage, 'previousPage');
+        setTimeout(function() {
+          this.removeClass(previousPage, 'previousPage');
+          return previousPage.style.display = "none";
+        }, 0);
       }
       if (this.isAndroid() && this.versionMatches(/2\.3/)) {
         this.currentPage.style.webkitTransform = "none";
