@@ -19,6 +19,7 @@ class Glide
     @[key] = value for key, value of options
 
     @detectUserAgent()
+    # NOTE: drop with android 2.3
     @setupForAndroid() if @isAndroid() and @versionMatches(/2\.3/)
 
     for key, value of @plugins
@@ -179,8 +180,9 @@ class Glide
     targetPage.style.display = "-webkit-box"
     currentPage.style.display = "none"
 
+    # NOTE: drop with android 2.3
     if @isAndroid() and @versionMatches(/2\.3/) and @back is false
-      window.scrollTo 0,0
+      window.scrollTo 0, 0
 
     @back = false
 
@@ -198,6 +200,7 @@ class Glide
         previousPage.style.display = "none"
       , 0
 
+    # NOTE: drop with android 2.3
     if @isAndroid() and @versionMatches(/2\.3/)
       @currentPage.style.webkitTransform = "none"
 
@@ -215,6 +218,7 @@ class Glide
     else
       false
 
+  # NOTE: drop with android 2.3
   # Using our own addClass and removeClass:
   # Can use ClassList API if we decide not to support Android 2.3
   addClass: (ele, cls) ->
