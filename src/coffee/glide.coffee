@@ -51,9 +51,13 @@ class Glide
   # Public: Go to a specific page.
   #
   # targetPage - A String of the element ID or existing element.
+  # animate    - A Boolean of whether to animate the transition.
   #
   # Returns nothing.
-  to: (targetPage) =>
+  to: (targetPage, animate = true) =>
+    oldAnimate = @transitionAnimation
+    @transitionAnimation = animate
+
     hook() for hook in @hooks['before:to']
 
     if typeof targetPage is "string"
@@ -88,6 +92,7 @@ class Glide
          @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
+      @transitionAnimation = oldAnimate
     , 10
 
     hook() for hook in @hooks['after:to']
