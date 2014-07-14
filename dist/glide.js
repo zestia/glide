@@ -174,7 +174,7 @@
       targetPage.style.display = "-webkit-box";
       screenHeight = window.innerHeight + 'px';
       axis = "Y";
-      if (this.back) {
+      if (this.back1) {
         setTimeout((function(_this) {
           return function() {
             return _this.translate(currentPage, axis, screenHeight);
@@ -300,6 +300,7 @@
 
     Glide.prototype.onTouchStart = function(e) {
       var _ref;
+      console.log("DEBUG => onTouchStart fired");
       if (this.isTouch()) {
         if (this.isAndroid()) {
           this.theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY);

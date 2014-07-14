@@ -151,7 +151,7 @@ class Glide
     screenHeight = window.innerHeight + 'px'
     axis = "Y"
 
-    if @back
+    if @back1
       setTimeout =>
         @translate currentPage, axis, screenHeight
       , 0
@@ -289,6 +289,7 @@ class Glide
           @onTouchStart e
 
   onTouchStart: (e) =>
+    console.log "DEBUG => onTouchStart fired"
     if @isTouch()
       if @isAndroid()
         @theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY)
