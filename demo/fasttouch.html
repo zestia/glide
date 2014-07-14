@@ -1,0 +1,87 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click delay on webkit for iPhone/iPod touch</title>
+<script type="text/javascript" src="../lib/flight.js"></script>
+<script type="text/javascript" src="vendor/fastClick.js"></script>
+<script type="text/javascript">
+
+
+function loaded() {
+	var theClick = document.getElementById('theClick');
+	var theTap = document.getElementById('theTap');
+	var result = document.getElementById('result');
+
+	window.flight = new Flight();
+
+	counter = 0;
+
+	/*  Benchmarking */
+	theClick.addEventListener('touchstart', function(e){
+		this.timeStart = e.timeStamp;
+	}, false);
+	
+	theClick.addEventListener('click', function(e){
+		result.innerHTML = 'Delay: ' + (e.timeStamp-this.timeStart) + 'ms';
+		if (counter % 2) {
+			result.style.background = 'red';
+		}
+		else {
+			result.style.background = 'blue';
+		}
+		counter++;
+	}, false);
+
+	theTap.addEventListener('touchstart', function(e){
+		this.timeStart = e.timeStamp;
+	}, false);
+	
+	theTap.addEventListener('click', function(e){
+		result.innerHTML = 'Delay: ' + (e.timeStamp-this.timeStart) + 'ms';
+	}, false);
+}
+
+window.addEventListener('load', function(){ setTimeout(function(){ loaded(); }, 100) }, true);
+
+window.addEventListener('load', function() {
+    new FastClick(document.body);
+}, false);
+
+</script>
+
+<style type="text/css" media="all">
+
+button {
+	width:290px;
+	font-size:18px;
+	margin-bottom:10px;
+}
+
+#result {
+	padding:10px;
+	background:#ddd;
+	-webkit-border-radius:8px;
+	margin:10px;
+	text-align:center;
+	background:#bdf;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<p>Please note that this example works only on iPhone, iPod touch and the simulator, not on any browser.</p>
+
+<div style="text-align:center">
+<button id="theClick">onClick event</button>
+<button id="theTap">touchStart/End events</button>
+</div>
+
+<div id="result"></div>
+</body>
+
+</html>

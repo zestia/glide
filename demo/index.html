@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+    <!-- iPhone -->
+    <link href="images/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <!-- iPhone (Retina) -->
+    <link href="images/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <!-- iPhone 5 -->
+    <link href="images/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <link rel="apple-touch-icon" href="images/glide-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="images/glide-icon.png"/>
+
+    <title>Glide</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="lib/glide.css">
+    <link rel="stylesheet" href="lib/glide.theme.css">
+  </head>
+
+  <body>
+    <div id="debug"></div>
+    <div class="header-bg"></div>
+
+    <div id="index" class="page hidden">
+      <header>
+        <h1 class="logo">Glide</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <p class="white">A <i>simple</i> mobile framework</p>
+            <ul class="list menu">
+              <li><a href="#transitions">Transitions<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#getting-started">Getting started<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#created-by">Created by<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#contribute">Contribute<i class="icon-right-dir-1"></i></a></li>
+            </ul>
+            <a href="#contacts">
+              <button class="large green">View contacts demo</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="getting-started" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Getting started</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>Using Glide</h2>
+            <p>Glide is as a simple lightweight mobile framework. This guide will take you through some steps to get started. Further down we cover how to use Glide with backbone.js. Feedback welcome <a href="https://twitter.com/hallodom">@hallodom</a></p>
+             <h3>Features</h3>
+             <ul class="text-list">
+                <li><code>glide.css</code> gives scructure to your app making it easy to create fixed top or bottom positioned elements with native scrolling.</li>
+                 <li><code>flight.js</code> handles forwards and backwards page transitions.</li>
+                 <li>We use <code>fastclick.js</code> to speed up clicks.</li>
+                 <li>Extend Glide wih your own plugins.</li>
+              </ul>
+              <h3>Device Support</h3>
+              <ul class="text-list">
+                <li>iPhone 3, 4 and 5</li>
+                <li>Android 4+</li>
+                <li>Android 2.3 (working solution)</li>
+              </ul>
+              <h2>Markup</h2>
+              <h3>Anatomy of a page</h3>
+              <p>Include glide.js and css files. Make sure to include a theme.</p>
+              <pre class="prettyprint languague-html">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.css&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/glide.theme.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+
+    &lt;!-- pages here --&gt;
+
+    &lt;script src=&quot;js/glide.js&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;
+      window.glide = new Glide
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+              </pre>
+              <p>Organise your app into pages. Make sure each page has the class .page and .hidden:</p>
+              <pre class="prettyprint language-html">
+&lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- page content --&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;page-2&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- page content --&gt;
+&lt;/div&gt;
+            </pre>
+            <p>Glide will use the unique ID's to target the pages. Once you have some pages marked tell Glide to open the first page by passing the page id as a string to the to() function:</p>
+            <pre class="prettyprint language-html">
+&lt;script&gt;
+  window.glide = new Glide
+  glide.to('#page-1')
+&lt;/script&gt;
+            </pre>
+            <p>That's all you need to get started.</p>
+            <h3>Adding scrolling</h3>
+            <p>Glide makes use of native scrolling [<a target="_blank" href="https://github.com/joelambert/ScrollFix/issues/2">reference</a>]. This solution does away with rubber banding on iOS without the need of a javscript solution. The solution requires three divs. Anything outside div.scrollview becomes a fixed positioned element: </p>
+            <pre class="prettyprint language-html">
+&lt;div id=&quot;page-1&quot; class=&quot;page hidden&quot;&gt;
+  &lt;!-- fixed header --&gt;
+  &lt;div class=&quot;scrollview&quot;&gt;
+    &lt;div class=&quot;scrollview-inner&quot;&gt;
+      &lt;div class=&quot;scrollview-content&quot;&gt;
+        &lt;!-- scrollable content here --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- fixed footer --&gt;
+&lt;/div&gt;
+            </pre>
+            <ul class="list menu">
+              <li><a href="#fixed-header-footer">Example fixed header/footer<i class="icon-right-dir-1"></i></a></li>
+            </ul>
+            <h2>Transitioning pages</h2>
+            <p>Transitioning pages can be done in a router or using simple click events binding the glide.to() function. Glide does not watch for hash change events.</p>
+            <pre class="prettyprint lanuage-html">
+&lt;a href=&quot;#page-2&quot; id="#page-2-link" class=&quot;button&quot;&gt;
+  &lt;button&gt;Go to page 2&lt;/button&gt;
+&lt;/a&gt;
+            </pre>
+            <p>In your javascript assign a click event to the anchor.</p>
+            <pre class="prettyprint lanuage-javascript">
+$('#page-2-link').on('click',function(){
+  glide.to("#page-2");
+});
+            </pre>
+            <p>Glide will perform the default slide transition to #page-2. You can make a back button with: </p>
+            <pre class="prettyprint language-javascript">
+&lt;div id=&quot;page-2&quot;&gt;
+  &lt;a href=&quot;#page-1&quot; class=&quot;back&quot;&gt;
+    &lt;button&gt;Back&lt;/button&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+            </pre>
+            <p>We wrap a button within an anchor so we can pad the hit target to make it easier to tap. Then have some javascript to go back. When not using a router you must explicitly state back as true on Glide:</p>
+            <pre class="prettyprint language-javascript">
+$('#page-2 a.back').on('click',function(){
+  glide.back = true
+  glide.to('#page-1')
+});
+            </pre>
+            <h2>Using the menu plugin</h2>
+            <p>To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide. We wrote the menu as a plugin so it's easier to build your own custom implmentations.</p>
+            <pre class="prettyprint language-html">
+&lt;script src=&quot;js/glide.menu.js&quot;&gt;&lt;/script&gt;
+            </pre>
+            <pre class="prettyprint language-javascript">
+window.glide = new Glide({
+  plugins: {
+    menu: GlideMenu
+  }
+});
+            </pre>
+            <p>GlideMenu will look for the id #main-menu, make sure that is the ID for your menu markup. Now bind glide.plugins.menu.toggle() to your menu button:</p>
+            <pre class="prettyprint language-javascript">
+$('#main-menu-button').on('click',function(e){
+  e.preventDefault();
+  glide.plugins.menu.toggle()
+});
+            </pre>
+            Hiding the menu can be calling toggle() again while the menu is open:
+            <pre class="prettyprint language-javascript">
+$('#close-menu-btn').on('click',function(e){
+  e.preventDefault();
+  glide.plugins.menu.toggle()
+});
+            </pre>
+            <a href="#" class="main-menu-button">
+              <button class="secondary" >Toggle Main menu</button>
+            </a>
+            <h2>Using Glide with Backbone.js</h2>
+            <p>We built Glide because we needed a flexible mobile framework that would work well with backbones router implementation. See the example below (written in coffeescript): </p>
+            <pre class="prettyprint language-javascript">
+class AppRouter extends Backbone.Router
+
+  routes:
+    '': 'index'
+    'getting-started': 'gettingStarted'
+    'animations': 'animations'
+    'slide': 'slide'
+    'slideUp': 'slideUp'
+    'contacts': 'contacts'
+    'contacts/:id': 'showContact'
+
+  index: ->
+    glide.to '#index'
+
+  gettingStarted: ->
+    glide.to '#getting-started'
+
+  animations: ->
+    glide.to '#animations'
+
+  slide: ->
+    glide.to '#slide'
+
+  slideUp: ->
+    glide.to '#slideUp'
+
+  contacts: ->
+    view = new app.Views.Contacts collection: app.Collections.Contacts
+    view.render()
+    glide.to '#contacts'
+
+  showContact: (id) ->
+    model = app.Collections.Contacts?.get(id)
+    view = new app.Views.ContactsShow model: model
+    view.render()
+    glide.to '#contact-page'
+
+@app = window.app ? {}
+@app.Routers.AppRouter = AppRouter
+            </pre>
+            <p>Above you can see how clean using Glide is when coupled with backbone routing. No need to worry about forward and back transitions, using glide.to() on each route has that all worked out for you.</p>
+            <h2>View example app</h2>
+            <p class="last">To see Glide in full use view our example contacts app and take time to download and look through the source.</p>
+            <a class="btn" href="#contacts">
+              <button class="large orange">View contacts demo app</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="transitions" class="page hidden">
+      <header>
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Transitions</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <ul class="list menu">
+              <li><a href="#slide">Slide<i class="icon-right-dir-1"></i></a></li>
+              <li><a href="#slideUp">Slide up<i class="icon-up-dir-1"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Slide</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>The slide transition</h2>
+            <p>Slide is the default transition between pages. Glide will handle the forwards and back transitions for you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slideUp" class="page hidden demo-content" data-transition="slideUp">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-down-dir-1"></i></a>
+        <h1>Slide Up</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <h2>The slide up transition</h2>
+            <p>To apply slide up add <code>data-transition="slideUp"</code>. Glide will figure out that this page has a slide up transition and will perform the reverse on the way back. Code example:</p>
+             <pre class="prettyprint language-javascript">
+&lt;div class=&quot;page hidden&quot; data-transition=&quot;slideUp&quot;&gt;
+  &lt;!-- content here --&gt;
+&lt;/div&gt;
+</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contacts" class="page hidden contacts">
+      <header class="shadow">
+        <a class="main-menu-button left">
+            <button class="menu secondary">
+              <div class="bar"></div>
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </button>
+        </a>
+
+        <h1>Contacts</h1>
+      </header>
+       <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <ul id="contacts-list" class="list">
+              <!-- #contact-list-item -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact-page" class="page hidden contacts"></div>
+
+    <div id="fixed-header-footer" class="page hidden demo-content">
+      <header class="shadow">
+         <a class="back left btn">
+            <button class="secondary">Back</button>
+        </a>
+        <h1>Example</h1>
+      </header>
+      <div class="strap">
+        <p>This is fixed</p>
+      </div>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content">
+            <ul class="list">
+              <li><a href="#" class="disable">List item 1</a></li>
+              <li><a href="#" class="disable">List item 2</a></li>
+              <li><a href="#" class="disable">List item 3</a></li>
+              <li><a href="#" class="disable">List item 4</a></li>
+              <li><a href="#" class="disable">List item 5</a></li>
+              <li><a href="#" class="disable">List item 6</a></li>
+              <li><a href="#" class="disable">List item 7</a></li>
+              <li><a href="#" class="disable">List item 8</a></li>
+              <li><a href="#" class="disable">List item 9</a></li>
+              <li><a href="#" class="disable">List item 10</a></li>
+              <li><a href="#" class="disable">List item 11</a></li>
+              <li><a href="#" class="disable">List item 12</a></li>
+              <li><a href="#" class="disable">List item 13</a></li>
+              <li><a href="#" class="disable">List item 14</a></li>
+              <li><a href="#" class="disable">List item 15</a></li>
+              <li><a href="#" class="disable">List item 16</a></li>
+              <li><a href="#" class="disable">List item 17</a></li>
+              <li><a href="#" class="disable">List item 18</a></li>
+              <li><a href="#" class="disable">List item 19</a></li>
+              <li><a href="#" class="disable">List item 20</a></li>
+              <li><a href="#" class="disable">List item 21</a></li>
+              <li><a href="#" class="disable">List item 22</a></li>
+              <li><a href="#" class="disable">List item 23</a></li>
+              <li><a href="#" class="disable">List item 24</a></li>
+              <li><a href="#" class="disable">List item 25</a></li>
+              <li><a href="#" class="disable">List item 26</a></li>
+              <li><a href="#" class="disable">List item 27</a></li>
+              <li><a href="#" class="disable">List item 28</a></li>
+              <li><a href="#" class="disable">List item 29</a></li>
+              <li><a href="#" class="disable">List item 30</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-menu">
+        <p>I could be a menu</p>
+      </div>
+    </div>
+
+    <div id="created-by" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Created by</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <div class="contributor" id="dom">
+                <img src="images/contributors/dom-grav.jpeg" alt="">
+                <div class="content">
+                  <h2>Dom Briggs</h2>
+                  <p>UI Designer</p>
+                  <p><a href="http://www.hallodom.co.uk">www.hallodom.co.uk</a>
+                  <p><a href="http://dribbble.com/dominique.briggs">dribbble.com/dominique.briggs</a>
+                  <p><a href="https://twitter.com/hallodom">@hallodom</a>
+                </div>
+                <hr />
+                <p>Made in Manchester at <a href="http://capsulecrm.com">Capsule</a>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contribute" class="page hidden demo-content">
+      <header class="shadow">
+        <a class="back left btn"><i class="icon-left-dir-1"></i></a>
+        <h1>Contribute</h1>
+      </header>
+      <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+            <p>Glide is under active development, follow the project on <a target="_blank" href="https://github.com/zestia/glide">github.com/zestia/glide</a>.<br /><br /> Here's the most direct way to get your work merged into the project:</p>
+            <ol>
+              <li>Fork the project</li>
+              <li>Clone down your fork</li>
+              <li>Create a feature branch</li>
+              <li>Hack away</li>
+              <li>If necessary, rebase your commits into logical chunks without errors</li>
+              <li>Push the branch up to your fork</li>
+              <li>Send a pull request for your branch</li>
+            </ol>
+            <hr />
+            <p>Add any issues in the Git issue tracker as quickly as possible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="main-menu">
+      <div class="menu-container">
+        <ul class="account-holder">
+          <li>
+            <a id="close-menu-btn">
+              <div class="close-menu">
+                <div class="arrow-left"></div>
+              </div>
+            </a>
+            <a class="disable">
+              <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
+              Dominique Briggs
+            </a>
+          </li>
+        </ul>
+        <ul id="menu-sections">
+          <li><a class="disable" href="">Menu item 1</a></li>
+          <li><a class="disable" href="">Menu item 2</a></li>
+          <li><a class="disable" href="">Menu item 3</a></li>
+          <li><a class="disable" href="">Menu item 4</a></li>
+          <li><a class="disable" href="">Menu item 5</a></li>
+          <li><a href="#">Glide home page</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <script type="text/html" id="contact-list-item">
+       <li>
+         <a href="#contacts/<%= id %>">
+           <% if ( image != '' ){ %>
+             <img class="<% if ( image === 'tyrion.jpg' ){ %> bw <% } %>" src="images/200x200/<%= image %>"/>
+           <% } else { %>
+              <img src="http://placehold.it/50/50" />
+           <% } %>
+           <%= name %>
+          </a>
+       </li>
+    </script>
+
+    <script type="text/html" id="contact-item">
+      <header class="shadow">
+        <a class="back left btn">
+            <button class="secondary">Back</button>
+        </a>
+        <h1><%= name %></h1>
+      </header>
+       <div class="scrollview">
+        <div class="scrollview-inner">
+          <div class="scrollview-content inset">
+           <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
+               <img src="images/200x200/<%= image %>"/>
+             </div>
+             <div class="info">
+               <h2><%= name %></h2>
+               <p><%= about %></p>
+               <a class="do-something" href="#">
+                <button class="large turquoise">Do something cool</button>
+               </a>
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </script>
+
+
+
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/prettyprint.js"></script>
+    <script src="vendor/underscore.js"></script>
+    <script src="vendor/backbone.js"></script>
+    <script src="vendor/fastClick.js"></script>
+
+    <script src="lib/glide.js"></script>
+    <script src="lib/glide.menu.js"></script>
+
+    <script src="app/application.js"></script>
+    <script src="app/routers.js"></script>
+    <script src="app/models.js"></script>
+    <script src="app/collections.js"></script>
+    <script src="app/views.js"></script>
+
+    <script type="text/javascript">
+      $(function() {
+        app.init()
+
+        // disable touch move on header to prevent user stretching from top
+        $(document).on('touchmove','header ,.strap, .footer-menu', function(e) {
+          e.preventDefault();
+        });
+
+        $('.back').on('click', function() {
+          glide.back = true
+          window.history.back()
+        })
+
+        $(document).on('click','.main-menu-button',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+         $(document).on('click','#close-menu-btn',function(e){
+          e.preventDefault();
+          glide.plugins.menu.toggle();
+        });
+
+        $(document).on('click','.disable',function(e){
+          e.preventDefault();
+        });
+
+        $(document).on('click', 'header h1', function() {
+          $('.scrollview-inner').animate({ scrollTop: '0px' })
+        })
+
+        if (window.Touch) {
+          new FastClick(document.body)
+        }
+
+        prettyPrint()
+
+         // need to move this into glide or find a better way
+        if (navigator.standalone) {
+          window.preventScrolling = true
+          $(document)
+          .on('touchstart','.scrollview-content', function() {
+            this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+            window.preventScrolling=false
+          })
+          .on('touchmove', '.scrollview-content', function(e) {
+            if (window.preventScrolling) e.preventDefault()
+          })
+          .on('touchend', '.scrollview-content', function() {
+            window.preventScrolling = true
+          })
+        } else {
+          $(document)
+          .on('touchstart', '.scrollview-content', function() {
+          this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+          })
+        }
+      });
+    </script>
+  </body>
+</html>

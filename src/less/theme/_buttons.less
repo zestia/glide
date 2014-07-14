@@ -1,0 +1,118 @@
+button {
+  .border-radius (5px);
+  .box-sizing;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+
+  &.primary {
+    .border-radius (2px);
+    .vertical-gradient (rgba(0,199,255,.36) 5%, rgba(0,138,202,.36) 95%);
+    background-color: #097cf0; /* layer fill content */
+    border:solid 1px #0667c7;
+    color: white;
+  }
+
+  &.secondary {
+    .vertical-gradient (#ffffff,#fcfcfc);
+    background: white;
+    border: solid 1px #a3a3a3;
+    color: #282828;
+  }
+
+  &.small {
+    border: solid 1px #0667c7;
+  }
+
+  &.green {
+    background-clip: padding-box;
+    background-color: #00a651;
+    color: #fff;
+    padding: 15px 10px;
+    border:none;
+    border-bottom: 3px solid #007238;
+  }
+
+  &.orange {
+    background-clip: padding-box;
+    background-color: #ef5a28;
+    color: #fff;
+    padding: 15px 10px;
+    border:none;
+    border-bottom: 3px solid #a73f1c;
+  }
+
+  &.turquoise {
+    background-clip: padding-box;
+    background-color: #2fc4c0;
+    color: #fff;
+    padding: 15px 10px;
+    border:none;
+    border-bottom: 3px solid #279a97;
+  }
+
+  &.large {
+    width: 100%;
+  }
+
+  &.menu {
+    margin-top: 8px;
+    padding: 10px!important;
+
+    .bar {
+      .border-radius (4px);
+      background: #777777;
+      display: block;
+      height: 2px;
+      margin-bottom: 2px;
+      width: 12px;
+    }
+  }
+
+  &.add {
+    background-clip: padding-box; /* prevents bg color from leaking outside the border */
+    border-radius: 1px;
+    color: #767676;
+    height: 24px;
+    line-height: 12px;
+    opacity: .74;
+    text-align: left;
+    width: 110px;
+  }
+
+  &.remove {
+    color:#c11818;
+    float:right;
+    line-height: 14px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding: 7px 10px;
+  }
+
+  span.green {
+    color: #39b54a;
+  }
+}
+
+.main-menu-button {
+  button {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0px;
+  }
+}
+
+a.pressed {
+  button {
+    position: relative;
+    top:1.3px;
+  }
+  button.green {
+    background: #007238!important;
+    border-bottom: 0px;
+  }
+  button.turquoise {
+    background: #279a97!important;
+    border-bottom: 0px;
+  }
+}
