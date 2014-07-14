@@ -46,58 +46,58 @@
 
 .rotate (@deg){
 	-webkit-transform: rotate(@deg);
-	   -moz-transform: rotate(@deg);
-	   	-ms-transform: rotate(@deg);
-			transform: rotate(@deg);
+     -moz-transform: rotate(@deg);
+      -ms-transform: rotate(@deg);
+          transform: rotate(@deg);
 }
 
 .skew (@deg, @deg2){
 	-webkit-transform: skew(@deg, @deg2);
-	   -moz-transform: skew(@deg, @deg2);
-	   	-ms-transform: skew(@deg, @deg2);
-			transform: skew(@deg, @deg2);
+     -moz-transform: skew(@deg, @deg2);
+      -ms-transform: skew(@deg, @deg2);
+          transform: skew(@deg, @deg2);
 }
 
 .translate (@x, @y:0) {
-	-webkit-transform: translate(@x, @y);
-	   -moz-transform: translate(@x, @y);
-		-ms-transform: translate(@x, @y);
-			transform: translate(@x, @y);
+  -webkit-transform: translate(@x, @y);
+     -moz-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+          transform: translate(@x, @y);
 }
 
 .translate3d (@x, @y:0, @z:0) {
-	-webkit-transform: translate3d(@x, @y, @z);
-	   -moz-transform: translate3d(@x, @y, @z);
-		-ms-transform: translate3d(@x, @y, @z);
-			transform: translate3d(@x, @y, @z);
+  -webkit-transform: translate3d(@x, @y, @z);
+     -moz-transform: translate3d(@x, @y, @z);
+      -ms-transform: translate3d(@x, @y, @z);
+          transform: translate3d(@x, @y, @z);
 }
 
 .scale (@factor) {
-	-webkit-transform: scale(@factor);
-	   -moz-transform: scale(@factor);
-	   	-ms-transform: scale(@factor);
-			transform: scale(@factor);
+  -webkit-transform: scale(@factor);
+     -moz-transform: scale(@factor);
+      -ms-transform: scale(@factor);
+          transform: scale(@factor);
 }
 
 .perspective (@value:1000) {
-	-webkit-perspective: @value;
-	   -moz-perspective: @value;
-		-ms-perspective: @value;
-			perspective: @value;
+  -webkit-perspective: @value;
+     -moz-perspective: @value;
+      -ms-perspective: @value;
+          perspective: @value;
 }
 
 .transition (@transition) {
-	-webkit-transition: @transition;
-	   -moz-transition: @transition;
-	   	-ms-transition: @transition;
-			transition: @transition;
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+          transition: @transition;
 }
 
 .transform-origin (@x:center, @y:center) {
-	-webkit-transform-origin: @x @y;
-	   -moz-transform-origin: @x @y;
-		-ms-transform-origin: @x @y;
-			transform-origin: @x @y;
+  -webkit-transform-origin: @x @y;
+     -moz-transform-origin: @x @y;
+      -ms-transform-origin: @x @y;
+          transform-origin: @x @y;
 }
 
 .horizontal-gradient (@startColor: #555, @endColor: #333) {
@@ -176,31 +176,32 @@
 }
 
 .box-flex(@flex: 1) {
-	-webkit-box-flex: @flex;
-	-moz-box-flex: @flex;
-	box-flex: @flex;
+  -webkit-box-flex: @flex;
+     -moz-box-flex: @flex;
+          box-flex: @flex;
+              flex: @flex;
 }
 
 // Animation mixins
 .animation-duration (@duration: 1s) {
-	-webkit-animation-duration: @duration;
-	-moz-animation-duration: @duration;
-	-ms-animation-duration: @duration;
-	-o-animation-duration: @duration;
-	animation-duration: @duration;
+  -webkit-animation-duration: @duration;
+     -moz-animation-duration: @duration;
+      -ms-animation-duration: @duration;
+       -o-animation-duration: @duration;
+          animation-duration: @duration;
 }
 
 .animation-fill-mode (@mode: both) {
-	-webkit-animation-fill-mode: @mode;
-	-moz-animation-fill-mode: @mode;
-	-ms-animation-fill-mode: @mode;
-	-o-animation-fill-mode: @mode;
-	animation-fill-mode: @mode;
+  -webkit-animation-fill-mode: @mode;
+    -moz-animation-fill-mode: @mode;
+     -ms-animation-fill-mode: @mode;
+      -o-animation-fill-mode: @mode;
+         animation-fill-mode: @mode;
 }
 
 .animation-name (@string) {
-	-webkit-animation-name: @string;
-	-moz-animation-name: @string;
-	-o-animation-name: @string;
-	animation-name: @string;
+  -webkit-animation-name: @string;
+     -moz-animation-name: @string;
+       -o-animation-name: @string;
+          animation-name: @string;
 }
