@@ -7,15 +7,14 @@ require 'fileutils'
 
 desc 'compile coffeescript into javascript'
 task :coffee do
-  system 'coffee -co dist/ src/coffee/*.coffee'
-  system 'coffee -co dist/ src/coffee/*.coffee'
+  system 'coffee -c -o dist/ src/coffee/*.coffee'
 end
 
 desc 'compile less into css'
 task :less do
-  system 'lessc --yui-compress src/less/glide.less dist/glide.css'
-  system 'lessc --yui-compress src/less/glide.android.less dist/glide.android.css'
-  system 'lessc --yui-compress src/less/theme/glide.theme.less dist/glide.theme.css'
+  system 'lessc -x src/less/glide.less dist/glide.css'
+  system 'lessc -x src/less/glide.android.less dist/glide.android.css'
+  system 'lessc -x src/less/theme/glide.theme.less dist/glide.theme.css'
 end
 
 desc 'copy dest into demo'
