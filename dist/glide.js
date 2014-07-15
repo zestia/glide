@@ -174,7 +174,7 @@
       targetPage.style.display = "-webkit-box";
       screenHeight = window.innerHeight + 'px';
       axis = "Y";
-      if (this.back1) {
+      if (this.back) {
         setTimeout((function(_this) {
           return function() {
             return _this.translate(currentPage, axis, screenHeight);

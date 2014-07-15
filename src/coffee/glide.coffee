@@ -151,7 +151,7 @@ class Glide
     screenHeight = window.innerHeight + 'px'
     axis = "Y"
 
-    if @back1
+    if @back
       setTimeout =>
         @translate currentPage, axis, screenHeight
       , 0
