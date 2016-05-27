@@ -11,6 +11,8 @@
       'after:to': []
     };
 
+    Glide.prototype.plugins = {};
+
     Glide.prototype.isTransitioning = false;
 
     Glide.prototype.transitionAnimation = true;
@@ -33,9 +35,6 @@
         this[key] = value;
       }
       this.detectUserAgent();
-      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
-        this.setupForAndroid();
-      }
       ref = this.plugins;
       for (key in ref) {
         value = ref[key];
@@ -52,7 +51,7 @@
       var match, result, userAgent;
       userAgent = window.navigator.userAgent;
       this.os = {};
-      this.os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) || !!userAgent.match(/Silk-Accelerated/);
+      this.os.android = !!userAgent.match(/(Android)\s+([\d.]+)|Silk-Accelerated/);
       if (match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)) {
         this.os.ios = true;
         this.os.version = match[4].replace(/_/g, '.');
@@ -120,25 +119,6 @@
       return results;
     };
 
-    Glide.prototype.setupForAndroid = function() {
-      var androidCSS, head, i, len, ref, styleSheet, styleSheets;
-      head = document.getElementsByTagName('head')[0];
-      androidCSS = document.createElement('link');
-      androidCSS.setAttribute('rel', 'stylesheet');
-      androidCSS.setAttribute('type', 'text/css');
-      androidCSS.setAttribute('href', this.stylesheetPath + "glide.android.css");
-      head.appendChild(androidCSS);
-      styleSheets = document.styleSheets;
-      for (i = 0, len = styleSheets.length; i < len; i++) {
-        styleSheet = styleSheets[i];
-        if (((ref = styleSheet.href) != null ? ref.indexOf('glide.css') : void 0) !== -1) {
-          styleSheet.disabled = true;
-        }
-      }
-      document.body.className = 'old-android';
-      return this.transitionAnimation = false;
-    };
-
     Glide.prototype.slide = function(targetPage, currentPage) {
       var axis, screenWidth;
       targetPage.style.display = '-webkit-box';
@@ -204,9 +184,6 @@
       this.isTransitioning = false;
       targetPage.style.display = '-webkit-box';
       currentPage.style.display = 'none';
-      if (this.isAndroid() && this.versionMatches(/2\.3/) && this.back === false) {
-        window.scrollTo(0, 0);
-      }
       return this.back = false;
     };
 
@@ -221,9 +198,6 @@
             return previousPage.style.display = 'none';
           };
         })(this), 0);
-      }
-      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
-        this.currentPage.style.webkitTransform = 'none';
       }
       return document.body.removeEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
     };
