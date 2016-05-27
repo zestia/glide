@@ -84,7 +84,12 @@ class Glide
     @currentPage = @targetPage
 
     @addClass currentPage, 'previousPage'
-    document.body.addEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
+
+    document.body.addEventListener(
+      'webkitTransitionEnd',
+      @hideTransitionedPage,
+      false
+    )
 
     setTimeout =>
       if @transitionAnimation
@@ -181,7 +186,11 @@ class Glide
         previousPage.style.display = 'none'
       , 0
 
-    document.body.removeEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
+    document.body.removeEventListener(
+      'webkitTransitionEnd',
+      @hideTransitionedPage,
+      false
+    )
 
   # Private: Check if element has a class
   #
@@ -263,13 +272,22 @@ class Glide
   onTouchStart: (e) =>
     if @isTouch()
       if @isAndroid()
-        @theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY)
+        @theTarget = document.elementFromPoint(
+          e.changedTouches[0].screenX,
+          e.changedTouches[0].screenY
+        )
       else
-        @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+        @theTarget = document.elementFromPoint(
+          e.targetTouches[0].clientX,
+          e.targetTouches[0].clientY
+        )
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
-    if @theTarget?.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
+    if @theTarget?.nodeName and
+        @theTarget.nodeName.toLowerCase() isnt 'a' and
+        (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
+
       @oldTarget = @theTarget
       @theTarget = $(@theTarget).closest('a')[0]
 
