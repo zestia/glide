@@ -35,7 +35,7 @@ class Glide
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
     @os = {}
-    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) or !!userAgent.match(/Silk-Accelerated/)
+    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)|Silk-Accelerated/)
 
     if match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)
       @os.ios = true
