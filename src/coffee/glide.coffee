@@ -71,10 +71,8 @@ class Glide
 
     @isTransitioning = true
 
-    if @back
-      transitionType = @currentPage.getAttribute('data-transition') or 'slide'
-    else
-      transitionType = @targetPage.getAttribute('data-transition') or 'slide'
+    page = if @back then @currentPage else @targetPage
+    transitionType = page.getAttribute('data-transition') or 'slide'
 
     targetPage = @targetPage
     currentPage = @currentPage
