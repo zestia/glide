@@ -6,6 +6,8 @@ class Glide
     'before:to': []
     'after:to': []
 
+  plugins: {}
+
   isTransitioning: false
   transitionAnimation: true
   speed: 0.3
