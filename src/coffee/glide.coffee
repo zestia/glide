@@ -19,8 +19,6 @@ class Glide
     @[key] = value for key, value of options
 
     @detectUserAgent()
-    # NOTE: drop with android 2.3
-    @setupForAndroid() if @isAndroid() and @versionMatches(/2\.3/)
 
     for key, value of @plugins
       @plugins[key] = new value this
@@ -184,11 +182,6 @@ class Glide
     @isTransitioning = false
     targetPage.style.display = '-webkit-box'
     currentPage.style.display = 'none'
-
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/) and @back is false
-      window.scrollTo 0, 0
-
     @back = false
 
   # Private: Hide DOM that has just been transitioned
@@ -204,10 +197,6 @@ class Glide
         @removeClass previousPage, 'previousPage'
         previousPage.style.display = 'none'
       , 0
-
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/)
-      @currentPage.style.webkitTransform = 'none'
 
     document.body.removeEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
 
@@ -227,7 +216,7 @@ class Glide
   # Using our own addClass and removeClass:
   # Can use ClassList API if we decide not to support Android 2.3
   addClass: (ele, cls) ->
-    ele.className += ' ' + cls  unless @hasClass(ele, cls)
+    ele.className += ' ' + cls unless @hasClass(ele, cls)
 
   removeClass: (ele, cls) ->
     if @hasClass(ele, cls)
