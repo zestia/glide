@@ -8,7 +8,6 @@ class Glide
 
   isTransitioning: false
   transitionAnimation: true
-  speed: 0.3
 
   # Public: Instantiate Glide and set any options.
   #
@@ -153,11 +152,10 @@ class Glide
   # page     - An Element of the page.
   # axis     - A String of the axis.
   # distance - A String of the distance.
-  # duration - A String of the duration, defaults to speed.
+  # duration - A String of the duration, defaults to 0.3s.
   #
   # Returns nothing.
-  translate: (page, axis, distance, duration) ->
-    duration = @speed + 's' unless duration?
+  translate: (page, axis, distance, duration = '0.3s') ->
     page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
