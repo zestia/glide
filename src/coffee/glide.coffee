@@ -18,12 +18,11 @@ class Glide
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    @[key] = value for key, value of options
+    (@[key] = value) for key, value of options
 
     @detectUserAgent()
 
-    for key, value of @plugins
-      @plugins[key] = new value this
+    (@plugins[key] = new value this) for key, value of @plugins
 
     if @isTouch()
       document.body.addEventListener 'touchstart', @handleEvents, false
