@@ -88,7 +88,7 @@ class Glide
 
     setTimeout =>
       if @transitionAnimation
-         @[transitionType](targetPage, currentPage)
+        @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
       @transitionAnimation = oldAnimate
