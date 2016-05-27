@@ -1,7 +1,5 @@
 class Glide
 
-  stylesheetPath: '/'
-
   hooks:
     'before:to': []
     'after:to': []
