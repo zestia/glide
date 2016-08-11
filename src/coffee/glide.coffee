@@ -280,9 +280,9 @@ class Glide
         when 'touchstart'
           @onTouchStart e
         when 'touchmove'
-          @removePressed
+          @removePressed()
         when 'touchend'
-          @removePressed
+          @removePressed()
     else
       switch e.type
         when 'mousedown'
