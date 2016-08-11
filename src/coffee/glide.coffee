@@ -278,7 +278,7 @@ class Glide
     if @isTouch()
       switch e.type
         when 'touchstart'
-          @onTouchStart e
+          @onTouchStart(e)
         when 'touchmove'
           @removePressed()
         when 'touchend'
@@ -286,7 +286,7 @@ class Glide
     else
       switch e.type
         when 'mousedown'
-          @onTouchStart e
+          @onTouchStart(e)
 
   onTouchStart: (e) =>
     if @isTouch()
@@ -311,6 +311,9 @@ class Glide
     @theTarget.addEventListener 'touchcancel', @removePressed, false
 
   removePressed: (e) =>
-    @removeClass @theTarget, 'pressed'
+    elements = document.getElementsByClassName('pressed')
+
+    for element in elements
+      element.classList.remove('pressed')
 
 window.Glide = Glide

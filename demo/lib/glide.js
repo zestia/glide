@@ -325,7 +325,14 @@
     };
 
     Glide.prototype.removePressed = function(e) {
-      return this.removeClass(this.theTarget, 'pressed');
+      var element, elements, i, len, results;
+      elements = document.getElementsByClassName('pressed');
+      results = [];
+      for (i = 0, len = elements.length; i < len; i++) {
+        element = elements[i];
+        results.push(element.classList.remove('pressed'));
+      }
+      return results;
     };
 
     return Glide;
