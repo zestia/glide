@@ -1,14 +1,14 @@
 class Glide
 
-  stylesheetPath: '/'
-
   hooks:
     'before:to': []
     'after:to': []
 
+  plugins: {}
+
   isTransitioning: false
+
   transitionAnimation: true
-  speed: 0.3
 
   # Public: Instantiate Glide and set any options.
   #
@@ -16,14 +16,11 @@ class Glide
   #
   # Returns nothing.
   constructor: (options = {}) ->
-    @[key] = value for key, value of options
+    (@[key] = value) for key, value of options
 
     @detectUserAgent()
-    # NOTE: drop with android 2.3
-    @setupForAndroid() if @isAndroid() and @versionMatches(/2\.3/)
 
-    for key, value of @plugins
-      @plugins[key] = new value this
+    (@plugins[key] = new value this) for key, value of @plugins
 
     if @isTouch()
       document.body.addEventListener 'touchstart', @handleEvents, false
@@ -36,7 +33,7 @@ class Glide
   detectUserAgent: ->
     userAgent = window.navigator.userAgent
     @os = {}
-    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) or !!userAgent.match(/Silk-Accelerated/)
+    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)|Silk-Accelerated/)
 
     if match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)
       @os.ios = true
@@ -75,45 +72,30 @@ class Glide
 
     @isTransitioning = true
 
-    if @back
-      transitionType = @currentPage.getAttribute('data-transition') or 'slide'
-    else
-      transitionType = @targetPage.getAttribute('data-transition') or 'slide'
+    page = if @back then @currentPage else @targetPage
+    transitionType = page.getAttribute('data-transition') or 'slide'
 
     targetPage = @targetPage
     currentPage = @currentPage
     @currentPage = @targetPage
 
-    @addClass currentPage, 'previousPage'
-    document.body.addEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
+    currentPage.classList.add('previousPage')
+
+    document.body.addEventListener(
+      'webkitTransitionEnd',
+      @hideTransitionedPage,
+      false
+    )
 
     setTimeout =>
       if @transitionAnimation
-         @[transitionType](targetPage, currentPage)
+        @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
       @transitionAnimation = oldAnimate
     , 10
 
     hook() for hook in @hooks['after:to']
-
-  # Private: Disables transitions and default stylesheet and replaces with android specific css
-  #
-  # Returns nothing.
-  setupForAndroid: ->
-    head = document.getElementsByTagName('head')[0]
-    androidCSS = document.createElement 'link'
-    androidCSS.setAttribute 'rel', 'stylesheet'
-    androidCSS.setAttribute 'type', 'text/css'
-    androidCSS.setAttribute 'href', "#{@stylesheetPath}glide.android.css"
-    head.appendChild androidCSS
-
-    styleSheets = document.styleSheets
-    for styleSheet in styleSheets when styleSheet.href?.indexOf('glide.css') isnt -1
-      styleSheet.disabled = true
-
-    document.body.className = 'old-android'
-    @transitionAnimation = false
 
   # Private: Perform a slide transition.
   #
@@ -169,11 +151,10 @@ class Glide
   # page     - An Element of the page.
   # axis     - A String of the axis.
   # distance - A String of the distance.
-  # duration - A String of the duration, defaults to speed.
+  # duration - A String of the duration, defaults to 0.3s.
   #
   # Returns nothing.
-  translate: (page, axis, distance, duration) ->
-    duration = @speed + 's' unless duration?
+  translate: (page, axis, distance, duration = '0.3s') ->
     page.style.webkitTransition = "#{duration} cubic-bezier(.10, .10, .25, .90)"
     page.style.webkitTransform = "translate#{axis}(#{distance})"
 
@@ -184,11 +165,6 @@ class Glide
     @isTransitioning = false
     targetPage.style.display = '-webkit-box'
     currentPage.style.display = 'none'
-
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/) and @back is false
-      window.scrollTo 0, 0
-
     @back = false
 
   # Private: Hide DOM that has just been transitioned
@@ -201,39 +177,15 @@ class Glide
     previousPage = document.querySelector('.previousPage')
     if previousPage
       setTimeout =>
-        @removeClass previousPage, 'previousPage'
+        previousPage.classList.remove('previousPage')
         previousPage.style.display = 'none'
       , 0
 
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/)
-      @currentPage.style.webkitTransform = 'none'
-
-    document.body.removeEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
-
-  # Private: Check if element has a class
-  #
-  # el        - DOM element to be checked
-  # cssClass  - A string of the class name
-  #
-  # Returns true if element has the specified class and false if not
-  hasClass: (el, cssClass) ->
-    if el? and el.className isnt ''
-      el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
-    else
+    document.body.removeEventListener(
+      'webkitTransitionEnd',
+      @hideTransitionedPage,
       false
-
-  # NOTE: drop with android 2.3
-  # Using our own addClass and removeClass:
-  # Can use ClassList API if we decide not to support Android 2.3
-  addClass: (ele, cls) ->
-    ele.className += ' ' + cls  unless @hasClass(ele, cls)
-
-  removeClass: (ele, cls) ->
-    if @hasClass(ele, cls)
-      reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-      if ele.className?
-        ele.className = ele.className.replace(reg, ' ')
+    )
 
   # Private: Is the device touch enabled.
   #
@@ -291,29 +243,37 @@ class Glide
   onTouchStart: (e) =>
     if @isTouch()
       if @isAndroid()
-        @theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY)
+        @theTarget = document.elementFromPoint(
+          e.changedTouches[0].screenX,
+          e.changedTouches[0].screenY
+        )
       else
-        @theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY)
+        @theTarget = document.elementFromPoint(
+          e.targetTouches[0].clientX,
+          e.targetTouches[0].clientY
+        )
     else
       @theTarget = document.elementFromPoint e.clientX, e.clientY
 
-    if @theTarget?.nodeName and @theTarget.nodeName.toLowerCase() isnt 'a' and (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
+    if @theTarget?.nodeName and
+        @theTarget.nodeName.toLowerCase() isnt 'a' and
+        (@theTarget.nodeType is 3 or @theTarget.nodeType is 1)
+
       @oldTarget = @theTarget
       @theTarget = $(@theTarget).closest('a')[0]
 
     if @theTarget is null or typeof @theTarget is 'undefined' then return
 
-    @addClass @theTarget, 'pressed'
-    @theTarget.addEventListener 'touchmove', @removePressed, false
-    @theTarget.addEventListener 'mouseout', @removePressed, false
-    @theTarget.addEventListener 'touchend', @removePressed, false
-    @theTarget.addEventListener 'mouseup', @removePressed, false
+    @theTarget.classList.add('pressed')
+
+    @theTarget.addEventListener 'mouseout',    @removePressed, false
+    @theTarget.addEventListener 'mouseup',     @removePressed, false
     @theTarget.addEventListener 'touchcancel', @removePressed, false
+    @theTarget.addEventListener 'touchend',    @removePressed, false
+    @theTarget.addEventListener 'touchmove',   @removePressed, false
 
   removePressed: (e) =>
     elements = document.getElementsByClassName('pressed')
-
-    for element in elements
-      element.classList.remove('pressed')
+    element.classList.remove('pressed') for element in elements
 
 window.Glide = Glide
