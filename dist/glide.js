@@ -4,8 +4,6 @@
     bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   Glide = (function() {
-    Glide.prototype.stylesheetPath = '/';
-
     Glide.prototype.hooks = {
       'before:to': [],
       'after:to': []
@@ -16,8 +14,6 @@
     Glide.prototype.isTransitioning = false;
 
     Glide.prototype.transitionAnimation = true;
-
-    Glide.prototype.speed = 0.3;
 
     function Glide(options) {
       var key, ref, value;
@@ -65,7 +61,7 @@
     };
 
     Glide.prototype.to = function(targetPage, animate) {
-      var currentPage, hook, i, j, len, len1, oldAnimate, ref, ref1, results, transitionType;
+      var currentPage, hook, i, j, len, len1, oldAnimate, page, ref, ref1, results, transitionType;
       if (animate == null) {
         animate = true;
       }
@@ -90,15 +86,12 @@
         return;
       }
       this.isTransitioning = true;
-      if (this.back) {
-        transitionType = this.currentPage.getAttribute('data-transition') || 'slide';
-      } else {
-        transitionType = this.targetPage.getAttribute('data-transition') || 'slide';
-      }
+      page = this.back ? this.currentPage : this.targetPage;
+      transitionType = page.getAttribute('data-transition') || 'slide';
       targetPage = this.targetPage;
       currentPage = this.currentPage;
       this.currentPage = this.targetPage;
-      this.addClass(currentPage, 'previousPage');
+      currentPage.classList.add('previousPage');
       document.body.addEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
       setTimeout((function(_this) {
         return function() {
@@ -174,7 +167,7 @@
 
     Glide.prototype.translate = function(page, axis, distance, duration) {
       if (duration == null) {
-        duration = this.speed + 's';
+        duration = '0.3s';
       }
       page.style.webkitTransition = duration + " cubic-bezier(.10, .10, .25, .90)";
       return page.style.webkitTransform = "translate" + axis + "(" + distance + ")";
@@ -194,36 +187,12 @@
       if (previousPage) {
         setTimeout((function(_this) {
           return function() {
-            _this.removeClass(previousPage, 'previousPage');
+            previousPage.classList.remove('previousPage');
             return previousPage.style.display = 'none';
           };
         })(this), 0);
       }
       return document.body.removeEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
-    };
-
-    Glide.prototype.hasClass = function(el, cssClass) {
-      if ((el != null) && el.className !== '') {
-        return el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className);
-      } else {
-        return false;
-      }
-    };
-
-    Glide.prototype.addClass = function(ele, cls) {
-      if (!this.hasClass(ele, cls)) {
-        return ele.className += ' ' + cls;
-      }
-    };
-
-    Glide.prototype.removeClass = function(ele, cls) {
-      var reg;
-      if (this.hasClass(ele, cls)) {
-        reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-        if (ele.className != null) {
-          return ele.className = ele.className.replace(reg, ' ');
-        }
-      }
     };
 
     Glide.prototype.isTouch = function() {
@@ -290,12 +259,12 @@
       if (this.theTarget === null || typeof this.theTarget === 'undefined') {
         return;
       }
-      this.addClass(this.theTarget, 'pressed');
-      this.theTarget.addEventListener('touchmove', this.removePressed, false);
+      this.theTarget.classList.add('pressed');
       this.theTarget.addEventListener('mouseout', this.removePressed, false);
-      this.theTarget.addEventListener('touchend', this.removePressed, false);
       this.theTarget.addEventListener('mouseup', this.removePressed, false);
-      return this.theTarget.addEventListener('touchcancel', this.removePressed, false);
+      this.theTarget.addEventListener('touchcancel', this.removePressed, false);
+      this.theTarget.addEventListener('touchend', this.removePressed, false);
+      return this.theTarget.addEventListener('touchmove', this.removePressed, false);
     };
 
     Glide.prototype.removePressed = function(e) {

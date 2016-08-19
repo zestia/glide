@@ -7,6 +7,7 @@ class Glide
   plugins: {}
 
   isTransitioning: false
+
   transitionAnimation: true
 
   # Public: Instantiate Glide and set any options.
@@ -78,7 +79,7 @@ class Glide
     currentPage = @currentPage
     @currentPage = @targetPage
 
-    @addClass currentPage, 'previousPage'
+    currentPage.classList.add('previousPage')
 
     document.body.addEventListener(
       'webkitTransitionEnd',
@@ -176,7 +177,7 @@ class Glide
     previousPage = document.querySelector('.previousPage')
     if previousPage
       setTimeout =>
-        @removeClass previousPage, 'previousPage'
+        previousPage.classList.remove('previousPage')
         previousPage.style.display = 'none'
       , 0
 
@@ -185,30 +186,6 @@ class Glide
       @hideTransitionedPage,
       false
     )
-
-  # Private: Check if element has a class
-  #
-  # el        - DOM element to be checked
-  # cssClass  - A string of the class name
-  #
-  # Returns true if element has the specified class and false if not
-  hasClass: (el, cssClass) ->
-    if el? and el.className isnt ''
-      el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
-    else
-      false
-
-  # NOTE: drop with android 2.3
-  # Using our own addClass and removeClass:
-  # Can use ClassList API if we decide not to support Android 2.3
-  addClass: (ele, cls) ->
-    ele.className += ' ' + cls unless @hasClass(ele, cls)
-
-  removeClass: (ele, cls) ->
-    if @hasClass(ele, cls)
-      reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-      if ele.className?
-        ele.className = ele.className.replace(reg, ' ')
 
   # Private: Is the device touch enabled.
   #
@@ -287,17 +264,16 @@ class Glide
 
     if @theTarget is null or typeof @theTarget is 'undefined' then return
 
-    @addClass @theTarget, 'pressed'
-    @theTarget.addEventListener 'touchmove', @removePressed, false
-    @theTarget.addEventListener 'mouseout', @removePressed, false
-    @theTarget.addEventListener 'touchend', @removePressed, false
-    @theTarget.addEventListener 'mouseup', @removePressed, false
+    @theTarget.classList.add('pressed')
+
+    @theTarget.addEventListener 'mouseout',    @removePressed, false
+    @theTarget.addEventListener 'mouseup',     @removePressed, false
     @theTarget.addEventListener 'touchcancel', @removePressed, false
+    @theTarget.addEventListener 'touchend',    @removePressed, false
+    @theTarget.addEventListener 'touchmove',   @removePressed, false
 
   removePressed: (e) =>
     elements = document.getElementsByClassName('pressed')
-
-    for element in elements
-      element.classList.remove('pressed')
+    element.classList.remove('pressed') for element in elements
 
 window.Glide = Glide
