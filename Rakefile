@@ -7,6 +7,7 @@ require 'fileutils'
 
 desc 'compile coffeescript into javascript'
 task :coffee do
+  system 'coffee -c demo/app/*.coffee'
   system 'coffee -c -o dist/ src/coffee/*.coffee'
 end
 
