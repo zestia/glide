@@ -88,7 +88,7 @@ class Glide
     document.body.addEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
 
     setTimeout =>
-      if @transitionAnimation
+      if transitionType isnt 'none'
          @[transitionType](targetPage, currentPage)
       else
         @displayPage targetPage, currentPage
@@ -183,13 +183,14 @@ class Glide
   displayPage: (targetPage, currentPage) ->
     @isTransitioning = false
     targetPage.style.display = '-webkit-box'
-    currentPage.style.display = 'none'
+    @addClass currentPage, 'previousPage'
 
     # NOTE: drop with android 2.3
     if @isAndroid() and @versionMatches(/2\.3/) and @back is false
       window.scrollTo 0, 0
 
     @back = false
+    @hideTransitionedPage()
 
   # Private: Hide DOM that has just been transitioned
   #
@@ -203,6 +204,7 @@ class Glide
       setTimeout =>
         @removeClass previousPage, 'previousPage'
         previousPage.style.display = 'none'
+        @translate previousPage, 'X', '0%', '0ms'
       , 0
 
     # NOTE: drop with android 2.3
