@@ -128,6 +128,25 @@ $('#page-2 a.back').on('click',function(){
   window.history.back()
 });
 ```
+
+### Slide Up
+
+To transition to a page using a slideUp transtion use `data-transition="slideUp"` on the target page:
+
+```
+  <div id="page-1" class="page hidden" data-transition="slideUp"> </div>
+ ``` 
+ 
+Glide will know when to reverse the transitions when navigating back to a page. 
+ 
+### No transition
+
+To display a page without a transition use `data-transition="none"` on the target page:
+
+```
+  <div id="page-1" class="page hidden" data-transition="none"> </div>
+ ``` 
+ 
 ## Using the menu plugin
 
 To use the menu plugin include the js and pass in a plugins has as options when instantiating Glide. We wrote the menu as a plugin so it's easier to build your own custom implmentations.
