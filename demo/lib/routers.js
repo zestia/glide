@@ -25,27 +25,27 @@
     };
 
     AppRouter.prototype.index = function() {
-      return glide.to('#index');
+      return glide.to('#index', false);
     };
 
     AppRouter.prototype.gettingStarted = function() {
-      return glide.to('#getting-started');
+      return glide.to('#getting-started', false);
     };
 
     AppRouter.prototype.fixedHeaderFooter = function() {
-      return glide.to('#fixed-header-footer');
+      return glide.to('#fixed-header-footer', true);
     };
 
     AppRouter.prototype.transitions = function() {
-      return glide.to('#transitions');
+      return glide.to('#transitions', false);
     };
 
     AppRouter.prototype.slide = function() {
-      return glide.to('#slide');
+      return glide.to('#slide', false);
     };
 
     AppRouter.prototype.slideUp = function() {
-      return glide.to('#slideUp');
+      return glide.to('#slideUp', true);
     };
 
     AppRouter.prototype.contacts = function() {
