@@ -202,30 +202,6 @@
       return document.body.removeEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
     };
 
-    Glide.prototype.hasClass = function(el, cssClass) {
-      if ((el != null) && el.className !== '') {
-        return el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className);
-      } else {
-        return false;
-      }
-    };
-
-    Glide.prototype.addClass = function(ele, cls) {
-      if (!this.hasClass(ele, cls)) {
-        return ele.className += ' ' + cls;
-      }
-    };
-
-    Glide.prototype.removeClass = function(ele, cls) {
-      var reg;
-      if (this.hasClass(ele, cls)) {
-        reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-        if (ele.className != null) {
-          return ele.className = ele.className.replace(reg, ' ');
-        }
-      }
-    };
-
     Glide.prototype.isTouch = function() {
       if (typeof this.touch === 'undefined') {
         if (!!('ontouchstart' in window)) {
