@@ -19,8 +19,6 @@ class Glide
     @[key] = value for key, value of options
 
     @detectUserAgent()
-    # NOTE: drop with android 2.3
-    @setupForAndroid() if @isAndroid() and @versionMatches(/2\.3/)
 
     for key, value of @plugins
       @plugins[key] = new value this
@@ -84,7 +82,7 @@ class Glide
     currentPage = @currentPage
     @currentPage = @targetPage
 
-    @addClass currentPage, 'previousPage'
+    currentPage.classList.add 'previousPage'
     document.body.addEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
 
     setTimeout =>
@@ -96,24 +94,6 @@ class Glide
     , 10
 
     hook() for hook in @hooks['after:to']
-
-  # Private: Disables transitions and default stylesheet and replaces with android specific css
-  #
-  # Returns nothing.
-  setupForAndroid: ->
-    head = document.getElementsByTagName('head')[0]
-    androidCSS = document.createElement 'link'
-    androidCSS.setAttribute 'rel', 'stylesheet'
-    androidCSS.setAttribute 'type', 'text/css'
-    androidCSS.setAttribute 'href', "#{@stylesheetPath}glide.android.css"
-    head.appendChild androidCSS
-
-    styleSheets = document.styleSheets
-    for styleSheet in styleSheets when styleSheet.href?.indexOf('glide.css') isnt -1
-      styleSheet.disabled = true
-
-    document.body.className = 'old-android'
-    @transitionAnimation = false
 
   # Private: Perform a slide transition.
   #
@@ -183,12 +163,7 @@ class Glide
   displayPage: (targetPage, currentPage) ->
     @isTransitioning = false
     targetPage.style.display = '-webkit-box'
-    @addClass currentPage, 'previousPage'
-
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/) and @back is false
-      window.scrollTo 0, 0
-
+    currentPage.classList.add 'previousPage'
     @back = false
     @hideTransitionedPage()
 
@@ -202,40 +177,12 @@ class Glide
     previousPage = document.querySelector('.previousPage')
     if previousPage
       setTimeout =>
-        @removeClass previousPage, 'previousPage'
+        previousPage.classList.remove 'previousPage'
         previousPage.style.display = 'none'
         @translate previousPage, 'X', '0%', '0ms'
       , 0
 
-    # NOTE: drop with android 2.3
-    if @isAndroid() and @versionMatches(/2\.3/)
-      @currentPage.style.webkitTransform = 'none'
-
     document.body.removeEventListener 'webkitTransitionEnd', @hideTransitionedPage, false
-
-  # Private: Check if element has a class
-  #
-  # el        - DOM element to be checked
-  # cssClass  - A string of the class name
-  #
-  # Returns true if element has the specified class and false if not
-  hasClass: (el, cssClass) ->
-    if el? and el.className isnt ''
-      el.className && new RegExp("(^|\\s)#{cssClass}(\\s|$)").test(el.className)
-    else
-      false
-
-  # NOTE: drop with android 2.3
-  # Using our own addClass and removeClass:
-  # Can use ClassList API if we decide not to support Android 2.3
-  addClass: (ele, cls) ->
-    ele.className += ' ' + cls  unless @hasClass(ele, cls)
-
-  removeClass: (ele, cls) ->
-    if @hasClass(ele, cls)
-      reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-      if ele.className?
-        ele.className = ele.className.replace(reg, ' ')
 
   # Private: Is the device touch enabled.
   #
@@ -305,7 +252,7 @@ class Glide
 
     if @theTarget is null or typeof @theTarget is 'undefined' then return
 
-    @addClass @theTarget, 'pressed'
+    @theTarget.classList.add 'pressed'
     @theTarget.addEventListener 'touchmove', @removePressed, false
     @theTarget.addEventListener 'mouseout', @removePressed, false
     @theTarget.addEventListener 'touchend', @removePressed, false

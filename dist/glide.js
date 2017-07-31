@@ -33,9 +33,6 @@
         this[key] = value;
       }
       this.detectUserAgent();
-      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
-        this.setupForAndroid();
-      }
       ref = this.plugins;
       for (key in ref) {
         value = ref[key];
@@ -99,7 +96,7 @@
       targetPage = this.targetPage;
       currentPage = this.currentPage;
       this.currentPage = this.targetPage;
-      this.addClass(currentPage, 'previousPage');
+      currentPage.classList.add('previousPage');
       document.body.addEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
       setTimeout((function(_this) {
         return function() {
@@ -118,25 +115,6 @@
         results.push(hook());
       }
       return results;
-    };
-
-    Glide.prototype.setupForAndroid = function() {
-      var androidCSS, head, i, len, ref, styleSheet, styleSheets;
-      head = document.getElementsByTagName('head')[0];
-      androidCSS = document.createElement('link');
-      androidCSS.setAttribute('rel', 'stylesheet');
-      androidCSS.setAttribute('type', 'text/css');
-      androidCSS.setAttribute('href', this.stylesheetPath + "glide.android.css");
-      head.appendChild(androidCSS);
-      styleSheets = document.styleSheets;
-      for (i = 0, len = styleSheets.length; i < len; i++) {
-        styleSheet = styleSheets[i];
-        if (((ref = styleSheet.href) != null ? ref.indexOf('glide.css') : void 0) !== -1) {
-          styleSheet.disabled = true;
-        }
-      }
-      document.body.className = 'old-android';
-      return this.transitionAnimation = false;
     };
 
     Glide.prototype.slide = function(targetPage, currentPage) {
@@ -203,10 +181,7 @@
     Glide.prototype.displayPage = function(targetPage, currentPage) {
       this.isTransitioning = false;
       targetPage.style.display = '-webkit-box';
-      this.addClass(currentPage, 'previousPage');
-      if (this.isAndroid() && this.versionMatches(/2\.3/) && this.back === false) {
-        window.scrollTo(0, 0);
-      }
+      currentPage.classList.add('previousPage');
       this.back = false;
       return this.hideTransitionedPage();
     };
@@ -218,40 +193,13 @@
       if (previousPage) {
         setTimeout((function(_this) {
           return function() {
-            _this.removeClass(previousPage, 'previousPage');
+            previousPage.classList.remove('previousPage');
             previousPage.style.display = 'none';
             return _this.translate(previousPage, 'X', '0%', '0ms');
           };
         })(this), 0);
       }
-      if (this.isAndroid() && this.versionMatches(/2\.3/)) {
-        this.currentPage.style.webkitTransform = 'none';
-      }
       return document.body.removeEventListener('webkitTransitionEnd', this.hideTransitionedPage, false);
-    };
-
-    Glide.prototype.hasClass = function(el, cssClass) {
-      if ((el != null) && el.className !== '') {
-        return el.className && new RegExp("(^|\\s)" + cssClass + "(\\s|$)").test(el.className);
-      } else {
-        return false;
-      }
-    };
-
-    Glide.prototype.addClass = function(ele, cls) {
-      if (!this.hasClass(ele, cls)) {
-        return ele.className += ' ' + cls;
-      }
-    };
-
-    Glide.prototype.removeClass = function(ele, cls) {
-      var reg;
-      if (this.hasClass(ele, cls)) {
-        reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-        if (ele.className != null) {
-          return ele.className = ele.className.replace(reg, ' ');
-        }
-      }
     };
 
     Glide.prototype.isTouch = function() {
@@ -318,7 +266,7 @@
       if (this.theTarget === null || typeof this.theTarget === 'undefined') {
         return;
       }
-      this.addClass(this.theTarget, 'pressed');
+      this.theTarget.classList.add('pressed');
       this.theTarget.addEventListener('touchmove', this.removePressed, false);
       this.theTarget.addEventListener('mouseout', this.removePressed, false);
       this.theTarget.addEventListener('touchend', this.removePressed, false);
