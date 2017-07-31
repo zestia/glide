@@ -19,10 +19,9 @@ This guide will take you through some steps to get started. Further down we cove
 
 ### Device Support
 
-- iPhone 3, 4 and 5
-- Android 4+
-- Android 2.3 (working solution)
-* Glide only works in weblkit based browsers at this time
+- iPhone 9.3+
+- Android 4.4+
+* Glide only works in Webkit based browsers at this time
 
 ## Markup
 
