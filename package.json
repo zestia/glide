@@ -2,7 +2,7 @@
   "name": "@zestia/glide",
   "version": "1.0.0",
   "scripts": {
-    "build": "babel lib --out-dir dist",
+    "build": "babel lib --out-dir dist && cp stylesheets/*.css dist",
     "lint": "eslint lib/*.js test/*.js && stylelint --config .stylelintrc stylesheets/*.css"
   },
   "devDependencies": {
