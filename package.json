@@ -2,8 +2,7 @@
   "name": "@zestia/glide",
   "version": "1.0.0",
   "scripts": {
-    "build": "",
-    "lint": "eslint lib/*.js test/*.js"
+    "lint": "eslint lib/*.js test/*.js && stylelint --config .stylelintrc stylesheets/*.css"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
