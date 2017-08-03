@@ -1,0 +1,7 @@
+# ignore compiled coffee and less
+static/css/*.css
+static/js/app/*.js
+
+# ignore copied glide dist files
+static/js/vendor/glide.js
+static/js/vendor/glide.menu.js

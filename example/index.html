@@ -7,23 +7,24 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
 
-    <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+    <link rel="shortcut icon" type="static/img/ico" href="favicon.ico" />
     <!-- iPhone -->
-    <link href="images/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <link href="static/img/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
     <!-- iPhone (Retina) -->
-    <link href="images/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="static/img/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
     <!-- iPhone 5 -->
-    <link href="images/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="static/img/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
 
-    <link rel="apple-touch-icon" href="images/glide-icon.png" />
-    <link rel="apple-touch-icon-precomposed" href="images/glide-icon.png"/>
+    <link rel="apple-touch-icon" href="static/img/glide-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="static/img/glide-icon.png"/>
 
     <title>Glide</title>
 
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="lib/glide.css">
-    <link rel="stylesheet" href="lib/glide.theme.css">
+
+    <link rel="stylesheet" href="static/css/glide.css">
+    <link rel="stylesheet" href="static/css/glide.theme.css">
   </head>
 
   <body>
@@ -34,6 +35,7 @@
       <header>
         <h1 class="logo">Glide</h1>
       </header>
+
       <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
@@ -44,6 +46,7 @@
               <li><a href="#created-by">Created by<i class="icon-right-dir-1"></i></a></li>
               <li><a href="#contribute">Contribute<i class="icon-right-dir-1"></i></a></li>
             </ul>
+
             <a href="#contacts">
               <button class="large green">View contacts demo</button>
             </a>
@@ -57,6 +60,7 @@
         <a class="back left btn"><i class="icon-left-dir-1"></i></a>
         <h1>Getting started</h1>
       </header>
+
       <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
@@ -383,7 +387,7 @@ class AppRouter extends Backbone.Router
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
             <div class="contributor" id="dom">
-                <img src="images/contributors/dom-grav.jpeg" alt="">
+                <img src="static/img/contributors/dom-grav.jpeg" alt="">
                 <div class="content">
                   <h2>Dom Briggs</h2>
                   <p>UI Designer</p>
@@ -434,7 +438,7 @@ class AppRouter extends Backbone.Router
               </div>
             </a>
             <a class="disable">
-              <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
+              <img class="profile-image-party" src="static/img/200x200/dom.jpg" width="65" height="65" />
               Dominique Briggs
             </a>
           </li>
@@ -454,8 +458,8 @@ class AppRouter extends Backbone.Router
     <script type="text/html" id="contact-list-item">
        <li>
          <a href="#contacts/<%= id %>">
-           <% if ( image != '' ){ %>
-             <img class="<% if ( image === 'tyrion.jpg' ){ %> bw <% } %>" src="images/200x200/<%= image %>"/>
+           <% if (image != ''){ %>
+             <img class="<% if (image === 'tyrion.jpg') { %> bw <% } %>" src="static/img/200x200/<%= image %>"/>
            <% } else { %>
               <img src="http://placehold.it/50/50" />
            <% } %>
@@ -467,49 +471,48 @@ class AppRouter extends Backbone.Router
     <script type="text/html" id="contact-item">
       <header class="shadow">
         <a class="back left btn">
-            <button class="secondary">Back</button>
+          <button class="secondary">Back</button>
         </a>
         <h1><%= name %></h1>
       </header>
+
        <div class="scrollview">
         <div class="scrollview-inner">
           <div class="scrollview-content inset">
-           <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
-               <img src="images/200x200/<%= image %>"/>
-             </div>
-             <div class="info">
-               <h2><%= name %></h2>
-               <p><%= about %></p>
-               <a class="do-something" href="#">
+            <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
+              <img src="static/img/200x200/<%= image %>"/>
+            </div>
+
+            <div class="info">
+              <h2><%= name %></h2>
+              <p><%= about %></p>
+              <a class="do-something" href="#">
                 <button class="large turquoise">Do something cool</button>
-               </a>
-             </div>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
     </script>
 
+    <script src="static/js/vendor/jquery.js"></script>
+    <script src="static/js/vendor/underscore.js"></script>
+    <script src="static/js/vendor/backbone.js"></script>
+    <script src="static/js/vendor/fastClick.js"></script>
+    <script src="static/js/vendor/prettyprint.js"></script>
 
+    <script src="static/js/vendor/glide.js"></script>
+    <script src="static/js/vendor/glide.menu.js"></script>
 
-    <script src="vendor/jquery.js"></script>
-    <script src="vendor/prettyprint.js"></script>
-    <script src="vendor/underscore.js"></script>
-    <script src="vendor/backbone.js"></script>
-    <script src="vendor/fastClick.js"></script>
-
-    <script src="lib/glide.js"></script>
-    <script src="lib/glide.menu.js"></script>
-
-    <script src="app/application.js"></script>
-    <script src="app/routers.js"></script>
-    <script src="app/models.js"></script>
-    <script src="app/collections.js"></script>
-    <script src="app/views.js"></script>
+    <script src="static/js/app/application.js"></script>
+    <script src="static/js/app/routers.js"></script>
+    <script src="static/js/app/models.js"></script>
+    <script src="static/js/app/collections.js"></script>
+    <script src="static/js/app/views.js"></script>
 
     <script type="text/javascript">
       $(function() {
-        app.init()
+        app.init();
 
         // disable touch move on header to prevent user stretching from top
         $(document).on('touchmove','header ,.strap, .footer-menu', function(e) {
@@ -517,8 +520,8 @@ class AppRouter extends Backbone.Router
         });
 
         $('.back').on('click', function() {
-          glide.back = true
-          window.history.back()
+          glide.back = true;
+          window.history.back();
         })
 
         $(document).on('click','.main-menu-button',function(e){
@@ -526,7 +529,7 @@ class AppRouter extends Backbone.Router
           glide.plugins.menu.toggle();
         });
 
-         $(document).on('click','#close-menu-btn',function(e){
+        $(document).on('click','#close-menu-btn',function(e){
           e.preventDefault();
           glide.plugins.menu.toggle();
         });
@@ -536,34 +539,36 @@ class AppRouter extends Backbone.Router
         });
 
         $(document).on('click', 'header h1', function() {
-          $('.scrollview-inner').animate({ scrollTop: '0px' })
+          $('.scrollview-inner').animate({ scrollTop: '0px' });
         })
 
         if (window.Touch) {
-          new FastClick(document.body)
+          new FastClick(document.body);
         }
 
-        prettyPrint()
+        prettyPrint();
 
          // need to move this into glide or find a better way
         if (navigator.standalone) {
-          window.preventScrolling = true
+          window.preventScrolling = true;
+
           $(document)
-          .on('touchstart','.scrollview-content', function() {
-            this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
-            window.preventScrolling=false
-          })
-          .on('touchmove', '.scrollview-content', function(e) {
-            if (window.preventScrolling) e.preventDefault()
-          })
-          .on('touchend', '.scrollview-content', function() {
-            window.preventScrolling = true
-          })
+            .on('touchstart','.scrollview-content', function() {
+              this.style.minHeight = (this.parentNode.offsetHeight + 2) + 'px';
+              window.preventScrolling = false;
+            })
+            .on('touchmove', '.scrollview-content', function(e) {
+              if (window.preventScrolling) {
+                e.preventDefault();
+              }
+            })
+            .on('touchend', '.scrollview-content', function() {
+              window.preventScrolling = true;
+            });
         } else {
-          $(document)
-          .on('touchstart', '.scrollview-content', function() {
-          this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
-          })
+          $(document).on('touchstart', '.scrollview-content', function() {
+            this.style.minHeight = (this.parentNode.offsetHeight + 2) + 'px'
+          });
         }
       });
     </script>
