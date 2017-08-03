@@ -1,0 +1,176 @@
+10c10
+<     <link rel="shortcut icon" type="image/ico" href="favicon.ico" />
+---
+>     <link rel="shortcut icon" type="static/img/ico" href="favicon.ico" />
+12c12
+<     <link href="images/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+---
+>     <link href="static/img/glide-splash-320x460.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+14c14
+<     <link href="images/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+---
+>     <link href="static/img/glide-splash-640x920.jpg" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+16c16
+<     <link href="images/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+---
+>     <link href="static/img/glide-splash-640x1096.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+18,19c18,19
+<     <link rel="apple-touch-icon" href="images/glide-icon.png" />
+<     <link rel="apple-touch-icon-precomposed" href="images/glide-icon.png"/>
+---
+>     <link rel="apple-touch-icon" href="static/img/glide-icon.png" />
+>     <link rel="apple-touch-icon-precomposed" href="static/img/glide-icon.png"/>
+25,26c25,27
+<     <link rel="stylesheet" href="lib/glide.css">
+<     <link rel="stylesheet" href="lib/glide.theme.css">
+---
+> 
+>     <link rel="stylesheet" href="static/css/glide.css">
+>     <link rel="stylesheet" href="static/css/glide.theme.css">
+36a38
+> 
+46a49
+> 
+59a63
+> 
+386c390
+<                 <img src="images/contributors/dom-grav.jpeg" alt="">
+---
+>                 <img src="static/img/contributors/dom-grav.jpeg" alt="">
+437c441
+<               <img class="profile-image-party" src="images/200x200/dom.jpg" width="65" height="65" />
+---
+>               <img class="profile-image-party" src="static/img/200x200/dom.jpg" width="65" height="65" />
+457,458c461,462
+<            <% if ( image != '' ){ %>
+<              <img class="<% if ( image === 'tyrion.jpg' ){ %> bw <% } %>" src="images/200x200/<%= image %>"/>
+---
+>            <% if (image != ''){ %>
+>              <img class="<% if (image === 'tyrion.jpg') { %> bw <% } %>" src="static/img/200x200/<%= image %>"/>
+470c474
+<             <button class="secondary">Back</button>
+---
+>           <button class="secondary">Back</button>
+473a478
+> 
+477,483c482,489
+<            <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
+<                <img src="images/200x200/<%= image %>"/>
+<              </div>
+<              <div class="info">
+<                <h2><%= name %></h2>
+<                <p><%= about %></p>
+<                <a class="do-something" href="#">
+---
+>             <div class="profile-image <% if ( image === 'tyrion.jpg' ){ %> bw <% } %> ">
+>               <img src="static/img/200x200/<%= image %>"/>
+>             </div>
+> 
+>             <div class="info">
+>               <h2><%= name %></h2>
+>               <p><%= about %></p>
+>               <a class="do-something" href="#">
+485,486c491,492
+<                </a>
+<              </div>
+---
+>               </a>
+>             </div>
+490d495
+< 
+493,508c498,511
+< 
+< 
+<     <script src="vendor/jquery.js"></script>
+<     <script src="vendor/prettyprint.js"></script>
+<     <script src="vendor/underscore.js"></script>
+<     <script src="vendor/backbone.js"></script>
+<     <script src="vendor/fastClick.js"></script>
+< 
+<     <script src="lib/glide.js"></script>
+<     <script src="lib/glide.menu.js"></script>
+< 
+<     <script src="app/application.js"></script>
+<     <script src="app/routers.js"></script>
+<     <script src="app/models.js"></script>
+<     <script src="app/collections.js"></script>
+<     <script src="app/views.js"></script>
+---
+>     <script src="static/js/vendor/jquery.js"></script>
+>     <script src="static/js/vendor/underscore.js"></script>
+>     <script src="static/js/vendor/backbone.js"></script>
+>     <script src="static/js/vendor/fastClick.js"></script>
+>     <script src="static/js/vendor/prettyprint.js"></script>
+> 
+>     <script src="static/js/vendor/glide.js"></script>
+>     <script src="static/js/vendor/glide.menu.js"></script>
+> 
+>     <script src="static/js/app/application.js"></script>
+>     <script src="static/js/app/routers.js"></script>
+>     <script src="static/js/app/models.js"></script>
+>     <script src="static/js/app/collections.js"></script>
+>     <script src="static/js/app/views.js"></script>
+512c515
+<         app.init()
+---
+>         app.init();
+520,521c523,524
+<           glide.back = true
+<           window.history.back()
+---
+>           glide.back = true;
+>           window.history.back();
+529c532
+<          $(document).on('click','#close-menu-btn',function(e){
+---
+>         $(document).on('click','#close-menu-btn',function(e){
+539c542
+<           $('.scrollview-inner').animate({ scrollTop: '0px' })
+---
+>           $('.scrollview-inner').animate({ scrollTop: '0px' });
+543c546
+<           new FastClick(document.body)
+---
+>           new FastClick(document.body);
+546c549
+<         prettyPrint()
+---
+>         prettyPrint();
+550c553,554
+<           window.preventScrolling = true
+---
+>           window.preventScrolling = true;
+> 
+552,561c556,567
+<           .on('touchstart','.scrollview-content', function() {
+<             this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+<             window.preventScrolling=false
+<           })
+<           .on('touchmove', '.scrollview-content', function(e) {
+<             if (window.preventScrolling) e.preventDefault()
+<           })
+<           .on('touchend', '.scrollview-content', function() {
+<             window.preventScrolling = true
+<           })
+---
+>             .on('touchstart','.scrollview-content', function() {
+>               this.style.minHeight = (this.parentNode.offsetHeight + 2) + 'px';
+>               window.preventScrolling = false;
+>             })
+>             .on('touchmove', '.scrollview-content', function(e) {
+>               if (window.preventScrolling) {
+>                 e.preventDefault();
+>               }
+>             })
+>             .on('touchend', '.scrollview-content', function() {
+>               window.preventScrolling = true;
+>             });
+563,566c569,571
+<           $(document)
+<           .on('touchstart', '.scrollview-content', function() {
+<           this.style.minHeight = (this.parentNode.offsetHeight+2)+'px'
+<           })
+---
+>           $(document).on('touchstart', '.scrollview-content', function() {
+>             this.style.minHeight = (this.parentNode.offsetHeight + 2) + 'px'
+>           });
