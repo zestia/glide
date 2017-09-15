@@ -14,7 +14,6 @@ end
 desc 'compile less into css'
 task :less do
   system 'lessc -x src/less/glide.less dist/glide.css'
-  system 'lessc -x src/less/glide.android.less dist/glide.android.css'
   system 'lessc -x src/less/theme/glide.theme.less dist/glide.theme.css'
 end
 
