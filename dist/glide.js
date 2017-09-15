@@ -280,7 +280,7 @@
       results = [];
       for (i = 0, len = elements.length; i < len; i++) {
         element = elements[i];
-        results.push(element.classList.remove('pressed'));
+        results.push(element != null ? element.classList.remove('pressed') : void 0);
       }
       return results;
     };

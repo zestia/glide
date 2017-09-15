@@ -263,6 +263,6 @@ class Glide
     elements = document.getElementsByClassName('pressed')
 
     for element in elements
-      element.classList.remove('pressed')
+      element?.classList.remove('pressed')
 
 window.Glide = Glide
