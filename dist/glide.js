@@ -217,11 +217,7 @@
     Glide.prototype.onTouchStart = function(e) {
       var ref;
       if (this.isTouch()) {
-        if (this.isAndroid()) {
-          this.theTarget = document.elementFromPoint(e.changedTouches[0].screenX, e.changedTouches[0].screenY);
-        } else {
-          this.theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
-        }
+        this.theTarget = document.elementFromPoint(e.targetTouches[0].clientX, e.targetTouches[0].clientY);
       } else {
         this.theTarget = document.elementFromPoint(e.clientX, e.clientY);
       }
