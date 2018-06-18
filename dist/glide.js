@@ -32,7 +32,6 @@
         value = options[key];
         this[key] = value;
       }
-      this.detectUserAgent();
       ref = this.plugins;
       for (key in ref) {
         value = ref[key];
@@ -44,23 +43,6 @@
         document.body.addEventListener('mousedown', this.handleEvents, false);
       }
     }
-
-    Glide.prototype.detectUserAgent = function() {
-      var match, result, userAgent;
-      userAgent = window.navigator.userAgent;
-      this.os = {};
-      this.os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) || !!userAgent.match(/Silk-Accelerated/);
-      if (match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)) {
-        this.os.ios = true;
-        this.os.version = match[4].replace(/_/g, '.');
-        this.os.full = "iOS " + this.os.version;
-      }
-      if (this.os.android) {
-        result = userAgent.match(/Android (\d+(?:\.\d+)+)/);
-        this.os.version = result[1];
-        return this.os.full = "Android " + this.os.version;
-      }
-    };
 
     Glide.prototype.to = function(targetPage, animate) {
       var currentPage, hook, i, j, len, len1, oldAnimate, ref, ref1, results, transitionType;
@@ -212,22 +194,6 @@
       } else {
         return this.touch;
       }
-    };
-
-    Glide.prototype.isIOS = function() {
-      return this.os.ios;
-    };
-
-    Glide.prototype.isAndroid = function() {
-      return this.os.android;
-    };
-
-    Glide.prototype.osVersion = function() {
-      return this.os.version.toString();
-    };
-
-    Glide.prototype.versionMatches = function(regex) {
-      return !!this.os.version.toString().match(regex);
     };
 
     Glide.prototype.handleEvents = function(e) {

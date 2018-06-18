@@ -18,8 +18,6 @@ class Glide
   constructor: (options = {}) ->
     @[key] = value for key, value of options
 
-    @detectUserAgent()
-
     for key, value of @plugins
       @plugins[key] = new value this
 
@@ -27,24 +25,6 @@ class Glide
       document.body.addEventListener 'touchstart', @handleEvents, false
     else
       document.body.addEventListener 'mousedown', @handleEvents, false
-
-  # Private: Get a Hash of browser user agent information.
-  #
-  # Returns a Hash of user agent information.
-  detectUserAgent: ->
-    userAgent = window.navigator.userAgent
-    @os = {}
-    @os.android = !!userAgent.match(/(Android)\s+([\d.]+)/) or !!userAgent.match(/Silk-Accelerated/)
-
-    if match = userAgent.match(/((iPad).*OS|(iPhone\sOS))\s([\d_]+)/)
-      @os.ios = true
-      @os.version = match[4].replace /_/g, '.'
-      @os.full = "iOS #{@os.version}"
-
-    if @os.android
-      result = userAgent.match(/Android (\d+(?:\.\d+)+)/)
-      @os.version = result[1]
-      @os.full = "Android #{@os.version}"
 
   # Public: Go to a specific page.
   #
@@ -195,30 +175,6 @@ class Glide
         @touch = false
     else
       @touch
-
-  # Public: Is the device running iOS
-  #
-  # Returns True if the device is running iOS, else False.
-  isIOS: ->
-    @os.ios
-
-  # Public: Is the device running Android
-  #
-  # Returns True if the device is running Android, else False.
-  isAndroid: ->
-    @os.android
-
-  # Public: Get the version of the OS running on the device.
-  #
-  # Returns a String of the OS version.
-  osVersion: ->
-    @os.version.toString()
-
-  # Public: Test whether the OS version matches the specified version.
-  #
-  # Returns: True if the version matches, else False.
-  versionMatches: (regex) ->
-    !!@os.version.toString().match regex
 
   # Private: Handle touch events to apply pressed class to anchors
   #
